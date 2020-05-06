@@ -1,0 +1,28 @@
+import { Meta, Preview, Description } from '@storybook/addon-docs/blocks'
+import { CmButton } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Button" component={CmButton} />
+
+# Button
+
+This is how all the appearances of enabled buttons look:
+
+<Preview inline>
+	<CmButton label="A normal Button" />
+	<CmButton appearance="primary" label="A primary Button" />
+	<CmButton appearance="danger" label="A dangerous Button" />
+</Preview>
+
+This is how they look when they are disabled:
+
+<Preview inline>
+	<CmButton disabled label="A disabled normal Button" />
+	<CmButton disabled appearance="primary" label="A disabled primary Button" />
+	<CmButton disabled appearance="danger" label="A disabled dangerous Button" />
+</Preview>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

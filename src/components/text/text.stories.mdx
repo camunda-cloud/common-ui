@@ -1,0 +1,21 @@
+import { Meta, Preview, Description } from '@storybook/addon-docs/blocks'
+import { CmText } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Text" component={CmText} />
+
+# Text
+
+This component is a simple way of getting correctly styled text into your app. It supports 3 apprearances: `normal` (the default), `subtle`, and `bold`.
+It accepts its textual content in the default slot - rather than as an attribute, like most other places in this library - to enable links and other inline elements in the text.
+
+<Preview inline>
+	<CmText>Some normal Text in a CmText tag.</CmText>
+	<CmText appearance="subtle">Some subtle Text in a CmText tag.</CmText>
+	<CmText appearance="bold">Some Bold Text in a CmText tag.</CmText>
+</Preview>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

@@ -1,0 +1,42 @@
+import { Meta, Preview, Description } from '@storybook/addon-docs/blocks'
+import { CmCard, CmButton, CmText } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Card" component={CmCard} />
+
+# Card
+
+Cards are a primary way of sectioning content. They come in 2 primary varieties:
+
+**Normal**
+
+<Preview inline>
+	<CmCard headline="A Normal Card Headline">
+		<CmText>Hello from the Content!</CmText>
+	</CmCard>
+</Preview>
+
+**Simple**
+
+<Preview inline>
+	<CmCard simple headline="A Simple Card Headline">
+		<CmText>Hello from the Content!</CmText>
+	</CmCard>
+</Preview>
+
+Cards also have more than just their default content `slot`. They also have a `slot` called `headline`,
+which enables you to add arbitrary content to the right hand side of the headline.
+The primary use of this `slot` should be for actions concerning the content of the card.
+It is enabled for both styles of card, though strongly recommended to only be used with normal cards.
+
+<Preview inline>
+	<CmCard headline="Card Headline with Slot">
+		<CmButton slot="headline" label="Button on the Right"></CmButton>
+		<CmText>Hello from the Content!</CmText>
+	</CmCard>
+</Preview>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

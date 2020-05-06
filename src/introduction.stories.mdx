@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction" />
+
+# Common UI
+
+An easy-to-use, framework-agnostic design library, built with modern web standards.
+
+## Getting Started
+
+### Select your Package
+
+Depending on your framework of choice, there are different packages available for you:
+
+All of these packages are hosted in the `@camunda-cloud` scope in the Github Package Registry.
+In order to install packages from the Githup Package Registry you need to log into it. [Find out how](https://github.com/features/packages).
+
+If you want to use the web components that are powering Common UI themselves, you want to install `@camunda-cloud/common-ui`.
+
+If you are building your App in React you will most likely want to use the React-wrapper to these web components: `@camunda-cloud/common-ui-react`.
+This is an automatically compiled set of very thin React wrappers around the web components - mostly to enable passing objects in attributes and
+align with some naming conventions of React (a `cm-press` Event turns into `onCmPress` for example).
+
+Similarly, `@camunda-cloud/common-ui-angular` is available to enable use of `ngModel`.
+
+### Setting Up
+
+Since Common UI is using web components, the CSS is bundled inside of all the components individually and contained inside their shadow-dom.
+In order to reduce requests and prevent possible race conditions, font-related CSS has been placed in a global `common-ui.css` alongside all
+CSS variable definitions (which all have been prefixed with `cm-` to avoid collisions).
+
+This CSS file can be found under `dist/common-ui/common-ui.css` and needs to be manually included into your HTML.
+
+**Note:** If you use either of the wrapper libraries, you still need to install `@camunda-cloud/common-ui` alongside it, to import this CSS file.
+
+If you are using React, you are set up at this point. Just start importing the components you want to use from `@camunda-cloud/common-ui-react`.
+
+If you are using Angular, you need to import the `CommonUIModule` from `@camunda-cloud/common-ui-angular` and add it to the imports of whichever
+Module you want. We recommend the `app.module.ts` for a singular setup. Once this is done, you can start using Common UI like normal Angular modules.
+
+If you are going with the vanilla Common UI experience you need add this bit of JS to your project:
+
+```javascript
+// NOTE: applyPolyfills is optional, feel free to just call defineCustomElements() if you are targeting evergreen browsers.
+import {
+	applyPolyfills,
+	defineCustomElements,
+} from '@camunda-cloud/common-ui/loader'
+applyPolyfills().then(() => {
+	defineCustomElements()
+})
+```
+
+## Conventions
+
+In order to stay as compliant with web standards as possible, this library refrains from reusing already standards-defined event names.
+Every event name is thus prefixed with a `cm-`.
+
+## Goals
+
+Common UI has a couple of goals, chief among them are:
+
+- Levering web standards to stay framework agnostic
+- Provide a simple and clear API
+- Prevent invalid configuration of components
+- Enable quick implementation of Designs
+
+## Notes
+
+This documentation is currently using `@camunda-cloud/common-ui-react` to keep code examples as brief as possible.
+The technical documentation is based on the web component variants, which are the source of truth. The code examples are impacted in the following ways:
+
+|            |               React               |            Angular            |            Web Components            |
+| ---------- | :-------------------------------: | :---------------------------: | :----------------------------------: |
+| Tag Names  |          `<CmButton />`           |   `<cm-button></cm-button>`   |      `<cm-button></cm-button>`       |
+| Attributes |    `<CmLink openIn="sameTab">`    | `<cm-link open-in="sameTab">` |    `<cm-link open-in="sameTab">`     |
+| Events     | `<CmButton onCmPress={() => {}}>` |    `<cm-button (cmPress)>`    | `button.addEventListener("cmPress")` |

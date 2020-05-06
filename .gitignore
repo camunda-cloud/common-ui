@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+.cache
+.build
+.stencil
+.storybookDeployment
+dist
+loader
+www
+src/**/readme.md

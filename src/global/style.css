@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+	/* #region Colors */
+
+	/* #region Blue */
+
+	--cm-color-blue-lighten-93: hsl(217, 100%, 93%);
+	--cm-color-blue-lighten-82: hsl(217, 100%, 82%);
+	--cm-color-blue-lighten-75: hsl(217, 100%, 75%);
+
+	--cm-color-blue-base-65: hsl(217, 100%, 65%);
+
+	--cm-color-blue-darken-62: hsl(217, 100%, 62%);
+	--cm-color-blue-darken-55: hsl(217, 100%, 55%);
+	--cm-color-blue-darken-48: hsl(217, 100%, 48%);
+	--cm-color-blue-darken-32: hsl(217, 100%, 32%);
+	--cm-color-blue-darken-18: hsl(217, 100%, 18%);
+
+	/* #endregion */
+
+	/* #region Silver */
+
+	--cm-color-silver-lighten-99: hsl(0, 0%, 99%);
+
+	--cm-color-silver-base-97: hsl(0, 0%, 97%);
+
+	--cm-color-silver-darken-94: hsl(0, 0%, 94%);
+	--cm-color-silver-darken-87: hsl(0, 0%, 87%);
+	--cm-color-silver-darken-80: hsl(0, 0%, 80%);
+
+	/* #endregion */
+
+	/* #region Grey */
+
+	--cm-color-grey-lighten-56: hsl(0, 0%, 56%);
+	--cm-color-grey-lighten-50: hsl(0, 0%, 50%);
+
+	--cm-color-grey-base-40: hsl(0, 0%, 40%);
+
+	--cm-color-grey-darken-36: hsl(0, 0%, 36%);
+	--cm-color-grey-darken-33: hsl(0, 0%, 33%);
+	--cm-color-grey-darken-23: hsl(0, 0%, 23%);
+	--cm-color-grey-darken-13: hsl(0, 0%, 13%);
+
+	/* #endregion */
+
+	/* #region Other */
+
+	/* #region Red */
+
+	--cm-color-red-lighten-85: hsl(360, 100%, 85%);
+
+	--cm-color-red-base-62: hsl(360, 100%, 62%);
+
+	--cm-color-red-darken-52: hsl(360, 100%, 52%);
+	--cm-color-red-darken-42: hsl(360, 100%, 42%);
+	--cm-color-red-darken-38: hsl(360, 100%, 38%);
+	--cm-color-red-darken-26: hsl(360, 100%, 26%);
+	--cm-color-red-darken-18: hsl(360, 100%, 18%);
+
+	/* #endregion */
+
+	--cm-color-orange-base-60: hsl(34, 100%, 60%);
+
+	--cm-color-green-base-44: hsl(105, 86%, 44%);
+
+	/* #endregion */
+
+	/* #endregion */
+
+	/* #region Fonts */
+
+	--cm-font-text: 'IBM Plex Sans';
+
+	/* #endregion */
+}
