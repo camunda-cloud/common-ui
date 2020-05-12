@@ -5,10 +5,10 @@ import { Component, Host, h } from '@stencil/core'
  */
 @Component({
 	tag: 'cm-text',
-	styleUrl: 'text.scss',
+	styleUrl: 'cm-text.scss',
 	shadow: true,
 })
-export class Text {
+export class CmText {
 	render() {
 		return (
 			<Host>

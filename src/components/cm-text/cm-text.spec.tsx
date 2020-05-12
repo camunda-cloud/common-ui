@@ -1,18 +1,20 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { Button } from './button'
+import { CmText } from './cm-text'
 
-describe('cm-button', () => {
+describe('cm-text', () => {
 	it('renders', async () => {
 		const page = await newSpecPage({
-			components: [Button],
-			html: `<cm-button></cm-button>`,
+			components: [CmText],
+			html: `<cm-text></cm-text>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-button>
+			<cm-text>
 				<mock:shadow-root>
-					<div tabindex="0" class="main"></div>
+					<span class="">
+						<slot></slot>
+					</span>
 				</mock:shadow-root>
-			</cm-button>
+			</cm-text>
 		`)
 	})
 })

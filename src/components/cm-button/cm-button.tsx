@@ -11,10 +11,10 @@ import {
 
 @Component({
 	tag: 'cm-button',
-	styleUrl: 'button.scss',
+	styleUrl: 'cm-button.scss',
 	shadow: true,
 })
-export class Button implements ComponentInterface {
+export class CmButton implements ComponentInterface {
 	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' = 'main'
 	@Prop() label: string = ''
 	@Prop() disabled: boolean = false
