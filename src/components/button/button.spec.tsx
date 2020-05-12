@@ -10,7 +10,7 @@ describe('cm-button', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-button>
 				<mock:shadow-root>
-					<div tabindex="0" class="secondary"></div>
+					<div tabindex="0" class="main"></div>
 				</mock:shadow-root>
 			</cm-button>
 		`)

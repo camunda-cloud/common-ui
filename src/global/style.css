@@ -3,69 +3,59 @@
 :root {
 	/* #region Colors */
 
-	/* #region Blue */
+	--cm-color-blue-base: #4d90ff;
 
-	--cm-color-blue-lighten-93: hsl(217, 100%, 93%);
-	--cm-color-blue-lighten-82: hsl(217, 100%, 82%);
-	--cm-color-blue-lighten-75: hsl(217, 100%, 75%);
+	--cm-color-green-base: #10d070;
 
-	--cm-color-blue-base-65: hsl(217, 100%, 65%);
+	--cm-color-red-base: #ff3d3d;
 
-	--cm-color-blue-darken-62: hsl(217, 100%, 62%);
-	--cm-color-blue-darken-55: hsl(217, 100%, 55%);
-	--cm-color-blue-darken-48: hsl(217, 100%, 48%);
-	--cm-color-blue-darken-32: hsl(217, 100%, 32%);
-	--cm-color-blue-darken-18: hsl(217, 100%, 18%);
+	--cm-color-orange-base: #ffa533;
 
-	/* #endregion */
+	--cm-color-ui-light1: #f2f3f5;
+	--cm-color-ui-light2: #f7f8fa;
+	--cm-color-ui-light3: #b0bac7;
+	--cm-color-ui-light4: #fdfdfe;
+	--cm-color-ui-light4-rgb: 253, 253, 254;
+	--cm-color-ui-light5: #d8dce3;
+	--cm-color-ui-light6: #62626e;
 
-	/* #region Silver */
+	--cm-color-ui-dark1: #6d7076;
+	--cm-color-ui-dark2: #313238;
+	--cm-color-ui-dark3: #393a41;
+	--cm-color-ui-dark4: #45464e;
+	--cm-color-ui-dark4-rgb: 69, 70, 78;
+	--cm-color-ui-dark5: #5b5e63;
+	--cm-color-ui-dark6: #6d7076;
+	--cm-color-ui-dark6-rgb: 109, 112, 118;
 
-	--cm-color-silver-lighten-99: hsl(0, 0%, 99%);
+	--cm-color-focus-outer-neutral: #8cb7ff;
+	--cm-color-focus-inner-neutral: #c8e1ff;
+	--cm-color-focus-inner-neutral2: #2b7bff;
+	--cm-color-focus-outer-danger: #ffb3b3;
+	--cm-color-focus-inner-danger: #ffe0e0;
 
-	--cm-color-silver-base-97: hsl(0, 0%, 97%);
+	--cm-color-button-light1: #cdd4df;
+	--cm-color-button-light2: #9ea9b7;
+	--cm-color-button-light3: #88889a;
+	--cm-color-button-light4: #f1f2f5;
+	--cm-color-button-light5: #e7e9ee;
+	--cm-color-button-light6: #d3d6e0;
 
-	--cm-color-silver-darken-94: hsl(0, 0%, 94%);
-	--cm-color-silver-darken-87: hsl(0, 0%, 87%);
-	--cm-color-silver-darken-80: hsl(0, 0%, 80%);
+	--cm-color-button-blue1: #a2c5ff;
+	--cm-color-button-blue2: #80b0ff;
+	--cm-color-button-blue3: #3c85ff;
+	--cm-color-button-blue4: #1a70ff;
+	--cm-color-button-blue5: #005df7;
 
-	/* #endregion */
+	--cm-color-button-red1: #ffcccc;
+	--cm-color-button-red2: #ffb3b3;
+	--cm-color-button-red3: #ff0a0a;
+	--cm-color-button-red4: #d60000;
+	--cm-color-button-red5: #c20000;
 
-	/* #region Grey */
-
-	--cm-color-grey-lighten-56: hsl(0, 0%, 56%);
-	--cm-color-grey-lighten-50: hsl(0, 0%, 50%);
-
-	--cm-color-grey-base-40: hsl(0, 0%, 40%);
-
-	--cm-color-grey-darken-36: hsl(0, 0%, 36%);
-	--cm-color-grey-darken-33: hsl(0, 0%, 33%);
-	--cm-color-grey-darken-23: hsl(0, 0%, 23%);
-	--cm-color-grey-darken-13: hsl(0, 0%, 13%);
-
-	/* #endregion */
-
-	/* #region Other */
-
-	/* #region Red */
-
-	--cm-color-red-lighten-85: hsl(360, 100%, 85%);
-
-	--cm-color-red-base-62: hsl(360, 100%, 62%);
-
-	--cm-color-red-darken-52: hsl(360, 100%, 52%);
-	--cm-color-red-darken-42: hsl(360, 100%, 42%);
-	--cm-color-red-darken-38: hsl(360, 100%, 38%);
-	--cm-color-red-darken-26: hsl(360, 100%, 26%);
-	--cm-color-red-darken-18: hsl(360, 100%, 18%);
-
-	/* #endregion */
-
-	--cm-color-orange-base-60: hsl(34, 100%, 60%);
-
-	--cm-color-green-base-44: hsl(105, 86%, 44%);
-
-	/* #endregion */
+	--cm-color-link: #346ac4;
+	--cm-color-link-hover: #4b7ccf;
+	--cm-color-link-active: #29549c;
 
 	/* #endregion */
 
