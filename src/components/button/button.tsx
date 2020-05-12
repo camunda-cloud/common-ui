@@ -15,17 +15,17 @@ import {
 	shadow: true,
 })
 export class Button implements ComponentInterface {
-	@Prop() appearance: 'primary' | 'secondary' | 'danger' = 'secondary'
+	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' = 'main'
 	@Prop() label: string = ''
 	@Prop() disabled: boolean = false
 
-	@Event() cmPress: EventEmitter<{ triggeredBy: 'Keyboard' | 'Mouse' }>
+	@Event() cmPress: EventEmitter<{}>
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
 		if (event.key === ' ' || event.key === 'Enter') {
 			if (!this.disabled) {
-				this.cmPress.emit({ triggeredBy: 'Keyboard' })
+				this.cmPress.emit()
 			}
 		}
 	}
@@ -33,19 +33,22 @@ export class Button implements ComponentInterface {
 	@Listen('click')
 	handleClick() {
 		if (!this.disabled) {
-			this.cmPress.emit({ triggeredBy: 'Mouse' })
+			this.cmPress.emit()
 		}
 	}
 
 	render() {
 		let classes = {
+			main: false,
 			primary: false,
 			secondary: false,
 			danger: false,
 			disabled: this.disabled,
 		}
 
-		if (this.appearance === 'danger') {
+		if (this.appearance === 'main') {
+			classes.main = true
+		} else if (this.appearance === 'danger') {
 			classes.danger = true
 		} else if (this.appearance === 'primary') {
 			classes.primary = true

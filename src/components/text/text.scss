@@ -5,13 +5,5 @@ span {
 	font-size: 14px;
 	font-weight: 400;
 
-	color: var(--cm-color-grey-darken-23);
-
-	&.subtle {
-		color: var(--cm-color-grey-lighten-50);
-	}
-
-	&.bold {
-		font-weight: 600;
-	}
+	color: var(--cm-color-ui-light6);
 }
