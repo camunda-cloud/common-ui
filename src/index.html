@@ -11,6 +11,46 @@
 		<link rel="stylesheet" href="/build/common-ui.css" />
 		<script type="module" src="/build/common-ui.esm.js"></script>
 		<script nomodule src="/build/common-ui.js"></script>
+
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+			}
+
+			body > * {
+				margin-top: 15px;
+			}
+
+			.row {
+				display: flex;
+			}
+
+			.row > * {
+				margin-left: 20px;
+			}
+		</style>
 	</head>
-	<body></body>
+	<body>
+		<div class="row">
+			<cm-button label="Test"></cm-button>
+			<cm-button label="Test" appearance="primary"></cm-button>
+			<cm-button label="Test" appearance="secondary"></cm-button>
+			<cm-button label="Test" appearance="danger"></cm-button>
+		</div>
+
+		<div class="row">
+			<cm-button disabled label="Test"></cm-button>
+			<cm-button disabled label="Test" appearance="primary"></cm-button>
+			<cm-button disabled label="Test" appearance="secondary"></cm-button>
+			<cm-button disabled label="Test" appearance="danger"></cm-button>
+		</div>
+
+		<div class="row">
+			<cm-text
+				>This is a Text test with an embedded
+				<cm-link href="https://camunda.de" label="link"></cm-link>.</cm-text
+			>
+		</div>
+	</body>
 </html>
