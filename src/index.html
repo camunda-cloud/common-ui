@@ -22,14 +22,26 @@
 
 			.row {
 				display: grid;
-				gap: 15px;
-				padding: 7.5px 15px;
+				gap: 10px;
+				padding: 10px;
 				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			}
+
+			cm-page {
+				padding: 10px;
 			}
 		</style>
 	</head>
 	<body>
-		<cm-header></cm-header>
+		<cm-header brandname="Camunda Cloud"></cm-header>
+		<script>
+			let header = document.querySelector('cm-header')
+			header.breadcrumbs = [
+				{ href: '/', label: 'Test Organization' },
+				{ href: '/clusters', label: 'Clusters' },
+				{ href: '/clusters/test-cluster', label: 'Test Cluster' },
+			]
+		</script>
 
 		<cm-page>
 			<div class="row">
