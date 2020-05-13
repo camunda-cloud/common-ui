@@ -11,6 +11,9 @@ export namespace Components {
         "disabled": boolean;
         "label": string;
     }
+    interface CmFooter {
+        "text": string;
+    }
     interface CmLink {
         "href": string;
         "label": string;
@@ -26,6 +29,12 @@ declare global {
         prototype: HTMLCmButtonElement;
         new (): HTMLCmButtonElement;
     };
+    interface HTMLCmFooterElement extends Components.CmFooter, HTMLStencilElement {
+    }
+    var HTMLCmFooterElement: {
+        prototype: HTMLCmFooterElement;
+        new (): HTMLCmFooterElement;
+    };
     interface HTMLCmLinkElement extends Components.CmLink, HTMLStencilElement {
     }
     var HTMLCmLinkElement: {
@@ -40,6 +49,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "cm-button": HTMLCmButtonElement;
+        "cm-footer": HTMLCmFooterElement;
         "cm-link": HTMLCmLinkElement;
         "cm-text": HTMLCmTextElement;
     }
@@ -51,6 +61,9 @@ declare namespace LocalJSX {
         "label"?: string;
         "onCmPress"?: (event: CustomEvent<{}>) => void;
     }
+    interface CmFooter {
+        "text"?: string;
+    }
     interface CmLink {
         "href"?: string;
         "label"?: string;
@@ -60,6 +73,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "cm-button": CmButton;
+        "cm-footer": CmFooter;
         "cm-link": CmLink;
         "cm-text": CmText;
     }
@@ -69,6 +83,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "cm-button": LocalJSX.CmButton & JSXBase.HTMLAttributes<HTMLCmButtonElement>;
+            "cm-footer": LocalJSX.CmFooter & JSXBase.HTMLAttributes<HTMLCmFooterElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
             "cm-text": LocalJSX.CmText & JSXBase.HTMLAttributes<HTMLCmTextElement>;
         }
