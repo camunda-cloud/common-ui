@@ -14,43 +14,48 @@
 
 		<style>
 			body {
-				display: flex;
-				flex-direction: column;
-			}
-
-			body > * {
-				margin-top: 15px;
+				display: grid;
+				grid-template-rows: 56px 1fr 38px;
+				height: 100vh;
+				margin: 0px;
 			}
 
 			.row {
-				display: flex;
-			}
-
-			.row > * {
-				margin-left: 20px;
+				display: grid;
+				gap: 15px;
+				padding: 7.5px 15px;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			}
 		</style>
 	</head>
 	<body>
-		<div class="row">
-			<cm-button label="Test"></cm-button>
-			<cm-button label="Test" appearance="primary"></cm-button>
-			<cm-button label="Test" appearance="secondary"></cm-button>
-			<cm-button label="Test" appearance="danger"></cm-button>
-		</div>
+		<cm-header></cm-header>
 
-		<div class="row">
-			<cm-button disabled label="Test"></cm-button>
-			<cm-button disabled label="Test" appearance="primary"></cm-button>
-			<cm-button disabled label="Test" appearance="secondary"></cm-button>
-			<cm-button disabled label="Test" appearance="danger"></cm-button>
-		</div>
+		<cm-page>
+			<div class="row">
+				<cm-button label="Test"></cm-button>
+				<cm-button label="Test" appearance="primary"></cm-button>
+				<cm-button label="Test" appearance="secondary"></cm-button>
+				<cm-button label="Test" appearance="danger"></cm-button>
+			</div>
 
-		<div class="row">
-			<cm-text
-				>This is a Text test with an embedded
-				<cm-link href="https://camunda.de" label="link"></cm-link>.</cm-text
-			>
-		</div>
+			<div class="row">
+				<cm-button disabled label="Test"></cm-button>
+				<cm-button disabled label="Test" appearance="primary"></cm-button>
+				<cm-button disabled label="Test" appearance="secondary"></cm-button>
+				<cm-button disabled label="Test" appearance="danger"></cm-button>
+			</div>
+
+			<div class="row">
+				<cm-text
+					>This is a Text test with an embedded
+					<cm-link href="https://camunda.de" label="link"></cm-link>.</cm-text
+				>
+			</div>
+		</cm-page>
+
+		<cm-footer
+			text="© Camunda Services GmbH 2020. All rights reserved."
+		></cm-footer>
 	</body>
 </html>
