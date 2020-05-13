@@ -1,0 +1,28 @@
+:host {
+	display: block;
+}
+
+.header {
+	display: flex;
+	box-sizing: border-box;
+	height: 57px;
+	padding: 15px 20px;
+
+	align-content: center;
+
+	background-color: var(--cm-color-ui-light1);
+	border-bottom: 1px solid var(--cm-color-ui-light5);
+}
+
+.left {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.right {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-left: auto;
+}

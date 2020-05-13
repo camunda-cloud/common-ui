@@ -14,6 +14,8 @@ export namespace Components {
     interface CmFooter {
         "text": string;
     }
+    interface CmHeader {
+    }
     interface CmLink {
         "href": string;
         "label": string;
@@ -37,6 +39,12 @@ declare global {
         prototype: HTMLCmFooterElement;
         new (): HTMLCmFooterElement;
     };
+    interface HTMLCmHeaderElement extends Components.CmHeader, HTMLStencilElement {
+    }
+    var HTMLCmHeaderElement: {
+        prototype: HTMLCmHeaderElement;
+        new (): HTMLCmHeaderElement;
+    };
     interface HTMLCmLinkElement extends Components.CmLink, HTMLStencilElement {
     }
     var HTMLCmLinkElement: {
@@ -58,6 +66,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "cm-button": HTMLCmButtonElement;
         "cm-footer": HTMLCmFooterElement;
+        "cm-header": HTMLCmHeaderElement;
         "cm-link": HTMLCmLinkElement;
         "cm-logo": HTMLCmLogoElement;
         "cm-text": HTMLCmTextElement;
@@ -73,6 +82,8 @@ declare namespace LocalJSX {
     interface CmFooter {
         "text"?: string;
     }
+    interface CmHeader {
+    }
     interface CmLink {
         "href"?: string;
         "label"?: string;
@@ -85,6 +96,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "cm-button": CmButton;
         "cm-footer": CmFooter;
+        "cm-header": CmHeader;
         "cm-link": CmLink;
         "cm-logo": CmLogo;
         "cm-text": CmText;
@@ -96,6 +108,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "cm-button": LocalJSX.CmButton & JSXBase.HTMLAttributes<HTMLCmButtonElement>;
             "cm-footer": LocalJSX.CmFooter & JSXBase.HTMLAttributes<HTMLCmFooterElement>;
+            "cm-header": LocalJSX.CmHeader & JSXBase.HTMLAttributes<HTMLCmHeaderElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
             "cm-logo": LocalJSX.CmLogo & JSXBase.HTMLAttributes<HTMLCmLogoElement>;
             "cm-text": LocalJSX.CmText & JSXBase.HTMLAttributes<HTMLCmTextElement>;
