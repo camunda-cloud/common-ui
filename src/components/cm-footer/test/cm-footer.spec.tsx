@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing'
-import { CmButton } from './cm-button'
+import { CmFooter } from '../cm-footer'
 
-describe('cm-button', () => {
+describe('cm-footer', () => {
 	it('renders', async () => {
 		const page = await newSpecPage({
-			components: [CmButton],
-			html: `<cm-button></cm-button>`,
+			components: [CmFooter],
+			html: `<cm-footer></cm-footer>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-button>
+			<cm-footer>
 				<mock:shadow-root>
-					<div tabindex="0" class="main"></div>
+					<div class="footer"></div>
 				</mock:shadow-root>
-			</cm-button>
+			</cm-footer>
 		`)
 	})
 })
