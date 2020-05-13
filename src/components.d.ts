@@ -19,6 +19,8 @@ export namespace Components {
         "label": string;
         "openIn": "sameTab" | "newTab";
     }
+    interface CmLogo {
+    }
     interface CmText {
     }
 }
@@ -41,6 +43,12 @@ declare global {
         prototype: HTMLCmLinkElement;
         new (): HTMLCmLinkElement;
     };
+    interface HTMLCmLogoElement extends Components.CmLogo, HTMLStencilElement {
+    }
+    var HTMLCmLogoElement: {
+        prototype: HTMLCmLogoElement;
+        new (): HTMLCmLogoElement;
+    };
     interface HTMLCmTextElement extends Components.CmText, HTMLStencilElement {
     }
     var HTMLCmTextElement: {
@@ -51,6 +59,7 @@ declare global {
         "cm-button": HTMLCmButtonElement;
         "cm-footer": HTMLCmFooterElement;
         "cm-link": HTMLCmLinkElement;
+        "cm-logo": HTMLCmLogoElement;
         "cm-text": HTMLCmTextElement;
     }
 }
@@ -69,12 +78,15 @@ declare namespace LocalJSX {
         "label"?: string;
         "openIn"?: "sameTab" | "newTab";
     }
+    interface CmLogo {
+    }
     interface CmText {
     }
     interface IntrinsicElements {
         "cm-button": CmButton;
         "cm-footer": CmFooter;
         "cm-link": CmLink;
+        "cm-logo": CmLogo;
         "cm-text": CmText;
     }
 }
@@ -85,6 +97,7 @@ declare module "@stencil/core" {
             "cm-button": LocalJSX.CmButton & JSXBase.HTMLAttributes<HTMLCmButtonElement>;
             "cm-footer": LocalJSX.CmFooter & JSXBase.HTMLAttributes<HTMLCmFooterElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
+            "cm-logo": LocalJSX.CmLogo & JSXBase.HTMLAttributes<HTMLCmLogoElement>;
             "cm-text": LocalJSX.CmText & JSXBase.HTMLAttributes<HTMLCmTextElement>;
         }
     }
