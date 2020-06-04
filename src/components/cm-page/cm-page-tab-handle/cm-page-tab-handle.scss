@@ -1,0 +1,41 @@
+span {
+	display: grid;
+	position: relative;
+
+	cursor: pointer;
+
+	box-sizing: border-box;
+	height: 30px;
+	font-family: var(--cm-font-text);
+	font-size: 15px;
+	text-align: center;
+	align-content: center;
+	color: var(--cm-color-ui-light6);
+	padding: 4px 8px;
+
+	border-bottom: 2px solid transparent;
+
+	&.active {
+		color: transparent;
+		pointer-events: none;
+		cursor: default;
+
+		border-bottom: 2px solid var(--cm-color-ui-dark4);
+
+		&::after {
+			content: attr(data-label);
+			display: grid;
+
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			left: 0%;
+			right: 0%;
+
+			align-content: center;
+
+			color: var(--cm-color-ui-dark4);
+			font-weight: 500;
+		}
+	}
+}
