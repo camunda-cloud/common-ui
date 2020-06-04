@@ -15,7 +15,7 @@
 		<style>
 			body {
 				display: grid;
-				grid-template-rows: 56px 1fr 38px;
+				grid-template-rows: 57px 1fr 38px;
 				height: 100vh;
 				margin: 0px;
 			}
@@ -23,47 +23,51 @@
 			.row {
 				display: grid;
 				gap: 10px;
-				padding: 10px;
+				padding: 10px 0px;
 				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			}
 
-			cm-page {
-				padding: 10px;
+			cm-page h1 {
+				margin: 0px;
+				padding: 0px;
+				font-weight: normal;
+				font-size: 17px;
+				font-family: var(--cm-font-text);
+				color: var(--cm-color-ui-dark4);
 			}
 		</style>
 	</head>
 	<body>
-		<cm-header brandname="Camunda Cloud"></cm-header>
-		<script>
-			let header = document.querySelector('cm-header')
-			header.breadcrumbs = [
-				{ href: '/', label: 'Test Organization' },
-				{ href: '/clusters', label: 'Clusters' },
-				{ href: '/clusters/test-cluster', label: 'Test Cluster' },
-			]
-		</script>
+		<cm-header>
+			<cm-logo slot="left"></cm-logo>
+
+			<cm-logo slot="right"></cm-logo>
+		</cm-header>
 
 		<cm-page>
-			<div class="row">
-				<cm-button label="Test"></cm-button>
-				<cm-button label="Test" appearance="primary"></cm-button>
-				<cm-button label="Test" appearance="secondary"></cm-button>
-				<cm-button label="Test" appearance="danger"></cm-button>
-			</div>
-
-			<div class="row">
-				<cm-button disabled label="Test"></cm-button>
-				<cm-button disabled label="Test" appearance="primary"></cm-button>
-				<cm-button disabled label="Test" appearance="secondary"></cm-button>
-				<cm-button disabled label="Test" appearance="danger"></cm-button>
-			</div>
-
-			<div class="row">
-				<cm-text
-					>This is a Text test with an embedded
-					<cm-link href="https://camunda.de" label="link"></cm-link>.</cm-text
-				>
-			</div>
+			<h1 slot="header">Components</h1>
+			<cm-page-tab label="Buttons">
+				<div class="row">
+					<cm-button label="Test"></cm-button>
+					<cm-button label="Test" appearance="primary"></cm-button>
+					<cm-button label="Test" appearance="secondary"></cm-button>
+					<cm-button label="Test" appearance="danger"></cm-button>
+				</div>
+				<div class="row">
+					<cm-button disabled label="Test"></cm-button>
+					<cm-button disabled label="Test" appearance="primary"></cm-button>
+					<cm-button disabled label="Test" appearance="secondary"></cm-button>
+					<cm-button disabled label="Test" appearance="danger"></cm-button>
+				</div>
+			</cm-page-tab>
+			<cm-page-tab label="Text">
+				<div class="row">
+					<cm-text
+						>This is a Text test with an embedded
+						<cm-link href="https://camunda.de" label="link"></cm-link>.</cm-text
+					>
+				</div>
+			</cm-page-tab>
 		</cm-page>
 
 		<cm-footer
