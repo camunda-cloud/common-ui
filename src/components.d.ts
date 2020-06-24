@@ -5,10 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { State, } from "./components/cm-page/cm-page";
+import { State } from "./components/cm-page/cm-page";
 export namespace Components {
     interface CmButton {
-        "appearance": "main" | "primary" | "secondary" | "danger";
+        "appearance": 'main' | 'primary' | 'secondary' | 'danger';
         "disabled": boolean;
         "label": string;
     }
@@ -20,7 +20,7 @@ export namespace Components {
     interface CmLink {
         "href": string;
         "label": string;
-        "openIn": "sameTab" | "newTab";
+        "openIn": 'sameTab' | 'newTab';
     }
     interface CmLogo {
     }
@@ -121,7 +121,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CmButton {
-        "appearance"?: "main" | "primary" | "secondary" | "danger";
+        "appearance"?: 'main' | 'primary' | 'secondary' | 'danger';
         "disabled"?: boolean;
         "label"?: string;
         "onCmPress"?: (event: CustomEvent<{}>) => void;
@@ -134,7 +134,7 @@ declare namespace LocalJSX {
     interface CmLink {
         "href"?: string;
         "label"?: string;
-        "openIn"?: "sameTab" | "newTab";
+        "openIn"?: 'sameTab' | 'newTab';
     }
     interface CmLogo {
     }
@@ -154,10 +154,10 @@ declare namespace LocalJSX {
         "active"?: boolean;
         "label"?: string;
         "onUserSelectedTab"?: (event: CustomEvent<{
-            originalEvent: MouseEvent | KeyboardEvent;
-            handle: HTMLCmPageTabHandleElement;
-            label: string;
-        }>) => void;
+		originalEvent: MouseEvent | KeyboardEvent
+		handle: HTMLCmPageTabHandleElement
+		label: string
+	}>) => void;
     }
     interface CmText {
     }

@@ -10,13 +10,15 @@ module.exports = {
 		config.entry.push(path.join(__dirname, '../dist/common-ui/common-ui.css'))
 
 		config.plugins.push(
-			new CopyPlugin([
-				{
-					from: '**/*',
-					to: './',
-					context: 'dist',
-				},
-			]),
+			new CopyPlugin({
+				patterns: [
+					{
+						from: '**/*',
+						to: './',
+						context: 'dist',
+					},
+				],
+			}),
 		)
 
 		config.plugins.push(new WriteFilePlugin())
