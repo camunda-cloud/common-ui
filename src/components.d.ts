@@ -154,7 +154,7 @@ declare namespace LocalJSX {
         "active"?: boolean;
         "label"?: string;
         "onUserSelectedTab"?: (event: CustomEvent<{
-            originalEvent: MouseEvent;
+            originalEvent: MouseEvent | KeyboardEvent;
             handle: HTMLCmPageTabHandleElement;
             label: string;
         }>) => void;

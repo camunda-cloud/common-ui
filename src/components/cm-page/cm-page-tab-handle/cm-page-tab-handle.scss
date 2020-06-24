@@ -15,27 +15,50 @@ span {
 
 	border-bottom: 2px solid transparent;
 
+	transition: 0.2s all linear;
+
+	&:hover {
+		border-bottom: 2px solid rgba(var(--cm-color-ui-light6-rgb), 0.6);
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:not(.clicked):focus {
+		border-radius: 3px;
+		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
+			0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+	}
+
+	&::after {
+		content: attr(data-label);
+		display: grid;
+		transition: 0.2s all linear;
+
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0%;
+		right: 0%;
+
+		align-content: center;
+
+		color: var(--cm-color-ui-dark4);
+		font-weight: 500;
+		opacity: 0;
+	}
+
 	&.active {
 		color: transparent;
 		pointer-events: none;
 		cursor: default;
+		transition: 0.2s all linear;
 
 		border-bottom: 2px solid var(--cm-color-ui-dark4);
 
 		&::after {
-			content: attr(data-label);
-			display: grid;
-
-			position: absolute;
-			top: 0px;
-			bottom: 0px;
-			left: 0%;
-			right: 0%;
-
-			align-content: center;
-
-			color: var(--cm-color-ui-dark4);
-			font-weight: 500;
+			opacity: 1;
 		}
 	}
 }
