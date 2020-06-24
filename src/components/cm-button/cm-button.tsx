@@ -7,6 +7,7 @@ import {
 	EventEmitter,
 	Listen,
 	Event,
+	State,
 } from '@stencil/core'
 
 @Component({
@@ -18,16 +19,21 @@ export class CmButton implements ComponentInterface {
 	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' = 'main'
 	@Prop() label: string = ''
 	@Prop() disabled: boolean = false
+	@State() latestFocusWasClick: boolean = false
 
 	@Event() cmPress: EventEmitter<{}>
+	button: HTMLDivElement
 
-	@Listen('keydown')
-	handleKeyDown(event: KeyboardEvent) {
-		if (event.key === ' ' || event.key === 'Enter') {
-			if (!this.disabled) {
-				this.cmPress.emit()
-			}
-		}
+	// Prevent clicks from giving visual focus
+	@Listen('mousedown', { passive: false })
+	handleMouseDown(event: MouseEvent) {
+		this.latestFocusWasClick = true
+		event.preventDefault()
+	}
+
+	@Listen('blur', { passive: false })
+	handleBlur() {
+		this.latestFocusWasClick = false
 	}
 
 	@Listen('click')
@@ -37,12 +43,37 @@ export class CmButton implements ComponentInterface {
 		}
 	}
 
+	@Listen('keydown')
+	handleKeyDown(event: KeyboardEvent) {
+		if (
+			!(event.key === 'Control') &&
+			!(event.key === 'Meta') &&
+			!(event.key === 'Alt') &&
+			!(event.key === 'Shift' && event.code !== 'Tab')
+		) {
+			this.latestFocusWasClick = false
+		}
+
+		if (event.key === ' ' || event.key === 'Enter') {
+			if (!this.disabled) {
+				this.cmPress.emit()
+			}
+		}
+	}
+
+	componentWillUpdate() {
+		if (this.latestFocusWasClick) {
+			this.button.focus()
+		}
+	}
+
 	render() {
 		let classes = {
 			main: false,
 			primary: false,
 			secondary: false,
 			danger: false,
+			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
 		}
 
@@ -64,7 +95,11 @@ export class CmButton implements ComponentInterface {
 
 		return (
 			<Host>
-				<div tabindex={tabIndex} class={classes}>
+				<div
+					tabindex={tabIndex}
+					class={classes}
+					ref={(element) => (this.button = element)}
+				>
 					{this.label}
 				</div>
 			</Host>

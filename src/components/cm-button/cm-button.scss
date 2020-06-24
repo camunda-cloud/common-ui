@@ -46,6 +46,10 @@ div {
 	}
 
 	&:focus {
+		outline: none;
+	}
+
+	&:not(.clicked):focus {
 		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
 			0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 	}
@@ -75,6 +79,10 @@ div {
 	}
 
 	&:focus {
+		outline: none;
+	}
+
+	&:not(.clicked):focus {
 		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral),
 			0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 	}
@@ -104,6 +112,10 @@ div {
 	}
 
 	&:focus {
+		outline: none;
+	}
+
+	&:not(.clicked):focus {
 		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
 			0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 	}
@@ -133,6 +145,10 @@ div {
 	}
 
 	&:focus {
+		outline: none;
+	}
+
+	&:not(.clicked):focus {
 		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-danger),
 			0px 0px 0px 4px var(--cm-color-focus-outer-danger);
 	}
