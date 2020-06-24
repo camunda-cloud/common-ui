@@ -1,6 +1,9 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { CmPage } from '../cm-page'
 
+import MutationObserver from 'mutation-observer'
+global.MutationObserver = MutationObserver
+
 describe('cm-page', () => {
 	it('renders', async () => {
 		const page = await newSpecPage({
@@ -10,7 +13,15 @@ describe('cm-page', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-page>
 				<mock:shadow-root>
-					<slot></slot>
+					<header class="empty">
+						<div class="empty headerSlot">
+							<slot name="header"></slot>
+						</div>
+						<div class="handles"></div>
+					</header>
+					<div class="tabs">
+						<slot></slot>
+					</div>
 				</mock:shadow-root>
 			</cm-page>
 		`)
