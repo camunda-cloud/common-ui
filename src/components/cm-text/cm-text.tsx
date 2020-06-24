@@ -1,7 +1,7 @@
 import { Component, Host, h } from '@stencil/core'
 
 /**
- * @slot - Content is placed in the Content-Area of the card if provided without a slot.
+ * @slot - The default slot is meant for the text you want to display.
  */
 @Component({
 	tag: 'cm-text',
