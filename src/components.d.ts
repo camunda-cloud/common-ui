@@ -24,6 +24,10 @@ export namespace Components {
     }
     interface CmLogo {
     }
+    interface CmModal {
+        "headline": string;
+        "open": () => Promise<"confirm" | "cancel">;
+    }
     interface CmPage {
         "activeLabel": string;
         /**
@@ -83,6 +87,12 @@ declare global {
         prototype: HTMLCmLogoElement;
         new (): HTMLCmLogoElement;
     };
+    interface HTMLCmModalElement extends Components.CmModal, HTMLStencilElement {
+    }
+    var HTMLCmModalElement: {
+        prototype: HTMLCmModalElement;
+        new (): HTMLCmModalElement;
+    };
     interface HTMLCmPageElement extends Components.CmPage, HTMLStencilElement {
     }
     var HTMLCmPageElement: {
@@ -113,6 +123,7 @@ declare global {
         "cm-header": HTMLCmHeaderElement;
         "cm-link": HTMLCmLinkElement;
         "cm-logo": HTMLCmLogoElement;
+        "cm-modal": HTMLCmModalElement;
         "cm-page": HTMLCmPageElement;
         "cm-page-tab": HTMLCmPageTabElement;
         "cm-page-tab-handle": HTMLCmPageTabHandleElement;
@@ -137,6 +148,9 @@ declare namespace LocalJSX {
         "openIn"?: 'sameTab' | 'newTab';
     }
     interface CmLogo {
+    }
+    interface CmModal {
+        "headline"?: string;
     }
     interface CmPage {
         "activeLabel"?: string;
@@ -167,6 +181,7 @@ declare namespace LocalJSX {
         "cm-header": CmHeader;
         "cm-link": CmLink;
         "cm-logo": CmLogo;
+        "cm-modal": CmModal;
         "cm-page": CmPage;
         "cm-page-tab": CmPageTab;
         "cm-page-tab-handle": CmPageTabHandle;
@@ -182,6 +197,7 @@ declare module "@stencil/core" {
             "cm-header": LocalJSX.CmHeader & JSXBase.HTMLAttributes<HTMLCmHeaderElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
             "cm-logo": LocalJSX.CmLogo & JSXBase.HTMLAttributes<HTMLCmLogoElement>;
+            "cm-modal": LocalJSX.CmModal & JSXBase.HTMLAttributes<HTMLCmModalElement>;
             "cm-page": LocalJSX.CmPage & JSXBase.HTMLAttributes<HTMLCmPageElement>;
             "cm-page-tab": LocalJSX.CmPageTab & JSXBase.HTMLAttributes<HTMLCmPageTabElement>;
             "cm-page-tab-handle": LocalJSX.CmPageTabHandle & JSXBase.HTMLAttributes<HTMLCmPageTabHandleElement>;

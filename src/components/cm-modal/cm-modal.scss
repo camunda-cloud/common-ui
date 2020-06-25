@@ -1,0 +1,103 @@
+:host {
+	display: block;
+}
+
+.container {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+
+	position: fixed;
+	z-index: 999;
+
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+
+	backdrop-filter: blur(10px) brightness(50%);
+	padding: 110px 0px 60px;
+
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s linear;
+
+	&.open {
+		opacity: 1;
+		pointer-events: unset;
+	}
+}
+
+.window {
+	display: grid;
+	box-sizing: border-box;
+	width: 636px;
+	max-height: 100%;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+
+	border-radius: 3px;
+	overflow: hidden;
+
+	border: solid 1px var(--cm-color-ui-light5);
+	background-color: var(--cm-color-ui-light4);
+
+	grid-template:
+		'header' 57px
+		'content' minmax(0, 1fr)
+		'buttons' 65px;
+
+	& .header {
+		display: grid;
+		grid-area: header;
+		box-sizing: border-box;
+		padding: 0px 20px;
+		border-bottom: solid 1px var(--cm-color-ui-light5);
+		background-color: var(--cm-color-ui-light2);
+		align-items: center;
+		grid-auto-flow: column;
+
+		& h1 {
+			justify-self: start;
+
+			font-family: var(--cm-font-text);
+			font-size: 15px;
+			font-weight: bold;
+			color: var(--cm-color-ui-light6);
+		}
+
+		& .close {
+			justify-self: end;
+			height: 30px;
+			width: 30px;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='14' height='14'%3E%3Cdefs%3E%3Cpath id='a' d='M12.6666667 4L12.666 11.333l7.334.0003333v1.3333334L12.666 12.666 12.6666667 20h-1.3333334L11.333 12.666 4 12.6666667v-1.3333334L11.333 11.333 11.3333333 4h1.3333334z'/%3E%3C/defs%3E%3Cuse fill='%23000' fill-rule='evenodd' opacity='.9' transform='rotate(45 15.5355339 3.4644661)' xlink:href='%23a'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: center;
+			cursor: pointer;
+			opacity: 0.9;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	& .content {
+		grid-area: content;
+		box-sizing: border-box;
+		padding: 20px;
+		overflow: auto;
+	}
+
+	& .buttons {
+		display: grid;
+		grid-area: buttons;
+		box-sizing: border-box;
+		border-top: solid 1px var(--cm-color-ui-light5);
+
+		padding: 0px 20px;
+		gap: 15px;
+		justify-content: end;
+		align-items: center;
+		grid-auto-flow: column;
+	}
+}
