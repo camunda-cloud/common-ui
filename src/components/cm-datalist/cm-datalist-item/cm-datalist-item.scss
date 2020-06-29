@@ -1,0 +1,29 @@
+cm-datalist-item {
+	display: table-row;
+	height: 40px;
+	line-height: 40px;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--cm-color-ui-light5);
+	}
+
+	& .label {
+		display: table-cell;
+		width: 250px;
+		padding-left: 20px;
+
+		opacity: 0.9;
+
+		font-family: var(--cm-font-text);
+		font-size: 14px;
+		font-weight: 600;
+
+		color: var(--cm-color-ui-dark4);
+	}
+
+	&.content {
+		display: table-cell;
+
+		padding-left: 40px;
+	}
+}

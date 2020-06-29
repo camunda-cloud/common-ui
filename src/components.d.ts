@@ -12,6 +12,12 @@ export namespace Components {
         "disabled": boolean;
         "label": string;
     }
+    interface CmDatalist {
+        "headline": string;
+    }
+    interface CmDatalistItem {
+        "label": string;
+    }
     interface CmFooter {
         "text": string;
     }
@@ -62,6 +68,18 @@ declare global {
     var HTMLCmButtonElement: {
         prototype: HTMLCmButtonElement;
         new (): HTMLCmButtonElement;
+    };
+    interface HTMLCmDatalistElement extends Components.CmDatalist, HTMLStencilElement {
+    }
+    var HTMLCmDatalistElement: {
+        prototype: HTMLCmDatalistElement;
+        new (): HTMLCmDatalistElement;
+    };
+    interface HTMLCmDatalistItemElement extends Components.CmDatalistItem, HTMLStencilElement {
+    }
+    var HTMLCmDatalistItemElement: {
+        prototype: HTMLCmDatalistItemElement;
+        new (): HTMLCmDatalistItemElement;
     };
     interface HTMLCmFooterElement extends Components.CmFooter, HTMLStencilElement {
     }
@@ -119,6 +137,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "cm-button": HTMLCmButtonElement;
+        "cm-datalist": HTMLCmDatalistElement;
+        "cm-datalist-item": HTMLCmDatalistItemElement;
         "cm-footer": HTMLCmFooterElement;
         "cm-header": HTMLCmHeaderElement;
         "cm-link": HTMLCmLinkElement;
@@ -136,6 +156,12 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "label"?: string;
         "onCmPress"?: (event: CustomEvent<{}>) => void;
+    }
+    interface CmDatalist {
+        "headline"?: string;
+    }
+    interface CmDatalistItem {
+        "label"?: string;
     }
     interface CmFooter {
         "text"?: string;
@@ -177,6 +203,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "cm-button": CmButton;
+        "cm-datalist": CmDatalist;
+        "cm-datalist-item": CmDatalistItem;
         "cm-footer": CmFooter;
         "cm-header": CmHeader;
         "cm-link": CmLink;
@@ -193,6 +221,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "cm-button": LocalJSX.CmButton & JSXBase.HTMLAttributes<HTMLCmButtonElement>;
+            "cm-datalist": LocalJSX.CmDatalist & JSXBase.HTMLAttributes<HTMLCmDatalistElement>;
+            "cm-datalist-item": LocalJSX.CmDatalistItem & JSXBase.HTMLAttributes<HTMLCmDatalistItemElement>;
             "cm-footer": LocalJSX.CmFooter & JSXBase.HTMLAttributes<HTMLCmFooterElement>;
             "cm-header": LocalJSX.CmHeader & JSXBase.HTMLAttributes<HTMLCmHeaderElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
