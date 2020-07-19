@@ -8,7 +8,7 @@ describe('cm-modal', () => {
 			html: `<cm-modal></cm-modal>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-modal>
+			<cm-modal tabindex="0">
 				<mock:shadow-root>
 					<div class="container">
 						<div class="window">

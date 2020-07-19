@@ -1,4 +1,13 @@
-import { Component, Host, h, Prop, Method, State, Element } from '@stencil/core'
+import {
+	Component,
+	Host,
+	h,
+	Prop,
+	Method,
+	State,
+	Element,
+	Listen,
+} from '@stencil/core'
 
 @Component({
 	tag: 'cm-modal',
@@ -13,10 +22,20 @@ export class CmModal {
 	@Prop() headline: string = ''
 	@Element() el: HTMLElement
 
+	@Listen('keydown')
+	handleKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			this.cancel()
+		}
+	}
+
 	@Method()
 	open() {
 		return new Promise<'confirm' | 'cancel'>((resolve) => {
 			this.isOpen = true
+			;(this.el.querySelector(
+				'cm-button[slot="confirm"]',
+			) as HTMLCmButtonElement).focus()
 
 			this.confirm = () => {
 				this.isOpen = false
@@ -50,7 +69,7 @@ export class CmModal {
 		}
 
 		return (
-			<Host>
+			<Host tabindex="0">
 				<div class={classes}>
 					<div class="window">
 						<div class="header">
