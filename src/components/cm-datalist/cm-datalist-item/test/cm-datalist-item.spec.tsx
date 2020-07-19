@@ -9,9 +9,8 @@ describe('cm-datalist-item', () => {
 		})
 		expect(page.root).toEqualHtml(`
 			<cm-datalist-item>
-				<mock:shadow-root>
-					<slot></slot>
-				</mock:shadow-root>
+				<span class="label"></span>
+				<div class="content"></div>
 			</cm-datalist-item>
 		`)
 	})
