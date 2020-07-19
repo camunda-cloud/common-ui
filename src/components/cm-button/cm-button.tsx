@@ -8,6 +8,7 @@ import {
 	Listen,
 	Event,
 	State,
+	Element,
 } from '@stencil/core'
 
 @Component({
@@ -22,7 +23,7 @@ export class CmButton implements ComponentInterface {
 	@State() latestFocusWasClick: boolean = false
 
 	@Event() cmPress: EventEmitter<{}>
-	button: HTMLDivElement
+	@Element() el: HTMLElement
 
 	// Prevent clicks from giving visual focus
 	@Listen('mousedown', { passive: false })
@@ -63,7 +64,7 @@ export class CmButton implements ComponentInterface {
 
 	componentWillUpdate() {
 		if (this.latestFocusWasClick) {
-			this.button.focus()
+			this.el.focus()
 		}
 	}
 
@@ -94,14 +95,8 @@ export class CmButton implements ComponentInterface {
 		}
 
 		return (
-			<Host>
-				<div
-					tabindex={tabIndex}
-					class={classes}
-					ref={(element) => (this.button = element)}
-				>
-					{this.label}
-				</div>
+			<Host tabindex={tabIndex} class={classes}>
+				{this.label}
 			</Host>
 		)
 	}
