@@ -21,6 +21,7 @@ header {
 		position: relative;
 		top: 1px;
 		left: -8px;
+		height: 30px;
 
 		flex-direction: row;
 
@@ -36,8 +37,12 @@ header {
 	}
 
 	.headerSlot {
-		display: block;
-		padding: 40px 0px;
+		height: 105px;
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: max-content;
+		gap: 10px;
+		align-content: center;
 
 		&.empty {
 			padding: 0px;
