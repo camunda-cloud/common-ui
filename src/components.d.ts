@@ -28,6 +28,9 @@ export namespace Components {
         "label": string;
         "openIn": 'sameTab' | 'newTab';
     }
+    interface CmLoader {
+        "size": 'small' | 'normal';
+    }
     interface CmLogo {
     }
     interface CmModal {
@@ -99,6 +102,12 @@ declare global {
         prototype: HTMLCmLinkElement;
         new (): HTMLCmLinkElement;
     };
+    interface HTMLCmLoaderElement extends Components.CmLoader, HTMLStencilElement {
+    }
+    var HTMLCmLoaderElement: {
+        prototype: HTMLCmLoaderElement;
+        new (): HTMLCmLoaderElement;
+    };
     interface HTMLCmLogoElement extends Components.CmLogo, HTMLStencilElement {
     }
     var HTMLCmLogoElement: {
@@ -142,6 +151,7 @@ declare global {
         "cm-footer": HTMLCmFooterElement;
         "cm-header": HTMLCmHeaderElement;
         "cm-link": HTMLCmLinkElement;
+        "cm-loader": HTMLCmLoaderElement;
         "cm-logo": HTMLCmLogoElement;
         "cm-modal": HTMLCmModalElement;
         "cm-page": HTMLCmPageElement;
@@ -172,6 +182,9 @@ declare namespace LocalJSX {
         "href"?: string;
         "label"?: string;
         "openIn"?: 'sameTab' | 'newTab';
+    }
+    interface CmLoader {
+        "size"?: 'small' | 'normal';
     }
     interface CmLogo {
     }
@@ -208,6 +221,7 @@ declare namespace LocalJSX {
         "cm-footer": CmFooter;
         "cm-header": CmHeader;
         "cm-link": CmLink;
+        "cm-loader": CmLoader;
         "cm-logo": CmLogo;
         "cm-modal": CmModal;
         "cm-page": CmPage;
@@ -226,6 +240,7 @@ declare module "@stencil/core" {
             "cm-footer": LocalJSX.CmFooter & JSXBase.HTMLAttributes<HTMLCmFooterElement>;
             "cm-header": LocalJSX.CmHeader & JSXBase.HTMLAttributes<HTMLCmHeaderElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
+            "cm-loader": LocalJSX.CmLoader & JSXBase.HTMLAttributes<HTMLCmLoaderElement>;
             "cm-logo": LocalJSX.CmLogo & JSXBase.HTMLAttributes<HTMLCmLogoElement>;
             "cm-modal": LocalJSX.CmModal & JSXBase.HTMLAttributes<HTMLCmModalElement>;
             "cm-page": LocalJSX.CmPage & JSXBase.HTMLAttributes<HTMLCmPageElement>;
