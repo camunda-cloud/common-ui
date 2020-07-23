@@ -77,6 +77,7 @@ export namespace Components {
     interface CmModal {
         "headline": string;
         "open": () => Promise<"confirm" | "cancel">;
+        "position": 'top' | 'center';
     }
     interface CmPage {
         "activeLabel": string;
@@ -287,6 +288,7 @@ declare namespace LocalJSX {
     }
     interface CmModal {
         "headline"?: string;
+        "position"?: 'top' | 'center';
     }
     interface CmPage {
         "activeLabel"?: string;

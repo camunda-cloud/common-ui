@@ -20,6 +20,7 @@ export class CmModal {
 
 	@State() isOpen: boolean = false
 	@Prop() headline: string = ''
+	@Prop() position: 'top' | 'center' = 'center'
 	@Element() el: HTMLElement
 
 	@Listen('keydown')
@@ -66,6 +67,7 @@ export class CmModal {
 		let classes = {
 			container: true,
 			open: this.isOpen,
+			[this.position]: true,
 		}
 
 		return (
