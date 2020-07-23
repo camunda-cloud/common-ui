@@ -20,11 +20,15 @@
 
 	opacity: 0;
 	pointer-events: none;
-	transition: all 0.3s linear;
+	transition: all 0.2s linear;
 
 	&.open {
 		opacity: 1;
 		pointer-events: unset;
+
+		& .window {
+			transform: scale(1);
+		}
 	}
 }
 
@@ -45,6 +49,9 @@
 		'header' 57px
 		'content' minmax(0, 1fr)
 		'buttons' 65px;
+
+	transform: scale(0.9);
+	transition: all 0.2s linear;
 
 	& .header {
 		display: grid;
