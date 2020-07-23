@@ -90,7 +90,6 @@ export class CmIconButton implements ComponentInterface {
 		let classes = {
 			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
-			[this.icon]: true,
 		}
 
 		let tabIndex = 0
@@ -101,7 +100,7 @@ export class CmIconButton implements ComponentInterface {
 
 		return (
 			<Host tabindex={tabIndex} class={classes}>
-				<div></div>
+				<cm-icon icon={this.icon} />
 			</Host>
 		)
 	}
