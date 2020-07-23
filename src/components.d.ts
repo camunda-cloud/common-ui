@@ -23,6 +23,26 @@ export namespace Components {
     }
     interface CmHeader {
     }
+    interface CmIcon {
+        "icon": | 'contextMenu'
+		| 'close'
+		| 'closeLarge'
+		| 'search'
+		| 'help'
+		| 'information'
+		| 'sort'
+		| 'plus'
+		| 'minus'
+		| 'copy'
+		| 'show'
+		| 'hide'
+		| 'edit'
+		| 'delete'
+		| 'up'
+		| 'down'
+		| 'left'
+		| 'right';
+    }
     interface CmIconButton {
         "disabled": boolean;
         "icon": | 'contextMenu'
@@ -117,6 +137,12 @@ declare global {
         prototype: HTMLCmHeaderElement;
         new (): HTMLCmHeaderElement;
     };
+    interface HTMLCmIconElement extends Components.CmIcon, HTMLStencilElement {
+    }
+    var HTMLCmIconElement: {
+        prototype: HTMLCmIconElement;
+        new (): HTMLCmIconElement;
+    };
     interface HTMLCmIconButtonElement extends Components.CmIconButton, HTMLStencilElement {
     }
     var HTMLCmIconButtonElement: {
@@ -177,6 +203,7 @@ declare global {
         "cm-datalist-item": HTMLCmDatalistItemElement;
         "cm-footer": HTMLCmFooterElement;
         "cm-header": HTMLCmHeaderElement;
+        "cm-icon": HTMLCmIconElement;
         "cm-icon-button": HTMLCmIconButtonElement;
         "cm-link": HTMLCmLinkElement;
         "cm-loader": HTMLCmLoaderElement;
@@ -205,6 +232,26 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface CmHeader {
+    }
+    interface CmIcon {
+        "icon"?: | 'contextMenu'
+		| 'close'
+		| 'closeLarge'
+		| 'search'
+		| 'help'
+		| 'information'
+		| 'sort'
+		| 'plus'
+		| 'minus'
+		| 'copy'
+		| 'show'
+		| 'hide'
+		| 'edit'
+		| 'delete'
+		| 'up'
+		| 'down'
+		| 'left'
+		| 'right';
     }
     interface CmIconButton {
         "disabled"?: boolean;
@@ -270,6 +317,7 @@ declare namespace LocalJSX {
         "cm-datalist-item": CmDatalistItem;
         "cm-footer": CmFooter;
         "cm-header": CmHeader;
+        "cm-icon": CmIcon;
         "cm-icon-button": CmIconButton;
         "cm-link": CmLink;
         "cm-loader": CmLoader;
@@ -290,6 +338,7 @@ declare module "@stencil/core" {
             "cm-datalist-item": LocalJSX.CmDatalistItem & JSXBase.HTMLAttributes<HTMLCmDatalistItemElement>;
             "cm-footer": LocalJSX.CmFooter & JSXBase.HTMLAttributes<HTMLCmFooterElement>;
             "cm-header": LocalJSX.CmHeader & JSXBase.HTMLAttributes<HTMLCmHeaderElement>;
+            "cm-icon": LocalJSX.CmIcon & JSXBase.HTMLAttributes<HTMLCmIconElement>;
             "cm-icon-button": LocalJSX.CmIconButton & JSXBase.HTMLAttributes<HTMLCmIconButtonElement>;
             "cm-link": LocalJSX.CmLink & JSXBase.HTMLAttributes<HTMLCmLinkElement>;
             "cm-loader": LocalJSX.CmLoader & JSXBase.HTMLAttributes<HTMLCmLoaderElement>;
