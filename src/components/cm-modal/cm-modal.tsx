@@ -74,7 +74,10 @@ export class CmModal {
 					<div class="window">
 						<div class="header">
 							<h1>{this.headline}</h1>
-							<div class="close" onClick={() => this.cancel()}></div>
+							<cm-icon-button
+								icon="closeLarge"
+								onCmPress={() => this.cancel()}
+							/>
 						</div>
 						<div class="content">
 							<slot></slot>
