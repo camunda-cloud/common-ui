@@ -4,7 +4,7 @@
     "name": "Alexander Trefz"
   },
   "name": "@camunda-cloud/common-ui",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Camunda UI Components",
   "license": "UNLICENSED",
   "main": "dist/index.js",
