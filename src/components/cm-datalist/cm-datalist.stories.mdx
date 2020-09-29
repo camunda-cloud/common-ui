@@ -1,0 +1,34 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import {
+	CmDatalist,
+	CmDatalistItem,
+	CmText,
+	CmLink,
+} from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Datalist" component={CmDatalist} />
+
+# Datalist
+
+`CmDatalist` and `CmDatalistItem` enable presentation of simple data with labels.
+`CmDatalistItem` is built with an unnamed default slot to enable various forms of content, like links.
+
+<Canvas>
+	<CmDatalist headline="Datalist Example">
+		<CmDatalistItem label="Cluster Plan">
+			<CmText>Development</CmText>
+		</CmDatalistItem>
+		<CmDatalistItem label="Generation">
+			<CmText>Zeebe 0.24.3</CmText>
+		</CmDatalistItem>
+		<CmDatalistItem label="Workflow Instance">
+			<CmLink href="https://camunda.de" label="View in Operate"></CmLink>
+		</CmDatalistItem>
+	</CmDatalist>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

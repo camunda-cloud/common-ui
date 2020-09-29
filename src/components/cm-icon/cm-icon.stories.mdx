@@ -1,0 +1,23 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmIcon } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Icon" component={CmIcon} />
+
+# Icon
+
+Renders a single icon. For the full list of icons consult the technical documentation at the bottom of this page.
+
+<Canvas>
+	<CmIcon icon="information" />
+	<CmIcon icon="delete" />
+	<CmIcon icon="hide" />
+	<CmIcon icon="search" />
+	<CmIcon icon="sort" />
+	<CmIcon icon="contextMenu" />
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

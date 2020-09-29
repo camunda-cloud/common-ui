@@ -6,6 +6,15 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 An easy-to-use, framework-agnostic design library, built with modern web standards.
 
+## Goals
+
+Common UI has a couple of goals, chief among them are:
+
+- Leveraging web standards to stay framework agnostic
+- Provide a simple and clear API
+- Prevent invalid configuration of components
+- Enable quick implementation of Designs
+
 ## Getting Started
 
 ### Select your Package
@@ -33,10 +42,16 @@ This CSS file can be found under `dist/common-ui/common-ui.css` and needs to be 
 
 **Note:** If you use either of the wrapper libraries, you still need to install `@camunda-cloud/common-ui` alongside it, to import this CSS file.
 
+#### React
+
 If you are using React, you are set up at this point. Just start importing the components you want to use from `@camunda-cloud/common-ui-react`.
+
+#### Angular
 
 If you are using Angular, you need to import the `CommonUIModule` from `@camunda-cloud/common-ui-angular` and add it to the imports of whichever
 Module you want. We recommend the `app.module.ts` for a singular setup. Once this is done, you can start using Common UI like normal Angular modules.
+
+#### Vanilla
 
 If you are going with the vanilla Common UI experience you need add this bit of JS to your project:
 
@@ -56,22 +71,13 @@ applyPolyfills().then(() => {
 In order to stay as compliant with web standards as possible, this library refrains from reusing already standards-defined event names.
 Every event name is thus prefixed with a `cm-`.
 
-## Goals
-
-Common UI has a couple of goals, chief among them are:
-
-- Levering web standards to stay framework agnostic
-- Provide a simple and clear API
-- Prevent invalid configuration of components
-- Enable quick implementation of Designs
-
 ## Notes
 
 This documentation is currently using `@camunda-cloud/common-ui-react` to keep code examples as brief as possible.
 The technical documentation is based on the web component variants, which are the source of truth. The code examples are impacted in the following ways:
 
-|            |               React               |            Angular            |            Web Components            |
-| ---------- | :-------------------------------: | :---------------------------: | :----------------------------------: |
-| Tag Names  |          `<CmButton />`           |   `<cm-button></cm-button>`   |      `<cm-button></cm-button>`       |
-| Attributes |    `<CmLink openIn="sameTab">`    | `<cm-link open-in="sameTab">` |    `<cm-link open-in="sameTab">`     |
-| Events     | `<CmButton onCmPress={() => {}}>` |    `<cm-button (cmPress)>`    | `button.addEventListener("cmPress")` |
+|            |            React            |            Angular            |              Web Components              |
+| ---------- | :-------------------------: | :---------------------------: | :--------------------------------------: |
+| Tag Names  |       `<CmButton />`        |   `<cm-button></cm-button>`   |        `<cm-button></cm-button>`         |
+| Attributes | `<CmLink openIn="sameTab">` | `<cm-link open-in="sameTab">` |      `<cm-link open-in="sameTab">`       |
+| Events     | `<CmButton onCmPress={fn}>` |  `<cm-button (cmPress)=fn>`   | `button.addEventListener("cmPress", fn)` |

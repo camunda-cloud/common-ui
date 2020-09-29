@@ -1,0 +1,97 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import {
+	CmPage,
+	CmPageTab,
+	CmIconButton,
+	CmText,
+} from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Page" component={CmPage} />
+
+# Page
+
+`CmPage` and `CmPageTab` are centerpieces for rendering general page content.
+
+`CmPage` has a `header` slot to allow insertion of icons, headlines or page wide context menus.
+To render content it needs to be wrapped in a `CmPageTab` - even if you only have a single "tab". The label is required, and the unnamed default slot is free to be used for any kind of content.
+
+<Canvas>
+	<CmPage>
+		<div
+			slot="header"
+			style={{
+				display: 'grid',
+				gap: 15,
+				gridAutoFlow: 'column',
+				gridAutoColumns: 'max-content',
+				alignItems: 'center',
+			}}
+		>
+			<h1
+				style={{
+					fontWeight: 'normal',
+					fontSize: 17,
+					fontFamily: 'var(--cm-font-text)',
+					color: 'var(--cm-color-ui-dark4)',
+				}}
+			>
+				Components
+			</h1>
+			<CmIconButton icon="contextMenu" />
+		</div>
+		<CmPageTab label="Tab 1">
+			<CmText>Content for Tab 1</CmText>
+		</CmPageTab>
+		<CmPageTab label="Tab 2">
+			<CmText>Content for Tab 2</CmText>
+		</CmPageTab>
+	</CmPage>
+</Canvas>
+
+If only one `CmPageTab` is given, the tab-bar will stay hidden.
+
+<Canvas>
+	<CmPage>
+		<div
+			slot="header"
+			style={{
+				display: 'grid',
+				gap: 15,
+				gridAutoFlow: 'column',
+				gridAutoColumns: 'max-content',
+				alignItems: 'center',
+			}}
+		>
+			<h1
+				style={{
+					fontWeight: 'normal',
+					fontSize: 17,
+					fontFamily: 'var(--cm-font-text)',
+					color: 'var(--cm-color-ui-dark4)',
+				}}
+			>
+				Components
+			</h1>
+			<CmIconButton icon="contextMenu" />
+		</div>
+		<CmPageTab label="Single Tab">
+			<CmText>Only a single tab.</CmText>
+		</CmPageTab>
+	</CmPage>
+</Canvas>
+
+If only one `CmPageTab` is given **and** the `header` slot is empty, the entire header section stays hidden.
+
+<Canvas>
+	<CmPage>
+		<CmPageTab label="Single Tab">
+			<CmText>Only a single tab without a header.</CmText>
+		</CmPageTab>
+	</CmPage>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

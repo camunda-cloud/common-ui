@@ -17,6 +17,10 @@ export type State = {
 	handle: HTMLCmPageTabHandleElement
 }
 
+/**
+ * @slot - The default slot only accepts `CmPageTabs`.
+ * @slot header - Use this slot to display a headline for the page or page wide context menus.
+ */
 @Component({
 	tag: 'cm-page',
 	styleUrl: 'cm-page.scss',
@@ -61,7 +65,7 @@ export class CmPage {
 	}
 
 	/**
-	 * This is emitted when we switch to another tab.
+	 * This is emitted when the active tab is changed.
 	 */
 	@Event() tabChanged: EventEmitter<State>
 
@@ -95,7 +99,7 @@ export class CmPage {
 	}
 
 	/**
-	 * Switches to a tab.
+	 * Switches to a tab based on their label.
 	 * @param label Title of the target tab.
 	 */
 	@Method()
@@ -104,7 +108,7 @@ export class CmPage {
 	}
 
 	/**
-	 * Switches to a tab.
+	 * Switches to a tab based on their index.
 	 * @param index Index of the target tab.
 	 */
 	@Method()

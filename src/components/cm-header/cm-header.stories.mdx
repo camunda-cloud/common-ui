@@ -1,0 +1,24 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmHeader, CmLogo, CmText } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Header" component={CmHeader} />
+
+# Header
+
+The header enables laying out of Logo and navigational elements with 2 slots: `left` and `right`.
+Both place elements in a stacked fashion on their respective sides - in both cases from left to right.
+
+The component makes no other assumptions about layout. Spacing between elements is left to the implementation.
+
+<Canvas>
+	<CmHeader>
+		<CmLogo slot="left" />
+		<CmText slot="right">Jakob Freund</CmText>
+	</CmHeader>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

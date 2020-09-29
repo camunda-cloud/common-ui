@@ -86,12 +86,12 @@ export namespace Components {
          */
         "getActiveState": () => Promise<State>;
         /**
-          * Switches to a tab.
+          * Switches to a tab based on their label.
           * @param label Title of the target tab.
          */
         "switchToTab": (label: string) => Promise<void>;
         /**
-          * Switches to a tab.
+          * Switches to a tab based on their index.
           * @param index Index of the target tab.
          */
         "switchToTabIndex": (index: number) => Promise<void>;
@@ -293,7 +293,7 @@ declare namespace LocalJSX {
     interface CmPage {
         "activeLabel"?: string;
         /**
-          * This is emitted when we switch to another tab.
+          * This is emitted when the active tab is changed.
          */
         "onTabChanged"?: (event: CustomEvent<State>) => void;
     }
