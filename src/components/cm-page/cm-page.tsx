@@ -68,7 +68,6 @@ export class CmPage {
 	@Listen('tabModified')
 	tabModifiedEventHandler() {
 		this.parseTabList()
-		this.root.forceUpdate()
 	}
 
 	@Listen('userSelectedTab')
@@ -116,7 +115,6 @@ export class CmPage {
 
 	onChildrenChange() {
 		this.parseTabList()
-		this.root.forceUpdate()
 	}
 
 	parseTabList() {
