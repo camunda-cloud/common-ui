@@ -14,6 +14,7 @@ export const config: Config = {
 		reactOutputTarget({
 			componentCorePackage: '@camunda-cloud/common-ui',
 			proxiesFile: '../common-ui-react/src/components.ts',
+			includeDefineCustomElements: true,
 		}),
 		{
 			type: 'angular',
