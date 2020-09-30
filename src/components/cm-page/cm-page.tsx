@@ -158,17 +158,15 @@ export class CmPage {
 	}
 
 	render() {
-		const isHeaderSlotEmpty = !this.root
-			.querySelector("[slot='header']")
-			?.hasChildNodes()
-
-		let headerClasses = {
-			empty: isHeaderSlotEmpty && this.tabRefs.length < 2,
-		}
-
 		let headerSlotClasses = {
 			headerSlot: true,
-			empty: isHeaderSlotEmpty,
+			empty: !this.root.querySelector("[slot='header']")?.hasChildNodes(),
+		}
+
+		let handlesClasses = { handles: true, empty: this.tabRefs.length < 2 }
+
+		let headerClasses = {
+			empty: headerSlotClasses.empty && handlesClasses.empty,
 		}
 
 		return (
@@ -177,7 +175,7 @@ export class CmPage {
 					<div class={headerSlotClasses}>
 						<slot name="header" />
 					</div>
-					<div class="handles">
+					<div class={handlesClasses}>
 						{this.tabRefs.map((tab) => {
 							return (
 								<cm-page-tab-handle

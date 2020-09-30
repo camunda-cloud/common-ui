@@ -26,6 +26,10 @@ header {
 
 		flex-direction: row;
 
+		&.empty {
+			height: 0px;
+		}
+
 		cm-page-tab-handle {
 			&:not(:last-child) {
 				margin-right: 20px;
