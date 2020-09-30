@@ -1971,18 +1971,17 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@camunda-cloud/common-ui-react@0.0.10":
-  version "0.0.10"
-  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui-react/0.0.10/51a37ffdd70f958d96da0d4a1966cb7f0a833639de3f53755241db72a98b2922#3816fcba41e8df13801c6e4e85149653bcbc2612"
-  integrity sha512-TvHKWYewWFdYLxYFKer46xYr4O2Ku1sT4jqO0EMph01+gLPLjUXxbvz/TrqZOLWNvWbRTefuH5NQgEhJtotxiw==
+"@camunda-cloud/common-ui-react@0.0.11":
+  version "0.0.11"
+  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui-react/0.0.11/b3a75d7a927f8dc3fc6ceb941bed1cf967b5368f41b92707327f9add5edd90c8#2838d243a534f3a63b5e727326991a08b62a6f87"
+  integrity sha512-NTVfHWK6jRz5TzldoXI2V2d58UdAWCmf6pxDxdnKyoLUk7ABxSq9PvXZ55N64W7TJHz4SxjZfdmSCs52Lp7ekQ==
   dependencies:
-    "@camunda-cloud/common-ui" "0.0.10"
-    "@stencil/core" ">=1.8.0"
+    "@camunda-cloud/common-ui" "0.0.11"
 
-"@camunda-cloud/common-ui@0.0.10":
-  version "0.0.10"
-  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui/0.0.10/527a72da9063cc883311fc6a8f31e842065a2f87e746eef63221ccf9a6087085#3bc4315bbf4606ee91c583cef3bc18fb4937f8cf"
-  integrity sha512-xacudxdULc3cyrYV15gwRdeJNtl1J9XZxjuOJKJKR6/Y0+TbNgny2t7Iv1arOcJchmq/gSkHmoUUMDuJhFTY/Q==
+"@camunda-cloud/common-ui@0.0.11":
+  version "0.0.11"
+  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui/0.0.11/fc9c695d3fd0b3d899e29db56440d9c029696c1f7fbeff8c67d0c437fa71fa1d#d97af75f3a96b23396ed9e5bfc8345e147cc5ed8"
+  integrity sha512-oMEGr/6LPpSWCrUKxR/xifTZXAcOcMnFii/ZadLnEU9sWv3IITRIaUHdF3pboccBCCd3nEy91+IvpUMCUTRzUA==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -2465,7 +2464,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@2.0.3", "@stencil/core@>=1.8.0":
+"@stencil/core@2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.0.3.tgz#8719d3131362076a35b7a7c865de4720766f3f47"
   integrity sha512-d4qLDN7HKwJEK+ljhknD8azpM4bF49Dv7h5yG3RF+SPo8uozDq3p5ZNj1MgZoRgzh04kXNyG/MKnD8H2QN5YVw==
