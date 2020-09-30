@@ -59,6 +59,22 @@ export const config: Config = {
 
 					// #endregion
 
+					// #region Methods
+
+					if (component.methods.length) {
+						readme += '### Methods\n'
+						readme += '| Name | Description | Signature |\n'
+						readme += '| ---- | ----------- | --------- |\n'
+
+						for (let method of component.methods) {
+							readme += `|\`${method.name}\``
+							readme += `|\`${method.docs}\``
+							readme += `|\`${method.signature}\`|\n`
+						}
+					}
+
+					// #endregion
+
 					// #region Events
 
 					if (component.events.length) {
