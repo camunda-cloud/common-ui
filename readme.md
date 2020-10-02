@@ -14,7 +14,9 @@ cd common-ui
 git remote rm origin
 ```
 
-and run:
+you will need to login into the `@camunda-cloud` scope in github packages (npm), you can find out how here: https://github.com/features/packages
+
+afterwards you can run:
 
 ```bash
 yarn
@@ -41,3 +43,5 @@ To run the unit tests for the components, run:
 ```bash
 yarn test
 ```
+
+You can find the current docs [here](https://camunda-cloud.github.io/common-ui/)
