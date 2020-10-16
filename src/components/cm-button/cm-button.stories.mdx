@@ -10,16 +10,22 @@ import Readme from './readme.md'
 This is how all the appearances of enabled buttons look:
 
 <Canvas>
-	<CmButton label="A normal Button" />
+	<CmButton label="A default Button" />
 	<CmButton appearance="primary" label="A primary Button" />
+	<CmButton appearance="secondary" label="A secondary Button" />
 	<CmButton appearance="danger" label="A dangerous Button" />
 </Canvas>
 
 This is how they look when they are disabled:
 
 <Canvas>
-	<CmButton disabled label="A disabled normal Button" />
+	<CmButton disabled label="A disabled default Button" />
 	<CmButton disabled appearance="primary" label="A disabled primary Button" />
+	<CmButton
+		disabled
+		appearance="secondary"
+		label="A disabled secondary Button"
+	/>
 	<CmButton disabled appearance="danger" label="A disabled dangerous Button" />
 </Canvas>
 
