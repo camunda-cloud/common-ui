@@ -45,7 +45,7 @@
 			<cm-logo slot="right"></cm-logo>
 		</cm-header>
 
-		<cm-page>
+		<cm-page style="position: relative">
 			<h1 slot="header">Components</h1>
 			<cm-page-tab label="Buttons">
 				<div class="row">
@@ -213,61 +213,59 @@
 			</cm-page-tab>
 			<cm-page-tab label="Notifications">
 				<div class="row">
-					<cm-notification appearance="error" headline="Toast Title" />
-				</div>
-				<div class="row">
-					<cm-notification appearance="success" headline="Toast Title" />
-				</div>
-				<div class="row">
-					<cm-notification appearance="info" headline="Toast Title" />
-				</div>
-				<div class="row">
-					<cm-notification
-						appearance="error"
-						headline="Very very very very long Title"
-					/>
-				</div>
-				<div class="row">
-					<cm-notification
-						appearance="error"
-						headline="Message Title"
-						description="Message Description"
-					/>
-				</div>
-				<div class="row">
-					<cm-notification
-						appearance="error"
-						user-dismissable="false"
-						headline="Toast Message"
-					/>
+					<cm-button
+						appearance="primary"
+						label="Add Notification"
+						id="notificationButton"
+						style="max-width: 250px; align-self: start"
+					></cm-button>
 				</div>
 
-				<div class="row">
-					<cm-notification
-						id="notificationWithLink"
-						appearance="error"
-						headline="Message Title"
-						description="Message Description"
-						navigation-label="View"
-						navigation-target="Navigation Target"
-					/>
-				</div>
+				<cm-notification-container
+					style="position: absolute; bottom: 8px; left: 10px"
+				></cm-notification-container>
 
 				<script>
-					const notifications = document.querySelectorAll('cm-notification')
-
-					Array.from(notifications).map((notification) => {
-						notification.addEventListener('cmDismissed', (event) => {
-							console.log('Notification dismissed.')
-						})
-
-						notification.addEventListener(
-							'cmNotificationNavigation',
-							(event) => {
-								console.log('Notification Navigation Triggered', event.detail)
+					const notifications = [
+						{ headline: 'Test Notification' },
+						{ headline: 'Test Notification', appearance: 'error' },
+						{ headline: 'Test Notification', userDismissable: false },
+						{
+							headline: 'Test Notification',
+							appearance: 'success',
+							description: 'Description of some sort',
+						},
+						{
+							headline: 'Test Notification',
+							appearance: 'success',
+							description: 'Description of some sort',
+							navigationLabel: 'View',
+							navigationTarget: 'Specific View Target',
+							notificationNavigation: (event) => {
+								console.log(event.detail)
 							},
-						)
-					})
+						},
+					]
+
+					let notificationCounter = 0
+
+					const notificationContainer = document.querySelector(
+						'cm-notification-container',
+					)
+
+					document
+						.querySelector('#notificationButton')
+						.addEventListener('cmPress', () => {
+							notificationContainer.enqueueNotification(
+								notifications[notificationCounter],
+							)
+
+							if (notificationCounter + 1 >= notifications.length) {
+								notificationCounter = 0
+							} else {
+								notificationCounter++
+							}
+						})
 				</script>
 			</cm-page-tab>
 		</cm-page>
