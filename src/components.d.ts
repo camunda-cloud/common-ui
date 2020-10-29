@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { NotificationItem } from "./components/cm-notification-container/cm-notification-container";
 import { State } from "./components/cm-page/cm-page";
 export namespace Components {
     interface CmButton {
@@ -87,6 +88,9 @@ export namespace Components {
         "navigationLabel": string;
         "navigationTarget": string;
         "userDismissable": boolean;
+    }
+    interface CmNotificationContainer {
+        "enqueueNotification": (notification: NotificationItem) => Promise<void>;
     }
     interface CmPage {
         "activeLabel": string;
@@ -189,6 +193,12 @@ declare global {
         prototype: HTMLCmNotificationElement;
         new (): HTMLCmNotificationElement;
     };
+    interface HTMLCmNotificationContainerElement extends Components.CmNotificationContainer, HTMLStencilElement {
+    }
+    var HTMLCmNotificationContainerElement: {
+        prototype: HTMLCmNotificationContainerElement;
+        new (): HTMLCmNotificationContainerElement;
+    };
     interface HTMLCmPageElement extends Components.CmPage, HTMLStencilElement {
     }
     var HTMLCmPageElement: {
@@ -226,6 +236,7 @@ declare global {
         "cm-logo": HTMLCmLogoElement;
         "cm-modal": HTMLCmModalElement;
         "cm-notification": HTMLCmNotificationElement;
+        "cm-notification-container": HTMLCmNotificationContainerElement;
         "cm-page": HTMLCmPageElement;
         "cm-page-tab": HTMLCmPageTabElement;
         "cm-page-tab-handle": HTMLCmPageTabHandleElement;
@@ -319,6 +330,8 @@ declare namespace LocalJSX {
         "onDidLoad"?: (event: CustomEvent<{}>) => void;
         "userDismissable"?: boolean;
     }
+    interface CmNotificationContainer {
+    }
     interface CmPage {
         "activeLabel"?: string;
         /**
@@ -355,6 +368,7 @@ declare namespace LocalJSX {
         "cm-logo": CmLogo;
         "cm-modal": CmModal;
         "cm-notification": CmNotification;
+        "cm-notification-container": CmNotificationContainer;
         "cm-page": CmPage;
         "cm-page-tab": CmPageTab;
         "cm-page-tab-handle": CmPageTabHandle;
@@ -377,6 +391,7 @@ declare module "@stencil/core" {
             "cm-logo": LocalJSX.CmLogo & JSXBase.HTMLAttributes<HTMLCmLogoElement>;
             "cm-modal": LocalJSX.CmModal & JSXBase.HTMLAttributes<HTMLCmModalElement>;
             "cm-notification": LocalJSX.CmNotification & JSXBase.HTMLAttributes<HTMLCmNotificationElement>;
+            "cm-notification-container": LocalJSX.CmNotificationContainer & JSXBase.HTMLAttributes<HTMLCmNotificationContainerElement>;
             "cm-page": LocalJSX.CmPage & JSXBase.HTMLAttributes<HTMLCmPageElement>;
             "cm-page-tab": LocalJSX.CmPageTab & JSXBase.HTMLAttributes<HTMLCmPageTabElement>;
             "cm-page-tab-handle": LocalJSX.CmPageTabHandle & JSXBase.HTMLAttributes<HTMLCmPageTabHandleElement>;
