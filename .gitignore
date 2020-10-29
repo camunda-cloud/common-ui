@@ -8,3 +8,4 @@ dist
 loader
 www
 src/**/readme.md
+src/components.d.ts
