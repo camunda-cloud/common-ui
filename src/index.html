@@ -211,6 +211,65 @@
 					<cm-loader size="small"></cm-loader>
 				</div>
 			</cm-page-tab>
+			<cm-page-tab label="Notifications">
+				<div class="row">
+					<cm-notification appearance="error" headline="Toast Title" />
+				</div>
+				<div class="row">
+					<cm-notification appearance="success" headline="Toast Title" />
+				</div>
+				<div class="row">
+					<cm-notification appearance="info" headline="Toast Title" />
+				</div>
+				<div class="row">
+					<cm-notification
+						appearance="error"
+						headline="Very very very very long Title"
+					/>
+				</div>
+				<div class="row">
+					<cm-notification
+						appearance="error"
+						headline="Message Title"
+						description="Message Description"
+					/>
+				</div>
+				<div class="row">
+					<cm-notification
+						appearance="error"
+						user-dismissable="false"
+						headline="Toast Message"
+					/>
+				</div>
+
+				<div class="row">
+					<cm-notification
+						id="notificationWithLink"
+						appearance="error"
+						headline="Message Title"
+						description="Message Description"
+						navigation-label="View"
+						navigation-target="Navigation Target"
+					/>
+				</div>
+
+				<script>
+					const notifications = document.querySelectorAll('cm-notification')
+
+					Array.from(notifications).map((notification) => {
+						notification.addEventListener('cmDismissed', (event) => {
+							console.log('Notification dismissed.')
+						})
+
+						notification.addEventListener(
+							'cmNotificationNavigation',
+							(event) => {
+								console.log('Notification Navigation Triggered', event.detail)
+							},
+						)
+					})
+				</script>
+			</cm-page-tab>
 		</cm-page>
 
 		<cm-footer
