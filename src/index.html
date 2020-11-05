@@ -232,18 +232,30 @@
 						{ headline: 'Test Notification', userDismissable: false },
 						{
 							headline: 'Test Notification',
-							appearance: 'success',
 							description: 'Description of some sort',
+							appearance: 'success',
 						},
 						{
 							headline: 'Test Notification',
-							appearance: 'success',
 							description: 'Description of some sort',
-							navigationLabel: 'View',
-							navigationTarget: 'Specific View Target',
-							notificationNavigation: (event) => {
-								console.log(event.detail)
-							},
+							appearance: 'success',
+							navigation: {
+								label: 'View',
+								navigationHandler: (event) => {
+									console.log("Navigation!")
+								},
+							}
+						},{
+							headline: 'Long Duration Notification',
+							description: 'Description of some sort',
+							appearance: 'success',
+							duration: 20000,
+							navigation: {
+								label: 'View',
+								navigationHandler: (event) => {
+									console.log("Navigation!")
+								},
+							}
 						},
 					]
 
