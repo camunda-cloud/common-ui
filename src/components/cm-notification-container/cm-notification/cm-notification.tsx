@@ -21,21 +21,32 @@ export class CmNotification {
 	@Prop() description: string = ''
 	@Prop() navigationLabel: string = ''
 	@Prop() userDismissable: boolean = true
-	@Prop() navigationTarget: string = ''
 
 	@Element() el: HTMLElement
 	@Event() cmDismissed: EventEmitter<{}>
 	@Event() didLoad: EventEmitter<{}>
-	@Event() cmNotificationNavigation: EventEmitter<{
-		navigationTarget: string
-	}>
+	@Event() cmNotificationNavigation: EventEmitter<{}>
 
 	@Method()
 	async dismiss() {
 		this.cmDismissed.emit()
 	}
 
+	protected _isBeingHovered = false
+
+	@Method() async isBeingHovered() {
+		return this._isBeingHovered
+	}
+
 	componentDidLoad() {
+		this.el.addEventListener('mouseenter', () => {
+			this._isBeingHovered = true
+		})
+
+		this.el.addEventListener('mouseleave', () => {
+			this._isBeingHovered = false
+		})
+
 		this.didLoad.emit() // Necessary for the notification container to access the correct clientHeight
 	}
 
@@ -50,9 +61,7 @@ export class CmNotification {
 					<div
 						class="link"
 						onClick={() => {
-							this.cmNotificationNavigation.emit({
-								navigationTarget: this.navigationTarget,
-							})
+							this.cmNotificationNavigation.emit({})
 							this.dismiss()
 						}}
 					>
@@ -79,7 +88,10 @@ export class CmNotification {
 
 		if (this.userDismissable) {
 			dismissButton = (
-				<cm-icon-button icon={'close'} onCmPress={() => this.dismiss()} />
+				<cm-icon-button
+					icon={'close'}
+					onCmPress={() => this.dismiss()}
+				/>
 			)
 		}
 

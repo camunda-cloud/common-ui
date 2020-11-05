@@ -1,15 +1,15 @@
 import { Component, Host, h, Method, Element } from '@stencil/core'
 
 export type NotificationItem = {
-	appearance?: 'success' | 'error' | 'info'
 	headline: string
 	description?: string
-	navigationLabel?: string
-	navigationTarget?: string
+	appearance?: 'success' | 'error' | 'info'
 	userDismissable?: boolean
-	notificationNavigation?: (
-		event: CustomEvent<{ navigationTarget: string }>,
-	) => void
+	duration?: number
+	navigation?: {
+		label: string
+		navigationHandler: (event: CustomEvent<{}>) => void
+	}
 }
 
 @Component({
@@ -41,11 +41,11 @@ export class CmNotificationContainer {
 		}, 100)
 	}
 
-	countTimerDown(expiredTime: number) {
+	async countTimerDown(expiredTime: number) {
 		let entries = Array.from(this.durationStore.entries())
 
 		for (let [key, value] of entries) {
-			if (!document.hidden) {
+			if (!document.hidden && !(await key.isBeingHovered())) {
 				let newValue = value - expiredTime
 
 				if (newValue <= 0) {
@@ -64,34 +64,30 @@ export class CmNotificationContainer {
 		)
 		let newNotification = document.createElement('cm-notification')
 
-		this.durationStore.set(newNotification, this.notificationDuration)
+		this.durationStore.set(
+			newNotification,
+			notification.duration ?? this.notificationDuration,
+		)
 
 		newNotification.headline = notification.headline
-
-		if (notification?.appearance) {
-			newNotification.appearance = notification.appearance
-		}
 
 		if (notification?.description) {
 			newNotification.description = notification.description
 		}
 
-		if (notification?.navigationLabel) {
-			newNotification.navigationLabel = notification.navigationLabel
+		if (notification?.appearance) {
+			newNotification.appearance = notification.appearance
 		}
 
 		if (notification.userDismissable != null) {
 			newNotification.userDismissable = notification.userDismissable
 		}
 
-		if (notification?.navigationTarget) {
-			newNotification.navigationTarget = notification.navigationTarget
-		}
-
-		if (notification?.notificationNavigation) {
+		if (notification?.navigation) {
+			newNotification.navigationLabel = notification.navigation.label
 			newNotification.addEventListener(
 				'cmNotificationNavigation',
-				notification.notificationNavigation,
+				notification.navigation.navigationHandler,
 			)
 		}
 
@@ -105,7 +101,9 @@ export class CmNotificationContainer {
 
 			notificationContainer.animate(
 				[
-					{ transform: `translateY(${newNotification.clientHeight}px)` },
+					{
+						transform: `translateY(${newNotification.clientHeight}px)`,
+					},
 					{ transform: 'translateY(0%)' },
 				],
 				{ duration: 150, easing: 'linear' },
@@ -138,7 +136,9 @@ export class CmNotificationContainer {
 						if (this.notificationQueue.length) {
 							setTimeout(() => {
 								requestAnimationFrame(() => {
-									this.renderNewNotification(this.notificationQueue.shift())
+									this.renderNewNotification(
+										this.notificationQueue.shift(),
+									)
 								})
 							}, 200)
 						}
@@ -149,7 +149,7 @@ export class CmNotificationContainer {
 
 	render() {
 		return (
-			<Host>
+			<Host aria-live="polite">
 				<div id="notificationContainer"></div>
 			</Host>
 		)
