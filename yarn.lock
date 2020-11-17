@@ -2086,17 +2086,17 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@camunda-cloud/common-ui-react@0.0.12":
-  version "0.0.12"
-  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui-react/0.0.12/721fd73472549e14f6de350f0c7028c1cd0b3e0bcc0306de05bf9801435cf9c5#ea4ffa6516be197b1127821567bc2e2a34f6baac"
-  integrity sha512-4o1ySzIIIfdWj+5miDmub7xa5w37zQGjs2FCMSEDKmXOnU8A1L3Yxy41zPrj3ETBS2Kiz3yWUIRC/kLBA4Q5BQ==
+"@camunda-cloud/common-ui-react@0.0.13":
+  version "0.0.13"
+  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui-react/0.0.13/3ebeb9de83d727e437a39656bcddaeaf84e8ab6f385e488f2338244c1c0728b5#c0d423730873edd27c58c9378e42db056dd69a34"
+  integrity sha512-bN/BD0H9RQsfV7Tzv5qx6fMjwIwFTWZqxL6WBL+KbXctAEBB61u/5sEmB0IGPMKoUJVHw+muTLrbyK3InVb3tg==
   dependencies:
-    "@camunda-cloud/common-ui" "0.0.12"
+    "@camunda-cloud/common-ui" "0.0.13"
 
-"@camunda-cloud/common-ui@0.0.12":
-  version "0.0.12"
-  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui/0.0.12/7f49a49f0feea8895fb139fa9858afa88ea9b27268d8ca03bea167f029c839fd#17c3793a8dc8711e419adc2223ff673d6f444fdc"
-  integrity sha512-KPNhO6l7xIrMM6uFIbbhFVmKpw0lUOepM2Q5NCgQaGELp3AyA0psK03xUCbwJr4Xf91Tc9ZqoG5ILdwDatFe8A==
+"@camunda-cloud/common-ui@0.0.13":
+  version "0.0.13"
+  resolved "https://npm.pkg.github.com/download/@camunda-cloud/common-ui/0.0.13/aebe3ad63c64ed9c9c32964744ad5e5e06ccf7b4c5318f41379f2617d4fe069f#38e65ba15dede016ebe661803d426c34b07ba0f6"
+  integrity sha512-KLdKwUvpavWHHKEbpI9Zw3n8vNH/IvOKcAd+WkmSBM91BahgiBI6epj0DXsb+ZqAqOSuG57t003xbSKRvCjHXA==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
