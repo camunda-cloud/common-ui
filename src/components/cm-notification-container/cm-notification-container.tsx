@@ -65,20 +65,11 @@ export class CmNotificationContainer {
 		let newNotification = document.createElement('cm-notification')
 
 		newNotification.headline = notification.headline
+		newNotification.description = notification.description
+		newNotification.appearance = notification.appearance
+		newNotification.userDismissable = notification.userDismissable
 
-		if (notification?.description) {
-			newNotification.description = notification.description
-		}
-
-		if (notification?.appearance) {
-			newNotification.appearance = notification.appearance
-		}
-
-		if (notification.userDismissable != null) {
-			newNotification.userDismissable = notification.userDismissable
-		}
-
-		if (notification?.navigation) {
+		if (notification.navigation != null) {
 			newNotification.navigationLabel = notification.navigation.label
 			newNotification.addEventListener(
 				'cmNotificationNavigation',
