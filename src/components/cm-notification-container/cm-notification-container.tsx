@@ -64,11 +64,6 @@ export class CmNotificationContainer {
 		)
 		let newNotification = document.createElement('cm-notification')
 
-		this.durationStore.set(
-			newNotification,
-			notification.duration ?? this.notificationDuration,
-		)
-
 		newNotification.headline = notification.headline
 
 		if (notification?.description) {
@@ -88,6 +83,16 @@ export class CmNotificationContainer {
 			newNotification.addEventListener(
 				'cmNotificationNavigation',
 				notification.navigation.navigationHandler,
+			)
+		}
+
+		if (
+			newNotification.userDismissable ||
+			newNotification.userDismissable == null
+		) {
+			this.durationStore.set(
+				newNotification,
+				notification.duration ?? this.notificationDuration,
 			)
 		}
 
