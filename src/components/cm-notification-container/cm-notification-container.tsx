@@ -21,17 +21,47 @@ export class CmNotificationContainer {
 	@Element() el: HTMLElement
 
 	notificationQueue: Array<NotificationItem> = []
+	notificationMap: Map<
+		NotificationItem,
+		HTMLCmNotificationElement
+	> = new Map()
 	visibleNotifications: Array<HTMLCmNotificationElement> = []
 	durationStore: Map<HTMLCmNotificationElement, number> = new Map()
 
 	maxVisibleNotifications = 5
 	notificationDuration = 7000
 
-	@Method() async enqueueNotification(notification: NotificationItem) {
+	@Method() async enqueueNotification(
+		notification: NotificationItem,
+	): Promise<{
+		hasBeenShown(): boolean
+		remove(): void
+	}> {
 		if (this.maxVisibleNotifications <= this.visibleNotifications.length) {
 			this.notificationQueue.push(notification)
 		} else {
 			this.renderNewNotification(notification)
+		}
+
+		return {
+			hasBeenShown: () => {
+				return !this.notificationQueue.includes(notification)
+			},
+			remove: () => {
+				if (this.notificationQueue.includes(notification)) {
+					this.notificationQueue = this.notificationQueue.filter(
+						(item) => item !== notification,
+					)
+				} else {
+					let notificationElement = this.notificationMap.get(
+						notification,
+					)
+
+					if (notificationElement) {
+						notificationElement.dismiss()
+					}
+				}
+			},
 		}
 	}
 
@@ -63,6 +93,7 @@ export class CmNotificationContainer {
 			'#notificationContainer',
 		)
 		let newNotification = document.createElement('cm-notification')
+		this.notificationMap.set(notification, newNotification)
 
 		newNotification.headline = notification.headline
 		newNotification.description = notification.description
@@ -123,6 +154,7 @@ export class CmNotificationContainer {
 						{ duration: 150, easing: 'linear' },
 					)
 					.addEventListener('finish', () => {
+						this.notificationMap.delete(notification)
 						this.visibleNotifications = this.visibleNotifications.filter(
 							(item) => item !== newNotification,
 						)
