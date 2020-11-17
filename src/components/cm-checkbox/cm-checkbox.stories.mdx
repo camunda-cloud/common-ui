@@ -1,0 +1,31 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmCheckbox } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Checkbox" component={CmCheckbox} />
+
+# Checkbox
+
+Checkboxes come with built in labels, so you dont have to worry about their alignment.
+
+These checkboxes are modeled after native checkboxes in a variety of ways. The checkbox gets focus when clicked, but doesn't show this visually, just like a native checkbox in most modern browsers.
+If you toggle it or navigate to it with teh keyboard it will however show the focus visually. The `indeterminate` is also independent of the value of `checked`.
+
+<Canvas>
+	<CmCheckbox label="Check me!"></CmCheckbox>
+	<CmCheckbox label="Uncheck me!" checked></CmCheckbox>
+	<CmCheckbox label="I can't decide." indeterminate></CmCheckbox>
+</Canvas>
+
+They can be disabled of course:
+
+<Canvas>
+	<CmCheckbox label="Check me!" disabled></CmCheckbox>
+	<CmCheckbox label="Uncheck me!" checked disabled></CmCheckbox>
+	<CmCheckbox label="I can't decide." indeterminate disabled></CmCheckbox>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

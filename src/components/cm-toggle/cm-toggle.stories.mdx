@@ -1,0 +1,28 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmToggle } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Toggle" component={CmToggle} />
+
+# Toggle
+
+Toggles are basically [checkboxes](/?path=/docs/components-checkbox--page) and have the same API, except for the `indeterminate` state, which is not supported for toggles.
+
+They look like this:
+
+<Canvas>
+	<CmToggle label="Check me!"></CmToggle>
+	<CmToggle label="Uncheck me!" checked></CmToggle>
+</Canvas>
+
+They can be disabled of course:
+
+<Canvas>
+	<CmToggle label="Check me!" disabled></CmToggle>
+	<CmToggle label="Uncheck me!" checked disabled></CmToggle>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

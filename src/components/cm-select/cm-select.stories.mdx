@@ -1,0 +1,35 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmSelect } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Select" component={CmSelect} />
+
+# Select
+
+Selects are a thin wrapper around native selects, mostly handling the styling of the unopened select. They can be set up with an array of objects of the shape `{ label: string, value: string }` that gets passed to the `options` property.
+
+<Canvas>
+	<CmSelect
+		options={[
+			{ label: 'Test', value: 'TestValue' },
+			{ label: 'Another Test', value: 'AnotherTestValue' },
+		]}
+	></CmSelect>
+</Canvas>
+
+They can be disabled of course:
+
+<Canvas>
+	<CmSelect
+		disabled
+		options={[
+			{ label: 'Test', value: 'TestValue' },
+			{ label: 'Another Test', value: 'AnotherTestValue' },
+		]}
+	></CmSelect>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

@@ -195,6 +195,51 @@
 					>
 				</div>
 			</cm-page-tab>
+			<cm-page-tab label="Form Elements">
+				<div class="row">
+					<cm-checkbox label="Normal Checkbox"></cm-checkbox>
+					<cm-checkbox
+						label="Indeterminate Checkbox"
+						indeterminate
+					></cm-checkbox>
+					<cm-checkbox label="Checked Checkbox" checked></cm-checkbox>
+				</div>
+				<div class="row">
+					<cm-checkbox
+						label="Disabled Normal Checkbox"
+						disabled
+					></cm-checkbox>
+					<cm-checkbox
+						label="Disabled Indeterminate Checkbox"
+						indeterminate
+						disabled
+					></cm-checkbox>
+					<cm-checkbox
+						label="Disabled Checked Checkbox"
+						checked
+						disabled
+					></cm-checkbox>
+				</div>
+				<div class="row">
+					<cm-toggle label="Normal Toggle"></cm-toggle>
+					<cm-toggle label="Disabled Toggle" disabled></cm-toggle>
+					<cm-toggle
+						label="Disabled Checked Toggle"
+						checked
+						disabled
+					></cm-toggle>
+				</div>
+
+				<div class="row">
+					<cm-select></cm-select>
+					<script>
+						document.querySelector('cm-select').options = [
+							{ value: 'Test1', label: 'Option 1' },
+							{ value: 'Test2', label: 'Option 2' },
+						]
+					</script>
+				</div>
+			</cm-page-tab>
 			<cm-page-tab label="Datalist">
 				<cm-datalist headline="Datalist">
 					<cm-datalist-item label="Datalist Item">
