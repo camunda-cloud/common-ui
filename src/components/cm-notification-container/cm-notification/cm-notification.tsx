@@ -58,15 +58,14 @@ export class CmNotification {
 		if (this.description) {
 			if (this.navigationLabel) {
 				link = (
-					<div
-						class="link"
-						onClick={() => {
+					<cm-button
+						appearance="link"
+						label={this.navigationLabel}
+						onCmPress={() => {
 							this.cmNotificationNavigation.emit({})
 							this.dismiss()
 						}}
-					>
-						{this.navigationLabel}
-					</div>
+					></cm-button>
 				)
 			}
 

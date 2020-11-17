@@ -51,23 +51,9 @@ cm-icon-button {
 	font-size: 13px;
 }
 
-.link {
+cm-button {
 	display: inline-block;
-	cursor: pointer;
-
 	font-size: 13px;
-	font-weight: 400;
-	text-decoration: underline;
-
-	color: var(--cm-color-link);
-
-	&:hover {
-		color: var(--cm-color-link-hover);
-	}
-
-	&:active {
-		color: var(--cm-color-link-active);
-	}
 }
 
 .icon {
