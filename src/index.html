@@ -24,7 +24,9 @@
 				display: grid;
 				gap: 10px;
 				padding: 10px 0px;
-				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				grid-auto-flow: column;
+				grid-auto-columns: max-content;
+				justify-content: space-between;
 				align-items: center;
 			}
 
@@ -53,118 +55,156 @@
 					<cm-button label="Test" appearance="primary"></cm-button>
 					<cm-button label="Test" appearance="secondary"></cm-button>
 					<cm-button label="Test" appearance="danger"></cm-button>
+					<cm-button label="Test" appearance="link"></cm-button>
 					<cm-icon-button icon="contextMenu"></cm-icon-button>
 				</div>
 				<div class="row">
 					<cm-button disabled label="Test"></cm-button>
-					<cm-button disabled label="Test" appearance="primary"></cm-button>
-					<cm-button disabled label="Test" appearance="secondary"></cm-button>
-					<cm-button disabled label="Test" appearance="danger"></cm-button>
-					<cm-icon-button disabled icon="contextMenu"></cm-icon-button>
+					<cm-button
+						disabled
+						label="Test"
+						appearance="primary"
+					></cm-button>
+					<cm-button
+						disabled
+						label="Test"
+						appearance="secondary"
+					></cm-button>
+					<cm-button
+						disabled
+						label="Test"
+						appearance="danger"
+					></cm-button>
+					<cm-button
+						disabled
+						label="Test"
+						appearance="link"
+					></cm-button>
+					<cm-icon-button
+						disabled
+						icon="contextMenu"
+					></cm-icon-button>
 				</div>
 				<cm-modal headline="This is a cm-modal!">
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					>
 					<br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					><br /><br />
 					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-						architecto, sunt nisi distinctio quo iste rerum fugit perspiciatis
-						ipsum sit quas. Pariatur distinctio, eum dignissimos harum commodi
-						esse architecto quos.</cm-text
+						>Lorem ipsum dolor sit amet consectetur adipisicing
+						elit. Ullam architecto, sunt nisi distinctio quo iste
+						rerum fugit perspiciatis ipsum sit quas. Pariatur
+						distinctio, eum dignissimos harum commodi esse
+						architecto quos.</cm-text
 					>
 					<cm-button label="Cancel" slot="cancel"></cm-button>
 					<cm-button
@@ -191,7 +231,11 @@
 				<div class="row">
 					<cm-text
 						>This is a Text test with an embedded
-						<cm-link href="https://camunda.de" label="link"></cm-link>.</cm-text
+						<cm-link
+							href="https://camunda.de"
+							label="link"
+						></cm-link
+						>.</cm-text
 					>
 				</div>
 			</cm-page-tab>
@@ -246,7 +290,10 @@
 						<cm-text>List Value</cm-text>
 					</cm-datalist-item>
 					<cm-datalist-item label="Workflow Instances">
-						<cm-link href="https://camunda.de" label="Link"></cm-link>
+						<cm-link
+							href="https://camunda.de"
+							label="Link"
+						></cm-link>
 					</cm-datalist-item>
 				</cm-datalist>
 			</cm-page-tab>
@@ -274,7 +321,10 @@
 					const notifications = [
 						{ headline: 'Test Notification' },
 						{ headline: 'Test Notification', appearance: 'error' },
-						{ headline: 'Test Notification', userDismissable: false },
+						{
+							headline: 'Test Notification',
+							userDismissable: false,
+						},
 						{
 							headline: 'Test Notification',
 							description: 'Description of some sort',
@@ -287,10 +337,11 @@
 							navigation: {
 								label: 'View',
 								navigationHandler: (event) => {
-									console.log("Navigation!")
+									console.log('Navigation!')
 								},
-							}
-						},{
+							},
+						},
+						{
 							headline: 'Long Duration Notification',
 							description: 'Description of some sort',
 							appearance: 'success',
@@ -298,9 +349,9 @@
 							navigation: {
 								label: 'View',
 								navigationHandler: (event) => {
-									console.log("Navigation!")
+									console.log('Navigation!')
 								},
-							}
+							},
 						},
 					]
 
@@ -317,7 +368,10 @@
 								notifications[notificationCounter],
 							)
 
-							if (notificationCounter + 1 >= notifications.length) {
+							if (
+								notificationCounter + 1 >=
+								notifications.length
+							) {
 								notificationCounter = 0
 							} else {
 								notificationCounter++

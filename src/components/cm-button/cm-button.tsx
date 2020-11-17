@@ -17,7 +17,8 @@ import {
 	shadow: true,
 })
 export class CmButton implements ComponentInterface {
-	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' = 'main'
+	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' | 'link' =
+		'main'
 	@Prop() label: string = ''
 	@Prop() disabled: boolean = false
 	@State() latestFocusWasClick: boolean = false
@@ -70,22 +71,9 @@ export class CmButton implements ComponentInterface {
 
 	render() {
 		let classes = {
-			main: false,
-			primary: false,
-			secondary: false,
-			danger: false,
+			[this.appearance]: true,
 			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
-		}
-
-		if (this.appearance === 'main') {
-			classes.main = true
-		} else if (this.appearance === 'danger') {
-			classes.danger = true
-		} else if (this.appearance === 'primary') {
-			classes.primary = true
-		} else {
-			classes.secondary = true
 		}
 
 		let tabIndex = 0

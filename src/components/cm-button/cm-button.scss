@@ -176,3 +176,42 @@
 	color: rgba(var(--cm-color-ui-light4-rgb), 0.5);
 	box-shadow: unset;
 }
+
+/********
+ * Link *
+ ********/
+
+:host(.link) {
+	padding: 0;
+	height: unset;
+	min-width: unset;
+	line-height: unset;
+
+	font-family: var(--cm-font-text);
+	font-size: 14px;
+	font-weight: 400;
+
+	text-decoration: underline;
+	color: var(--cm-color-link);
+}
+
+:host(.link:hover) {
+	color: var(--cm-color-link-hover);
+}
+
+:host(.link:focus) {
+	outline: none;
+}
+
+:host(.link:not(.clicked):focus) {
+	box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-danger),
+		0px 0px 0px 4px var(--cm-color-focus-outer-danger);
+}
+
+:host(.link:active) {
+	color: var(--cm-color-link-active);
+}
+
+:host(.link.disabled) {
+	opacity: 0.5;
+}
