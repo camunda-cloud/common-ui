@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-icon',
@@ -26,9 +27,18 @@ export class CmIcon {
 		| 'left'
 		| 'right'
 
+	@Prop() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
+
 	render() {
 		let classes = {
 			[this.icon]: true,
+			[this.theme]: true,
 		}
 
 		return (

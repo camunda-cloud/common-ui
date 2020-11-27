@@ -10,6 +10,7 @@ import {
 	State,
 	Element,
 } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-button',
@@ -22,6 +23,7 @@ export class CmButton implements ComponentInterface {
 	@Prop() label: string = ''
 	@Prop() disabled: boolean = false
 	@State() latestFocusWasClick: boolean = false
+	@State() theme: Theme = 'Light'
 
 	@Event() cmPress: EventEmitter<{}>
 	@Element() el: HTMLElement
@@ -63,6 +65,12 @@ export class CmButton implements ComponentInterface {
 		}
 	}
 
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
+
 	componentWillUpdate() {
 		if (this.latestFocusWasClick) {
 			this.el.focus()
@@ -72,6 +80,7 @@ export class CmButton implements ComponentInterface {
 	render() {
 		let classes = {
 			[this.appearance]: true,
+			[this.theme]: true,
 			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
 		}

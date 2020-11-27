@@ -17,4 +17,16 @@ a {
 	&:active {
 		color: var(--cm-color-link-active);
 	}
+
+	&.Dark {
+		color: var(--cm-color-link-dark);
+
+		&:hover {
+			color: var(--cm-color-link-hover-dark);
+		}
+
+		&:active {
+			color: var(--cm-color-link-active-dark);
+		}
+	}
 }
