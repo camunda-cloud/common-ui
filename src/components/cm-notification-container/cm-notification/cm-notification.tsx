@@ -8,7 +8,8 @@ import {
 	EventEmitter,
 } from '@stencil/core'
 
-import { JSXBase, Method } from '@stencil/core/internal'
+import { JSXBase, Method, State } from '@stencil/core/internal'
+import { onThemeChange, Theme } from '../../../globalHelpers'
 
 @Component({
 	tag: 'cm-notification',
@@ -26,6 +27,7 @@ export class CmNotification {
 	@Event() cmDismissed: EventEmitter<{}>
 	@Event() didLoad: EventEmitter<{}>
 	@Event() cmNotificationNavigation: EventEmitter<{}>
+	@State() theme: Theme = 'Light'
 
 	@Method()
 	async dismiss() {
@@ -36,6 +38,12 @@ export class CmNotification {
 
 	@Method() async isBeingHovered() {
 		return this._isBeingHovered
+	}
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
 	}
 
 	componentDidLoad() {
@@ -51,6 +59,11 @@ export class CmNotification {
 	}
 
 	render() {
+		let classes = {
+			container: true,
+			[this.theme]: true,
+		}
+
 		let link: JSXBase.IntrinsicElements,
 			description: JSXBase.IntrinsicElements,
 			dismissButton: JSXBase.IntrinsicElements
@@ -96,7 +109,7 @@ export class CmNotification {
 
 		return (
 			<Host>
-				<div class="container">
+				<div class={classes}>
 					<div class={`icon ${this.appearance}`} />
 					<div class="contentContainer">{description}</div>
 					{dismissButton}

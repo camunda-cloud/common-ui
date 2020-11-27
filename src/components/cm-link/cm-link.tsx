@@ -1,4 +1,12 @@
-import { Component, ComponentInterface, Host, h, Prop } from '@stencil/core'
+import {
+	Component,
+	ComponentInterface,
+	Host,
+	h,
+	Prop,
+	State,
+} from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-link',
@@ -9,8 +17,18 @@ export class CmLink implements ComponentInterface {
 	@Prop() href: string = ''
 	@Prop() label: string = ''
 	@Prop() openIn: 'sameTab' | 'newTab' = 'newTab'
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
 
 	render() {
+		let classes = {
+			[this.theme]: true,
+		}
 		let target = ''
 
 		if (this.openIn === 'newTab') {
@@ -19,7 +37,7 @@ export class CmLink implements ComponentInterface {
 
 		return (
 			<Host>
-				<a target={target} href={this.href}>
+				<a class={classes} target={target} href={this.href}>
 					{this.label}
 				</a>
 			</Host>

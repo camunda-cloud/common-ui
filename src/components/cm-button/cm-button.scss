@@ -215,3 +215,19 @@
 :host(.link.disabled) {
 	opacity: 0.5;
 }
+
+/******************
+ * Link Dark Mode *
+ ******************/
+
+:host(.Dark.link) {
+	color: var(--cm-color-link-dark);
+}
+
+:host(.Dark.link:hover) {
+	color: var(--cm-color-link-hover-dark);
+}
+
+:host(.Dark.link:active) {
+	color: var(--cm-color-link-active-dark);
+}
