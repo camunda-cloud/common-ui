@@ -3,7 +3,7 @@ import { CmCheckbox } from '@camunda-cloud/common-ui-react'
 
 import Readme from './readme.md'
 
-<Meta title="Components/Checkbox" component={CmCheckbox} />
+<Meta title="Components/Form Elements/Checkbox" component={CmCheckbox} />
 
 # Checkbox
 
@@ -21,9 +21,13 @@ If you toggle it or navigate to it with teh keyboard it will however show the fo
 They can be disabled of course:
 
 <Canvas>
-	<CmCheckbox label="Check me!" disabled></CmCheckbox>
-	<CmCheckbox label="Uncheck me!" checked disabled></CmCheckbox>
-	<CmCheckbox label="I can't decide." indeterminate disabled></CmCheckbox>
+	<CmCheckbox label="Can't check me!" disabled></CmCheckbox>
+	<CmCheckbox label="Can't uncheck me!" checked disabled></CmCheckbox>
+	<CmCheckbox
+		label="I can't decide - and neither can you."
+		indeterminate
+		disabled
+	></CmCheckbox>
 </Canvas>
 
 ## Technical Documentation
