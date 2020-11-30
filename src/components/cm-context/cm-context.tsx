@@ -9,14 +9,16 @@ import {
 	Watch,
 } from '@stencil/core'
 
+import { Theme } from '../../globalHelpers'
+
 @Component({
 	tag: 'cm-context',
 	shadow: true,
 })
 export class CmContext {
-	@Prop() theme: 'Light' | 'Dark' | 'Automatic' = 'Light'
+	@Prop() theme: Theme | 'Automatic' = 'Light'
 
-	@Event() themeChanged: EventEmitter<{ theme: 'Dark' | 'Light' }>
+	@Event() themeChanged: EventEmitter<{ theme: Theme }>
 
 	@Watch('theme')
 	themeChangeHandler() {
@@ -28,7 +30,7 @@ export class CmContext {
 	}
 
 	private _getResolvedTheme() {
-		let resolvedTheme: 'Light' | 'Dark'
+		let resolvedTheme: Theme
 
 		if (this.theme === 'Automatic') {
 			if (window.matchMedia('(prefers-color-scheme: light)').matches) {
