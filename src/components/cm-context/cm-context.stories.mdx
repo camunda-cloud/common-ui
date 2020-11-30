@@ -1,0 +1,20 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmContext } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Context" component={CmContext} />
+
+# Context
+
+The Context component is meant as a central hub for configuring all components within it.
+It is recommended that you use a single Context component on the top level of your application,
+so that the same one is available for hte other components to find.
+
+Currently it only supports a single feature: Theming.
+Every component will automatically listen to the Context component to find out about the set theme, and change itself automatically, where necessary.
+NOTE: Not every component is currently supporting the Dark Theme.
+
+## Technical Documentation
+
+<Description>{Readme}</Description>
