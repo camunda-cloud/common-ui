@@ -8,12 +8,15 @@ import Readme from './readme.md'
 # Context
 
 The Context component is meant as a central hub for configuring all components within it.
-It is recommended that you use a single Context component on the top level of your application,
-so that the same one is available for hte other components to find.
+It is recommended that you use a **single** Context component on the top level of your application,
+so that the same one is available for the other components to find.
+
+There is no requirement for nesting, just as long as a cm-context tag can be found in the DOM somewhere.
 
 Currently it only supports a single feature: Theming.
 Every component will automatically listen to the Context component to find out about the set theme, and change itself automatically, where necessary.
-NOTE: Not every component is currently supporting the Dark Theme.
+
+**NOTE: Not every component is currently supporting the Dark Theme.**
 
 ## Technical Documentation
 

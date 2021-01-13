@@ -1,0 +1,24 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmNotificationContainer } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta
+	title="Components/Notification Container"
+	component={CmNotificationContainer}
+/>
+
+# Notification Container
+
+The NotificationContainer is a one stop shop for all your notification needs.
+It handles everything: rendering and removing notifications after a set time,
+staggering them such that only a limited amount is shown,
+even enabling you to show a notification until you programatically dismiss it.
+
+<Canvas>
+	<CmNotificationContainer />
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

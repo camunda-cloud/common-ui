@@ -1,0 +1,27 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmModal, CmButton, CmText } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Modal" component={CmModal} />
+
+# Modal
+
+This Component represents a Modal window. It supports 2 positions: "center" for classic modals such as confirmation dialoges
+and "top": which deals better with alternative use cases, like forms with expanding or contracting height needs.
+
+It contains 3 slots: a default content slot, a "cancel" and a "confirm" slot. The latter 2 are meant to be used for buttons with their namesake functions.
+
+**Note:** The modal only becomes visible when the `open` method is used.
+
+<Canvas>
+	<CmModal headline="An Example Modal">
+		<CmText>Some simple example Content in this modal.</CmText>
+		<CmButton appearance="danger" label="Abort" slot="cancel" />
+		<CmButton appearance="primary" label="Confirm" slot="confirm" />
+	</CmModal>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>
