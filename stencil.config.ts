@@ -20,7 +20,8 @@ export const config: Config = {
 			type: 'angular',
 			componentCorePackage: '@camunda-cloud/common-ui',
 			directivesUtilsFile: '../common-ui-angular/src/directives/utils.ts',
-			directivesProxyFile: '../common-ui-angular/src/directives/proxies.ts',
+			directivesProxyFile:
+				'../common-ui-angular/src/directives/proxies.ts',
 		},
 		{
 			type: 'dist',
@@ -68,8 +69,14 @@ export const config: Config = {
 
 						for (let method of component.methods) {
 							readme += `|\`${method.name}\``
-							readme += `|\`${method.docs}\``
-							readme += `|\`${method.signature}\`|\n`
+
+							if (method.docs) {
+								readme += `|\`${method.docs}\``
+							} else {
+								readme += `|`
+							}
+
+							readme += `|<code>${method.signature}</code>|\n`
 						}
 					}
 
@@ -121,7 +128,9 @@ export const config: Config = {
 								(err) => {
 									if (err) {
 										console.error(
-											`Could not write ${component.tag.slice(3)}/readme.md`,
+											`Could not write ${component.tag.slice(
+												3,
+											)}/readme.md`,
 										)
 										reject()
 									} else {
