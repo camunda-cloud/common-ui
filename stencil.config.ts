@@ -52,7 +52,13 @@ export const config: Config = {
 						for (let property of component.props) {
 							readme += `|\`${property.name}\``
 							readme += `|\`${property.attr}\``
-							readme += `|${property.docs}`
+
+							if (property.docs) {
+								readme += `|\`${property.docs}\``
+							} else {
+								readme += `|`
+							}
+
 							readme += `|\`${property.type}\``
 							readme += `|\`${property.default}\`|\n`
 						}
@@ -91,7 +97,13 @@ export const config: Config = {
 
 						for (let event of component.events) {
 							readme += `|\`${event.event}\``
-							readme += `|${event.docs}`
+
+							if (event.docs) {
+								readme += `|\`${event.docs}\``
+							} else {
+								readme += `|`
+							}
+
 							readme += `|\`${event.detail}\`|\n`
 						}
 					}
@@ -111,7 +123,14 @@ export const config: Config = {
 							} else {
 								readme += `|`
 							}
-							readme += `|${slot.docs}|\n`
+
+							if (slot.docs) {
+								readme += `|\`${slot.docs}\``
+							} else {
+								readme += `|`
+							}
+
+							readme += '|\n'
 						}
 					}
 
@@ -120,7 +139,7 @@ export const config: Config = {
 					readme = prettier.format(readme, { parser: 'markdown' })
 
 					promises.push(
-						new Promise((resolve, reject) => {
+						new Promise<void>((resolve, reject) => {
 							writeFile(
 								component.readmePath,
 								readme,
