@@ -14,6 +14,9 @@ It contains 3 slots: a default content slot, a "cancel" and a "confirm" slot. Th
 
 **Note:** The modal only becomes visible when the `open` method is used.
 
+The resulting promise resolves either to "confirm" - if the cm-button in the "confirm" slot is pressed - or to "cancel". <br/>
+This can happen in a variety of ways: By pressing the `Esc` key, using the "Close" cm-icon-button in the top right, or pressing the cm-button (if provided) in the "cancel" slot.
+
 <Canvas>
 	<CmModal headline="An Example Modal">
 		<CmText>Some simple example Content in this modal.</CmText>

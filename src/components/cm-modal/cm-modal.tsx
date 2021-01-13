@@ -9,6 +9,12 @@ import {
 	Listen,
 } from '@stencil/core'
 
+/**
+ * @slot - The default slot for the content of the Modal.
+ * @slot cancel - Use this slot with a cm-button to provide an additional way of cancelling out of the modal
+ * @slot confirm - Use this slot with a cm-button to provie a way of closing the modal with the Promise resolving to "confirm"
+ */
+
 @Component({
 	tag: 'cm-modal',
 	styleUrl: 'cm-modal.scss',
@@ -52,7 +58,9 @@ export class CmModal {
 
 	componentDidLoad() {
 		let cancelSlot = this.el.shadowRoot.querySelector("slot[name='cancel']")
-		let confirmSlot = this.el.shadowRoot.querySelector("slot[name='confirm']")
+		let confirmSlot = this.el.shadowRoot.querySelector(
+			"slot[name='confirm']",
+		)
 
 		cancelSlot.addEventListener('cmPress', () => {
 			this.cancel()
