@@ -4,6 +4,10 @@
 
 Common UI is a framework-agnostic collection of UI components, for Camunda Cloud.
 
+# Documentation
+
+You can find the current documentation [here](https://camunda-cloud.github.io/common-ui/)
+
 ## Getting Started
 
 To start contributing to Common-UI, clone this repo to a new directory:
@@ -43,5 +47,3 @@ To run the unit tests for the components, run:
 ```bash
 yarn test
 ```
-
-You can find the current docs [here](https://camunda-cloud.github.io/common-ui/)
