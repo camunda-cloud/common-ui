@@ -1,0 +1,1 @@
+export const onThemeChange=async(callback,options={})=>{var _a;let context=document.querySelector("cm-context");context&&(context.addEventListener("themeChanged",event=>{callback(event.detail.theme)}),(null===(_a=options.runOnInit)||void 0===_a||_a)&&callback(await context.getResolvedTheme()))};

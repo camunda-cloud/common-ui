@@ -1,0 +1,7 @@
+span {
+  display: inline;
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--cm-color-ui-light6);
+}

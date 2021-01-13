@@ -1,0 +1,1 @@
+import{Component,Host,h}from"@stencil/core";export class CmLogo{render(){return h(Host,null,h("div",{class:"logo"}))}static get is(){return"cm-logo"}static get encapsulation(){return"shadow"}static get originalStyleUrls(){return{$:["cm-logo.scss"]}}static get styleUrls(){return{$:["cm-logo.css"]}}}

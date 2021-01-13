@@ -1,0 +1,1 @@
+import{Component,Host,h}from"@stencil/core";export class CmBanner{render(){return h(Host,null,h("div",{class:"container"},h("slot",null)))}static get is(){return"cm-banner"}static get encapsulation(){return"shadow"}static get originalStyleUrls(){return{$:["cm-banner.scss"]}}static get styleUrls(){return{$:["cm-banner.css"]}}}

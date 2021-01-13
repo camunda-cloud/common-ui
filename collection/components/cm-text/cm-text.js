@@ -1,0 +1,1 @@
+import{Component,Host,h}from"@stencil/core";export class CmText{render(){return h(Host,null,h("span",null,h("slot",null)))}static get is(){return"cm-text"}static get encapsulation(){return"shadow"}static get originalStyleUrls(){return{$:["cm-text.scss"]}}static get styleUrls(){return{$:["cm-text.css"]}}}

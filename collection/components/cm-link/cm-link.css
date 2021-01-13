@@ -1,0 +1,26 @@
+:host {
+  display: inline;
+}
+
+a {
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: underline;
+  color: var(--cm-color-link);
+}
+a:hover {
+  color: var(--cm-color-link-hover);
+}
+a:active {
+  color: var(--cm-color-link-active);
+}
+a.Dark {
+  color: var(--cm-color-link-dark);
+}
+a.Dark:hover {
+  color: var(--cm-color-link-hover-dark);
+}
+a.Dark:active {
+  color: var(--cm-color-link-active-dark);
+}

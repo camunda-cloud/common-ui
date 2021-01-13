@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+#notificationContainer {
+  display: grid;
+  position: relative;
+  grid-auto-flow: dense;
+  align-content: end;
+  width: 330px;
+  overflow: hidden;
+}
+#notificationContainer cm-notification {
+  overflow: hidden;
+  padding: 5px 0px;
+}
+#notificationContainer cm-notification.hidden {
+  position: absolute;
+  bottom: 1000px;
+  z-index: -1;
+}
+#notificationContainer cm-notification.collapse {
+  height: 0;
+  padding: 0;
+}
