@@ -32,9 +32,9 @@
   "devDependencies": {
     "@babel/core": "7.12.3",
     "@camunda-cloud/common-ui-react": "0.0.14",
-    "@stencil/core": "2.2.0",
+    "@stencil/core": "2.3.0",
     "@stencil/react-output-target": "0.0.9",
-    "@stencil/sass": "1.3.2",
+    "@stencil/sass": "1.4.1",
     "@storybook/addon-docs": "6.1.14",
     "@storybook/addons": "6.1.14",
     "@storybook/react": "6.1.14",
