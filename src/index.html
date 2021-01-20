@@ -362,6 +362,77 @@
 						<cm-loader size="small"></cm-loader>
 					</div>
 				</cm-page-tab>
+				<cm-page-tab label="Entity List">
+					<cm-entity-list
+						headline="A Test Entity List"
+						create-button-label="Create Entry"
+					></cm-entity-list>
+
+					<script>
+						const entityList = document.querySelector(
+							'cm-entity-list',
+						)
+
+						entityList.columns = [
+							{
+								name: 'Test',
+								width: '1fr',
+								overrideCSS: {
+									fontWeight: 500,
+									color: 'var(--cm-color-dark-04)',
+								},
+							},
+							{ name: 'Test1', width: 'minmax(100px, 300px)' },
+						]
+
+						entityList.entities = [
+							{
+								data: [
+									{ type: 'text', content: 'Entity 1' },
+									{
+										type: 'text',
+										content: 'Entity 1a',
+									},
+								],
+							},
+							{
+								data: [
+									{ type: 'text', content: 'Entity 2' },
+									{
+										type: 'text',
+										content:
+											'Entity 2a Entity 2a Entity 2a Entity 2a',
+									},
+								],
+							},
+						]
+
+						entityList.createHandler = () => {
+							entityList.entities = [
+								...entityList.entities,
+								{
+									data: [
+										{
+											type: 'text',
+											content: 'Random Entity',
+										},
+										{
+											type: 'text',
+											content: 'Random Entity '.repeat(
+												Math.max(
+													Math.round(
+														Math.random() * 10,
+													),
+													1,
+												),
+											),
+										},
+									],
+								},
+							]
+						}
+					</script>
+				</cm-page-tab>
 				<cm-page-tab label="Notifications">
 					<div class="row">
 						<cm-button
