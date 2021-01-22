@@ -366,7 +366,14 @@
 					<cm-entity-list
 						headline="A Test Entity List"
 						create-button-label="Create Entry"
-					></cm-entity-list>
+					>
+						<div slot="empty">
+							<cm-button
+								appearance="primary"
+								label="Add your First Entry"
+							></cm-button>
+						</div>
+					</cm-entity-list>
 
 					<script>
 						const entityList = document.querySelector(
@@ -388,14 +395,22 @@
 						entityList.entities = [
 							{
 								data: [
-									{ type: 'text', content: 'Entity 1' },
 									{
 										type: 'text',
-										content: 'Entity 1a',
+										content: 'Entity 1',
+										showCopyButton: true,
+									},
+									{
+										type: 'button',
+										label: 'View',
+										onPress: () => {
+											console.log('View Pressed')
+										},
 									},
 								],
 							},
 							{
+								onPress: () => console.log('press'),
 								data: [
 									{ type: 'text', content: 'Entity 2' },
 									{
