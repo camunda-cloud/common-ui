@@ -4,7 +4,6 @@
 
 .container {
 	background: var(--cm-color-ui-light2);
-	overflow: hidden;
 }
 
 .header {
@@ -53,6 +52,7 @@
 }
 
 .entities {
+	position: relative;
 	box-sizing: border-box;
 	display: grid;
 	gap: 15px;
@@ -75,11 +75,31 @@
 			display: grid;
 			align-content: center;
 
+			grid-auto-flow: column;
+			grid-auto-columns: max-content;
+			gap: 10px;
+
 			font-family: var(--cm-font-text);
 			font-size: 15px;
 			font-weight: 400;
 
 			color: var(--cm-color-ui-light6);
 		}
+	}
+
+	.loader {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		z-index: 1;
+
+		display: grid;
+		padding-top: 40px;
+		justify-content: center;
+
+		background-color: rgba(247, 248, 250, 0.7);
 	}
 }
