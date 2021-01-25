@@ -37,6 +37,7 @@
 		box-sizing: border-box;
 		display: grid;
 		padding: 0px 20px 15px;
+		gap: 15px;
 
 		.columnHeader {
 			box-sizing: border-box;
@@ -61,7 +62,8 @@
 		box-sizing: border-box;
 		display: grid;
 		min-height: 60px;
-		padding: 20px;
+		padding: 0px 20px;
+		gap: 15px;
 
 		background-color: var(--cm-color-ui-light4);
 
@@ -75,8 +77,6 @@
 			display: grid;
 			align-content: center;
 
-			grid-auto-flow: column;
-			grid-auto-columns: max-content;
 			gap: 10px;
 
 			font-family: var(--cm-font-text);
