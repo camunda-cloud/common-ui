@@ -383,17 +383,22 @@
 						entityList.columns = [
 							{
 								name: 'Test',
-								width: '1fr',
+								width: '800px',
 								overrideCSS: {
 									fontWeight: 500,
 									color: 'var(--cm-color-dark-04)',
 								},
 							},
-							{ name: 'Test1', width: 'minmax(100px, 300px)' },
+							{
+								name: 'Test1',
+								width: '100px',
+								ellipsis: 'right',
+							},
 						]
 
 						entityList.entities = [
 							{
+								onPress: () => console.log('press'),
 								data: [
 									{
 										type: 'text',
@@ -417,6 +422,7 @@
 										type: 'text',
 										content:
 											'Entity 2a Entity 2a Entity 2a Entity 2a',
+										showCopyButton: true,
 									},
 								],
 							},
