@@ -131,6 +131,10 @@ export class CmEntityList {
 						if (item.type === 'contextMenu') {
 							content = (
 								<cm-dropdown
+									onClick={(event) => {
+										event.preventDefault()
+										event.stopPropagation()
+									}}
 									trigger={{
 										type: 'icon',
 										icon: 'contextMenu',

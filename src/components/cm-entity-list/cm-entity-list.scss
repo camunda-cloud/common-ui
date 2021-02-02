@@ -72,6 +72,19 @@
 
 		box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 
+		cm-dropdown {
+			transition: all 0.2s linear;
+			opacity: 0;
+		}
+
+		&:hover,
+		&:focus,
+		&:focus-within {
+			cm-dropdown {
+				opacity: 1;
+			}
+		}
+
 		.cell {
 			box-sizing: border-box;
 			display: grid;
