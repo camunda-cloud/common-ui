@@ -391,8 +391,15 @@
 							},
 							{
 								name: 'Test1',
-								width: '100px',
+								width: 'minmax(150px, 350px)',
 								ellipsis: 'right',
+							},
+							{
+								name: '',
+								width: 'minmax(50px, 1fr)',
+								overrideCSS: {
+									justifyContent: 'end',
+								},
 							},
 						]
 
@@ -412,6 +419,25 @@
 											console.log('View Pressed')
 										},
 									},
+									{
+										type: 'contextMenu',
+										options: [
+											{
+												label: 'Click me to dismiss!',
+												handler: () => {
+													console.log('Option 1')
+												},
+											},
+											{
+												label:
+													'Click me and we stay open!',
+												handler: (event) => {
+													console.log('Option 2')
+													event.preventDismissal()
+												},
+											},
+										],
+									},
 								],
 							},
 							{
@@ -423,6 +449,25 @@
 										content:
 											'Entity 2a Entity 2a Entity 2a Entity 2a',
 										showCopyButton: true,
+									},
+									{
+										type: 'contextMenu',
+										options: [
+											{
+												label: 'Click me to dismiss!',
+												handler: () => {
+													console.log('Option 1')
+												},
+											},
+											{
+												label:
+													'Click me and we stay open!',
+												handler: (event) => {
+													console.log('Option 2')
+													event.preventDismissal()
+												},
+											},
+										],
 									},
 								],
 							},
@@ -533,6 +578,37 @@
 								}
 							})
 					</script>
+				</cm-page-tab>
+				<cm-page-tab label="Dropdown">
+					<div style="display: grid">
+						<cm-dropdown
+							style="justify-self: flex-end"
+						></cm-dropdown>
+
+						<script>
+							let dropdown = document.querySelector('cm-dropdown')
+
+							dropdown.trigger = {
+								type: 'icon',
+								icon: 'contextMenu',
+							}
+							dropdown.options = [
+								{
+									label: 'Click me to dismiss!',
+									handler: () => {
+										console.log('Option 1')
+									},
+								},
+								{
+									label: 'Click me and we stay open!',
+									handler: (event) => {
+										console.log('Option 2')
+										event.preventDismissal()
+									},
+								},
+							]
+						</script>
+					</div>
 				</cm-page-tab>
 			</cm-page>
 
