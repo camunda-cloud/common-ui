@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core'
+import { CmDropdown } from '../cm-dropdown/cm-dropdown'
 
 @Component({
 	tag: 'cm-entity-list',
@@ -27,6 +28,7 @@ export class CmEntityList {
 			| { type: 'text'; content: string; showCopyButton?: boolean }
 			| { type: 'image'; src: string }
 			| { type: 'button'; label: string; onPress: () => void }
+			| { type: 'contextMenu'; options: CmDropdown['options'] }
 		>
 	}> = []
 
@@ -122,6 +124,18 @@ export class CmEntityList {
 										event.stopPropagation()
 									}}
 									onCmPress={item.onPress}
+								/>
+							)
+						}
+
+						if (item.type === 'contextMenu') {
+							content = (
+								<cm-dropdown
+									trigger={{
+										type: 'icon',
+										icon: 'contextMenu',
+									}}
+									options={item.options}
 								/>
 							)
 						}
