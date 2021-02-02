@@ -1,0 +1,48 @@
+.container {
+	display: inline-grid;
+	position: relative;
+}
+
+.trigger {
+}
+
+.flyout {
+	display: none;
+
+	z-index: 100;
+
+	position: absolute;
+	top: calc(100% + 10px);
+	right: 0;
+
+	padding: 5px;
+
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+	background: #fcfcfc;
+
+	min-width: max-content;
+
+	gap: 5px;
+
+	&.open {
+		display: grid;
+	}
+
+	.option {
+		border-radius: 3px;
+		padding: 10px 15px;
+		font-family: var(--cm-font-text);
+		font-size: 14px;
+		color: var(--cm-color-ui-dark4);
+
+		&:not(.disabled) {
+			cursor: pointer;
+		}
+
+		&:hover {
+			background: #f0f0f0;
+		}
+	}
+}
