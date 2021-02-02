@@ -1,13 +1,27 @@
+:host {
+	display: inline-grid;
+}
+
 .container {
 	display: inline-grid;
 	position: relative;
+
+	&:focus {
+		outline: none;
+	}
 }
 
 .trigger {
+	display: grid;
+	align-content: center;
 }
 
 .flyout {
-	display: none;
+	display: grid;
+	opacity: 0;
+	pointer-events: none;
+
+	transition: all 150ms linear;
 
 	z-index: 100;
 
@@ -27,15 +41,19 @@
 	gap: 5px;
 
 	&.open {
-		display: grid;
+		opacity: 1;
+		pointer-events: initial;
 	}
 
 	.option {
+		user-select: none;
 		border-radius: 3px;
 		padding: 10px 15px;
 		font-family: var(--cm-font-text);
 		font-size: 14px;
 		color: var(--cm-color-ui-dark4);
+
+		transition: all 150ms linear;
 
 		&:not(.disabled) {
 			cursor: pointer;
@@ -43,6 +61,10 @@
 
 		&:hover {
 			background: #f0f0f0;
+		}
+
+		&.isDangerous {
+			color: #e30100;
 		}
 	}
 }

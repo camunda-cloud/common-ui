@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core'
+import { Component, Host, h, Prop, State, Listen, Element } from '@stencil/core'
 import { CmIconButton } from '../cm-icon-button/cm-icon-button'
 
 @Component({
@@ -7,21 +7,30 @@ import { CmIconButton } from '../cm-icon-button/cm-icon-button'
 	shadow: true,
 })
 export class CmDropdown {
+	@Element() el: HTMLElement
+
 	@Prop() trigger: { type: 'icon'; icon: CmIconButton['icon'] }
 
 	@Prop() options: Array<{
 		label: string
+		isDangerous?: boolean
 		handler: (event: { preventDismissal: () => void }) => void
 	}>
 	// | Array<Array<{ label: string; value: string }>>
 
+	@State() shouldStayOpen = false
 	@State() isOpen: boolean = false
+
+	@Listen('blur') onBlur() {
+		this.isOpen = false
+	}
 
 	render() {
 		let flyoutClasses = {
 			flyout: true,
 			open: this.isOpen,
 		}
+
 		let trigger: any, flyout: any
 
 		if (this.trigger.type === 'icon') {
@@ -40,19 +49,29 @@ export class CmDropdown {
 		flyout = (
 			<div class={flyoutClasses}>
 				{this.options.map((option) => {
+					let optionClasses = {
+						option: true,
+						isDangerous: option.isDangerous ?? false,
+					}
+
 					return (
 						<div
-							class="option"
+							class={optionClasses}
 							onClick={() => {
-								let dismiss = true
 								option.handler({
 									preventDismissal: () => {
-										dismiss = false
+										this.shouldStayOpen = true
 									},
 								})
 
-								if (dismiss) {
+								if (this.shouldStayOpen) {
+									this.shouldStayOpen = false
+								} else {
 									this.isOpen = false
+
+									setTimeout(() => {
+										this.el.blur()
+									}, 10)
 								}
 							}}
 						>
@@ -65,7 +84,7 @@ export class CmDropdown {
 
 		return (
 			<Host>
-				<div class="container">
+				<div class="container" tabindex="0">
 					{trigger}
 					{flyout}
 				</div>
