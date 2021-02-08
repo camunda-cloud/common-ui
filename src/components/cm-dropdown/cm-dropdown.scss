@@ -45,30 +45,52 @@
 		pointer-events: initial;
 	}
 
-	.option {
-		user-select: none;
-		border-radius: 3px;
-		padding: 10px 15px;
-		font-family: var(--cm-font-text);
-		font-size: 14px;
-		color: var(--cm-color-ui-dark4);
-
-		transition: all 150ms linear;
-
-		&:not(.disabled) {
-			cursor: pointer;
+	.optionGroup {
+		&:not(:first-child) {
+			border-top: solid 1px var(--cm-color-ui-light5);
+			padding-top: 10px;
 		}
 
-		&:hover {
-			background: #f0f0f0;
+		.title {
+			font-family: var(--cm-font-text);
+			font-size: 11px;
+			color: var(--cm-color-ui-light6);
 		}
 
-		&.isDangerous {
-			color: #e30100;
+		& > .title:not(:empty) {
+			padding: 0px 15px;
+			padding-bottom: 10px;
 		}
 
-		&.isDisabled {
-			opacity: 0.5;
+		.option {
+			user-select: none;
+			border-radius: 3px;
+			padding: 10px 15px;
+			font-family: var(--cm-font-text);
+			font-size: 14px;
+			color: var(--cm-color-ui-dark4);
+
+			transition: all 150ms linear;
+
+			&:not(.disabled) {
+				cursor: pointer;
+			}
+
+			&:hover {
+				background: #f0f0f0;
+			}
+
+			&.isDangerous {
+				color: #e30100;
+			}
+
+			&.isDisabled {
+				opacity: 0.5;
+			}
+
+			& > .title {
+				padding-bottom: 2px;
+			}
 		}
 	}
 }
