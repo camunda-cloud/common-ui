@@ -24,6 +24,7 @@ export class CmButton implements ComponentInterface {
 	@Prop() disabled: boolean = false
 	@State() latestFocusWasClick: boolean = false
 	@State() theme: Theme = 'Light'
+	@State() initialRender: boolean = true
 
 	@Event() cmPress: EventEmitter<{}>
 	@Element() el: HTMLElement
@@ -77,10 +78,18 @@ export class CmButton implements ComponentInterface {
 		}
 	}
 
+	componentDidRender() {
+		requestAnimationFrame(() => {
+			this.initialRender = false
+		})
+	}
+
 	render() {
+		console.log(this.theme)
 		let classes = {
 			[this.appearance]: true,
 			[this.theme]: true,
+			initialRender: this.initialRender,
 			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
 		}

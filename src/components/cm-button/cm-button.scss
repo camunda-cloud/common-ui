@@ -20,6 +20,10 @@
 	text-align: center;
 }
 
+:host(.initialRender) {
+	transition: none;
+}
+
 :host(.disabled) {
 	pointer-events: none;
 	cursor: default;
