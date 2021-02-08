@@ -11,11 +11,20 @@ export class CmDropdown {
 
 	@Prop() trigger: { type: 'icon'; icon: CmIconButton['icon'] }
 
-	@Prop() options: Array<{
-		label: string
-		isDangerous?: boolean
-		handler: (event: { preventDismissal: () => void }) => void
-	}>
+	@Prop() options: Array<
+		| {
+				label: string
+				isDangerous?: boolean
+				isDisabled?: false
+				handler: (event: { preventDismissal: () => void }) => void
+		  }
+		| {
+				label: string
+				isDangerous?: boolean
+				isDisabled: true
+				handler?: (event: { preventDismissal: () => void }) => void
+		  }
+	>
 	// | Array<Array<{ label: string; value: string }>>
 
 	@State() shouldStayOpen = false
@@ -52,12 +61,17 @@ export class CmDropdown {
 					let optionClasses = {
 						option: true,
 						isDangerous: option.isDangerous ?? false,
+						isDisabled: option.isDisabled ?? false,
 					}
 
 					return (
 						<div
 							class={optionClasses}
 							onClick={() => {
+								if (option.isDisabled) {
+									return
+								}
+
 								option.handler({
 									preventDismissal: () => {
 										this.shouldStayOpen = true

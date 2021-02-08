@@ -66,5 +66,9 @@
 		&.isDangerous {
 			color: #e30100;
 		}
+
+		&.isDisabled {
+			opacity: 0.5;
+		}
 	}
 }
