@@ -50,6 +50,8 @@ div {
 }
 
 .copy {
+	position: relative;
+	top: -1px;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='15'%3E%3Cpath fill='%2344464e' fill-rule='evenodd' d='M6.76923077 2.53846154l1.69123077 1.692h-.018l.865.874v-.028L11 6.76923077v6.61538463c0 .5522847-.4477153 1-1 1H3.53846154c-.55228475 0-1-.4477153-1-1V3.53846154c0-.55228475.44771525-1 1-1h3.23076923zm-.00076923 1.692l-2.53769231.00030769v8.46153847h5.07692308l-.00023077-5.92384616-2.53823077.00076923-.00076923-2.53876923zM4.23076923 0L5.922 1.692H4.23l-2.53769231.00030769V11.8461538h-.6923077c-.55228474 0-1-.4477152-1-1V1c0-.55228475.44771526-1 1-1h3.23076924z'/%3E%3C/svg%3E");
 }
 
@@ -70,6 +72,8 @@ div {
 }
 
 .up {
+	position: relative;
+	top: -1px;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='10' height='7'%3E%3Cdefs%3E%3Cpath id='a' d='M11.4997467 6v7H9.49974671V8h-5V6h6.99999999z'/%3E%3C/defs%3E%3Cuse fill='%2344464e' fill-rule='evenodd' transform='rotate(-45 1.67131988 11.12132034)' xlink:href='%23a'/%3E%3C/svg%3E");
 }
 
