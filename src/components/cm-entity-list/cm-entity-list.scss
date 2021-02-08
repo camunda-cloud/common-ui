@@ -86,6 +86,7 @@
 		}
 
 		.cell {
+			min-height: 60px;
 			box-sizing: border-box;
 			display: grid;
 			align-content: center;
@@ -97,6 +98,10 @@
 			font-weight: 400;
 
 			color: var(--cm-color-ui-light6);
+
+			span {
+				min-height: 20px;
+			}
 		}
 	}
 
