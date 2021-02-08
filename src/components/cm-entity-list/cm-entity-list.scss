@@ -38,16 +38,24 @@
 		display: grid;
 		padding: 0px 20px 15px;
 		gap: 15px;
+		min-height: 35px;
 
 		.columnHeader {
 			box-sizing: border-box;
 			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: max-content;
+			gap: 5px;
 
 			font-family: var(--cm-font-text);
 			font-size: 14px;
 			font-weight: 400;
 
 			color: var(--cm-color-ui-light6);
+
+			&:not(:empty) {
+				cursor: pointer;
+			}
 		}
 	}
 }

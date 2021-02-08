@@ -1,5 +1,10 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, State } from '@stencil/core'
 import { CmDropdown } from '../cm-dropdown/cm-dropdown'
+
+export type SortingDescription = {
+	columnIndex: number
+	method: 'ascending' | 'descending'
+}
 
 @Component({
 	tag: 'cm-entity-list',
@@ -32,8 +37,12 @@ export class CmEntityList {
 		>
 	}> = []
 
+	@Prop() defaultSorting?: SortingDescription
+
+	@State() userSelectedSorting?: SortingDescription
+
 	render() {
-		let loader, entities
+		let loader: any, entities: any, columnHeaderIcon: any
 
 		if (this.loading) {
 			loader = (
@@ -43,7 +52,78 @@ export class CmEntityList {
 			)
 		}
 
-		entities = this.entities.map((entity) => {
+		let sortedEntities = this.entities.slice(0)
+		let sorting: SortingDescription | null = null
+
+		if (this.userSelectedSorting) {
+			sorting = this.userSelectedSorting
+		} else if (this.defaultSorting) {
+			sorting = this.defaultSorting
+		}
+
+		if (sorting !== null) {
+			sortedEntities.sort((a, b) => {
+				const leftValue = a.data[sorting.columnIndex]
+				const rightValue = b.data[sorting.columnIndex]
+
+				if (leftValue.type === 'text' && rightValue.type === 'text') {
+					if (sorting.method === 'ascending') {
+						return leftValue.content.localeCompare(
+							rightValue.content,
+						)
+					} else {
+						return rightValue.content.localeCompare(
+							leftValue.content,
+						)
+					}
+				} else {
+					return 0
+				}
+			})
+
+			if (sorting.method === 'ascending') {
+				columnHeaderIcon = <cm-icon icon="up"></cm-icon>
+			} else {
+				columnHeaderIcon = <cm-icon icon="down"></cm-icon>
+			}
+		}
+
+		const createSortingToggle = (index) => {
+			return () => {
+				if (this.userSelectedSorting?.columnIndex === index) {
+					if (this.userSelectedSorting.method === 'ascending') {
+						this.userSelectedSorting = {
+							columnIndex: index,
+							method: 'descending',
+						}
+					} else {
+						this.userSelectedSorting = {
+							columnIndex: index,
+							method: 'ascending',
+						}
+					}
+				} else if (this.defaultSorting?.columnIndex === index) {
+					if (this.defaultSorting.method === 'ascending') {
+						this.userSelectedSorting = {
+							columnIndex: index,
+							method: 'descending',
+						}
+					} else {
+						this.userSelectedSorting = {
+							columnIndex: index,
+							method: 'ascending',
+						}
+					}
+				} else {
+					this.userSelectedSorting = {
+						columnIndex: index,
+						method: 'ascending',
+					}
+				}
+			}
+		}
+
+		entities = sortedEntities.map((entity) => {
 			return (
 				<div
 					class="entity"
@@ -200,9 +280,21 @@ export class CmEntityList {
 										.join(' '),
 								}}
 							>
-								{this.columns.map(({ name }) => {
+								{this.columns.map(({ name }, index) => {
 									return (
-										<div class="columnHeader">{name}</div>
+										<div
+											class="columnHeader"
+											onClick={
+												name.length
+													? createSortingToggle(index)
+													: () => {}
+											}
+										>
+											{name}
+											{sorting.columnIndex === index
+												? columnHeaderIcon
+												: ''}
+										</div>
 									)
 								})}
 							</div>
