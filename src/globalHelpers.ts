@@ -4,6 +4,12 @@ export const onThemeChange = async (
 	callback: (theme: Theme) => void,
 	options: { runOnInit?: boolean } = {},
 ) => {
+	if ((window as any).commonUIContext) {
+		if (options.runOnInit ?? true) {
+			callback((window as any).commonUIContext._getResolvedTheme())
+		}
+	}
+
 	let context = document.querySelector('cm-context')
 
 	if (context) {
@@ -13,9 +19,5 @@ export const onThemeChange = async (
 				callback(event.detail.theme)
 			},
 		)
-
-		if (options.runOnInit ?? true) {
-			callback(await context.getResolvedTheme())
-		}
 	}
 }

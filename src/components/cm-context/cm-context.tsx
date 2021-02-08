@@ -29,7 +29,7 @@ export class CmContext {
 		return this._getResolvedTheme()
 	}
 
-	private _getResolvedTheme() {
+	_getResolvedTheme() {
 		let resolvedTheme: Theme
 
 		if (this.theme === 'Automatic') {
@@ -46,6 +46,8 @@ export class CmContext {
 	}
 
 	componentWillLoad() {
+		;(window as any).commonUIContext = this
+
 		window
 			.matchMedia('(prefers-color-scheme: light)')
 			.addEventListener('change', (event) => {
