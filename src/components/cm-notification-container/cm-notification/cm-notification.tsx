@@ -93,8 +93,26 @@ export class CmNotification {
 				</div>
 			)
 		} else {
+			if (this.navigationLabel) {
+				link = (
+					<cm-button
+						style={{ fontSize: '15px' }}
+						appearance="link"
+						label={this.navigationLabel}
+						onCmPress={() => {
+							this.cmNotificationNavigation.emit({})
+							this.dismiss()
+						}}
+					></cm-button>
+				)
+			}
+
 			description = (
-				<div class="headlineWithoutDescription">{this.headline}</div>
+				<div class="headlineWithoutDescription">
+					{this.headline}
+					&nbsp;
+					{link}
+				</div>
 			)
 		}
 
