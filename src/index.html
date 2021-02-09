@@ -380,6 +380,11 @@
 							'cm-entity-list',
 						)
 
+						entityList.defaultSorting = {
+							columnIndex: 0,
+							method: 'descending',
+						}
+
 						entityList.columns = [
 							{
 								name: 'Test',
@@ -423,18 +428,27 @@
 										type: 'contextMenu',
 										options: [
 											{
-												label: 'Click me to dismiss!',
-												handler: () => {
-													console.log('Option 1')
-												},
-											},
-											{
-												label:
-													'Click me and we stay open!',
-												handler: (event) => {
-													console.log('Option 2')
-													event.preventDismissal()
-												},
+												options: [
+													{
+														label:
+															'Click me to dismiss!',
+														handler: () => {
+															console.log(
+																'Option 1',
+															)
+														},
+													},
+													{
+														label:
+															'Click me and we stay open!',
+														handler: (event) => {
+															console.log(
+																'Option 2',
+															)
+															event.preventDismissal()
+														},
+													},
+												],
 											},
 										],
 									},
@@ -454,18 +468,27 @@
 										type: 'contextMenu',
 										options: [
 											{
-												label: 'Click me to dismiss!',
-												handler: () => {
-													console.log('Option 1')
-												},
-											},
-											{
-												label:
-													'Click me and we stay open!',
-												handler: (event) => {
-													console.log('Option 2')
-													event.preventDismissal()
-												},
+												options: [
+													{
+														label:
+															'Click me to dismiss!',
+														handler: () => {
+															console.log(
+																'Option 1',
+															)
+														},
+													},
+													{
+														label:
+															'Click me and we stay open!',
+														handler: (event) => {
+															console.log(
+																'Option 2',
+															)
+															event.preventDismissal()
+														},
+													},
+												],
 											},
 										],
 									},
@@ -553,6 +576,18 @@
 									},
 								},
 							},
+
+							{
+								headline: 'Long Duration Notification',
+								appearance: 'success',
+								duration: 20000,
+								navigation: {
+									label: 'View',
+									navigationHandler: (event) => {
+										console.log('Navigation!')
+									},
+								},
+							},
 						]
 
 						let notificationCounter = 0
@@ -592,19 +627,57 @@
 								type: 'icon',
 								icon: 'contextMenu',
 							}
+
 							dropdown.options = [
 								{
-									label: 'Click me to dismiss!',
-									handler: () => {
-										console.log('Option 1')
-									},
+									options: [
+										{
+											title: 'Safe',
+											label: 'Click me to dismiss!',
+											handler: () => {
+												console.log('Option 1')
+											},
+										},
+										{
+											title: 'Safe',
+											label: 'Click me and we stay open!',
+											handler: (event) => {
+												console.log('Option 2')
+												event.preventDismissal()
+											},
+										},
+
+										{
+											title: 'Danger!',
+											label: 'I am dangerous.',
+											isDangerous: true,
+											handler: (event) => {
+												console.log('Option 3')
+											},
+										},
+									],
 								},
+
 								{
-									label: 'Click me and we stay open!',
-									handler: (event) => {
-										console.log('Option 2')
-										event.preventDismissal()
-									},
+									title: 'Disabled',
+									options: [
+										{
+											label: 'I am disabled.',
+											isDisabled: true,
+											handler: (event) => {
+												console.log('Option 4')
+											},
+										},
+										{
+											label: 'I am dangerously disabled.',
+											isDangerous: true,
+											isDisabled: true,
+
+											handler: (event) => {
+												console.log('Option 5')
+											},
+										},
+									],
 								},
 							]
 						</script>
