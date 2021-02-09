@@ -15,9 +15,9 @@ import {
 	shadow: true,
 })
 export class CmToggle {
-	@Prop() label: string = ''
-	@Prop() checked: boolean = false
-	@Prop() disabled: boolean = false
+	@Prop({ reflect: true }) label: string = ''
+	@Prop({ reflect: true }) checked: boolean = false
+	@Prop({ reflect: true }) disabled: boolean = false
 
 	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
 
