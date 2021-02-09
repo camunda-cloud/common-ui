@@ -291,7 +291,7 @@ export class CmEntityList {
 											}
 										>
 											{name}
-											{sorting.columnIndex === index
+											{sorting?.columnIndex === index
 												? columnHeaderIcon
 												: ''}
 										</div>

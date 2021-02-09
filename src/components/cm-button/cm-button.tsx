@@ -85,7 +85,6 @@ export class CmButton implements ComponentInterface {
 	}
 
 	render() {
-		console.log(this.theme)
 		let classes = {
 			[this.appearance]: true,
 			[this.theme]: true,
