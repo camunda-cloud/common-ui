@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core'
+import { Component, Host, h, Prop, State, Element } from '@stencil/core'
 import { CmDropdown, DropdownOptionGroup } from '../cm-dropdown/cm-dropdown'
 
 export type SortingDescription = {
@@ -60,12 +60,23 @@ export class CmEntityList {
 
 	@State() userSelectedSorting?: SortingDescription
 	@State() selectedEntities: Array<Entity> = []
+	@State() isSearchOpen: boolean = false
+	@State() filter: string = ''
+
+	@Element() element: HTMLElement
+
+	componentDidUpdate() {
+		;(this.element.shadowRoot.querySelector(
+			'#searchInput',
+		) as HTMLElement)?.focus()
+	}
 
 	render() {
 		let loader: unknown,
 			entities: unknown,
 			columnHeaderIcon: unknown,
-			groupDropdown: unknown
+			groupDropdown: unknown,
+			search: unknown
 
 		if (this.loading) {
 			loader = (
@@ -158,7 +169,23 @@ export class CmEntityList {
 			}
 		}
 
-		entities = sortedEntities.map((entity) => {
+		let filteredEntities = sortedEntities
+
+		if (this.filter.length) {
+			filteredEntities = filteredEntities.filter((entity) => {
+				for (let data of entity.data) {
+					if (data.type === 'text') {
+						if (data.content.includes(this.filter)) {
+							return true
+						}
+					}
+				}
+
+				return false
+			})
+		}
+
+		entities = filteredEntities.map((entity) => {
 			let entityClasses = {
 				entity: true,
 				selected: this.selectedEntities.includes(entity),
@@ -365,12 +392,45 @@ export class CmEntityList {
 			)
 		}
 
+		if (this.isSearchOpen) {
+			search = (
+				<div class="search open">
+					<input
+						type="text"
+						id="searchInput"
+						placeholder="Search"
+						onInput={(event: InputEvent) => {
+							this.filter = (event.target as HTMLInputElement)?.value
+						}}
+					/>
+					<cm-icon-button
+						icon="closeLarge"
+						onCmPress={() => {
+							this.isSearchOpen = false
+						}}
+					/>
+				</div>
+			)
+		} else {
+			search = (
+				<div class="search">
+					<cm-icon-button
+						icon="search"
+						onCmPress={() => {
+							this.isSearchOpen = true
+						}}
+					/>
+				</div>
+			)
+		}
+
 		return (
 			<Host>
 				<div class="container">
 					<div class="header">
 						<div class="headline">{this.headline}</div>
 						<div class="buttons">
+							{search}
 							{groupDropdown}
 							<cm-button
 								disabled={

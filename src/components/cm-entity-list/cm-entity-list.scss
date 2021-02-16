@@ -8,6 +8,7 @@
 
 .header {
 	display: grid;
+	gap: 35px 0px;
 	grid-template-areas:
 		'headline      buttons'
 		'columnHeaders columnHeaders';
@@ -20,7 +21,6 @@
 		font-weight: 500;
 
 		color: var(--cm-color-ui-light6);
-		padding-bottom: 35px;
 	}
 
 	.buttons {
@@ -28,9 +28,59 @@
 		grid-auto-flow: column;
 		grid-area: buttons;
 
-		align-content: start;
+		align-items: center;
 		justify-content: end;
 		gap: 10px;
+
+		.search {
+			transition: all 0.2s linear;
+			display: grid;
+			height: 32px;
+			min-width: 32px;
+			grid-auto-columns: 32px;
+			border-radius: 16px;
+
+			grid-auto-flow: column;
+			align-items: center;
+			justify-content: center;
+			background-color: rgba(216, 220, 227, 0);
+
+			input {
+				display: none;
+
+				&::placeholder {
+					font-style: italic;
+					opacity: 0.7;
+				}
+			}
+
+			&.open {
+				grid-auto-columns: 1fr 32px;
+				justify-content: space-between;
+				width: 180px;
+				background-color: rgba(216, 220, 227, 0.5);
+
+				input {
+					display: unset;
+					appearance: none;
+					min-width: 0px;
+
+					border: none;
+					background: transparent;
+					outline: none;
+					padding-left: 12px;
+					padding-right: 6px;
+
+					font-family: var(--cm-font-text);
+					font-size: 14px;
+					color: var(--cm-color-ui-dark4);
+				}
+			}
+
+			cm-icon-button {
+				justify-self: center;
+			}
+		}
 
 		cm-button {
 			justify-self: end;
