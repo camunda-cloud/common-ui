@@ -45,6 +45,21 @@
 		gap: 15px;
 		min-height: 35px;
 
+		cm-checkbox {
+			transition: all 0.2s linear;
+			opacity: 0;
+
+			&.visible {
+				opacity: 1;
+			}
+		}
+
+		&:hover {
+			cm-checkbox {
+				opacity: 1;
+			}
+		}
+
 		.columnHeader {
 			box-sizing: border-box;
 			display: grid;
@@ -93,6 +108,10 @@
 		cm-checkbox {
 			transition: all 0.2s linear;
 			opacity: 0;
+
+			&.visible {
+				opacity: 1;
+			}
 		}
 
 		&.selected {

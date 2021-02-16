@@ -75,6 +75,18 @@ export class CmEntityList {
 			)
 		}
 
+		let gridTemplateColumns = ''
+
+		if (this.groupOptions.length) {
+			gridTemplateColumns = `25px ${this.columns
+				.map((column) => column.width)
+				.join(' ')}`
+		} else {
+			gridTemplateColumns = this.columns
+				.map((column) => column.width)
+				.join(' ')
+		}
+
 		let sortedEntities = this.entities.slice(0)
 		let sorting: SortingDescription | null = null
 
@@ -156,36 +168,43 @@ export class CmEntityList {
 				<div
 					class={entityClasses}
 					style={{
-						gridTemplateColumns: `25px ${this.columns
-							.map((column) => column.width)
-							.join(' ')}`,
+						gridTemplateColumns: gridTemplateColumns,
 						cursor: entity.onPress ? 'pointer' : 'default',
 					}}
 					onClick={entity.onPress}
 				>
-					<div class="cell">
-						<cm-checkbox
-							checked={this.selectedEntities.includes(entity)}
-							onCmInput={() => {
-								if (this.selectedEntities.includes(entity)) {
-									let index = this.selectedEntities.indexOf(
-										entity,
-									)
-									let newEntities = this.selectedEntities.slice(
-										0,
-									)
-									newEntities.splice(index, 1)
+					{this.groupOptions.length ? (
+						<div class="cell">
+							<cm-checkbox
+								class={{
+									visible: this.selectedEntities.length > 0,
+								}}
+								checked={this.selectedEntities.includes(entity)}
+								onCmInput={() => {
+									if (
+										this.selectedEntities.includes(entity)
+									) {
+										let index = this.selectedEntities.indexOf(
+											entity,
+										)
+										let newEntities = this.selectedEntities.slice(
+											0,
+										)
+										newEntities.splice(index, 1)
 
-									this.selectedEntities = newEntities
-								} else {
-									this.selectedEntities = [
-										...this.selectedEntities,
-										entity,
-									]
-								}
-							}}
-						></cm-checkbox>
-					</div>
+										this.selectedEntities = newEntities
+									} else {
+										this.selectedEntities = [
+											...this.selectedEntities,
+											entity,
+										]
+									}
+								}}
+							></cm-checkbox>
+						</div>
+					) : (
+						''
+					)}
 
 					{entity.data.map((item, index) => {
 						let column = this.columns[index]
@@ -308,7 +327,7 @@ export class CmEntityList {
 			)
 		})
 
-		if (this.selectedEntities.length) {
+		if (this.selectedEntities.length && this.groupOptions.length) {
 			let label = ''
 
 			if (this.selectedEntities.length === 1) {
@@ -370,26 +389,33 @@ export class CmEntityList {
 							<div
 								class="columnHeaders"
 								style={{
-									gridTemplateColumns: `25px ${this.columns
-										.map((column) => column.width)
-										.join(' ')}`,
+									gridTemplateColumns: gridTemplateColumns,
 								}}
 							>
-								<cm-checkbox
-									checked={
-										this.selectedEntities.length ===
-										this.entities.length
-									}
-									onCmInput={(event) => {
-										if (event.detail.isChecked) {
-											this.selectedEntities = [
-												...this.entities,
-											]
-										} else {
-											this.selectedEntities = []
+								{this.groupOptions.length ? (
+									<cm-checkbox
+										class={{
+											visible:
+												this.selectedEntities.length >
+												0,
+										}}
+										checked={
+											this.selectedEntities.length ===
+											this.entities.length
 										}
-									}}
-								></cm-checkbox>
+										onCmInput={(event) => {
+											if (event.detail.isChecked) {
+												this.selectedEntities = [
+													...this.entities,
+												]
+											} else {
+												this.selectedEntities = []
+											}
+										}}
+									></cm-checkbox>
+								) : (
+									''
+								)}
 								{this.columns.map(({ name }, index) => {
 									return (
 										<div
