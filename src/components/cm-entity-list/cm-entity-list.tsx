@@ -1,9 +1,34 @@
 import { Component, Host, h, Prop, State } from '@stencil/core'
-import { CmDropdown } from '../cm-dropdown/cm-dropdown'
+import { CmDropdown, DropdownOptionGroup } from '../cm-dropdown/cm-dropdown'
 
 export type SortingDescription = {
 	columnIndex: number
 	method: 'ascending' | 'descending'
+}
+
+export type Entity = {
+	onPress?: () => void
+	data: Array<
+		| {
+				type: 'text'
+				content: string
+				showCopyButton?: boolean
+		  }
+		| {
+				type: 'image'
+				src: string
+		  }
+		| {
+				type: 'button'
+				label: string
+				onPress: () => void
+		  }
+		| {
+				type: 'contextMenu'
+				options: CmDropdown['options']
+		  }
+	>
+	meta?: unknown
 }
 
 @Component({
@@ -27,22 +52,20 @@ export class CmEntityList {
 		overrideCSS?: Record<string, string>
 	}> = []
 
-	@Prop() entities: Array<{
-		onPress?: () => void
-		data: Array<
-			| { type: 'text'; content: string; showCopyButton?: boolean }
-			| { type: 'image'; src: string }
-			| { type: 'button'; label: string; onPress: () => void }
-			| { type: 'contextMenu'; options: CmDropdown['options'] }
-		>
-	}> = []
+	@Prop() entities: Array<Entity> = []
+
+	@Prop() groupOptions: Array<DropdownOptionGroup> = []
 
 	@Prop() defaultSorting?: SortingDescription
 
 	@State() userSelectedSorting?: SortingDescription
+	@State() selectedEntities: Array<Entity> = []
 
 	render() {
-		let loader: any, entities: any, columnHeaderIcon: any
+		let loader: unknown,
+			entities: unknown,
+			columnHeaderIcon: unknown,
+			groupDropdown: unknown
 
 		if (this.loading) {
 			loader = (
@@ -124,17 +147,46 @@ export class CmEntityList {
 		}
 
 		entities = sortedEntities.map((entity) => {
+			let entityClasses = {
+				entity: true,
+				selected: this.selectedEntities.includes(entity),
+			}
+
 			return (
 				<div
-					class="entity"
+					class={entityClasses}
 					style={{
-						gridTemplateColumns: this.columns
+						gridTemplateColumns: `25px ${this.columns
 							.map((column) => column.width)
-							.join(' '),
+							.join(' ')}`,
 						cursor: entity.onPress ? 'pointer' : 'default',
 					}}
 					onClick={entity.onPress}
 				>
+					<div class="cell">
+						<cm-checkbox
+							checked={this.selectedEntities.includes(entity)}
+							onCmInput={() => {
+								if (this.selectedEntities.includes(entity)) {
+									let index = this.selectedEntities.indexOf(
+										entity,
+									)
+									let newEntities = this.selectedEntities.slice(
+										0,
+									)
+									newEntities.splice(index, 1)
+
+									this.selectedEntities = newEntities
+								} else {
+									this.selectedEntities = [
+										...this.selectedEntities,
+										entity,
+									]
+								}
+							}}
+						></cm-checkbox>
+					</div>
+
 					{entity.data.map((item, index) => {
 						let column = this.columns[index]
 						let content: any
@@ -256,17 +308,60 @@ export class CmEntityList {
 			)
 		})
 
+		if (this.selectedEntities.length) {
+			let label = ''
+
+			if (this.selectedEntities.length === 1) {
+				label = '1 item selected'
+			} else {
+				label = `${this.selectedEntities.length} items selected`
+			}
+
+			groupDropdown = (
+				<cm-dropdown
+					trigger={{
+						type: 'button',
+						appearance: 'primary',
+						label: label,
+					}}
+					options={this.groupOptions.map((optionGroup) => {
+						optionGroup.options.map((option) => {
+							let originalHandler = option.handler
+
+							option.handler = (event) => {
+								if (!(event as any).detail) {
+									;(event as any).detail = {}
+								}
+
+								;(event as any).detail.selectedEntities = this.selectedEntities
+								originalHandler(event)
+							}
+
+							return option
+						})
+
+						return optionGroup
+					})}
+				></cm-dropdown>
+			)
+		}
+
 		return (
 			<Host>
 				<div class="container">
 					<div class="header">
 						<div class="headline">{this.headline}</div>
 						<div class="buttons">
+							{groupDropdown}
 							<cm-button
 								disabled={
 									!this.enableCreateButton || this.loading
 								}
-								appearance="primary"
+								appearance={
+									this.selectedEntities.length
+										? 'secondary'
+										: 'primary'
+								}
 								label={this.createButtonLabel}
 								onCmPress={this.createHandler}
 							></cm-button>
@@ -275,11 +370,26 @@ export class CmEntityList {
 							<div
 								class="columnHeaders"
 								style={{
-									gridTemplateColumns: this.columns
+									gridTemplateColumns: `25px ${this.columns
 										.map((column) => column.width)
-										.join(' '),
+										.join(' ')}`,
 								}}
 							>
+								<cm-checkbox
+									checked={
+										this.selectedEntities.length ===
+										this.entities.length
+									}
+									onCmInput={(event) => {
+										if (event.detail.isChecked) {
+											this.selectedEntities = [
+												...this.entities,
+											]
+										} else {
+											this.selectedEntities = []
+										}
+									}}
+								></cm-checkbox>
 								{this.columns.map(({ name }, index) => {
 									return (
 										<div

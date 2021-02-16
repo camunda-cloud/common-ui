@@ -25,7 +25,12 @@
 
 	.buttons {
 		display: grid;
+		grid-auto-flow: column;
 		grid-area: buttons;
+
+		align-content: start;
+		justify-content: end;
+		gap: 10px;
 
 		cm-button {
 			justify-self: end;
@@ -85,10 +90,29 @@
 			opacity: 0;
 		}
 
+		cm-checkbox {
+			transition: all 0.2s linear;
+			opacity: 0;
+		}
+
+		&.selected {
+			box-shadow: 0px 0px 0px 2px var(--cm-color-blue-base),
+				0 1px 4px 0 rgba(0, 0, 0, 0.1);
+			background-color: var(--cm-color-focus-inner-neutral);
+
+			cm-checkbox {
+				opacity: 1;
+			}
+		}
+
 		&:hover,
 		&:focus,
 		&:focus-within {
 			cm-dropdown {
+				opacity: 1;
+			}
+
+			cm-checkbox {
 				opacity: 1;
 			}
 		}
