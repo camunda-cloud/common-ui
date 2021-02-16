@@ -453,6 +453,7 @@
 										],
 									},
 								],
+								meta: Math.floor(Math.random() * 100000000000),
 							},
 							{
 								onPress: () => console.log('press'),
@@ -493,6 +494,7 @@
 										],
 									},
 								],
+								meta: Math.floor(Math.random() * 100000000000),
 							},
 						]
 
@@ -517,9 +519,31 @@
 											),
 										},
 									],
+									meta: Math.floor(
+										Math.random() * 100000000000,
+									),
 								},
 							]
 						}
+
+						entityList.groupOptions = [
+							{
+								options: [
+									{
+										label: 'Change Name',
+										handler: (event) => {
+											console.log(event.detail)
+										},
+									},
+									{
+										label: 'Delete',
+										handler: (event) => {
+											console.log(event.detail)
+										},
+									},
+								],
+							},
+						]
 					</script>
 				</cm-page-tab>
 				<cm-page-tab label="Notifications">
@@ -624,12 +648,14 @@
 							let dropdown = document.querySelector('cm-dropdown')
 
 							dropdown.trigger = {
-								type: 'icon',
-								icon: 'contextMenu',
+								type: 'button',
+								label: 'Test',
+								appearance: 'primary',
 							}
 
 							dropdown.options = [
 								{
+									title: 'test',
 									options: [
 										{
 											title: 'Safe',
