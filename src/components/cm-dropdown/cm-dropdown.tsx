@@ -30,7 +30,13 @@ export type DropdownOptionGroup = {
 export class CmDropdown {
 	@Element() el: HTMLElement
 
-	@Prop() trigger: { type: 'icon'; icon: CmIconButton['icon'] }
+	@Prop() trigger:
+		| { type: 'icon'; icon: CmIconButton['icon'] }
+		| {
+				type: 'button'
+				label: string
+				appearance: 'main' | 'primary' | 'secondary'
+		  }
 
 	@Prop() options: Array<DropdownOptionGroup>
 
@@ -96,6 +102,24 @@ export class CmDropdown {
 							this.isOpen = !this.isOpen
 						}}
 					/>
+				</div>
+			)
+		} else {
+			let buttonClasses = {
+				button: true,
+				[this.trigger.appearance]: true,
+			}
+
+			trigger = (
+				<div class="trigger">
+					<div
+						class={buttonClasses}
+						onClick={() => {
+							this.isOpen = !this.isOpen
+						}}
+					>
+						{this.trigger.label} <cm-icon icon="down"></cm-icon>
+					</div>
 				</div>
 			)
 		}
