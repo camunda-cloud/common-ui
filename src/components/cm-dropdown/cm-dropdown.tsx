@@ -38,7 +38,7 @@ export class CmDropdown {
 				appearance: 'main' | 'primary' | 'secondary'
 		  }
 
-	@Prop() options: Array<DropdownOptionGroup>
+	@Prop() options: Array<DropdownOptionGroup> = []
 
 	@State() shouldStayOpen = false
 	@State() isOpen: boolean = false
@@ -92,36 +92,39 @@ export class CmDropdown {
 		}
 
 		let trigger: any, flyout: any
-
-		if (this.trigger.type === 'icon') {
-			trigger = (
-				<div class="trigger">
-					<cm-icon-button
-						icon={this.trigger.icon}
-						onCmPress={() => {
-							this.isOpen = !this.isOpen
-						}}
-					/>
-				</div>
-			)
-		} else {
-			let buttonClasses = {
-				button: true,
-				[this.trigger.appearance]: true,
-			}
-
-			trigger = (
-				<div class="trigger">
-					<div
-						class={buttonClasses}
-						onClick={() => {
-							this.isOpen = !this.isOpen
-						}}
-					>
-						{this.trigger.label} <cm-icon icon="down"></cm-icon>
+		if (this.trigger) {
+			if (this.trigger.type === 'icon') {
+				trigger = (
+					<div class="trigger">
+						<cm-icon-button
+							icon={this.trigger.icon}
+							onCmPress={() => {
+								this.isOpen = !this.isOpen
+							}}
+						/>
 					</div>
-				</div>
-			)
+				)
+			} else {
+				let buttonClasses = {
+					button: true,
+					[this.trigger.appearance]: true,
+				}
+
+				trigger = (
+					<div class="trigger">
+						<div
+							class={buttonClasses}
+							onClick={() => {
+								this.isOpen = !this.isOpen
+							}}
+						>
+							{this.trigger.label} <cm-icon icon="down"></cm-icon>
+						</div>
+					</div>
+				)
+			}
+		} else {
+			console.error('[cm-dropdown] .trigger is not defined!')
 		}
 
 		flyout = (
