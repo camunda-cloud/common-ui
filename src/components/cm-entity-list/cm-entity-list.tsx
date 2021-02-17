@@ -406,6 +406,7 @@ export class CmEntityList {
 					<cm-icon-button
 						icon="closeLarge"
 						onCmPress={() => {
+							this.filter = ''
 							this.isSearchOpen = false
 						}}
 					/>
