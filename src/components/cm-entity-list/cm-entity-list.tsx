@@ -277,7 +277,10 @@ export class CmEntityList {
 									...itemCSS,
 									...(ellipsis === 'off'
 										? { gridAutoColumns: 'max-content' }
-										: {}),
+										: {
+												gridAutoColumns:
+													'minmax(0, min-content)',
+										  }),
 									...{
 										gridAutoFlow: 'column',
 										gap: '10px',
