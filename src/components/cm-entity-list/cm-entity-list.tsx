@@ -490,7 +490,7 @@ export class CmEntityList {
 													: () => {}
 											}
 										>
-											{name}
+											<span>{name}</span>
 											{sorting?.columnIndex === index
 												? columnHeaderIcon
 												: ''}

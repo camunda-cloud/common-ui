@@ -114,7 +114,7 @@
 			box-sizing: border-box;
 			display: grid;
 			grid-auto-flow: column;
-			grid-auto-columns: max-content;
+			grid-auto-columns: minmax(0, max-content);
 			gap: 5px;
 
 			font-family: var(--cm-font-text);
@@ -125,6 +125,12 @@
 
 			&:not(:empty) {
 				cursor: pointer;
+			}
+
+			span {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 		}
 	}
