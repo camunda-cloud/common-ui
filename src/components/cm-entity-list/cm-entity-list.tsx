@@ -86,6 +86,15 @@ export class CmEntityList {
 			)
 		}
 
+		for (let i = 0; i < this.selectedEntities.length; i++) {
+			let entity = this.selectedEntities[i]
+
+			if (!this.entities.includes(entity)) {
+				this.selectedEntities.splice(i, 1)
+				i--
+			}
+		}
+
 		let gridTemplateColumns = ''
 
 		if (this.groupOptions.length) {
