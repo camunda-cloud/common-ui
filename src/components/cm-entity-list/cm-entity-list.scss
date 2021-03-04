@@ -149,6 +149,8 @@
 		padding: 0px 20px;
 		gap: 15px;
 
+		transition: all 0.2s linear;
+
 		background-color: var(--cm-color-ui-light4);
 
 		border-radius: 3px;
@@ -168,6 +170,10 @@
 			&.visible {
 				opacity: 1;
 			}
+		}
+
+		&:hover {
+			background-color: rgba(176, 186, 199, 0.15);
 		}
 
 		&.selected {
