@@ -215,6 +215,10 @@ export class CmEntityList {
 								class={{
 									visible: this.selectedEntities.length > 0,
 								}}
+								onClick={(event) => {
+									event.preventDefault()
+									event.stopPropagation()
+								}}
 								checked={this.selectedEntities.includes(entity)}
 								onCmInput={() => {
 									if (
