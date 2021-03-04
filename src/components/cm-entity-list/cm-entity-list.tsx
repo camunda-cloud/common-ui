@@ -510,6 +510,8 @@ export class CmEntityList {
 										</div>
 									)
 								})}
+
+								{this.loading ? <div class="loader"></div> : ''}
 							</div>
 						) : (
 							''

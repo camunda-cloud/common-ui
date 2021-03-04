@@ -94,6 +94,23 @@
 		padding: 0px 20px 15px;
 		gap: 15px;
 		min-height: 35px;
+		position: relative;
+
+		.loader {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+
+			z-index: 1;
+
+			display: grid;
+			padding-top: 40px;
+			justify-content: center;
+
+			background-color: rgba(247, 248, 250, 0.7);
+		}
 
 		cm-checkbox {
 			transition: all 0.2s linear;
