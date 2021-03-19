@@ -99,7 +99,13 @@ export class CmIconButton implements ComponentInterface {
 		}
 
 		return (
-			<Host tabindex={tabIndex} class={classes}>
+			<Host
+				tabindex={tabIndex}
+				class={classes}
+				role="button"
+				aria-disabled={this.disabled}
+				aria-label={this.icon}
+			>
 				<cm-icon icon={this.icon} />
 			</Host>
 		)

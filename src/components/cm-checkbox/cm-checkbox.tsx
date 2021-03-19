@@ -91,6 +91,8 @@ export class CmCheckbox {
 					ref={(element) =>
 						(this.checkbox = element as HTMLDivElement)
 					}
+					role="checkbox"
+					aria-disabled={this.disabled}
 				></div>
 				<label>{this.label}</label>
 			</Host>

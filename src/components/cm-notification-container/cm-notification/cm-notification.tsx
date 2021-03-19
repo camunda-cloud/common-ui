@@ -127,7 +127,7 @@ export class CmNotification {
 
 		return (
 			<Host>
-				<div class={classes}>
+				<div class={classes} role="alert">
 					<div class={`icon ${this.appearance}`} />
 					<div class="contentContainer">{description}</div>
 					{dismissButton}

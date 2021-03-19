@@ -6,6 +6,7 @@ import {
 	Prop,
 	Watch,
 	EventEmitter,
+	Host,
 } from '@stencil/core'
 
 @Component({
@@ -38,6 +39,15 @@ export class CmPageTab {
 	}
 
 	render() {
-		return <slot />
+		return (
+			<Host
+				role="tabpanel"
+				id={this.label}
+				aria-expanded={this.active}
+				aria-hidden={!this.active}
+			>
+				<slot />
+			</Host>
+		)
 	}
 }

@@ -100,6 +100,9 @@ export class CmPageTabHandle {
 					data-label={this.label}
 					ref={(element) => (this.span = element)}
 					tabindex="0"
+					role="tab"
+					aria-controls={this.label}
+					aria-selected={this.active}
 				>
 					{this.label}
 				</span>

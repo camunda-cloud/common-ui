@@ -87,6 +87,8 @@ export class CmToggle {
 					tabindex={tabIndex}
 					class={toggleClasses}
 					ref={(element) => (this.toggle = element as HTMLDivElement)}
+					role="checkbox"
+					aria-disabled={this.disabled}
 				></div>
 				<label>{this.label}</label>
 			</Host>

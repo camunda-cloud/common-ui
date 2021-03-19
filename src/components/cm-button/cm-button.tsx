@@ -100,7 +100,12 @@ export class CmButton implements ComponentInterface {
 		}
 
 		return (
-			<Host tabindex={tabIndex} class={classes}>
+			<Host
+				tabindex={tabIndex}
+				class={classes}
+				role="button"
+				aria-disabled={this.disabled}
+			>
 				{this.label}
 			</Host>
 		)
