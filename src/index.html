@@ -739,6 +739,29 @@
 						</cm-card>
 					</div>
 				</cm-page-tab>
+				<cm-page-tab label="Filter">
+					<div style="display: grid">
+						<cm-filter></cm-filter>
+						<script>
+							let filter = document.querySelector('cm-filter')
+							filter.addEventListener(
+								'cmFilterSelected',
+								(event) => {
+									console.log(event.detail)
+								},
+							)
+							filter.filters = [
+								{ label: 'Filter 1', value: '1' },
+								{ label: 'Filter 2', value: '2' },
+								{
+									label:
+										'Very Long Filter 3 With Overflowing Text',
+									value: '3',
+								},
+							]
+						</script>
+					</div>
+				</cm-page-tab>
 			</cm-page>
 
 			<cm-footer
