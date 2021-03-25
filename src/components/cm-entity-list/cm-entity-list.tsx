@@ -198,6 +198,7 @@ export class CmEntityList {
 			let entityClasses = {
 				entity: true,
 				selected: this.selectedEntities.includes(entity),
+				hasPress: typeof entity.onPress === 'function',
 			}
 
 			return (
