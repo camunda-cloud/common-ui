@@ -1,5 +1,7 @@
 :host {
 	display: inline-grid;
+	position: relative;
+	z-index: 1000;
 }
 
 .container {
