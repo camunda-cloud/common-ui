@@ -1,0 +1,27 @@
+:host {
+	display: block;
+}
+
+.container {
+	display: grid;
+	grid-auto-rows: minmax(24px, max-content) 1fr minmax(24px, max-content);
+	gap: 20px;
+
+	position: relative;
+
+	min-height: 300px;
+
+	padding: 30px;
+	padding-right: 40px;
+
+	border-radius: 3px;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+	border: solid 1px var(--cm-color-ui-light5);
+	background-color: var(--cm-color-ui-light4);
+}
+
+#dismissButton {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+}
