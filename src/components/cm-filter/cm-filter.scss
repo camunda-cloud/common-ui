@@ -1,0 +1,43 @@
+:host {
+	display: block;
+}
+
+.container {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content;
+	gap: 6px;
+}
+
+.pill {
+	display: grid;
+
+	justify-content: center;
+	align-items: center;
+
+	height: 22px;
+	padding: 0px 10px;
+
+	border: solid 1px var(--cm-color-ui-light3);
+	border-radius: 11px;
+
+	background-color: var(--cm-color-ui-light5);
+
+	font-family: var(--cm-font-text);
+	font-size: 13px;
+	color: rgba(69, 70, 78, 0.9);
+
+	transition: all linear 200ms;
+
+	&:hover {
+		border: solid 1px var(--cm-color-button-light2);
+		background-color: var(--cm-color-button-light1);
+		cursor: pointer;
+	}
+
+	&.active {
+		color: var(--cm-color-ui-light4);
+		border: solid 1px var(--cm-color-focus-inner-neutral2);
+		background-color: var(--cm-color-blue-base);
+	}
+}
