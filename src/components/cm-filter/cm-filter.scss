@@ -11,6 +11,7 @@
 
 .pill {
 	display: grid;
+	user-select: none;
 
 	justify-content: center;
 	align-items: center;
@@ -29,7 +30,7 @@
 
 	transition: all linear 200ms;
 
-	&:hover {
+	&:not(.disabled, .active):hover {
 		border: solid 1px var(--cm-color-button-light2);
 		background-color: var(--cm-color-button-light1);
 		cursor: pointer;
@@ -39,5 +40,11 @@
 		color: var(--cm-color-ui-light4);
 		border: solid 1px var(--cm-color-focus-inner-neutral2);
 		background-color: var(--cm-color-blue-base);
+	}
+
+	&.disabled {
+		color: rgba(69, 70, 78, 0.5);
+		border: solid 1px var(--cm-color-ui-light3);
+		background-color: var(--cm-color-button-light4);
 	}
 }

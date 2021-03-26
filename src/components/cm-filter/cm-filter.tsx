@@ -9,6 +9,7 @@ export class CmFilter {
 	@Prop() filters: Array<{
 		label: string
 		value: string
+		disabled?: boolean
 	}> = []
 	@Prop() activeFilterIndex: number = 0
 
@@ -22,12 +23,16 @@ export class CmFilter {
 						let classes = {
 							pill: true,
 							active: index === this.activeFilterIndex,
+							disabled: item.disabled,
 						}
 						return (
 							<div
 								class={classes}
 								onClick={() => {
-									if (this.activeFilterIndex !== index) {
+									if (
+										!item.disabled &&
+										this.activeFilterIndex !== index
+									) {
 										this.activeFilterIndex = index
 										this.cmFilterSelected.emit({
 											value: item.value,
