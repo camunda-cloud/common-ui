@@ -21,6 +21,7 @@ export class CmButton implements ComponentInterface {
 	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' | 'link' =
 		'main'
 	@Prop() label: string = ''
+	@Prop() size: 'small' | 'normal' = 'normal'
 	@Prop() disabled: boolean = false
 	@State() latestFocusWasClick: boolean = false
 	@State() theme: Theme = 'Light'
@@ -88,6 +89,7 @@ export class CmButton implements ComponentInterface {
 		let classes = {
 			[this.appearance]: true,
 			[this.theme]: true,
+			[this.size]: true,
 			initialRender: this.initialRender,
 			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
