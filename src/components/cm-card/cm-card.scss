@@ -7,6 +7,8 @@
 	grid-auto-rows: minmax(24px, max-content) 1fr minmax(24px, max-content);
 	gap: 20px;
 
+	box-sizing: border-box;
+
 	position: relative;
 
 	min-height: 300px;
