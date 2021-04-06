@@ -101,6 +101,7 @@
 							appearance="secondary"
 						></cm-button>
 						<cm-button label="Test" appearance="danger"></cm-button>
+						<cm-button label="Test" size="small"></cm-button>
 						<cm-button label="Test" appearance="link"></cm-button>
 						<cm-icon-button icon="contextMenu"></cm-icon-button>
 					</div>
@@ -120,6 +121,11 @@
 							disabled
 							label="Test"
 							appearance="danger"
+						></cm-button>
+						<cm-button
+							disabled
+							label="Test"
+							size="small"
 						></cm-button>
 						<cm-button
 							disabled
@@ -712,18 +718,17 @@
 				<cm-page-tab label="Cards">
 					<div style="display: grid">
 						<cm-card is-dismissable="true">
-							<div slot="header">
-								<h1
-									style="
-										margin: 0;
-										font-size: 16px;
-										font-weight: 600;
-										font-family: var(--cm-font-text);
-									"
-								>
-									Headline
-								</h1>
-							</div>
+							<h1
+								slot="header"
+								style="
+									margin: 0;
+									font-size: 16px;
+									font-weight: 600;
+									font-family: var(--cm-font-text);
+								"
+							>
+								Headline
+							</h1>
 							<cm-text
 								>Lorem ipsum, dolor sit amet consectetur
 								adipisicing elit. Ratione ipsa ipsum, aperiam
@@ -733,10 +738,16 @@
 								perferendis beatae?</cm-text
 							>
 
-							<div slot="footer">
-								<cm-button label="Test"></cm-button>
-							</div>
+							<cm-button slot="footer" label="Test"></cm-button>
 						</cm-card>
+
+						<script>
+							let card = document.querySelector('cm-card')
+
+							card.addEventListener('cmDismissed', () => {
+								console.log('Dismissed!')
+							})
+						</script>
 					</div>
 				</cm-page-tab>
 				<cm-page-tab label="Filter">
