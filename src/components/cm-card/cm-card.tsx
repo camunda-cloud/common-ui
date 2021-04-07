@@ -15,7 +15,9 @@ export class CmCard {
 			<Host>
 				<div class="container">
 					<slot name="header"></slot>
-					<slot></slot>
+					<div>
+						<slot></slot>
+					</div>
 					<slot name="footer"></slot>
 
 					{this.isDismissable ? (
