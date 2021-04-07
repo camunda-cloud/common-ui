@@ -20,6 +20,13 @@
 	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
 	border: solid 1px var(--cm-color-ui-light5);
 	background-color: var(--cm-color-ui-light4);
+
+	& slot[name='header'],
+	& slot[name='footer'] {
+		display: grid;
+		grid-auto-flow: column;
+		justify-items: start;
+	}
 }
 
 #dismissButton {
