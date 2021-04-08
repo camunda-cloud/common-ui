@@ -36,7 +36,7 @@ export class CmDropdown {
 				type: 'button'
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
-		  }
+		  } = { type: 'button', label: '', appearance: 'main' }
 
 	@Prop() options: Array<DropdownOptionGroup> = []
 
