@@ -10,7 +10,7 @@ describe('cm-link', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-link>
 				<mock:shadow-root>
-					<a href="" target="_blank"></a>
+					<a href="" target="_blank" class="Light"></a>
 				</mock:shadow-root>
 			</cm-link>
 		`)

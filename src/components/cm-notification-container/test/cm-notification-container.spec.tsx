@@ -8,9 +8,9 @@ describe('cm-notification-container', () => {
 			html: `<cm-notification-container></cm-notification-container>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-notification-container>
+			<cm-notification-container aria-live="polite">
 				<mock:shadow-root>
-					<slot></slot>
+					<div id="notificationContainer"></div>
 				</mock:shadow-root>
 			</cm-notification-container>
 		`)

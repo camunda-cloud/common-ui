@@ -11,7 +11,9 @@ describe('cm-banner', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-banner>
 				<mock:shadow-root>
-				<slot></slot>
+					<div class="container">
+						<slot></slot>
+					</div>
 				</mock:shadow-root>
 			</cm-banner>
 		`)

@@ -10,7 +10,22 @@ describe('cm-entity-list', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-entity-list>
 				<mock:shadow-root>
-					<slot></slot>
+					<div class="container">
+						<div class="header">
+							<div class="headline"></div>
+							<div class="buttons">
+								<div class="search">
+									<cm-icon-button icon="search"></cm-icon-button>
+								</div>
+								<cm-button appearance="primary" label=""></cm-button>
+							</div>
+						</div>
+						<div class="entities">
+							<div style="display: grid;">
+								<slot name="empty"></slot>
+							</div>
+						</div>
+					</div>
 				</mock:shadow-root>
 			</cm-entity-list>
 		`)

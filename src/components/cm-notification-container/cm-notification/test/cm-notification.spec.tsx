@@ -10,7 +10,13 @@ describe('cm-notification', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-notification>
 				<mock:shadow-root>
-					<slot></slot>
+					<div class="Light container" role="alert">
+						<div class="icon info"></div>
+						<div class="contentContainer">
+							<div class="headlineWithoutDescription"></div>
+						</div>
+						<cm-icon-button icon="close"></cm-icon-button>
+					</div>
 				</mock:shadow-root>
 			</cm-notification>
 		`)

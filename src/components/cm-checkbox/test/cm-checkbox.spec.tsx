@@ -8,9 +8,9 @@ describe('cm-checkbox', () => {
 			html: `<cm-checkbox></cm-checkbox>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-checkbox>
+			<cm-checkbox label="">
 				<mock:shadow-root>
-					<div tabindex="0" class="checkbox"></div>
+					<div tabindex="0" class="checkbox" role="checkbox"></div>
 					<label></label>
 				</mock:shadow-root>
 			</cm-checkbox>

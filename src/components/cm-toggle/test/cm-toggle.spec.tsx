@@ -8,9 +8,9 @@ describe('cm-toggle', () => {
 			html: `<cm-toggle></cm-toggle>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-toggle>
+			<cm-toggle label="">
 				<mock:shadow-root>
-					<div tabindex="0" class="toggle"></div>
+					<div class="toggle" tabindex="0" role="checkbox"></div>
 					<label></label>
 				</mock:shadow-root>
 			</cm-toggle>

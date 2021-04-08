@@ -8,7 +8,7 @@ describe('cm-page-tab', () => {
 			html: `<cm-page-tab></cm-page-tab>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-page-tab>
+			<cm-page-tab aria-hidden="" role="tabpanel">
 				<mock:shadow-root>
 					<slot></slot>
 				</mock:shadow-root>

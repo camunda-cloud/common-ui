@@ -10,7 +10,14 @@ describe('cm-dropdown', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-dropdown>
 				<mock:shadow-root>
-					<slot></slot>
+					<div class="container" tabindex="0">
+						<div class="trigger">
+							<div class="button main">
+								<cm-icon icon="down"></cm-icon>
+							</div>
+						</div>
+						<div class="flyout"></div>
+					</div>
 				</mock:shadow-root>
 			</cm-dropdown>
 		`)

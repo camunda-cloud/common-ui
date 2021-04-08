@@ -10,11 +10,11 @@ describe('cm-modal', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-modal tabindex="0">
 				<mock:shadow-root>
-					<div class="container">
+					<div class="center container">
 						<div class="window">
 							<div class="header">
 								<h1></h1>
-								<div class="close"></div>
+								<cm-icon-button icon="closeLarge"></cm-icon-button>
 							</div>
 							<div class="content">
 								<slot></slot>

@@ -10,7 +10,7 @@ describe('cm-filter', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-filter>
 				<mock:shadow-root>
-					<slot></slot>
+					<div class="container"></div>
 				</mock:shadow-root>
 			</cm-filter>
 		`)

@@ -10,7 +10,13 @@ describe('cm-card', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-card>
 				<mock:shadow-root>
-					<slot></slot>
+					<div class="container">
+						<slot name="header"></slot>
+						<div>
+							<slot></slot>
+						</div>
+						<slot name="footer"></slot>
+					</div>
 				</mock:shadow-root>
 			</cm-card>
 		`)

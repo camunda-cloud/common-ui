@@ -17,7 +17,7 @@ describe('cm-page', () => {
 						<div class="empty headerSlot">
 							<slot name="header"></slot>
 						</div>
-						<div class="handles"></div>
+						<div class="empty handles"></div>
 					</header>
 					<div class="tabs">
 						<slot></slot>
