@@ -194,7 +194,7 @@ export class CmEntityList {
 			})
 		}
 
-		entities = filteredEntities.map((entity) => {
+		entities = filteredEntities.map((entity, index) => {
 			let entityClasses = {
 				entity: true,
 				selected: this.selectedEntities.includes(entity),
@@ -207,6 +207,7 @@ export class CmEntityList {
 					style={{
 						gridTemplateColumns: gridTemplateColumns,
 						cursor: entity.onPress ? 'pointer' : 'default',
+						zIndex: (filteredEntities.length - index).toString(),
 					}}
 					onClick={entity.onPress}
 				>
