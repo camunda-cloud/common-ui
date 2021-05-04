@@ -9,6 +9,7 @@ export class CmFilter {
 	@Prop() filters: Array<{
 		label: string
 		value: string
+		title?: string
 		disabled?: boolean
 	}> = []
 	@Prop() activeFilterIndex: number = 0
@@ -25,8 +26,13 @@ export class CmFilter {
 							active: index === this.activeFilterIndex,
 							disabled: item.disabled,
 						}
+
+						if (!item.title) {
+							item.title = ''
+						}
+
 						return (
-							<div
+							<a
 								class={classes}
 								onClick={() => {
 									if (
@@ -39,9 +45,10 @@ export class CmFilter {
 										})
 									}
 								}}
+								title={item.title}
 							>
 								{item.label}
-							</div>
+							</a>
 						)
 					})}
 				</div>
