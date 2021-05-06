@@ -513,7 +513,18 @@ export class CmEntityList {
 									)
 								})}
 
-								{this.loading ? <div class="loader"></div> : ''}
+								{this.loading ? (
+									<div
+										class="loader"
+										style={{
+											zIndex: (
+												filteredEntities.length + 1
+											).toString(),
+										}}
+									></div>
+								) : (
+									''
+								)}
 							</div>
 						) : (
 							''
