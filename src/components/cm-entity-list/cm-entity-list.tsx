@@ -78,14 +78,6 @@ export class CmEntityList {
 			groupDropdown: unknown,
 			search: unknown
 
-		if (this.loading) {
-			loader = (
-				<div class="loader">
-					<cm-loader size="normal" />
-				</div>
-			)
-		}
-
 		for (let i = 0; i < this.selectedEntities.length; i++) {
 			let entity = this.selectedEntities[i]
 
@@ -192,6 +184,19 @@ export class CmEntityList {
 
 				return false
 			})
+		}
+
+		if (this.loading) {
+			loader = (
+				<div
+					class="loader"
+					style={{
+						zIndex: (filteredEntities.length + 1).toString(),
+					}}
+				>
+					<cm-loader size="normal" />
+				</div>
+			)
 		}
 
 		entities = filteredEntities.map((entity, index) => {
@@ -513,18 +518,7 @@ export class CmEntityList {
 									)
 								})}
 
-								{this.loading ? (
-									<div
-										class="loader"
-										style={{
-											zIndex: (
-												filteredEntities.length + 1
-											).toString(),
-										}}
-									></div>
-								) : (
-									''
-								)}
+								{this.loading ? <div class="loader"></div> : ''}
 							</div>
 						) : (
 							''
