@@ -4,6 +4,8 @@
 
 .container {
 	background: var(--cm-color-ui-light2);
+	z-index: 1;
+	position: relative;
 }
 
 .header {
