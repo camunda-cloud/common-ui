@@ -25,7 +25,7 @@ span {
 		outline: none;
 	}
 
-	&:not(.clicked):focus {
+	&:focus-visible {
 		border-radius: 3px;
 		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
 			0px 0px 0px 4px var(--cm-color-focus-outer-neutral);

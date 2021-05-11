@@ -8,7 +8,6 @@ import {
 	Listen,
 	Host,
 	h,
-	State,
 } from '@stencil/core'
 
 @Component({
@@ -19,8 +18,6 @@ import {
 export class CmPageTabHandle {
 	@Element() root: HTMLCmPageTabHandleElement
 	span: HTMLSpanElement
-
-	@State() latestFocusWasClick: boolean = false
 
 	@Prop() label: string
 
@@ -51,15 +48,6 @@ export class CmPageTabHandle {
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
-		if (
-			!(event.key === 'Control') &&
-			!(event.key === 'Meta') &&
-			!(event.key === 'Alt') &&
-			!(event.key === 'Shift' && event.code !== 'Tab')
-		) {
-			this.latestFocusWasClick = false
-		}
-
 		if (event.key === ' ' || event.key === 'Enter') {
 			this.userSelectedTab.emit({
 				originalEvent: event,
@@ -69,30 +57,13 @@ export class CmPageTabHandle {
 		}
 	}
 
-	// Prevent clicks from giving visual focus
-	@Listen('mousedown', { passive: false })
-	handleMouseDown(event: MouseEvent) {
-		this.latestFocusWasClick = true
-		event.preventDefault()
-	}
-
-	@Listen('blur', { passive: false })
-	handleBlur() {
-		this.latestFocusWasClick = false
-	}
-
-	componentWillUpdate() {
-		if (this.latestFocusWasClick) {
-			this.span.focus()
-		}
-	}
-
 	componentWillRender() {
 		this.activeWatchHandler(this.active)
 	}
 
 	render() {
-		let classes = { active: this.active, clicked: this.latestFocusWasClick }
+		let classes = { active: this.active }
+
 		return (
 			<Host>
 				<span
