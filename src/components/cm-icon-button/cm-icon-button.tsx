@@ -7,7 +7,6 @@ import {
 	EventEmitter,
 	Listen,
 	Event,
-	State,
 	Element,
 	Method,
 } from '@stencil/core'
@@ -39,7 +38,6 @@ export class CmIconButton implements ComponentInterface {
 		| 'right'
 
 	@Prop({ mutable: true }) disabled: boolean = false
-	@State() latestFocusWasClick: boolean = false
 
 	@Event() cmPress: EventEmitter<{}>
 	@Element() el: HTMLElement
@@ -47,18 +45,6 @@ export class CmIconButton implements ComponentInterface {
 	@Method()
 	async press() {
 		this.cmPress.emit()
-	}
-
-	// Prevent clicks from giving visual focus
-	@Listen('mousedown', { passive: false })
-	handleMouseDown(event: MouseEvent) {
-		this.latestFocusWasClick = true
-		event.preventDefault()
-	}
-
-	@Listen('blur', { passive: false })
-	handleBlur() {
-		this.latestFocusWasClick = false
 	}
 
 	@Listen('click')
@@ -70,15 +56,6 @@ export class CmIconButton implements ComponentInterface {
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
-		if (
-			!(event.key === 'Control') &&
-			!(event.key === 'Meta') &&
-			!(event.key === 'Alt') &&
-			!(event.key === 'Shift' && event.code !== 'Tab')
-		) {
-			this.latestFocusWasClick = false
-		}
-
 		if (event.key === ' ' || event.key === 'Enter') {
 			if (!this.disabled) {
 				this.press()
@@ -86,15 +63,8 @@ export class CmIconButton implements ComponentInterface {
 		}
 	}
 
-	componentWillUpdate() {
-		if (this.latestFocusWasClick) {
-			this.el.focus()
-		}
-	}
-
 	render() {
 		let classes = {
-			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
 		}
 
@@ -105,14 +75,16 @@ export class CmIconButton implements ComponentInterface {
 		}
 
 		return (
-			<Host
-				tabindex={tabIndex}
-				class={classes}
-				role="button"
-				aria-disabled={this.disabled}
-				aria-label={this.icon}
-			>
-				<cm-icon icon={this.icon} />
+			<Host>
+				<div
+					tabindex={tabIndex}
+					class={classes}
+					role="button"
+					aria-disabled={this.disabled}
+					aria-label={this.icon}
+				>
+					<cm-icon icon={this.icon} />
+				</div>
 			</Host>
 		)
 	}

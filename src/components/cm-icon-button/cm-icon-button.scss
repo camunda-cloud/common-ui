@@ -1,7 +1,10 @@
 :host {
 	display: inline-grid;
-	position: relative;
 	user-select: none;
+}
+
+div {
+	position: relative;
 
 	transition: all 0.2s linear;
 
@@ -10,50 +13,54 @@
 
 	cursor: pointer;
 	z-index: 1;
-}
 
-:host(.disabled) {
-	pointer-events: none;
-	cursor: default;
-}
+	.disabled {
+		pointer-events: none;
+		cursor: default;
 
-:host(:focus) {
-	outline: none;
-}
+		opacity: 0.5;
+	}
 
-:host::before {
-	content: '';
-	position: absolute;
-	top: -6px;
-	left: -6px;
+	&::before {
+		content: '';
+		position: absolute;
+		top: -6px;
+		left: -6px;
 
-	height: 32px;
-	width: 32px;
+		height: 32px;
+		width: 32px;
 
-	border-radius: 100%;
+		border-radius: 100%;
 
-	background-color: rgba(var(--cm-color-ui-light5-rgb), 0);
+		background-color: rgba(var(--cm-color-ui-light5-rgb), 0);
 
-	transition: all 0.2s linear;
+		transition: all 0.2s linear;
 
-	z-index: -1;
-}
+		z-index: -1;
+	}
 
-:host(:hover)::before {
-	background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
-}
+	&:focus {
+		outline: none;
+	}
 
-:host(:not(.clicked):focus)::before {
-	background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+	&:hover {
+		&::before {
+			background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+		}
+	}
 
-	box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
-		0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
-}
+	&:focus-visible {
+		&::before {
+			background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
 
-:host(:active)::before {
-	background-color: rgba(var(--cm-color-ui-light5-rgb), 1);
-}
+			box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
+				0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+		}
+	}
 
-:host(.disabled) {
-	opacity: 0.5;
+	&:active {
+		&::before {
+			background-color: rgba(var(--cm-color-ui-light5-rgb), 1);
+		}
+	}
 }
