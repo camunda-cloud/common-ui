@@ -9,6 +9,7 @@ import {
 	Event,
 	State,
 	Element,
+	Method,
 } from '@stencil/core'
 
 @Component({
@@ -43,6 +44,11 @@ export class CmIconButton implements ComponentInterface {
 	@Event() cmPress: EventEmitter<{}>
 	@Element() el: HTMLElement
 
+	@Method()
+	async press() {
+		this.cmPress.emit()
+	}
+
 	// Prevent clicks from giving visual focus
 	@Listen('mousedown', { passive: false })
 	handleMouseDown(event: MouseEvent) {
@@ -58,7 +64,7 @@ export class CmIconButton implements ComponentInterface {
 	@Listen('click')
 	handleClick() {
 		if (!this.disabled) {
-			this.cmPress.emit()
+			this.press()
 		}
 	}
 
@@ -75,7 +81,7 @@ export class CmIconButton implements ComponentInterface {
 
 		if (event.key === ' ' || event.key === 'Enter') {
 			if (!this.disabled) {
-				this.cmPress.emit()
+				this.press()
 			}
 		}
 	}

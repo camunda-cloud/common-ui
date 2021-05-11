@@ -36,7 +36,8 @@ export class CmNotification {
 
 	protected _isBeingHovered = false
 
-	@Method() async isBeingHovered() {
+	@Method()
+	async isBeingHovered() {
 		return this._isBeingHovered
 	}
 

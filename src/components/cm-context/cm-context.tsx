@@ -25,7 +25,8 @@ export class CmContext {
 		this.themeChanged.emit({ theme: this._getResolvedTheme() })
 	}
 
-	@Method() async getResolvedTheme() {
+	@Method()
+	async getResolvedTheme() {
 		return this._getResolvedTheme()
 	}
 

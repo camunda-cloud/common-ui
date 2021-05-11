@@ -31,7 +31,8 @@ export class CmNotificationContainer {
 	maxVisibleNotifications = 5
 	notificationDuration = 7000
 
-	@Method() async enqueueNotification(
+	@Method()
+	async enqueueNotification(
 		notification: NotificationItem,
 	): Promise<{
 		hasBeenShown(): boolean

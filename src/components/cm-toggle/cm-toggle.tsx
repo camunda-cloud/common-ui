@@ -7,6 +7,7 @@ import {
 	Event,
 	EventEmitter,
 	State,
+	Method,
 } from '@stencil/core'
 
 @Component({
@@ -56,8 +57,21 @@ export class CmToggle {
 		}
 	}
 
-	toggleCheck() {
+	@Method()
+	async toggleCheck() {
 		this.checked = !this.checked
+		this.cmInput.emit({ isChecked: this.checked })
+	}
+
+	@Method()
+	async check() {
+		this.checked = true
+		this.cmInput.emit({ isChecked: this.checked })
+	}
+
+	@Method()
+	async uncheck() {
+		this.checked = false
 		this.cmInput.emit({ isChecked: this.checked })
 	}
 

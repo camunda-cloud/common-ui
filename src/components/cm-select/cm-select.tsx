@@ -7,6 +7,7 @@ import {
 	EventEmitter,
 	Listen,
 	Element,
+	Method,
 } from '@stencil/core'
 
 @Component({
@@ -23,6 +24,13 @@ export class CmSelect {
 
 	@Element() element: HTMLElement
 	@Event() cmInput: EventEmitter<{ newValue: string }>
+
+	@Method()
+	async selectOptionByIndex(index: number) {
+		let select = this.element.shadowRoot.querySelector('select')
+
+		select.selectedIndex = index
+	}
 
 	@Listen('input')
 	inputHandler() {

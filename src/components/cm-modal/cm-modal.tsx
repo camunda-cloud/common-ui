@@ -37,7 +37,7 @@ export class CmModal {
 	}
 
 	@Method()
-	open() {
+	async open() {
 		return new Promise<'confirm' | 'cancel'>((resolve) => {
 			this.isOpen = true
 			;(this.el.querySelector(

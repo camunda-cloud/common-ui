@@ -1,4 +1,13 @@
-import { Component, Host, h, Prop, State, Listen, Element } from '@stencil/core'
+import {
+	Component,
+	Host,
+	h,
+	Prop,
+	State,
+	Listen,
+	Element,
+	Method,
+} from '@stencil/core'
 import { CmIconButton } from '../cm-icon-button/cm-icon-button'
 
 export type DropdownOption =
@@ -43,6 +52,43 @@ export class CmDropdown {
 	@State() shouldStayOpen = false
 	@State() isOpen: boolean = false
 
+	triggerOption(option: DropdownOption) {
+		if (option.isDisabled) {
+			return
+		}
+
+		option.handler({
+			preventDismissal: () => {
+				this.shouldStayOpen = true
+			},
+		})
+
+		if (this.shouldStayOpen) {
+			this.shouldStayOpen = false
+		} else {
+			this.isOpen = false
+
+			setTimeout(() => {
+				this.el.blur()
+			}, 10)
+		}
+	}
+
+	@Method()
+	async open() {
+		this.isOpen = true
+	}
+
+	@Method()
+	async close() {
+		this.isOpen = false
+	}
+
+	@Method()
+	async triggerOptionByIndex(optionGroupIndex: number, optionIndex: number) {
+		this.triggerOption(this.options[optionGroupIndex].options[optionIndex])
+	}
+
 	@Listen('blur') onBlur() {
 		this.isOpen = false
 	}
@@ -58,25 +104,7 @@ export class CmDropdown {
 			<div
 				class={optionClasses}
 				onClick={() => {
-					if (option.isDisabled) {
-						return
-					}
-
-					option.handler({
-						preventDismissal: () => {
-							this.shouldStayOpen = true
-						},
-					})
-
-					if (this.shouldStayOpen) {
-						this.shouldStayOpen = false
-					} else {
-						this.isOpen = false
-
-						setTimeout(() => {
-							this.el.blur()
-						}, 10)
-					}
+					this.triggerOption(option)
 				}}
 			>
 				<div class="title">{option.title}</div>

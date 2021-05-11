@@ -182,7 +182,11 @@ export class CmPage {
 									key={tab.label}
 									label={tab.label}
 									active={this.activeLabel === tab.label}
-									ref={(elem) => (this.labelToHandleMap[tab.label] = elem)}
+									ref={(elem) =>
+										(this.labelToHandleMap[
+											tab.label
+										] = elem)
+									}
 								/>
 							)
 						})}
