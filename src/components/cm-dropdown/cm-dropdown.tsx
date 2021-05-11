@@ -125,6 +125,7 @@ export class CmDropdown {
 				trigger = (
 					<div class="trigger">
 						<cm-icon-button
+							tabindex="0"
 							icon={this.trigger.icon}
 							onCmPress={() => {
 								this.isOpen = !this.isOpen
@@ -141,6 +142,7 @@ export class CmDropdown {
 				trigger = (
 					<div class="trigger">
 						<div
+							tabindex="0"
 							class={buttonClasses}
 							onClick={() => {
 								this.isOpen = !this.isOpen
@@ -172,7 +174,7 @@ export class CmDropdown {
 
 		return (
 			<Host>
-				<div class="container" tabindex="0">
+				<div class="container">
 					{trigger}
 					{flyout}
 				</div>

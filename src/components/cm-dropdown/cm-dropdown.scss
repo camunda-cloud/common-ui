@@ -21,6 +21,8 @@
 		display: inline-grid;
 		user-select: none;
 
+		transition: all 0.2s linear;
+
 		height: 35px;
 
 		cursor: pointer;
@@ -61,7 +63,7 @@
 			outline: none;
 		}
 
-		&.main:not(.clicked):focus {
+		&.main:focus-visible {
 			box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
 				0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 		}
@@ -101,7 +103,7 @@
 			outline: none;
 		}
 
-		&.primary:not(.clicked):focus {
+		&.primary:focus-visible {
 			box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral),
 				0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 		}
@@ -137,7 +139,7 @@
 			outline: none;
 		}
 
-		&.secondary:not(.clicked):focus {
+		&.secondary:focus-visible {
 			box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
 				0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 		}
