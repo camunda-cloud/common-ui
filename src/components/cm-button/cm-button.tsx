@@ -28,7 +28,6 @@ export class CmButton implements ComponentInterface {
 	@Prop({ mutable: true }) label: string = ''
 	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
 	@Prop({ mutable: true }) disabled: boolean = false
-	@State() latestFocusWasClick: boolean = false
 	@State() theme: Theme = 'Light'
 	@State() initialRender: boolean = true
 
@@ -40,18 +39,6 @@ export class CmButton implements ComponentInterface {
 		this.cmPress.emit()
 	}
 
-	// Prevent clicks from giving visual focus
-	@Listen('mousedown', { passive: false })
-	handleMouseDown(event: MouseEvent) {
-		this.latestFocusWasClick = true
-		event.preventDefault()
-	}
-
-	@Listen('blur', { passive: false })
-	handleBlur() {
-		this.latestFocusWasClick = false
-	}
-
 	@Listen('click')
 	handleClick() {
 		if (!this.disabled) {
@@ -61,15 +48,6 @@ export class CmButton implements ComponentInterface {
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
-		if (
-			!(event.key === 'Control') &&
-			!(event.key === 'Meta') &&
-			!(event.key === 'Alt') &&
-			!(event.key === 'Shift' && event.code !== 'Tab')
-		) {
-			this.latestFocusWasClick = false
-		}
-
 		if (event.key === ' ' || event.key === 'Enter') {
 			if (!this.disabled) {
 				this.press()
@@ -81,12 +59,6 @@ export class CmButton implements ComponentInterface {
 		onThemeChange((theme) => {
 			this.theme = theme
 		})
-	}
-
-	componentWillUpdate() {
-		if (this.latestFocusWasClick) {
-			this.el.focus()
-		}
 	}
 
 	componentDidRender() {
@@ -101,7 +73,6 @@ export class CmButton implements ComponentInterface {
 			[this.theme]: true,
 			[this.size]: true,
 			initialRender: this.initialRender,
-			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
 		}
 
@@ -112,13 +83,15 @@ export class CmButton implements ComponentInterface {
 		}
 
 		return (
-			<Host
-				tabindex={tabIndex}
-				class={classes}
-				role="button"
-				aria-disabled={this.disabled}
-			>
-				{this.label}
+			<Host>
+				<div
+					tabindex={tabIndex}
+					class={classes}
+					role="button"
+					aria-disabled={this.disabled}
+				>
+					{this.label}
+				</div>
 			</Host>
 		)
 	}
