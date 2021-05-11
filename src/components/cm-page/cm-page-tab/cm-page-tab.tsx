@@ -19,7 +19,7 @@ export class CmPageTab {
 
 	@Event() tabModified: EventEmitter
 
-	@Prop({ reflect: true }) label: string
+	@Prop({ reflect: true, mutable: true }) label: string
 	@Watch('label')
 	labelWatchHandler() {
 		this.tabModified.emit()

@@ -30,7 +30,7 @@ export type DropdownOptionGroup = {
 export class CmDropdown {
 	@Element() el: HTMLElement
 
-	@Prop() trigger:
+	@Prop({ mutable: true }) trigger:
 		| { type: 'icon'; icon: CmIconButton['icon'] }
 		| {
 				type: 'button'
@@ -38,7 +38,7 @@ export class CmDropdown {
 				appearance: 'main' | 'primary' | 'secondary'
 		  } = { type: 'button', label: '', appearance: 'main' }
 
-	@Prop() options: Array<DropdownOptionGroup> = []
+	@Prop({ mutable: true }) options: Array<DropdownOptionGroup> = []
 
 	@State() shouldStayOpen = false
 	@State() isOpen: boolean = false

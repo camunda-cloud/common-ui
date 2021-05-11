@@ -6,7 +6,7 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 	shadow: true,
 })
 export class CmCard {
-	@Prop() isDismissable: boolean = false
+	@Prop({ mutable: true }) isDismissable: boolean = false
 
 	@Event() cmDismissed: EventEmitter<{}>
 

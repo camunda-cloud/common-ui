@@ -6,13 +6,13 @@ import { Component, Host, h, Prop, EventEmitter, Event } from '@stencil/core'
 	shadow: true,
 })
 export class CmFilter {
-	@Prop() filters: Array<{
+	@Prop({ mutable: true }) filters: Array<{
 		label: string
 		value: string
 		title?: string
 		disabled?: boolean
 	}> = []
-	@Prop() activeFilterIndex: number = 0
+	@Prop({ mutable: true }) activeFilterIndex: number = 0
 
 	@Event() cmFilterSelected: EventEmitter<{ value: string }>
 

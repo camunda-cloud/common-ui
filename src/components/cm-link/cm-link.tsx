@@ -14,9 +14,9 @@ import { onThemeChange, Theme } from '../../globalHelpers'
 	shadow: true,
 })
 export class CmLink implements ComponentInterface {
-	@Prop() href: string = ''
-	@Prop() label: string = ''
-	@Prop() openIn: 'sameTab' | 'newTab' = 'newTab'
+	@Prop({ mutable: true }) href: string = ''
+	@Prop({ mutable: true }) label: string = ''
+	@Prop({ mutable: true }) openIn: 'sameTab' | 'newTab' = 'newTab'
 	@State() theme: Theme = 'Light'
 
 	componentWillLoad() {

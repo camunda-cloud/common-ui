@@ -16,7 +16,7 @@ import { Theme } from '../../globalHelpers'
 	shadow: true,
 })
 export class CmContext {
-	@Prop() theme: Theme | 'Automatic' = 'Light'
+	@Prop({ mutable: true }) theme: Theme | 'Automatic' = 'Light'
 
 	@Event() themeChanged: EventEmitter<{ theme: Theme }>
 

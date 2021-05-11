@@ -15,8 +15,8 @@ import {
 	shadow: true,
 })
 export class CmSelect {
-	@Prop() disabled: boolean = false
-	@Prop({ attribute: 'options' }) options: Array<{
+	@Prop({ mutable: true }) disabled: boolean = false
+	@Prop({ attribute: 'options', mutable: true }) options: Array<{
 		label: string
 		value: string
 	}> = []

@@ -15,10 +15,10 @@ import {
 	shadow: true,
 })
 export class CmCheckbox {
-	@Prop({ reflect: true }) label: string = ''
-	@Prop({ reflect: true }) checked: boolean = false
-	@Prop({ reflect: true }) indeterminate: boolean = false
-	@Prop({ reflect: true }) disabled: boolean = false
+	@Prop({ reflect: true, mutable: true }) label: string = ''
+	@Prop({ reflect: true, mutable: true }) checked: boolean = false
+	@Prop({ reflect: true, mutable: true }) indeterminate: boolean = false
+	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
 	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
 

@@ -17,11 +17,11 @@ import { onThemeChange, Theme } from '../../../globalHelpers'
 	shadow: true,
 })
 export class CmNotification {
-	@Prop() appearance: 'success' | 'error' | 'info' = 'info'
-	@Prop() headline: string
-	@Prop() description: string = ''
-	@Prop() navigationLabel: string = ''
-	@Prop() userDismissable: boolean = true
+	@Prop({ mutable: false }) appearance: 'success' | 'error' | 'info' = 'info'
+	@Prop({ mutable: false }) headline: string
+	@Prop({ mutable: false }) description: string = ''
+	@Prop({ mutable: false }) navigationLabel: string = ''
+	@Prop({ mutable: false }) userDismissable: boolean = true
 
 	@Element() el: HTMLElement
 	@Event() cmDismissed: EventEmitter<{}>

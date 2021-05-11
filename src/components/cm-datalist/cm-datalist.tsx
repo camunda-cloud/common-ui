@@ -6,7 +6,7 @@ import { Component, h, Prop, Host } from '@stencil/core'
 	shadow: true,
 })
 export class CmDatalist {
-	@Prop() headline: string = ''
+	@Prop({ mutable: true }) headline: string = ''
 
 	render() {
 		return (

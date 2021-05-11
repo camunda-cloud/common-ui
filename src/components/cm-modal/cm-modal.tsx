@@ -25,8 +25,8 @@ export class CmModal {
 	cancel: () => void
 
 	@State() isOpen: boolean = false
-	@Prop() headline: string = ''
-	@Prop() position: 'top' | 'center' = 'center'
+	@Prop({ mutable: true }) headline: string = ''
+	@Prop({ mutable: true }) position: 'top' | 'center' = 'center'
 	@Element() el: HTMLElement
 
 	@Listen('keydown')

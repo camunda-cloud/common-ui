@@ -7,7 +7,7 @@ import { onThemeChange, Theme } from '../../globalHelpers'
 	shadow: true,
 })
 export class CmIcon {
-	@Prop() icon:
+	@Prop({ mutable: true }) icon:
 		| 'contextMenu'
 		| 'close'
 		| 'closeLarge'

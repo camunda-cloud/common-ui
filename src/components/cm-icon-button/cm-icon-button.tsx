@@ -17,7 +17,7 @@ import {
 	shadow: true,
 })
 export class CmIconButton implements ComponentInterface {
-	@Prop() icon:
+	@Prop({ mutable: true }) icon:
 		| 'contextMenu'
 		| 'close'
 		| 'closeLarge'
@@ -37,7 +37,7 @@ export class CmIconButton implements ComponentInterface {
 		| 'left'
 		| 'right'
 
-	@Prop() disabled: boolean = false
+	@Prop({ mutable: true }) disabled: boolean = false
 	@State() latestFocusWasClick: boolean = false
 
 	@Event() cmPress: EventEmitter<{}>

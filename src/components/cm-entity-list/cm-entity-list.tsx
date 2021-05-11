@@ -37,26 +37,26 @@ export type Entity = {
 	shadow: true,
 })
 export class CmEntityList {
-	@Prop() enableCreateButton: boolean = true
-	@Prop() loading: boolean = false
+	@Prop({ mutable: true }) enableCreateButton: boolean = true
+	@Prop({ mutable: true }) loading: boolean = false
 
-	@Prop() headline: string = ''
-	@Prop() createButtonLabel: string = ''
+	@Prop({ mutable: true }) headline: string = ''
+	@Prop({ mutable: true }) createButtonLabel: string = ''
 
-	@Prop() createHandler: () => void = () => {}
+	@Prop({ mutable: true }) createHandler: () => void = () => {}
 
-	@Prop() columns: Array<{
+	@Prop({ mutable: true }) columns: Array<{
 		name: string
 		width: string
 		ellipsis?: 'off' | 'left' | 'right'
 		overrideCSS?: Record<string, string>
 	}> = []
 
-	@Prop() entities: Array<Entity> = []
+	@Prop({ mutable: true }) entities: Array<Entity> = []
 
-	@Prop() groupOptions: Array<DropdownOptionGroup> = []
+	@Prop({ mutable: true }) groupOptions: Array<DropdownOptionGroup> = []
 
-	@Prop() defaultSorting?: SortingDescription
+	@Prop({ mutable: true }) defaultSorting?: SortingDescription
 
 	@State() userSelectedSorting?: SortingDescription
 	@State() selectedEntities: Array<Entity> = []

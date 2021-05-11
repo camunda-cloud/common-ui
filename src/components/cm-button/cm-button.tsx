@@ -18,11 +18,15 @@ import { onThemeChange, Theme } from '../../globalHelpers'
 	shadow: true,
 })
 export class CmButton implements ComponentInterface {
-	@Prop() appearance: 'main' | 'primary' | 'secondary' | 'danger' | 'link' =
-		'main'
-	@Prop() label: string = ''
-	@Prop() size: 'small' | 'normal' = 'normal'
-	@Prop() disabled: boolean = false
+	@Prop({ mutable: true }) appearance:
+		| 'main'
+		| 'primary'
+		| 'secondary'
+		| 'danger'
+		| 'link' = 'main'
+	@Prop({ mutable: true }) label: string = ''
+	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
+	@Prop({ mutable: true }) disabled: boolean = false
 	@State() latestFocusWasClick: boolean = false
 	@State() theme: Theme = 'Light'
 	@State() initialRender: boolean = true

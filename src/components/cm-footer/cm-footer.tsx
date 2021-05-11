@@ -6,7 +6,7 @@ import { Component, ComponentInterface, Host, h, Prop } from '@stencil/core'
 	shadow: true,
 })
 export class CmFooter implements ComponentInterface {
-	@Prop() text: string = ''
+	@Prop({ mutable: true }) text: string = ''
 
 	render() {
 		return (

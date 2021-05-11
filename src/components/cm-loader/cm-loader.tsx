@@ -6,7 +6,7 @@ import { Component, Host, h, Prop } from '@stencil/core'
 	shadow: true,
 })
 export class CmLoader {
-	@Prop() size: 'small' | 'normal' = 'normal'
+	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
 
 	render() {
 		let classes = {
