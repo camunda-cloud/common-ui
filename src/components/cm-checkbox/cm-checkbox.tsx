@@ -99,16 +99,18 @@ export class CmCheckbox {
 
 		return (
 			<Host>
-				<div
-					tabindex={tabIndex}
-					class={checkboxClasses}
-					ref={(element) =>
-						(this.checkbox = element as HTMLDivElement)
-					}
-					role="checkbox"
-					aria-disabled={this.disabled}
-				></div>
-				<label>{this.label}</label>
+				<div class="container">
+					<div
+						tabindex={tabIndex}
+						class={checkboxClasses}
+						ref={(element) =>
+							(this.checkbox = element as HTMLDivElement)
+						}
+						role="checkbox"
+						aria-disabled={this.disabled}
+					></div>
+					<label>{this.label}</label>
+				</div>
 			</Host>
 		)
 	}

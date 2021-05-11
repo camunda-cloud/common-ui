@@ -2,6 +2,12 @@
 	display: inline-block;
 }
 
+.container {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content 1fr;
+}
+
 .checkbox {
 	position: relative;
 	display: inline-block;
@@ -112,7 +118,7 @@ label {
 	font-family: var(--cm-font-text);
 	font-size: 14px;
 
-	height: 20px;
+	min-height: 20px;
 	line-height: 20px;
 
 	&:empty {
