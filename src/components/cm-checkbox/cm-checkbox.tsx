@@ -6,7 +6,6 @@ import {
 	Listen,
 	Event,
 	EventEmitter,
-	State,
 	Method,
 } from '@stencil/core'
 
@@ -23,32 +22,15 @@ export class CmCheckbox {
 
 	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
 
-	@State() latestFocusWasClick: boolean = false
 	checkbox: HTMLDivElement
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
-		if (
-			event.key !== 'Control' &&
-			event.key !== 'Shift' &&
-			event.key !== 'Meta' &&
-			event.key !== 'Alt'
-		) {
-			this.latestFocusWasClick = false
-		}
-
 		if (event.key === ' ') {
 			if (!this.disabled) {
 				this.toggleCheck()
 			}
 		}
-	}
-
-	// Prevent clicks from giving visual focus
-	@Listen('mousedown', { passive: false })
-	handleMouseDown(event: MouseEvent) {
-		this.latestFocusWasClick = true
-		event.preventDefault()
 	}
 
 	@Listen('click')
@@ -76,18 +58,11 @@ export class CmCheckbox {
 		this.cmInput.emit({ isChecked: this.checked })
 	}
 
-	componentWillUpdate() {
-		if (this.latestFocusWasClick) {
-			this.checkbox.focus()
-		}
-	}
-
 	render() {
 		let checkboxClasses = {
 			checkbox: true,
 			indeterminate: this.indeterminate,
 			checked: this.checked,
-			clicked: this.latestFocusWasClick,
 			disabled: this.disabled,
 		}
 
