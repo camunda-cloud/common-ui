@@ -25,6 +25,9 @@ export class CmSelect {
 	@Element() element: HTMLElement
 	@Event() cmInput: EventEmitter<{ newValue: string }>
 
+	/**
+	 * Selects an option based on the passed index.
+	 */
 	@Method()
 	async selectOptionByIndex(index: number) {
 		let select = this.element.shadowRoot.querySelector('select')

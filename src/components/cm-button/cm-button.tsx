@@ -34,6 +34,9 @@ export class CmButton implements ComponentInterface {
 	@Event() cmPress: EventEmitter<{}>
 	@Element() el: HTMLElement
 
+	/**
+	 * Triggers a virtual press.
+	 */
 	@Method()
 	async press() {
 		this.cmPress.emit()

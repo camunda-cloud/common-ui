@@ -74,16 +74,25 @@ export class CmDropdown {
 		}
 	}
 
+	/**
+	 * Opens the Dropdown.
+	 */
 	@Method()
 	async open() {
 		this.isOpen = true
 	}
 
+	/**
+	 * Closes the Dropdown.
+	 */
 	@Method()
 	async close() {
 		this.isOpen = false
 	}
 
+	/**
+	 * Triggers an option, as if selected by the user.
+	 */
 	@Method()
 	async triggerOptionByIndex(optionGroupIndex: number, optionIndex: number) {
 		this.triggerOption(this.options[optionGroupIndex].options[optionIndex])

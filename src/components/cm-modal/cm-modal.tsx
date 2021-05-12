@@ -36,13 +36,18 @@ export class CmModal {
 		}
 	}
 
+	/**
+	 * Opens the modal.
+	 */
 	@Method()
 	async open() {
 		return new Promise<'confirm' | 'cancel'>((resolve) => {
 			this.isOpen = true
-			;(this.el.querySelector(
-				'cm-button[slot="confirm"]',
-			) as HTMLCmButtonElement).focus()
+			;(
+				this.el.querySelector(
+					'cm-button[slot="confirm"]',
+				) as HTMLCmButtonElement
+			).focus()
 
 			this.confirm = () => {
 				this.isOpen = false

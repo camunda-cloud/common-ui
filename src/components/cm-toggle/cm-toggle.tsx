@@ -39,18 +39,27 @@ export class CmToggle {
 		}
 	}
 
+	/**
+	 * Toggles the checked state.
+	 */
 	@Method()
 	async toggleCheck() {
 		this.checked = !this.checked
 		this.cmInput.emit({ isChecked: this.checked })
 	}
 
+	/**
+	 * Sets the checked state to true.
+	 */
 	@Method()
 	async check() {
 		this.checked = true
 		this.cmInput.emit({ isChecked: this.checked })
 	}
 
+	/**
+	 * Sets the checked state to false.
+	 */
 	@Method()
 	async uncheck() {
 		this.checked = false

@@ -25,6 +25,9 @@ export class CmContext {
 		this.themeChanged.emit({ theme: this._getResolvedTheme() })
 	}
 
+	/**
+	 * Returns the actual theme, resolving "Automatic" to an actual value.
+	 */
 	@Method()
 	async getResolvedTheme() {
 		return this._getResolvedTheme()

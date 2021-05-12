@@ -29,6 +29,9 @@ export class CmNotification {
 	@Event() cmNotificationNavigation: EventEmitter<{}>
 	@State() theme: Theme = 'Light'
 
+	/**
+	 * Dismisses the Notification.
+	 */
 	@Method()
 	async dismiss() {
 		this.cmDismissed.emit()
@@ -36,6 +39,9 @@ export class CmNotification {
 
 	protected _isBeingHovered = false
 
+	/**
+	 * Returns the hover state. This is being used to halt Notification-Timeouts.
+	 */
 	@Method()
 	async isBeingHovered() {
 		return this._isBeingHovered

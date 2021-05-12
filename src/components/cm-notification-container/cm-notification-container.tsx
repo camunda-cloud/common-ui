@@ -21,20 +21,19 @@ export class CmNotificationContainer {
 	@Element() el: HTMLElement
 
 	notificationQueue: Array<NotificationItem> = []
-	notificationMap: Map<
-		NotificationItem,
-		HTMLCmNotificationElement
-	> = new Map()
+	notificationMap: Map<NotificationItem, HTMLCmNotificationElement> =
+		new Map()
 	visibleNotifications: Array<HTMLCmNotificationElement> = []
 	durationStore: Map<HTMLCmNotificationElement, number> = new Map()
 
 	maxVisibleNotifications = 5
 	notificationDuration = 7000
 
+	/**
+	 * Queues a Notification to be shown. The notification might be shown instantly, if there is space, or later, once space is available.
+	 */
 	@Method()
-	async enqueueNotification(
-		notification: NotificationItem,
-	): Promise<{
+	async enqueueNotification(notification: NotificationItem): Promise<{
 		hasBeenShown(): boolean
 		remove(): void
 	}> {
@@ -54,9 +53,8 @@ export class CmNotificationContainer {
 						(item) => item !== notification,
 					)
 				} else {
-					let notificationElement = this.notificationMap.get(
-						notification,
-					)
+					let notificationElement =
+						this.notificationMap.get(notification)
 
 					if (notificationElement) {
 						notificationElement.dismiss()
@@ -156,9 +154,10 @@ export class CmNotificationContainer {
 					)
 					.addEventListener('finish', () => {
 						this.notificationMap.delete(notification)
-						this.visibleNotifications = this.visibleNotifications.filter(
-							(item) => item !== newNotification,
-						)
+						this.visibleNotifications =
+							this.visibleNotifications.filter(
+								(item) => item !== newNotification,
+							)
 
 						newNotification.remove()
 
