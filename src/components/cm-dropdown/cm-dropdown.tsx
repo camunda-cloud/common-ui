@@ -112,6 +112,9 @@ export class CmDropdown {
 		return (
 			<div
 				class={optionClasses}
+				onMouseDown={(event) => {
+					event.preventDefault()
+				}}
 				onClick={() => {
 					this.triggerOption(option)
 				}}
