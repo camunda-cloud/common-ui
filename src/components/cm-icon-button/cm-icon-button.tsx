@@ -43,11 +43,13 @@ export class CmIconButton implements ComponentInterface {
 	@Element() el: HTMLElement
 
 	/**
-	 * Triggers a virtual press.
+	 * Triggers the press event. Respects the disabled state unless forced.
 	 */
 	@Method()
-	async press() {
-		this.cmPress.emit()
+	async press(options: { forcePress?: boolean } = {}) {
+		if (!this.disabled || options.forcePress) {
+			this.cmPress.emit()
+		}
 	}
 
 	@Listen('click')
