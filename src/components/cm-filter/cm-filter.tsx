@@ -14,6 +14,9 @@ export class CmFilter {
 	}> = []
 	@Prop({ mutable: true }) activeFilterIndex: number = 0
 
+	/**
+	 * Emitted whenever the selected filter changes.
+	 */
 	@Event() cmFilterSelected: EventEmitter<{ value: string }>
 
 	render() {

@@ -21,6 +21,9 @@ export class CmCheckbox {
 	@Prop({ reflect: true, mutable: true }) indeterminate: boolean = false
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
+	/**
+	 * Emitted whenever the checked state changes.
+	 */
 	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
 
 	@Watch('checked')

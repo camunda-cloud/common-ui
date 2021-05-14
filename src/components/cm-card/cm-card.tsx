@@ -8,6 +8,9 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 export class CmCard {
 	@Prop({ mutable: true }) isDismissable: boolean = false
 
+	/**
+	 * Emitted when the Card is being dismissed. Has no default action.
+	 */
 	@Event() cmDismissed: EventEmitter<{}>
 
 	render() {

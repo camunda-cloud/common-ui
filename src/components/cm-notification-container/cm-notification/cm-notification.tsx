@@ -24,9 +24,22 @@ export class CmNotification {
 	@Prop({ mutable: false }) userDismissable: boolean = true
 
 	@Element() el: HTMLElement
+
+	/**
+	 * Emitted when the Notification is dismissed.
+	 */
 	@Event() cmDismissed: EventEmitter<{}>
-	@Event() didLoad: EventEmitter<{}>
+
+	/**
+	 * Emitted when the Navigation is triggered.
+	 */
 	@Event() cmNotificationNavigation: EventEmitter<{}>
+
+	/**
+	 * Emitted when Component has loaded, used as a workaround for the lack of a general 'componentDidLoad' event internally. You should not rely on this event.
+	 */
+	@Event() didLoad: EventEmitter<{}>
+
 	@State() theme: Theme = 'Light'
 
 	/**

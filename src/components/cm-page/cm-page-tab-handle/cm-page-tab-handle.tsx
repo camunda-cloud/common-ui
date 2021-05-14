@@ -31,6 +31,9 @@ export class CmPageTabHandle {
 		}
 	}
 
+	/**
+	 * Emitted when the Tab is being selected by the user.
+	 */
 	@Event() userSelectedTab: EventEmitter<{
 		originalEvent: MouseEvent | KeyboardEvent
 		handle: HTMLCmPageTabHandleElement

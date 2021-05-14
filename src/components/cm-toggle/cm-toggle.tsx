@@ -20,6 +20,9 @@ export class CmToggle {
 	@Prop({ reflect: true }) checked: boolean = false
 	@Prop({ reflect: true }) disabled: boolean = false
 
+	/**
+	 * Emitted whenever the checked state changes.
+	 */
 	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
 
 	@Watch('checked')

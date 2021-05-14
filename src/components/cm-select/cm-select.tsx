@@ -22,8 +22,12 @@ export class CmSelect {
 		value: string
 	}> = []
 
-	@Element() element: HTMLElement
+	/**
+	 * Emitted when the selected Option changes.
+	 */
 	@Event() cmInput: EventEmitter<{ newValue: string }>
+
+	@Element() element: HTMLElement
 
 	/**
 	 * Selects an option based on the passed index. Respects the disabled state unless forced.

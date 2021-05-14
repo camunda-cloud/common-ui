@@ -31,7 +31,11 @@ export class CmButton implements ComponentInterface {
 	@State() theme: Theme = 'Light'
 	@State() initialRender: boolean = true
 
+	/**
+	 * Emitted when the button is pressed or either Spacebar or Enter are being pressed when the button is focused.
+	 */
 	@Event() cmPress: EventEmitter<{}>
+
 	@Element() el: HTMLElement
 
 	/**

@@ -17,6 +17,9 @@ import {
 export class CmPageTab {
 	@Element() root: HTMLCmPageTabElement
 
+	/**
+	 * Emitted when the Tab is modified, e.g. when the label is changed.
+	 */
 	@Event() tabModified: EventEmitter
 
 	@Prop({ reflect: true, mutable: true }) label: string
