@@ -7,6 +7,7 @@ import {
 	Event,
 	EventEmitter,
 	Method,
+	Watch,
 } from '@stencil/core'
 
 @Component({
@@ -21,6 +22,11 @@ export class CmCheckbox {
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
 	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
+
+	@Watch('checked')
+	themeChangeHandler() {
+		this.cmInput.emit({ isChecked: this.checked })
+	}
 
 	checkbox: HTMLDivElement
 
@@ -41,30 +47,40 @@ export class CmCheckbox {
 	}
 
 	/**
-	 * Toggles the checked state.
+	 * Toggles the checked state. Respects the disabled state, unless forced.
 	 */
 	@Method()
-	async toggleCheck() {
-		this.checked = !this.checked
-		this.cmInput.emit({ isChecked: this.checked })
+	async toggleCheck(options: { forceToggle?: boolean } = {}) {
+		if (!this.disabled || options.forceToggle) {
+			this.checked = !this.checked
+			this.cmInput.emit({ isChecked: this.checked })
+		}
 	}
 
 	/**
-	 * Sets the checked state to true.
+	 * Sets the checked state to true. Respects the disabled state, unless forced.
 	 */
 	@Method()
-	async check() {
-		this.checked = true
-		this.cmInput.emit({ isChecked: this.checked })
+	async check(options: { forceCheck?: boolean } = {}) {
+		if (!this.disabled || options.forceCheck) {
+			if (this.checked === false) {
+				this.checked = true
+				this.cmInput.emit({ isChecked: this.checked })
+			}
+		}
 	}
 
 	/**
-	 * Sets the checked state to false.
+	 * Sets the checked state to false. Respects the disabled state, unless forced.
 	 */
 	@Method()
-	async uncheck() {
-		this.checked = false
-		this.cmInput.emit({ isChecked: this.checked })
+	async uncheck(options: { forceUncheck?: boolean } = {}) {
+		if (!this.disabled || options.forceUncheck) {
+			if (this.checked === true) {
+				this.checked = false
+				this.cmInput.emit({ isChecked: this.checked })
+			}
+		}
 	}
 
 	render() {
