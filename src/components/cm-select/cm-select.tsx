@@ -26,13 +26,18 @@ export class CmSelect {
 	@Event() cmInput: EventEmitter<{ newValue: string }>
 
 	/**
-	 * Selects an option based on the passed index.
+	 * Selects an option based on the passed index. Respects the disabled state unless forced.
 	 */
 	@Method()
-	async selectOptionByIndex(index: number) {
-		let select = this.element.shadowRoot.querySelector('select')
+	async selectOptionByIndex(options: {
+		forceSelection?: boolean
+		selectedIndex: number
+	}) {
+		if (!this.disabled || options.forceSelection) {
+			let select = this.element.shadowRoot.querySelector('select')
 
-		select.selectedIndex = index
+			select.selectedIndex = options.selectedIndex
+		}
 	}
 
 	@Listen('input')
