@@ -18,12 +18,10 @@ h1 {
 }
 
 .items {
-	display: table;
+	display: grid;
 
 	position: relative;
 	left: -20px;
 
 	width: calc(100% + 40px);
-
-	border-collapse: collapse;
 }

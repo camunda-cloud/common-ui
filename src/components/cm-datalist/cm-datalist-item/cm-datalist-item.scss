@@ -1,16 +1,14 @@
-cm-datalist-item {
-	display: table-row;
+cm-datalist-item:not(:last-child) {
+	border-bottom: 1px solid var(--cm-color-ui-light5);
+}
+
+.container {
+	display: grid;
+	gap: 20px;
 	height: 40px;
 	line-height: 40px;
 
-	&:not(:last-child) {
-		border-bottom: 1px solid var(--cm-color-ui-light5);
-	}
-
 	& .label {
-		display: table-cell;
-		width: 250px;
-		min-width: 250px;
 		padding-left: 20px;
 
 		opacity: 0.9;
@@ -20,11 +18,13 @@ cm-datalist-item {
 		font-weight: 600;
 
 		color: var(--cm-color-ui-dark4);
+
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 	& .content {
-		display: table-cell;
-
 		padding-right: 40px;
 	}
 }
