@@ -496,6 +496,7 @@ export class CmEntityList {
 												this.selectedEntities = []
 											}
 										}}
+										preventWatchingCheckedAttribute
 									></cm-checkbox>
 								) : (
 									''
