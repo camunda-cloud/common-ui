@@ -17,6 +17,8 @@ span {
 
 	transition: 0.2s all linear;
 
+	white-space: nowrap;
+
 	&:hover {
 		border-bottom: 2px solid rgba(var(--cm-color-ui-light6-rgb), 0.6);
 	}
