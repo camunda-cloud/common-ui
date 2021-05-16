@@ -16,14 +16,17 @@ import {
 	shadow: true,
 })
 export class CmToggle {
-	@Prop({ reflect: true }) label: string = ''
-	@Prop({ reflect: true }) checked: boolean = false
-	@Prop({ reflect: true }) disabled: boolean = false
+	@Prop({ reflect: true, mutable: true }) label: string = ''
+	@Prop({ reflect: true, mutable: true }) checked: boolean = false
+	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
 	/**
 	 * Emitted whenever the checked state changes.
 	 */
-	@Event() cmInput: EventEmitter<{ isChecked: boolean }>
+	@Event() cmInput: EventEmitter<{
+		isChecked: boolean
+		triggeredBy: 'User' | 'API'
+	}>
 
 	@Watch('checked')
 	themeChangeHandler() {
@@ -36,7 +39,7 @@ export class CmToggle {
 	handleKeyDown(event: KeyboardEvent) {
 		if (event.key === ' ') {
 			if (!this.disabled) {
-				this.toggleCheck()
+				this.toggleCheck({ triggeredBy: 'User' })
 			}
 		}
 	}
@@ -44,7 +47,7 @@ export class CmToggle {
 	@Listen('click')
 	handleClick() {
 		if (!this.disabled) {
-			this.toggleCheck()
+			this.toggleCheck({ triggeredBy: 'User' })
 		}
 	}
 
@@ -52,10 +55,15 @@ export class CmToggle {
 	 * Toggles the checked state. Respects the disabled state, unless forced.
 	 */
 	@Method()
-	async toggleCheck(options: { forceToggle?: boolean } = {}) {
+	async toggleCheck(
+		options: { forceToggle?: boolean; triggeredBy?: 'User' | 'API' } = {},
+	) {
 		if (!this.disabled || options.forceToggle) {
 			this.checked = !this.checked
-			this.cmInput.emit({ isChecked: this.checked })
+			this.cmInput.emit({
+				isChecked: this.checked,
+				triggeredBy: options.triggeredBy ?? 'API',
+			})
 		}
 	}
 
@@ -63,11 +71,16 @@ export class CmToggle {
 	 * Sets the checked state to true. Respects the disabled state, unless forced.
 	 */
 	@Method()
-	async check(options: { forceCheck?: boolean } = {}) {
+	async check(
+		options: { forceCheck?: boolean; triggeredBy?: 'User' | 'API' } = {},
+	) {
 		if (!this.disabled || options.forceCheck) {
 			if (this.checked === false) {
 				this.checked = true
-				this.cmInput.emit({ isChecked: this.checked })
+				this.cmInput.emit({
+					isChecked: this.checked,
+					triggeredBy: options.triggeredBy ?? 'API',
+				})
 			}
 		}
 	}
@@ -76,11 +89,16 @@ export class CmToggle {
 	 * Sets the checked state to false. Respects the disabled state, unless forced.
 	 */
 	@Method()
-	async uncheck(options: { forceUncheck?: boolean } = {}) {
+	async uncheck(
+		options: { forceUncheck?: boolean; triggeredBy?: 'User' | 'API' } = {},
+	) {
 		if (!this.disabled || options.forceUncheck) {
 			if (this.checked === true) {
 				this.checked = false
-				this.cmInput.emit({ isChecked: this.checked })
+				this.cmInput.emit({
+					isChecked: this.checked,
+					triggeredBy: options.triggeredBy ?? 'API',
+				})
 			}
 		}
 	}
