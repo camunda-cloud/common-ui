@@ -66,9 +66,9 @@ export class CmEntityList {
 	@Element() element: HTMLElement
 
 	componentDidUpdate() {
-		;(this.element.shadowRoot.querySelector(
-			'#searchInput',
-		) as HTMLElement)?.focus()
+		;(
+			this.element.shadowRoot.querySelector('#searchInput') as HTMLElement
+		)?.focus()
 	}
 
 	render() {
@@ -231,12 +231,12 @@ export class CmEntityList {
 									if (
 										this.selectedEntities.includes(entity)
 									) {
-										let index = this.selectedEntities.indexOf(
-											entity,
-										)
-										let newEntities = this.selectedEntities.slice(
-											0,
-										)
+										let index =
+											this.selectedEntities.indexOf(
+												entity,
+											)
+										let newEntities =
+											this.selectedEntities.slice(0)
 										newEntities.splice(index, 1)
 
 										this.selectedEntities = newEntities
@@ -402,7 +402,8 @@ export class CmEntityList {
 									;(event as any).detail = {}
 								}
 
-								;(event as any).detail.selectedEntities = this.selectedEntities
+								;(event as any).detail.selectedEntities =
+									this.selectedEntities
 								originalHandler(event)
 							}
 
@@ -423,7 +424,9 @@ export class CmEntityList {
 						id="searchInput"
 						placeholder="Search"
 						onInput={(event: InputEvent) => {
-							this.filter = (event.target as HTMLInputElement)?.value
+							this.filter = (
+								event.target as HTMLInputElement
+							)?.value
 						}}
 					/>
 					<cm-icon-button
