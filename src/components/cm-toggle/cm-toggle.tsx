@@ -19,6 +19,15 @@ export class CmToggle {
 	@Prop({ reflect: true, mutable: true }) label: string = ''
 	@Prop({ reflect: true, mutable: true }) checked: boolean = false
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
+	@Prop({ reflect: true, mutable: true })
+	preventWatchingCheckedAttribute: boolean = false
+
+	@Watch('checked')
+	checkedChangeHandler() {
+		if (this.preventWatchingCheckedAttribute) {
+			this.cmInput.emit({ isChecked: this.checked, triggeredBy: 'API' })
+		}
+	}
 
 	/**
 	 * Emitted whenever the checked state changes.
@@ -27,11 +36,6 @@ export class CmToggle {
 		isChecked: boolean
 		triggeredBy: 'User' | 'API'
 	}>
-
-	@Watch('checked')
-	themeChangeHandler() {
-		this.cmInput.emit({ isChecked: this.checked })
-	}
 
 	toggle: HTMLDivElement
 
