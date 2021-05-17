@@ -1,4 +1,13 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
+import {
+	Component,
+	Host,
+	h,
+	Prop,
+	Event,
+	EventEmitter,
+	Element,
+	State,
+} from '@stencil/core'
 
 @Component({
 	tag: 'cm-card',
@@ -8,17 +17,47 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core'
 export class CmCard {
 	@Prop({ mutable: true }) isDismissable: boolean = false
 
+	@Element() element: HTMLCmCardElement
+	@State() hasFooterContent = false
+
 	/**
 	 * Emitted when the Card is being dismissed. Has no default action.
 	 */
 	@Event() cmDismissed: EventEmitter<{}>
 
+	componentDidRender() {
+		requestAnimationFrame(() => {
+			let footerSlot = this.element.shadowRoot.querySelector(
+				'slot[name=footer]',
+			) as HTMLSlotElement
+
+			if (footerSlot) {
+				this.hasFooterContent = footerSlot.assignedElements().length > 0
+			}
+		})
+	}
+
+	componentDidLoad() {
+		let footerSlot = this.element.shadowRoot.querySelector(
+			'slot[name=footer]',
+		) as HTMLSlotElement
+
+		footerSlot.addEventListener('slotchange', () => {
+			this.hasFooterContent = footerSlot.assignedElements().length > 0
+		})
+	}
+
 	render() {
+		const contentClasses = {
+			content: true,
+			hasFooterContent: this.hasFooterContent,
+		}
+
 		return (
 			<Host>
 				<div class="container">
 					<slot name="header"></slot>
-					<div>
+					<div class={contentClasses}>
 						<slot></slot>
 					</div>
 					<slot name="footer"></slot>
