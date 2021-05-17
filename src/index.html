@@ -707,7 +707,7 @@
 				</div>
 			</cm-page-tab>
 			<cm-page-tab label="Cards">
-				<div style="display: grid">
+				<div style="display: grid; gap: 20px">
 					<cm-card is-dismissable="true">
 						<h1
 							slot="header"
@@ -738,6 +738,30 @@
 							console.log('Dismissed!')
 						})
 					</script>
+
+					<cm-card>
+						<h1
+							slot="header"
+							style="
+								margin: 0;
+								font-size: 16px;
+								font-weight: 600;
+								font-family: var(--cm-font-text);
+							"
+						>
+							No footer slot
+						</h1>
+						<cm-text
+							>Lorem ipsum, dolor sit amet consectetur adipisicing
+							elit. Ratione ipsa ipsum, aperiam mollitia totam,
+							deleniti voluptatibus quibusdam perspiciatis magni
+							quos commodi a dolor. Dignissimos rerum sed
+							recusandae, unde perferendis beatae?</cm-text
+						>
+						<br />
+
+						<cm-button label="Test"></cm-button>
+					</cm-card>
 				</div>
 			</cm-page-tab>
 			<cm-page-tab label="Filter">
