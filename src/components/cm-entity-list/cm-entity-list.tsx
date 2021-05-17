@@ -176,7 +176,11 @@ export class CmEntityList {
 			filteredEntities = filteredEntities.filter((entity) => {
 				for (let data of entity.data) {
 					if (data.type === 'text') {
-						if (data.content.includes(this.filter)) {
+						if (
+							data.content
+								.toLocaleLowerCase()
+								.includes(this.filter.toLocaleLowerCase())
+						) {
 							return true
 						}
 					}
