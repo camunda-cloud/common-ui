@@ -70,7 +70,7 @@ export class CmContext {
 
 	render() {
 		return (
-			<Host>
+			<Host style={{ display: 'none' }}>
 				<slot></slot>
 			</Host>
 		)
