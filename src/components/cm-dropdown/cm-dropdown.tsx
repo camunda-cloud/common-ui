@@ -169,8 +169,28 @@ export class CmDropdown {
 			console.error('[cm-dropdown] .trigger is not defined!')
 		}
 
+		let flyoutOffset = 0
+
+		if (this.trigger.type === 'icon') {
+			flyoutOffset = 6
+		}
+
 		flyout = (
-			<div class={flyoutClasses}>
+			<div
+				class={flyoutClasses}
+				style={{
+					top: `${
+						this.el.getBoundingClientRect().bottom +
+						10 +
+						flyoutOffset
+					}px`,
+					right: `${
+						document.documentElement.clientWidth -
+						this.el.getBoundingClientRect().right -
+						flyoutOffset
+					}px`,
+				}}
+			>
 				{this.options.map((option) => {
 					return (
 						<div class="optionGroup">
