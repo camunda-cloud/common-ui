@@ -10,7 +10,9 @@ export class CmBanner {
 		return (
 			<Host>
 				<div class="container">
-					<slot></slot>
+					<div>
+						<slot></slot>
+					</div>
 				</div>
 			</Host>
 		)
