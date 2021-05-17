@@ -24,6 +24,7 @@ export class CmFilter {
 			<Host>
 				<div class="container">
 					{this.filters.map((item, index) => {
+						let tabindex
 						let classes = {
 							pill: true,
 							active: index === this.activeFilterIndex,
@@ -34,13 +35,30 @@ export class CmFilter {
 							item.title = ''
 						}
 
+						if (!item.disabled) {
+							tabindex = 0
+						}
+
 						return (
 							<a
 								class={classes}
+								tabindex={tabindex}
 								onClick={() => {
 									if (
 										!item.disabled &&
 										this.activeFilterIndex !== index
+									) {
+										this.activeFilterIndex = index
+										this.cmFilterSelected.emit({
+											value: item.value,
+										})
+									}
+								}}
+								onKeyUp={(event) => {
+									if (
+										!item.disabled &&
+										this.activeFilterIndex !== index &&
+										event.key === ' '
 									) {
 										this.activeFilterIndex = index
 										this.cmFilterSelected.emit({
