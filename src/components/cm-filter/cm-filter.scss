@@ -1,12 +1,11 @@
 :host {
-	display: block;
+	display: inline-block;
 }
 
 .container {
-	display: grid;
-	grid-auto-flow: column;
-	grid-auto-columns: max-content;
+	display: flex;
 	gap: 6px;
+	flex-wrap: wrap;
 }
 
 .pill {
@@ -29,6 +28,8 @@
 	color: rgba(69, 70, 78, 0.9);
 
 	transition: all linear 200ms;
+
+	white-space: nowrap;
 
 	&:not(.disabled, .active):hover {
 		border: solid 1px var(--cm-color-button-light2);
