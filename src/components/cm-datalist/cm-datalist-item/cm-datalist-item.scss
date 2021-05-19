@@ -26,5 +26,9 @@ cm-datalist-item:not(:last-child) {
 
 	& .content {
 		padding-right: 40px;
+
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 }
