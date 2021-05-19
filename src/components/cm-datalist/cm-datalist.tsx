@@ -11,6 +11,14 @@ export class CmDatalist {
 
 	@Element() element: HTMLCmDatalistElement
 
+	componentDidLoad() {
+		this.element.shadowRoot
+			.querySelector('slot')
+			.addEventListener('slotchange', () => {
+				this.updateItemLabelWidth()
+			})
+	}
+
 	updateItemLabelWidth() {
 		let items = Array.from(
 			this.element.querySelectorAll('cm-datalist-item'),
