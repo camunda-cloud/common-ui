@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Element } from '@stencil/core'
+import { Component, Host, h, Prop, State, Element, Method } from '@stencil/core'
 import { CmDropdown, DropdownOptionGroup } from '../cm-dropdown/cm-dropdown'
 
 export type SortingDescription = {
@@ -69,6 +69,83 @@ export class CmEntityList {
 		;(
 			this.element.shadowRoot.querySelector('#searchInput') as HTMLElement
 		)?.focus()
+	}
+
+	/**
+	 * Triggers an option of entity at the given index as if selected by the user, if available. Note that the entity index is based of the entity array and ignores all sorting.
+	 */
+	@Method()
+	async triggerEntityOption(options: {
+		entityIndex: number
+		optionGroupIndex: number
+		optionIndex: number
+	}) {
+		;(
+			this.element.shadowRoot.querySelectorAll(
+				'.entity cm-dropdown',
+			) as NodeListOf<HTMLCmDropdownElement>
+		)
+			.item(options.entityIndex)
+			?.triggerOptionByIndex(
+				options.optionGroupIndex,
+				options.optionIndex,
+			)
+	}
+
+	/**
+	 * Triggers an option of the group-actions-dropdown as if selected by the user, if available. Needs selected entities to function.
+	 */
+	@Method()
+	async triggerGroupOption(optionGroupIndex: number, optionIndex: number) {
+		;(
+			this.element.shadowRoot.querySelector(
+				'.header cm-dropdown',
+			) as HTMLCmDropdownElement
+		)?.triggerOptionByIndex(optionGroupIndex, optionIndex)
+	}
+
+	/**
+	 * Selects all entities.
+	 */
+	@Method()
+	async selectAll() {
+		this.selectedEntities = [...this.entities]
+	}
+
+	/**
+	 * De-selects all entities.
+	 */
+	@Method()
+	async deselectAll() {
+		this.selectedEntities = []
+	}
+
+	/**
+	 * Selects the entity at the given index. Note that the index is based of the entity array and ignores all sorting.
+	 */
+	@Method()
+	async selectIndex(index: number) {
+		let targetEntity = this.entities[index]
+		if (!this.selectedEntities.includes(targetEntity)) {
+			this.selectedEntities = [...this.selectedEntities, targetEntity]
+		}
+	}
+
+	/**
+	 * De-selects the entity at the given index. Note that the index is based of the entity array and ignores all sorting.
+	 */
+	@Method()
+	async deselectIndex(index: number) {
+		let targetEntity = this.entities[index]
+
+		if (this.selectedEntities.includes(targetEntity)) {
+			let selectedEntityIndex =
+				this.selectedEntities.indexOf(targetEntity)
+			let newEntities = this.selectedEntities.slice(0)
+			newEntities.splice(selectedEntityIndex, 1)
+
+			this.selectedEntities = newEntities
+		}
 	}
 
 	render() {
