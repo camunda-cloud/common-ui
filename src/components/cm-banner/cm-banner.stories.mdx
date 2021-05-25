@@ -1,0 +1,23 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmBanner, CmButton, CmText } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Miscellaneous/Banner" component={CmBanner} />
+
+# Banner
+
+Banners are a simple way of alerting the user to a non-volatile condition. Currently only a single appearance is supported: `warning`.
+
+<Canvas>
+	<CmBanner appearance="warning">
+		<CmText>
+			This is a warning, turn it off{' '}
+			<CmButton appearance="link" label="here"></CmButton>.
+		</CmText>
+	</CmBanner>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

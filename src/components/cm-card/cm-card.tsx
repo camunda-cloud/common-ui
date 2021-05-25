@@ -15,6 +15,9 @@ import {
 	shadow: true,
 })
 export class CmCard {
+	/**
+	 * Adds a Dismiss-Button to the Card, which fires the `cmDismissed` Event when pressed.
+	 */
 	@Prop({ mutable: true }) isDismissable: boolean = false
 
 	@Element() element: HTMLCmCardElement

@@ -12,6 +12,10 @@ export class CmFilter {
 		title?: string
 		disabled?: boolean
 	}> = []
+
+	/**
+	 * The Index of the active filter.
+	 */
 	@Prop({ mutable: true }) activeFilterIndex: number = 0
 
 	/**

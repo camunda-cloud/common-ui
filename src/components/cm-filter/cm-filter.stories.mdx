@@ -1,0 +1,26 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmFilter } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Filter" component={CmFilter} />
+
+# Filter
+
+Filter enables selection of one of a set of filters, which automatically disables the others.
+Filters can be individually disabled, and support titles for inline explanations.
+
+<Canvas>
+	<CmFilter
+		activeFilterIndex={1}
+		filters={[
+			{ label: 'Filter 1', value: '1' },
+			{ label: 'Filter 2', value: '2' },
+			{ label: 'Disabled Filter', value: '3', disabled: true },
+		]}
+	/>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>

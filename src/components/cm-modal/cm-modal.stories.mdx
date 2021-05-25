@@ -23,6 +23,13 @@ This can happen in a variety of ways: By pressing the `Esc` key, using the "Clos
 		<CmButton appearance="danger" label="Abort" slot="cancel" />
 		<CmButton appearance="primary" label="Confirm" slot="confirm" />
 	</CmModal>
+	<CmButton
+		label="Show Modal"
+		appearance="primary"
+		onCmPress={() => {
+			document.querySelector('cm-modal').open()
+		}}
+	></CmButton>
 </Canvas>
 
 ## Technical Documentation

@@ -96,7 +96,7 @@ export class CmDropdown {
 	}
 
 	/**
-	 * Triggers an option, as if selected by the user.
+	 * Triggers an option, as if selected by the user. The Dropdown is _not_ required to be open for this to work.
 	 */
 	@Method()
 	async triggerOptionByIndex(optionGroupIndex: number, optionIndex: number) {

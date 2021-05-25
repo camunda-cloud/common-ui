@@ -7,6 +7,10 @@ import { Component, h, Prop, Host, Element } from '@stencil/core'
 })
 export class CmDatalist {
 	@Prop({ mutable: true }) headline: string = ''
+
+	/**
+	 * Sets the width of the label for all cm-datalist-item's inside this cm-datalist. Expected format is a valid CSS Grid Column value.
+	 */
 	@Prop({ mutable: true }) labelWidth: string = '250px'
 
 	@Element() element: HTMLCmDatalistElement

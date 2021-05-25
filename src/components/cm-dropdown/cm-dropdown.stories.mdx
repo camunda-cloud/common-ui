@@ -1,0 +1,94 @@
+import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { CmDropdown } from '@camunda-cloud/common-ui-react'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Dropdown" component={CmDropdown} />
+
+# Dropdown
+
+<Canvas>
+	<div
+		style={{
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'space-evenly',
+		}}
+	>
+		<CmDropdown
+			trigger={{
+				type: 'button',
+				appearance: 'primary',
+				label: 'Button Trigger',
+			}}
+			options={[
+				{
+					options: [
+						{ label: 'Normal Option', value: 'Normal' },
+						{
+							label: 'Dangerous Option',
+							value: 'Danger',
+							isDangerous: true,
+						},
+						{
+							label: 'Disabled Option',
+							value: 'Disabled',
+							isDisabled: true,
+						},
+					],
+				},
+			]}
+		/>
+		<CmDropdown
+			trigger={{
+				type: 'label',
+				label: 'Label Trigger',
+			}}
+			options={[
+				{
+					options: [
+						{ label: 'Normal Option', value: 'Normal' },
+						{
+							label: 'Dangerous Option',
+							value: 'Danger',
+							isDangerous: true,
+						},
+						{
+							label: 'Disabled Option',
+							value: 'Disabled',
+							isDisabled: true,
+						},
+					],
+				},
+			]}
+		/>
+		<CmDropdown
+			trigger={{
+				type: 'icon',
+				icon: 'contextMenu',
+				label: 'Icon Trigger',
+			}}
+			options={[
+				{
+					options: [
+						{ label: 'Normal Option', value: 'Normal' },
+						{
+							label: 'Dangerous Option',
+							value: 'Danger',
+							isDangerous: true,
+						},
+						{
+							label: 'Disabled Option',
+							value: 'Disabled',
+							isDisabled: true,
+						},
+					],
+				},
+			]}
+		/>
+	</div>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>
