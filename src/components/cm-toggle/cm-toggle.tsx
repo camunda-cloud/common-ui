@@ -19,12 +19,16 @@ export class CmToggle {
 	@Prop({ reflect: true, mutable: true }) label: string = ''
 	@Prop({ reflect: true, mutable: true }) checked: boolean = false
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
-	@Prop({ reflect: true, mutable: true })
-	preventWatchingCheckedAttribute: boolean = false
+
+	/**
+	 * Prevents `cmInput` Events from being emitted when the checked attribute changes.
+	 */
+	@Prop({ reflect: true, mutable: true }) preventAttributeEmit: boolean =
+		false
 
 	@Watch('checked')
 	checkedChangeHandler() {
-		if (this.preventWatchingCheckedAttribute) {
+		if (this.preventAttributeEmit) {
 			this.cmInput.emit({ isChecked: this.checked, triggeredBy: 'API' })
 		}
 	}
