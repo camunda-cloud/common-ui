@@ -50,17 +50,28 @@ export const config: Config = {
 							'| -------- | --------- | ----------- | ---- | ------- |\n'
 
 						for (let property of component.props) {
-							readme += `|\`${property.name}\``
-							readme += `|\`${property.attr}\``
+							readme += `|<code>${property.name}</code>`
+
+							if (property.attr) {
+								readme += `|<code class="no-break">${property.attr}</code>`
+							} else {
+								readme += `|<code>-</code>`
+							}
 
 							if (property.docs) {
-								readme += `|\`${property.docs}\``
+								readme += `|<div>${property.docs}</div>`
 							} else {
 								readme += `|`
 							}
 
-							readme += `|\`${property.type}\``
-							readme += `|\`${property.default}\`|\n`
+							readme += `|<code>${property.type}</code>`
+							if (property.default) {
+								readme += `|<code>${property.default
+									.split('\n')
+									.join(' ')}</code>|\n`
+							} else {
+								readme += `|\n`
+							}
 						}
 					}
 
@@ -74,10 +85,10 @@ export const config: Config = {
 						readme += '| ---- | ----------- | --------- |\n'
 
 						for (let method of component.methods) {
-							readme += `|\`${method.name}\``
+							readme += `|<code>${method.name}</code>`
 
 							if (method.docs) {
-								readme += `|\`${method.docs}\``
+								readme += `|<div>${method.docs}</div>`
 							} else {
 								readme += `|`
 							}
@@ -96,15 +107,15 @@ export const config: Config = {
 						readme += '| ----- | ----------- | ---- |\n'
 
 						for (let event of component.events) {
-							readme += `|\`${event.event}\``
+							readme += `|<code>${event.event}</code>`
 
 							if (event.docs) {
-								readme += `|\`${event.docs}\``
+								readme += `|<div>${event.docs}</div>`
 							} else {
 								readme += `|`
 							}
 
-							readme += `|\`${event.detail}\`|\n`
+							readme += `|<code>${event.detail}</code>|\n`
 						}
 					}
 
@@ -119,13 +130,13 @@ export const config: Config = {
 
 						for (let slot of component.slots) {
 							if (slot.name) {
-								readme += `|\`${slot.name}\``
+								readme += `|<code>${slot.name}</code>`
 							} else {
 								readme += `|`
 							}
 
 							if (slot.docs) {
-								readme += `|\`${slot.docs}\``
+								readme += `|<div>${slot.docs}</div>`
 							} else {
 								readme += `|`
 							}
