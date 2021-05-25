@@ -25,7 +25,7 @@ export class CmCheckbox {
 
 	@Watch('checked')
 	checkedChangeHandler() {
-		if (this.preventWatchingCheckedAttribute) {
+		if (!this.preventWatchingCheckedAttribute) {
 			this.cmInput.emit({ isChecked: this.checked, triggeredBy: 'API' })
 		}
 	}
