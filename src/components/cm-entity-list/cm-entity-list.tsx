@@ -223,6 +223,7 @@ export class CmEntityList {
 					{this.groupOptions.length ? (
 						<div class="cell">
 							<cm-checkbox
+								preventWatchingCheckedAttribute
 								class={{
 									visible: this.selectedEntities.length > 0,
 								}}
