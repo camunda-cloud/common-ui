@@ -21,8 +21,8 @@ import {
 	shadow: true,
 })
 export class CmModal {
-	confirm: () => void
-	cancel: () => void
+	promise: Promise<'confirm' | 'cancel'> | undefined
+	promiseResolver: ((value: 'confirm' | 'cancel') => void) | undefined
 
 	@State() isOpen: boolean = false
 	@Prop({ mutable: true }) headline: string = ''
@@ -41,24 +41,42 @@ export class CmModal {
 	 */
 	@Method()
 	async open() {
-		return new Promise<'confirm' | 'cancel'>((resolve) => {
-			this.isOpen = true
-			;(
-				this.el.querySelector(
-					'cm-button[slot="confirm"]',
-				) as HTMLCmButtonElement
-			).focus()
-
-			this.confirm = () => {
-				this.isOpen = false
-				resolve('confirm')
-			}
-
-			this.cancel = () => {
-				this.isOpen = false
-				resolve('cancel')
-			}
+		this.promise = new Promise<'confirm' | 'cancel'>((resolve) => {
+			this.promiseResolver = resolve
 		})
+
+		this.isOpen = true
+		;(
+			this.el.querySelector(
+				'cm-button[slot="confirm"]',
+			) as HTMLCmButtonElement
+		).focus()
+
+		return this.promise
+	}
+
+	/**
+	 * Triggers the 'confirm' action on the modal, if it is open.
+	 */
+	@Method()
+	async confirm() {
+		if (this.isOpen) {
+			this.isOpen = false
+			this.promiseResolver('confirm')
+			return this.promise
+		}
+	}
+
+	/**
+	 * Triggers the 'cancel' action on the modal, if it is open.
+	 */
+	@Method()
+	async cancel() {
+		if (this.isOpen) {
+			this.isOpen = false
+			this.promiseResolver('cancel')
+			return this.promise
+		}
 	}
 
 	componentDidLoad() {
