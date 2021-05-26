@@ -183,6 +183,14 @@ export class CmDropdown {
 							onClick={() => {
 								this.isOpen = !this.isOpen
 							}}
+							onKeyDown={(event) => {
+								if (
+									event.key === ' ' ||
+									event.key === 'Enter'
+								) {
+									this.isOpen = !this.isOpen
+								}
+							}}
 						>
 							{this.trigger.label} <cm-icon icon="down"></cm-icon>
 						</div>
