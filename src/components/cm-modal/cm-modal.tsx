@@ -46,11 +46,8 @@ export class CmModal {
 		})
 
 		this.isOpen = true
-		;(
-			this.el.querySelector(
-				'cm-button[slot="confirm"]',
-			) as HTMLCmButtonElement
-		).focus()
+
+		this.el.focus()
 
 		return this.promise
 	}
