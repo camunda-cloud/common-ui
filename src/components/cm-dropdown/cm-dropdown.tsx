@@ -161,7 +161,6 @@ export class CmDropdown {
 				trigger = (
 					<div class="trigger">
 						<cm-icon-button
-							tabindex="0"
 							icon={this.trigger.icon}
 							onCmPress={() => {
 								this.isOpen = !this.isOpen
