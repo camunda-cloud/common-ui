@@ -48,6 +48,7 @@ export class CmToggle {
 		if (event.key === ' ') {
 			if (!this.disabled) {
 				this.toggleCheck({ triggeredBy: 'User' })
+				event.preventDefault()
 			}
 		}
 	}

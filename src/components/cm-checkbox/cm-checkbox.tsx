@@ -49,6 +49,7 @@ export class CmCheckbox {
 		if (event.key === ' ') {
 			if (!this.disabled) {
 				this.toggleCheck({ triggeredBy: 'User' })
+				event.preventDefault()
 			}
 		}
 	}
