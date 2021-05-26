@@ -42,12 +42,12 @@
 				margin: 0px;
 				padding: 0px;
 				font-weight: normal;
-				font-size: 17px;
+				font-size: 18px;
 				font-family: var(--cm-font-text);
 				color: var(--cm-color-ui-dark4);
 			}
 
-			.header cm-select {
+			.header cm-filter {
 				margin-left: 10px;
 			}
 		</style>
@@ -62,25 +62,27 @@
 
 		<cm-page style="position: relative">
 			<div class="header" slot="header">
-				<h1>Components</h1>
-				<cm-text
-					>Theme:
-					<cm-select id="themeSelect"></cm-select>
-				</cm-text>
+				<h1>Component Testbed</h1>
+				<cm-text>Theme: <cm-filter></cm-filter></cm-text>
 				<script>
 					document.addEventListener('readystatechange', () => {
-						let themeSelect = document.querySelector('#themeSelect')
+						let themeFilter = document.querySelector('cm-filter')
 
-						themeSelect.options = [
+						themeFilter.filters = [
 							{ label: 'Automatic', value: 'Automatic' },
 							{ label: 'Dark', value: 'Dark' },
 							{ label: 'Light', value: 'Light' },
 						]
 
-						themeSelect.addEventListener('cmInput', (event) => {
-							document.querySelector('cm-context').theme =
-								event.detail.newValue
-						})
+						themeFilter.activeFilterIndex = 2
+
+						themeFilter.addEventListener(
+							'cmFilterSelected',
+							(event) => {
+								document.querySelector('cm-context').theme =
+									event.detail.value
+							},
+						)
 					})
 				</script>
 			</div>
@@ -638,71 +640,85 @@
 				</script>
 			</cm-page-tab>
 			<cm-page-tab label="Dropdown">
-				<div style="display: grid">
+				<div style="display: grid; grid-auto-flow: column">
+					<cm-dropdown style="justify-self: flex-start"></cm-dropdown>
+					<cm-dropdown style="justify-self: center"></cm-dropdown>
 					<cm-dropdown style="justify-self: flex-end"></cm-dropdown>
 
 					<script>
-						let dropdown = document.querySelector('cm-dropdown')
+						let dropdowns = document.querySelectorAll('cm-dropdown')
 
-						dropdown.trigger = {
+						dropdowns[0].trigger = {
 							type: 'button',
 							label: 'Test',
 							appearance: 'primary',
 						}
 
-						dropdown.options = [
-							{
-								title: 'test',
-								options: [
-									{
-										title: 'Safe',
-										label: 'Click me to dismiss!',
-										handler: () => {
-											console.log('Option 1')
-										},
-									},
-									{
-										title: 'Safe',
-										label: 'Click me and we stay open!',
-										handler: (event) => {
-											console.log('Option 2')
-											event.preventDismissal()
-										},
-									},
+						dropdowns[1].trigger = {
+							type: 'label',
+							label: 'Test',
+						}
 
-									{
-										title: 'Danger!',
-										label: 'I am dangerous.',
-										isDangerous: true,
-										handler: (event) => {
-											console.log('Option 3')
-										},
-									},
-								],
-							},
+						dropdowns[2].trigger = {
+							type: 'icon',
+							icon: 'contextMenu',
+						}
 
-							{
-								title: 'Disabled',
-								options: [
-									{
-										label: 'I am disabled.',
-										isDisabled: true,
-										handler: (event) => {
-											console.log('Option 4')
+						dropdowns.forEach((dropdown) => {
+							dropdown.options = [
+								{
+									title: 'test',
+									options: [
+										{
+											title: 'Safe',
+											label: 'Click me to dismiss!',
+											handler: () => {
+												console.log('Option 1')
+											},
 										},
-									},
-									{
-										label: 'I am dangerously disabled.',
-										isDangerous: true,
-										isDisabled: true,
+										{
+											title: 'Safe',
+											label: 'Click me and we stay open!',
+											handler: (event) => {
+												console.log('Option 2')
+												event.preventDismissal()
+											},
+										},
 
-										handler: (event) => {
-											console.log('Option 5')
+										{
+											title: 'Danger!',
+											label: 'I am dangerous.',
+											isDangerous: true,
+											handler: (event) => {
+												console.log('Option 3')
+											},
 										},
-									},
-								],
-							},
-						]
+									],
+								},
+
+								{
+									title: 'Disabled',
+									options: [
+										{
+											label: 'I am disabled.',
+											isDisabled: true,
+											handler: (event) => {
+												console.log('Option 4')
+											},
+										},
+										{
+											label: 'I am dangerously disabled.',
+											isDangerous: true,
+											isDisabled: true,
+
+											handler: (event) => {
+												console.log('Option 5')
+											},
+										},
+									],
+								},
+							]
+						})
 					</script>
 				</div>
 			</cm-page-tab>
@@ -768,7 +784,9 @@
 				<div style="display: grid">
 					<cm-filter></cm-filter>
 					<script>
-						let filter = document.querySelector('cm-filter')
+						let filter = document.querySelector(
+							'cm-page-tab cm-filter',
+						)
 						filter.addEventListener('cmFilterSelected', (event) => {
 							console.log(event.detail)
 						})
