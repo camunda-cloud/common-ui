@@ -138,7 +138,15 @@ export class CmCheckbox {
 						role="checkbox"
 						aria-disabled={this.disabled}
 					></div>
-					<label>{this.label}</label>
+					<label
+						onClick={() => {
+							if (!this.disabled) {
+								this.checkbox.focus()
+							}
+						}}
+					>
+						{this.label}
+					</label>
 				</div>
 			</Host>
 		)
