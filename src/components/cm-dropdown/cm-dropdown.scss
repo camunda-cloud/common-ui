@@ -156,6 +156,37 @@
 			box-shadow: unset;
 		}
 	}
+
+	.label {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: flex-start;
+		gap: 8px;
+		padding: 5px 10px;
+		padding-right: 5px;
+		border-radius: 5px;
+
+		cursor: pointer;
+		user-select: none;
+
+		transition: all 0.2s linear;
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover,
+		&:focus-visible {
+			background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+		}
+
+		.text {
+			font-family: var(--cm-font-text);
+			font-size: 15px;
+			font-weight: 500;
+			color: var(--cm-color-ui-light6);
+		}
+	}
 }
 
 .flyout {

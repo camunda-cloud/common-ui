@@ -45,7 +45,12 @@ export class CmDropdown {
 				type: 'button'
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
-		  } = { type: 'button', label: '', appearance: 'main' }
+		  }
+		| { type: 'label'; label: string } = {
+		type: 'button',
+		label: '',
+		appearance: 'main',
+	}
 
 	@Prop({ mutable: true }) options: Array<DropdownOptionGroup> = []
 
@@ -133,7 +138,26 @@ export class CmDropdown {
 
 		let trigger: any, flyout: any
 		if (this.trigger) {
-			if (this.trigger.type === 'icon') {
+			if (this.trigger.type === 'label') {
+				trigger = (
+					<div
+						class="trigger"
+						onClick={() => {
+							this.isOpen = !this.isOpen
+						}}
+						onKeyDown={(event) => {
+							if (event.key === ' ' || event.key === 'Enter') {
+								this.isOpen = !this.isOpen
+							}
+						}}
+					>
+						<div class="label" tabindex="0">
+							<div class="text">{this.trigger.label}</div>
+							<cm-icon icon="down" />
+						</div>
+					</div>
+				)
+			} else if (this.trigger.type === 'icon') {
 				trigger = (
 					<div class="trigger">
 						<cm-icon-button
