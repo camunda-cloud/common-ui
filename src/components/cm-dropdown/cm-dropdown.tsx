@@ -206,22 +206,28 @@ export class CmDropdown {
 			flyoutOffset = 6
 		}
 
+		let flyoutStyles: Record<string, string> = {
+			top: `${
+				this.el.getBoundingClientRect().bottom + 10 + flyoutOffset
+			}px`,
+		}
+
+		let flyoutWidth =
+			this.el.shadowRoot.querySelector('.flyout')?.clientWidth
+
+		let right =
+			document.documentElement.clientWidth -
+			this.el.getBoundingClientRect().right -
+			flyoutOffset
+
+		if (document.documentElement.clientWidth - right - flyoutWidth < 0) {
+			flyoutStyles.left = `${this.el.getBoundingClientRect().left}px`
+		} else {
+			flyoutStyles.right = `${right}px`
+		}
+
 		flyout = (
-			<div
-				class={flyoutClasses}
-				style={{
-					top: `${
-						this.el.getBoundingClientRect().bottom +
-						10 +
-						flyoutOffset
-					}px`,
-					right: `${
-						document.documentElement.clientWidth -
-						this.el.getBoundingClientRect().right -
-						flyoutOffset
-					}px`,
-				}}
-			>
+			<div class={flyoutClasses} style={flyoutStyles}>
 				{this.options.map((option) => {
 					return (
 						<div class="optionGroup">
