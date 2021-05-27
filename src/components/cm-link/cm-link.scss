@@ -7,11 +7,21 @@ a {
 	font-size: 14px;
 	font-weight: 400;
 
+	border-radius: 3px;
 	text-decoration: underline;
 	color: var(--cm-color-link);
 
 	&:hover {
 		color: var(--cm-color-link-hover);
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral),
+			0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
 	}
 
 	&:active {
