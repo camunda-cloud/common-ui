@@ -58,7 +58,7 @@ export class CmFilter {
 										})
 									}
 								}}
-								onKeyUp={(event) => {
+								onKeyDown={(event) => {
 									if (
 										!item.disabled &&
 										this.activeFilterIndex !== index &&
@@ -68,6 +68,8 @@ export class CmFilter {
 										this.cmFilterSelected.emit({
 											value: item.value,
 										})
+										
+										event.preventDefault()
 									}
 								}}
 								title={item.title}
