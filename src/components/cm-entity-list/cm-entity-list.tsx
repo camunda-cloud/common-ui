@@ -300,7 +300,6 @@ export class CmEntityList {
 					{this.groupOptions.length ? (
 						<div class="cell">
 							<cm-checkbox
-								preventAttributeEmit
 								class={{
 									visible: this.selectedEntities.length > 0,
 								}}
@@ -563,7 +562,6 @@ export class CmEntityList {
 							>
 								{this.groupOptions.length ? (
 									<cm-checkbox
-										preventAttributeEmit
 										class={{
 											visible:
 												this.selectedEntities.length >

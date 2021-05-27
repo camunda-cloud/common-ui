@@ -22,14 +22,13 @@ export class CmCheckbox {
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
 	/**
-	 * Prevents `cmInput` Events from being emitted when the checked attribute changes.
+	 * Enables `cmInput` Events being emitted when the checked attribute changes.
 	 */
-	@Prop({ reflect: true, mutable: true }) preventAttributeEmit: boolean =
-		false
+	@Prop({ reflect: true, mutable: true }) enableAttributeEmit: boolean = false
 
 	@Watch('checked')
 	checkedChangeHandler() {
-		if (!this.preventAttributeEmit) {
+		if (this.enableAttributeEmit) {
 			this.cmInput.emit({ isChecked: this.checked, triggeredBy: 'API' })
 		}
 	}
