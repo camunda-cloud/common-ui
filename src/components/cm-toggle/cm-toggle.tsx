@@ -126,22 +126,25 @@ export class CmToggle {
 
 		return (
 			<Host>
-				<div
-					tabindex={tabIndex}
-					class={toggleClasses}
-					ref={(element) => (this.toggle = element as HTMLDivElement)}
-					role="checkbox"
-					aria-disabled={this.disabled}
-				></div>
-				<label
-					onClick={() => {
-						if (!this.disabled) {
-							this.toggle.focus()
+				<div class="container" tabindex={tabIndex}>
+					<div
+						class={toggleClasses}
+						ref={(element) =>
+							(this.toggle = element as HTMLDivElement)
 						}
-					}}
-				>
-					{this.label}
-				</label>
+						role="checkbox"
+						aria-disabled={this.disabled}
+					></div>
+					<label
+						onClick={() => {
+							if (!this.disabled) {
+								this.toggle.focus()
+							}
+						}}
+					>
+						{this.label}
+					</label>
+				</div>
 			</Host>
 		)
 	}

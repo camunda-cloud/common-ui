@@ -128,9 +128,8 @@ export class CmCheckbox {
 
 		return (
 			<Host>
-				<div class="container">
+				<div class="container" tabindex={tabIndex}>
 					<div
-						tabindex={tabIndex}
 						class={checkboxClasses}
 						ref={(element) =>
 							(this.checkbox = element as HTMLDivElement)
@@ -138,15 +137,7 @@ export class CmCheckbox {
 						role="checkbox"
 						aria-disabled={this.disabled}
 					></div>
-					<label
-						onClick={() => {
-							if (!this.disabled) {
-								this.checkbox.focus()
-							}
-						}}
-					>
-						{this.label}
-					</label>
+					<label>{this.label}</label>
 				</div>
 			</Host>
 		)
