@@ -79,7 +79,7 @@ export class CmNotification {
 	}
 
 	render() {
-		let classes = {
+		let containerClasses = {
 			container: true,
 			[this.theme]: true,
 		}
@@ -147,10 +147,12 @@ export class CmNotification {
 
 		return (
 			<Host>
-				<div class={classes} role="alert">
-					<div class={`icon ${this.appearance}`} />
-					<div class="contentContainer">{description}</div>
-					{dismissButton}
+				<div class="shadowContainer">
+					<div class={containerClasses} role="alert">
+						<div class={`icon ${this.appearance}`} />
+						<div class="contentContainer">{description}</div>
+						{dismissButton}
+					</div>
 				</div>
 			</Host>
 		)
