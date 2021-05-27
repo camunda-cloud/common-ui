@@ -91,14 +91,15 @@ export class CmNotification {
 		if (this.description) {
 			if (this.navigationLabel) {
 				link = (
-					<cm-button
-						appearance="link"
-						label={this.navigationLabel}
-						onCmPress={() => {
+					<span
+						class="navigationLink"
+						onClick={() => {
 							this.cmNotificationNavigation.emit({})
 							this.dismiss()
 						}}
-					></cm-button>
+					>
+						{this.navigationLabel}
+					</span>
 				)
 			}
 
@@ -115,15 +116,15 @@ export class CmNotification {
 		} else {
 			if (this.navigationLabel) {
 				link = (
-					<cm-button
-						style={{ fontSize: '15px' }}
-						appearance="link"
-						label={this.navigationLabel}
-						onCmPress={() => {
+					<span
+						class="navigationLink header"
+						onClick={() => {
 							this.cmNotificationNavigation.emit({})
 							this.dismiss()
 						}}
-					></cm-button>
+					>
+						{this.navigationLabel}
+					</span>
 				)
 			}
 

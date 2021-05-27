@@ -75,9 +75,37 @@ cm-icon-button {
 	font-size: 13px;
 }
 
-cm-button {
-	display: inline-block;
+.navigationLink {
+	font-family: var(--cm-font-text);
 	font-size: 13px;
+	font-weight: 400;
+
+	text-decoration: underline;
+	color: var(--cm-color-link);
+
+	&.header {
+		font-size: 15px;
+	}
+
+	&:hover {
+		color: var(--cm-color-link-hover);
+	}
+
+	&:active {
+		color: var(--cm-color-link-active);
+	}
+
+	&.Dark {
+		color: var(--cm-color-link-dark);
+
+		&:hover {
+			color: var(--cm-color-link-hover-dark);
+		}
+
+		&:active {
+			color: var(--cm-color-link-active-dark);
+		}
+	}
 }
 
 .icon {
