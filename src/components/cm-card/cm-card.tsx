@@ -9,6 +9,11 @@ import {
 	State,
 } from '@stencil/core'
 
+/**
+ * @slot header - Use this slot to display Icons, Headlines or small Buttons. The container of this slot is `display: grid`, so `justify-self` allows horizontal positioning.
+ * @slot - The default slot for the general content of the Card.
+ * @slot footer - Use this slot for small buttons or links. The spacing to the default slot collapses, if this slot is empty. The container of this slot is `display: grid`, so `justify-self` allows horizontal positioning.
+ */
 @Component({
 	tag: 'cm-card',
 	styleUrl: 'cm-card.scss',
