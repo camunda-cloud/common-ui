@@ -28,6 +28,12 @@ export class CmButton implements ComponentInterface {
 	@Prop({ mutable: true }) label: string = ''
 	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
 	@Prop({ mutable: true }) disabled: boolean = false
+
+	/**
+	 * The loading state displays a spinner and effectively disables the button to user input. Does not affect buttons with the `link` appearance.
+	 */
+	@Prop({ mutable: true }) loading: boolean = false
+
 	@State() theme: Theme = 'Light'
 	@State() initialRender: boolean = true
 
@@ -43,14 +49,22 @@ export class CmButton implements ComponentInterface {
 	 */
 	@Method()
 	async press(options: { forcePress?: boolean } = {}) {
-		if (!this.disabled || options.forcePress) {
+		if (
+			(!this.disabled &&
+				(!this.loading ||
+					(this.loading && this.appearance === 'link'))) ||
+			options.forcePress
+		) {
 			this.cmPress.emit()
 		}
 	}
 
 	@Listen('click')
 	handleClick() {
-		if (!this.disabled) {
+		if (
+			!this.disabled &&
+			(!this.loading || (this.loading && this.appearance === 'link'))
+		) {
 			this.press()
 		}
 	}
@@ -58,7 +72,10 @@ export class CmButton implements ComponentInterface {
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
 		if (event.key === ' ' || event.key === 'Enter') {
-			if (!this.disabled) {
+			if (
+				!this.disabled &&
+				(!this.loading || (this.loading && this.appearance === 'link'))
+			) {
 				this.press()
 			}
 		}
@@ -83,6 +100,7 @@ export class CmButton implements ComponentInterface {
 			[this.size]: true,
 			initialRender: this.initialRender,
 			disabled: this.disabled,
+			loading: this.loading,
 		}
 
 		let tabIndex = 0
@@ -99,7 +117,16 @@ export class CmButton implements ComponentInterface {
 					role="button"
 					aria-disabled={this.disabled}
 				>
-					{this.label}
+					<cm-loader
+						size="small"
+						color={
+							this.appearance === 'danger' ||
+							this.appearance === 'primary'
+								? 'light'
+								: 'dark'
+						}
+					/>
+					<span>{this.label}</span>
 				</div>
 			</Host>
 		)
