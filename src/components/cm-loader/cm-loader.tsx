@@ -7,11 +7,13 @@ import { Component, Host, h, Prop } from '@stencil/core'
 })
 export class CmLoader {
 	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
+	@Prop({ mutable: true }) color: 'dark' | 'light' = 'dark'
 
 	render() {
 		let classes = {
 			spinner: true,
 			[this.size]: true,
+			[this.color]: true,
 		}
 
 		return (
