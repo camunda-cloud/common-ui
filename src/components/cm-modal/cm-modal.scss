@@ -1,5 +1,6 @@
 :host {
 	display: block;
+	position: absolute; // Prevent scrolling when the modal gets focussed
 }
 
 .container {
