@@ -74,8 +74,6 @@
 							{ label: 'Light', value: 'Light' },
 						]
 
-						themeFilter.activeFilterIndex = 2
-
 						themeFilter.addEventListener(
 							'cmFilterSelected',
 							(event) => {
@@ -83,6 +81,9 @@
 									event.detail.value
 							},
 						)
+
+						themeFilter.activeFilterIndex = 2
+						document.querySelector('cm-context').theme = 'Light'
 					})
 				</script>
 			</div>
@@ -95,6 +96,16 @@
 					<cm-button label="Test" size="small"></cm-button>
 					<cm-button label="Test" appearance="link"></cm-button>
 					<cm-icon-button icon="contextMenu"></cm-icon-button>
+
+					<script>
+						document
+							.querySelectorAll('cm-button')
+							.forEach((button) =>
+								button.addEventListener('cmPress', () => {
+									button.loading = !button.loading
+								}),
+							)
+					</script>
 				</div>
 				<div class="row">
 					<cm-button disabled label="Test"></cm-button>
@@ -124,7 +135,13 @@
 						icon="contextMenu"
 					></cm-icon-button>
 				</div>
-				<cm-modal headline="This is a cm-modal!">
+				<cm-modal
+					headline="This is a cm-modal!"
+					confirm-label="Confirm that can fail"
+					confirm-disabled
+					cancel-label="Dangerous Cancel"
+					cancel-appearance="danger"
+				>
 					<cm-text
 						>Lorem ipsum dolor sit amet consectetur adipisicing
 						elit. Ullam architecto, sunt nisi distinctio quo iste
@@ -245,23 +262,33 @@
 						distinctio, eum dignissimos harum commodi esse
 						architecto quos.</cm-text
 					>
-					<cm-button label="Cancel" slot="cancel"></cm-button>
-					<cm-button
-						label="Confirm"
-						appearance="danger"
-						slot="confirm"
-					></cm-button>
 				</cm-modal>
 
 				<script>
 					document
 						.querySelector('.row cm-icon-button')
 						.addEventListener('cmPress', () => {
-							document
-								.querySelector('cm-modal')
-								.open()
+							let modal = document.querySelector('cm-modal')
+
+							setTimeout(() => {
+								modal.confirmDisabled = false
+							}, 2000)
+
+							modal
+								.open(() => {
+									return new Promise((resolve, reject) => {
+										setTimeout(() => {
+											if (Math.random() < 0.8) {
+												resolve()
+											} else {
+												reject()
+											}
+										}, 2000)
+									})
+								})
 								.then((result) => {
 									console.log(result)
+									modal.confirmDisabled = true
 								})
 						})
 				</script>
@@ -405,7 +432,7 @@
 					entityList.columns = [
 						{
 							name: 'Test',
-							width: '800px',
+							width: '300px',
 							overrideCSS: {
 								fontWeight: 500,
 								color: 'var(--cm-color-dark-04)',
@@ -814,6 +841,202 @@
 							},
 						]
 					</script>
+				</div>
+			</cm-page-tab>
+			<cm-page-tab label="Icons">
+				<div style="display: grid">
+					<div class="row">
+						<cm-icon icon="check" color="bright"></cm-icon>
+						<cm-icon icon="check" color="medium"></cm-icon>
+						<cm-icon icon="check" color="dark"></cm-icon>
+						<cm-icon icon="check" color="success"></cm-icon>
+						<cm-icon icon="check" color="warning"></cm-icon>
+						<cm-icon icon="check" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="close" color="bright"></cm-icon>
+						<cm-icon icon="close" color="medium"></cm-icon>
+						<cm-icon icon="close" color="dark"></cm-icon>
+						<cm-icon icon="close" color="success"></cm-icon>
+						<cm-icon icon="close" color="warning"></cm-icon>
+						<cm-icon icon="close" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="closeLarge" color="bright"></cm-icon>
+						<cm-icon icon="closeLarge" color="medium"></cm-icon>
+						<cm-icon icon="closeLarge" color="dark"></cm-icon>
+						<cm-icon icon="closeLarge" color="success"></cm-icon>
+						<cm-icon icon="closeLarge" color="warning"></cm-icon>
+						<cm-icon icon="closeLarge" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="contextMenu" color="bright"></cm-icon>
+						<cm-icon icon="contextMenu" color="medium"></cm-icon>
+						<cm-icon icon="contextMenu" color="dark"></cm-icon>
+						<cm-icon icon="contextMenu" color="success"></cm-icon>
+						<cm-icon icon="contextMenu" color="warning"></cm-icon>
+						<cm-icon icon="contextMenu" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="copy" color="bright"></cm-icon>
+						<cm-icon icon="copy" color="medium"></cm-icon>
+						<cm-icon icon="copy" color="dark"></cm-icon>
+						<cm-icon icon="copy" color="success"></cm-icon>
+						<cm-icon icon="copy" color="warning"></cm-icon>
+						<cm-icon icon="copy" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="delete" color="bright"></cm-icon>
+						<cm-icon icon="delete" color="medium"></cm-icon>
+						<cm-icon icon="delete" color="dark"></cm-icon>
+						<cm-icon icon="delete" color="success"></cm-icon>
+						<cm-icon icon="delete" color="warning"></cm-icon>
+						<cm-icon icon="delete" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="document" color="bright"></cm-icon>
+						<cm-icon icon="document" color="medium"></cm-icon>
+						<cm-icon icon="document" color="dark"></cm-icon>
+						<cm-icon icon="document" color="success"></cm-icon>
+						<cm-icon icon="document" color="warning"></cm-icon>
+						<cm-icon icon="document" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="down" color="bright"></cm-icon>
+						<cm-icon icon="down" color="medium"></cm-icon>
+						<cm-icon icon="down" color="dark"></cm-icon>
+						<cm-icon icon="down" color="success"></cm-icon>
+						<cm-icon icon="down" color="warning"></cm-icon>
+						<cm-icon icon="down" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="edit" color="bright"></cm-icon>
+						<cm-icon icon="edit" color="medium"></cm-icon>
+						<cm-icon icon="edit" color="dark"></cm-icon>
+						<cm-icon icon="edit" color="success"></cm-icon>
+						<cm-icon icon="edit" color="warning"></cm-icon>
+						<cm-icon icon="edit" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="email" color="bright"></cm-icon>
+						<cm-icon icon="email" color="medium"></cm-icon>
+						<cm-icon icon="email" color="dark"></cm-icon>
+						<cm-icon icon="email" color="success"></cm-icon>
+						<cm-icon icon="email" color="warning"></cm-icon>
+						<cm-icon icon="email" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="external" color="bright"></cm-icon>
+						<cm-icon icon="external" color="medium"></cm-icon>
+						<cm-icon icon="external" color="dark"></cm-icon>
+						<cm-icon icon="external" color="success"></cm-icon>
+						<cm-icon icon="external" color="warning"></cm-icon>
+						<cm-icon icon="external" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="help" color="bright"></cm-icon>
+						<cm-icon icon="help" color="medium"></cm-icon>
+						<cm-icon icon="help" color="dark"></cm-icon>
+						<cm-icon icon="help" color="success"></cm-icon>
+						<cm-icon icon="help" color="warning"></cm-icon>
+						<cm-icon icon="help" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="hide" color="bright"></cm-icon>
+						<cm-icon icon="hide" color="medium"></cm-icon>
+						<cm-icon icon="hide" color="dark"></cm-icon>
+						<cm-icon icon="hide" color="success"></cm-icon>
+						<cm-icon icon="hide" color="warning"></cm-icon>
+						<cm-icon icon="hide" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="information" color="bright"></cm-icon>
+						<cm-icon icon="information" color="medium"></cm-icon>
+						<cm-icon icon="information" color="dark"></cm-icon>
+						<cm-icon icon="information" color="success"></cm-icon>
+						<cm-icon icon="information" color="warning"></cm-icon>
+						<cm-icon icon="information" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="left" color="bright"></cm-icon>
+						<cm-icon icon="left" color="medium"></cm-icon>
+						<cm-icon icon="left" color="dark"></cm-icon>
+						<cm-icon icon="left" color="success"></cm-icon>
+						<cm-icon icon="left" color="warning"></cm-icon>
+						<cm-icon icon="left" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="minus" color="bright"></cm-icon>
+						<cm-icon icon="minus" color="medium"></cm-icon>
+						<cm-icon icon="minus" color="dark"></cm-icon>
+						<cm-icon icon="minus" color="success"></cm-icon>
+						<cm-icon icon="minus" color="warning"></cm-icon>
+						<cm-icon icon="minus" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="plus" color="bright"></cm-icon>
+						<cm-icon icon="plus" color="medium"></cm-icon>
+						<cm-icon icon="plus" color="dark"></cm-icon>
+						<cm-icon icon="plus" color="success"></cm-icon>
+						<cm-icon icon="plus" color="warning"></cm-icon>
+						<cm-icon icon="plus" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="right" color="bright"></cm-icon>
+						<cm-icon icon="right" color="medium"></cm-icon>
+						<cm-icon icon="right" color="dark"></cm-icon>
+						<cm-icon icon="right" color="success"></cm-icon>
+						<cm-icon icon="right" color="warning"></cm-icon>
+						<cm-icon icon="right" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="search" color="bright"></cm-icon>
+						<cm-icon icon="search" color="medium"></cm-icon>
+						<cm-icon icon="search" color="dark"></cm-icon>
+						<cm-icon icon="search" color="success"></cm-icon>
+						<cm-icon icon="search" color="warning"></cm-icon>
+						<cm-icon icon="search" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="show" color="bright"></cm-icon>
+						<cm-icon icon="show" color="medium"></cm-icon>
+						<cm-icon icon="show" color="dark"></cm-icon>
+						<cm-icon icon="show" color="success"></cm-icon>
+						<cm-icon icon="show" color="warning"></cm-icon>
+						<cm-icon icon="show" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="sort" color="bright"></cm-icon>
+						<cm-icon icon="sort" color="medium"></cm-icon>
+						<cm-icon icon="sort" color="dark"></cm-icon>
+						<cm-icon icon="sort" color="success"></cm-icon>
+						<cm-icon icon="sort" color="warning"></cm-icon>
+						<cm-icon icon="sort" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="stop" color="bright"></cm-icon>
+						<cm-icon icon="stop" color="medium"></cm-icon>
+						<cm-icon icon="stop" color="dark"></cm-icon>
+						<cm-icon icon="stop" color="success"></cm-icon>
+						<cm-icon icon="stop" color="warning"></cm-icon>
+						<cm-icon icon="stop" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="up" color="bright"></cm-icon>
+						<cm-icon icon="up" color="medium"></cm-icon>
+						<cm-icon icon="up" color="dark"></cm-icon>
+						<cm-icon icon="up" color="success"></cm-icon>
+						<cm-icon icon="up" color="warning"></cm-icon>
+						<cm-icon icon="up" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="warning" color="bright"></cm-icon>
+						<cm-icon icon="warning" color="medium"></cm-icon>
+						<cm-icon icon="warning" color="dark"></cm-icon>
+						<cm-icon icon="warning" color="success"></cm-icon>
+						<cm-icon icon="warning" color="warning"></cm-icon>
+						<cm-icon icon="warning" color="danger"></cm-icon>
+					</div>
 				</div>
 			</cm-page-tab>
 		</cm-page>
