@@ -19,10 +19,10 @@ export class CmPageTabHandle {
 	@Element() root: HTMLCmPageTabHandleElement
 	span: HTMLSpanElement
 
-	@Prop() label: string
+	@Prop({ mutable: true }) label: string
 
 	private readonly defaultActive = false
-	@Prop({ reflect: true }) active: boolean = this.defaultActive
+	@Prop({ mutable: true, reflect: true }) active: boolean = this.defaultActive
 
 	@Watch('active')
 	activeWatchHandler(newValue: boolean) {

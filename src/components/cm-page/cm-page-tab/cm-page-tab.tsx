@@ -22,14 +22,14 @@ export class CmPageTab {
 	 */
 	@Event() tabModified: EventEmitter
 
-	@Prop({ reflect: true, mutable: true }) label: string
+	@Prop({ mutable: true, reflect: true }) label: string
 	@Watch('label')
 	labelWatchHandler() {
 		this.tabModified.emit()
 	}
 
 	private readonly defaultActive = false
-	@Prop({ reflect: true }) active: boolean = this.defaultActive
+	@Prop({ mutable: true, reflect: true }) active: boolean = this.defaultActive
 	@Watch('active')
 	activeWatchHandler(newValue: boolean) {
 		if (newValue === null || newValue === undefined) {

@@ -6,8 +6,8 @@ import { Component, h, Prop, Host } from '@stencil/core'
 	shadow: false,
 })
 export class CmDatalistItem {
-	@Prop() labelWidth: string = '250px'
-	@Prop() label: string = ''
+	@Prop({ mutable: true }) labelWidth: string = '250px'
+	@Prop({ mutable: true }) label: string = ''
 
 	render() {
 		return (
