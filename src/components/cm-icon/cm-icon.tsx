@@ -8,12 +8,14 @@ import { onThemeChange, Theme } from '../../globalHelpers'
 })
 export class CmIcon {
 	@Prop({ mutable: true }) icon:
+		| 'check'
 		| 'contextMenu'
 		| 'close'
 		| 'closeLarge'
 		| 'search'
 		| 'help'
 		| 'information'
+		| 'email'
 		| 'sort'
 		| 'plus'
 		| 'minus'
@@ -26,6 +28,10 @@ export class CmIcon {
 		| 'down'
 		| 'left'
 		| 'right'
+		| 'document'
+		| 'external'
+		| 'warning'
+		| 'stop'
 
 	@State() theme: Theme = 'Light'
 
