@@ -25,6 +25,16 @@ export class CmContext {
 
 	@Watch('theme')
 	themeChangeHandler() {
+		if (
+			this.theme !== 'Light' &&
+			this.theme !== 'Dark' &&
+			this.theme !== 'Automatic'
+		) {
+			console.error(
+				`Invalid theme property "${this.theme}" set on cm-context!`,
+			)
+		}
+
 		this.themeChanged.emit({ theme: this._getResolvedTheme() })
 	}
 
