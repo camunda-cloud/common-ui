@@ -135,6 +135,7 @@
 			grid-auto-flow: column;
 			grid-auto-columns: minmax(0, max-content);
 			gap: 5px;
+			align-items: center;
 
 			font-family: var(--cm-font-text);
 			font-size: 14px;

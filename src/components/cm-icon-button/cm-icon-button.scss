@@ -15,6 +15,11 @@ div {
 	cursor: pointer;
 	z-index: 1;
 
+	cm-icon {
+		align-self: center;
+		justify-self: center;
+	}
+
 	.disabled {
 		pointer-events: none;
 		cursor: default;
@@ -24,9 +29,12 @@ div {
 
 	&::before {
 		content: '';
+
 		position: absolute;
-		top: -6px;
-		left: -6px;
+		top: 50%;
+		left: 50%;
+
+		transform: translate(-50%, -50%);
 
 		height: 32px;
 		width: 32px;

@@ -39,7 +39,7 @@
 		text-align: center;
 
 		grid-auto-flow: column;
-		grid-auto-columns: max-content 20px;
+		grid-auto-columns: max-content max-content;
 		gap: 5px;
 
 		align-items: center;
@@ -88,10 +88,6 @@
 			background-color: var(--cm-color-blue-base);
 			border: solid 1px var(--cm-color-button-blue3);
 			color: var(--cm-color-ui-light4);
-		}
-
-		&.primary cm-icon {
-			filter: brightness(100);
 		}
 
 		&.primary:hover {
@@ -160,7 +156,7 @@
 	.label {
 		display: grid;
 		grid-auto-flow: column;
-		align-items: flex-start;
+		align-items: center;
 		gap: 8px;
 		padding: 5px 10px;
 		padding-right: 5px;

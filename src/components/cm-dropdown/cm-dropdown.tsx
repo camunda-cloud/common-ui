@@ -191,7 +191,12 @@ export class CmDropdown {
 								}
 							}}
 						>
-							{this.trigger.label} <cm-icon icon="down"></cm-icon>
+							{this.trigger.label}
+							<cm-icon
+								icon="down"
+								color="bright"
+								ignoreTheme
+							></cm-icon>
 						</div>
 					</div>
 				)

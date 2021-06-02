@@ -92,7 +92,7 @@ export class CmIconButton implements ComponentInterface {
 					aria-disabled={this.disabled}
 					aria-label={this.icon}
 				>
-					<cm-icon icon={this.icon} />
+					<cm-icon icon={this.icon} ignoreTheme />
 				</div>
 			</Host>
 		)
