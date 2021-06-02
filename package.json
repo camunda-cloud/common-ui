@@ -31,14 +31,14 @@
   },
   "devDependencies": {
     "@babel/core": "7.14.0",
-    "@camunda-cloud/common-ui": "0.0.16-rc7",
-    "@camunda-cloud/common-ui-react": "0.0.16-rc7",
+    "@camunda-cloud/common-ui": "0.0.16",
+    "@camunda-cloud/common-ui-react": "0.0.16",
     "@stencil/core": "2.5.2",
     "@stencil/react-output-target": "0.0.9",
     "@stencil/sass": "1.4.1",
-    "@storybook/addon-docs": "6.2.9",
-    "@storybook/react": "6.2.9",
-    "@storybook/storybook-deployer": "2.8.7",
+    "@storybook/addon-docs": "6.3.0-beta.9",
+    "@storybook/react": "6.3.0-beta.9",
+    "@storybook/storybook-deployer": "2.8.8",
     "@types/jest": "26.0.23",
     "@types/prettier": "2.2.3",
     "@types/puppeteer": "5.4.3",
@@ -49,15 +49,18 @@
     "mutation-observer": "1.0.3",
     "prettier": "2.3.0",
     "puppeteer": "9.1.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-is": "17.0.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-is": "16.13.1",
+    "typescript": "4.3.2",
     "workbox-build": "6.1.5",
-    "write-file-webpack-plugin": "4.5.1"
+    "write-file-webpack-plugin": "4.5.1",
+    "webpack": "4.46.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/camunda-cloud/common-ui.git"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

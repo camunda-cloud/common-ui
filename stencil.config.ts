@@ -50,12 +50,12 @@ export const config: Config = {
 							'| -------- | --------- | ----------- | ---- | ------- |\n'
 
 						for (let property of component.props) {
-							readme += `|<code>${property.name}</code>`
+							readme += `|\`${property.name}\``
 
 							if (property.attr) {
-								readme += `|<code class="no-break">${property.attr}</code>`
+								readme += `|\`${property.attr}\``
 							} else {
-								readme += `|<code>-</code>`
+								readme += `|\`-\``
 							}
 
 							if (property.docs) {
@@ -64,13 +64,13 @@ export const config: Config = {
 								readme += `|`
 							}
 
-							readme += `|<code>${property.type}</code>`
+							readme += `|\`${property.type}\``
 							if (property.default) {
-								readme += `|<code>${property.default
+								readme += `|\`${property.default
 									.split('\n')
-									.join(' ')}</code>|\n`
+									.join(' ')}\`|\n`
 							} else {
-								readme += `|\n`
+								readme += `||\n`
 							}
 						}
 					}
@@ -85,7 +85,7 @@ export const config: Config = {
 						readme += '| ---- | ----------- | --------- |\n'
 
 						for (let method of component.methods) {
-							readme += `|<code>${method.name}</code>`
+							readme += `|\`${method.name}\``
 
 							if (method.docs) {
 								readme += `|<div>${method.docs}</div>`
@@ -93,7 +93,7 @@ export const config: Config = {
 								readme += `|`
 							}
 
-							readme += `|<code>${method.signature}</code>|\n`
+							readme += `|\`${method.signature}\`|\n`
 						}
 					}
 
@@ -107,7 +107,7 @@ export const config: Config = {
 						readme += '| ----- | ----------- | ---- |\n'
 
 						for (let event of component.events) {
-							readme += `|<code>${event.event}</code>`
+							readme += `|\`${event.event}\``
 
 							if (event.docs) {
 								readme += `|<div>${event.docs}</div>`
@@ -115,7 +115,7 @@ export const config: Config = {
 								readme += `|`
 							}
 
-							readme += `|<code>${event.detail}</code>|\n`
+							readme += `|\`${event.detail}\`|\n`
 						}
 					}
 
@@ -130,7 +130,7 @@ export const config: Config = {
 
 						for (let slot of component.slots) {
 							if (slot.name) {
-								readme += `|<code>${slot.name}</code>`
+								readme += `|\`${slot.name}\``
 							} else {
 								readme += `|`
 							}

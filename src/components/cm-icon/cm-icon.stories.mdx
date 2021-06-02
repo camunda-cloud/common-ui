@@ -1,4 +1,4 @@
-import { Meta, Canvas, Description } from '@storybook/addon-docs/blocks'
+import { Meta, Canvas, Description } from '@storybook/addon-docs'
 import { CmIcon } from '@camunda-cloud/common-ui-react'
 
 import Readme from './readme.md'
@@ -7,14 +7,15 @@ import Readme from './readme.md'
 
 # Icon
 
-Renders a single icon. For the full list of icons consult the technical documentation at the bottom of this page.
+Renders a single icon. A color can be set, which automatically adapts to the active Theme - `ignoreTheme` let's you turn this behaviour off.
 
 <Canvas>
-	<CmIcon icon="information" />
-	<CmIcon icon="delete" />
+	<CmIcon icon="information" color="medium" />
+	<CmIcon icon="delete" color="danger" />
 	<CmIcon icon="hide" />
 	<CmIcon icon="search" />
 	<CmIcon icon="sort" />
+	<CmIcon icon="warning" color="warning" />
 	<CmIcon icon="contextMenu" />
 </Canvas>
 
