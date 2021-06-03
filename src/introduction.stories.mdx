@@ -21,14 +21,11 @@ Common UI has a couple of goals, chief among them are:
 
 Depending on your framework of choice, there are different packages available for you:
 
-All of these packages are hosted in the `@camunda-cloud` scope in the Github Package Registry.
-In order to install packages from the Githup Package Registry you need to log into it. [Find out how](https://github.com/features/packages).
-
 If you want to use the web components that are powering Common UI themselves, you want to install `@camunda-cloud/common-ui`.
 
 If you are building your App in React you will most likely want to use the React-wrapper to these web components: `@camunda-cloud/common-ui-react`.
 This is an automatically compiled set of very thin React wrappers around the web components - mostly to enable passing objects in attributes and
-align with some naming conventions of React (a `cm-press` Event turns into `onCmPress` for example).
+align with some naming conventions of React (a `cmPress` Event turns into `onCmPress` for example).
 
 Similarly, `@camunda-cloud/common-ui-angular` is available to enable use of `ngModel`.
 
@@ -69,15 +66,15 @@ applyPolyfills().then(() => {
 ## Conventions
 
 In order to stay as compliant with web standards as possible, this library refrains from reusing already standards-defined event names.
-Every event name is thus prefixed with a `cm-`.
+Every event name is thus prefixed with a `cm`.
 
 ## Notes
 
 This documentation is currently using `@camunda-cloud/common-ui-react` to keep code examples as brief as possible.
 The technical documentation is based on the web component variants, which are the source of truth. The code examples are impacted in the following ways:
 
-|            |            React            |            Angular            |              Web Components              |
-| ---------- | :-------------------------: | :---------------------------: | :--------------------------------------: |
-| Tag Names  |       `<CmButton />`        |   `<cm-button></cm-button>`   |        `<cm-button></cm-button>`         |
-| Attributes | `<CmLink openIn="sameTab">` | `<cm-link open-in="sameTab">` |      `<cm-link open-in="sameTab">`       |
-| Events     | `<CmButton onCmPress={fn}>` |  `<cm-button (cmPress)=fn>`   | `button.addEventListener("cmPress", fn)` |
+|            |            React            |            Angular             |              Web Components              |
+| ---------- | :-------------------------: | :----------------------------: | :--------------------------------------: |
+| Tag Names  |       `<CmButton />`        |   `<cm-button></cm-button>`    |        `<cm-button></cm-button>`         |
+| Attributes | `<CmLink openIn="sameTab">` | `<cm-link open-in="sameTab">`  |      `<cm-link open-in="sameTab">`       |
+| Events     | `<CmButton onCmPress={fn}>` | `<cm-button (cmPress)="fn()">` | `button.addEventListener("cmPress", fn)` |
