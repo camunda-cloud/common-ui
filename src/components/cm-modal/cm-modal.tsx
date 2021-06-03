@@ -11,8 +11,6 @@ import {
 
 /**
  * @slot - The default slot for the content of the Modal.
- * @slot cancel - Use this slot with a cm-button to provide an additional way of cancelling out of the modal
- * @slot confirm - Use this slot with a cm-button to provie a way of closing the modal with the Promise resolving to "confirm"
  */
 
 @Component({
@@ -21,12 +19,25 @@ import {
 	shadow: true,
 })
 export class CmModal {
-	promise: Promise<'confirm' | 'cancel'> | undefined
-	promiseResolver: ((value: 'confirm' | 'cancel') => void) | undefined
+	promise?: Promise<'confirm' | 'cancel'>
+	promiseResolver?: (value: 'confirm' | 'cancel') => void
+	preConfirmationHandler?: () => Promise<void>
 
 	@State() isOpen: boolean = false
-	@Prop({ mutable: true }) headline: string = ''
+	@State() confirmLoading: boolean = false
+
 	@Prop({ mutable: true }) position: 'top' | 'center' = 'center'
+
+	@Prop({ mutable: true }) headline: string = ''
+
+	@Prop({ mutable: true }) confirmLabel: string = ''
+	@Prop({ mutable: true }) confirmAppearance: 'primary' | 'danger' = 'primary'
+	@Prop({ mutable: true }) confirmDisabled: boolean = false
+
+	@Prop({ mutable: true }) cancelLabel: string = ''
+	@Prop({ mutable: true }) cancelAppearance: 'secondary' | 'danger' =
+		'secondary'
+
 	@Element() el: HTMLElement
 
 	@Listen('keydown')
@@ -37,10 +48,11 @@ export class CmModal {
 	}
 
 	/**
-	 * Opens the modal.
+	 * Opens the modal. Takes an optional handler for asynchronous confirm actions, which only trigger confirm if the returned Promise resolves successfully. While the Promise is unresolved, the Modal stays open and the ConfirmButton is in a loading state.
 	 */
 	@Method()
-	async open() {
+	async open(preConfirmationHandler?: () => Promise<void>) {
+		this.preConfirmationHandler = preConfirmationHandler
 		this.promise = new Promise<'confirm' | 'cancel'>((resolve) => {
 			this.promiseResolver = resolve
 		})
@@ -58,10 +70,25 @@ export class CmModal {
 	@Method()
 	async confirm() {
 		if (this.isOpen) {
-			this.isOpen = false
-			this.promiseResolver('confirm')
-			return this.promise
+			if (this.preConfirmationHandler) {
+				this.confirmLoading = true
+				this.preConfirmationHandler().then(
+					() => {
+						this.isOpen = false
+						this.promiseResolver('confirm')
+						this.confirmLoading = false
+					},
+					() => {
+						this.confirmLoading = false
+					},
+				)
+			} else {
+				this.isOpen = false
+				this.promiseResolver('confirm')
+			}
 		}
+
+		return this.promise
 	}
 
 	/**
@@ -72,23 +99,9 @@ export class CmModal {
 		if (this.isOpen) {
 			this.isOpen = false
 			this.promiseResolver('cancel')
-			return this.promise
 		}
-	}
 
-	componentDidLoad() {
-		let cancelSlot = this.el.shadowRoot.querySelector("slot[name='cancel']")
-		let confirmSlot = this.el.shadowRoot.querySelector(
-			"slot[name='confirm']",
-		)
-
-		cancelSlot.addEventListener('cmPress', () => {
-			this.cancel()
-		})
-
-		confirmSlot.addEventListener('cmPress', () => {
-			this.confirm()
-		})
+		return this.promise
 	}
 
 	render() {
@@ -113,8 +126,22 @@ export class CmModal {
 							<slot></slot>
 						</div>
 						<div class="buttons">
-							<slot name="cancel"></slot>
-							<slot name="confirm"></slot>
+							{this.cancelLabel !== '' ? (
+								<cm-button
+									appearance={this.cancelAppearance}
+									label={this.cancelLabel}
+									onCmPress={() => this.cancel()}
+								></cm-button>
+							) : (
+								''
+							)}
+							<cm-button
+								appearance={this.confirmAppearance}
+								label={this.confirmLabel}
+								loading={this.confirmLoading}
+								disabled={this.confirmDisabled}
+								onCmPress={() => this.confirm()}
+							></cm-button>
 						</div>
 					</div>
 				</div>

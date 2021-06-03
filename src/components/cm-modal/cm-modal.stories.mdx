@@ -18,10 +18,13 @@ The resulting promise resolves either to "confirm" - if the cm-button in the "co
 This can happen in a variety of ways: By pressing the `Esc` key, using the "Close" cm-icon-button in the top right, or pressing the cm-button (if provided) in the "cancel" slot.
 
 <Canvas>
-	<CmModal headline="An Example Modal">
+	<CmModal
+		headline="An Example Modal"
+		cancel-appearance="danger"
+		cancel-label="Abort"
+		confirm-label="Confirm"
+	>
 		<CmText>Some simple example Content in this modal.</CmText>
-		<CmButton appearance="danger" label="Abort" slot="cancel" />
-		<CmButton appearance="primary" label="Confirm" slot="confirm" />
 	</CmModal>
 	<CmButton
 		label="Show Modal"
