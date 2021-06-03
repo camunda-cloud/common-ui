@@ -10,6 +10,7 @@ import {
 	State,
 	Element,
 	Method,
+	Watch,
 } from '@stencil/core'
 import { onThemeChange, Theme } from '../../globalHelpers'
 
@@ -29,10 +30,17 @@ export class CmButton implements ComponentInterface {
 	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
 	@Prop({ mutable: true }) disabled: boolean = false
 
+	@Watch('disabled')
+	disabledHandler() {
+		if (this.disabled) {
+			this.el.shadowRoot.querySelector('span').classList.add('disabled')
+		}
+	}
 	/**
 	 * The loading state displays a spinner and effectively disables the button to user input. Does not affect buttons with the `link` appearance.
 	 */
-	@Prop({ mutable: true }) loading: boolean = false
+	@Prop({ mutable: true })
+	loading: boolean = false
 
 	@State() theme: Theme = 'Light'
 	@State() initialRender: boolean = true
@@ -90,6 +98,12 @@ export class CmButton implements ComponentInterface {
 	componentDidRender() {
 		requestAnimationFrame(() => {
 			this.initialRender = false
+
+			if (!this.disabled) {
+				this.el.shadowRoot
+					.querySelector('span')
+					.classList.remove('disabled')
+			}
 		})
 	}
 
