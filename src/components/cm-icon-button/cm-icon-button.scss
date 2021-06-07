@@ -20,7 +20,7 @@ div {
 		justify-self: center;
 	}
 
-	.disabled {
+	&.disabled {
 		pointer-events: none;
 		cursor: default;
 
