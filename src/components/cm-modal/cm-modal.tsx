@@ -25,6 +25,7 @@ export class CmModal {
 
 	@State() isOpen: boolean = false
 	@State() confirmLoading: boolean = false
+	@State() cancelDisabled: boolean = false
 
 	@Prop({ mutable: true }) position: 'top' | 'center' = 'center'
 
@@ -72,14 +73,18 @@ export class CmModal {
 		if (this.isOpen) {
 			if (this.preConfirmationHandler) {
 				this.confirmLoading = true
+				this.cancelDisabled = true
 				this.preConfirmationHandler().then(
 					() => {
 						this.isOpen = false
 						this.promiseResolver('confirm')
+
 						this.confirmLoading = false
+						this.cancelDisabled = false
 					},
 					() => {
 						this.confirmLoading = false
+						this.cancelDisabled = false
 					},
 				)
 			} else {
@@ -118,6 +123,7 @@ export class CmModal {
 						<div class="header">
 							<h1>{this.headline}</h1>
 							<cm-icon-button
+								disabled={this.cancelDisabled}
 								icon="closeLarge"
 								onCmPress={() => this.cancel()}
 							/>
@@ -128,6 +134,7 @@ export class CmModal {
 						<div class="buttons">
 							{this.cancelLabel !== '' ? (
 								<cm-button
+									disabled={this.cancelDisabled}
 									appearance={this.cancelAppearance}
 									label={this.cancelLabel}
 									onCmPress={() => this.cancel()}
