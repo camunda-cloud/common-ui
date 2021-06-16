@@ -5,7 +5,6 @@ import {
 	Prop,
 	Event,
 	EventEmitter,
-	Listen,
 	Element,
 	Method,
 } from '@stencil/core'
@@ -44,9 +43,9 @@ export class CmSelect {
 		}
 	}
 
-	@Listen('input')
-	inputHandler() {
-		let select = this.element.shadowRoot.querySelector('select')
+	inputHandler(event) {
+		let select = event.target
+
 		this.cmInput.emit({
 			newValue: select.options[select.selectedIndex].value,
 		})
@@ -68,7 +67,9 @@ export class CmSelect {
 		return (
 			<Host>
 				<div class={classes}>
-					<select>{renderedOptions}</select>
+					<select onInput={this.inputHandler.bind(this)}>
+						{renderedOptions}
+					</select>
 				</div>
 			</Host>
 		)
