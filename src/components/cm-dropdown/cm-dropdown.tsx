@@ -174,6 +174,14 @@ export class CmDropdown {
 					[this.trigger.appearance]: true,
 				}
 
+				let iconColor
+
+				if (this.trigger.appearance === 'primary') {
+					iconColor = 'bright'
+				} else {
+					iconColor = 'dark'
+				}
+
 				trigger = (
 					<div class="trigger">
 						<div
@@ -194,7 +202,7 @@ export class CmDropdown {
 							{this.trigger.label}
 							<cm-icon
 								icon="down"
-								color="bright"
+								color={iconColor}
 								ignoreTheme
 							></cm-icon>
 						</div>
