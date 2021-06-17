@@ -139,8 +139,6 @@
 					headline="This is a cm-modal!"
 					confirm-label="Confirm that can fail"
 					confirm-disabled
-					cancel-label="Dangerous Cancel"
-					cancel-appearance="danger"
 				>
 					<cm-text
 						>Lorem ipsum dolor sit amet consectetur adipisicing
@@ -667,10 +665,18 @@
 				</script>
 			</cm-page-tab>
 			<cm-page-tab label="Dropdown">
-				<div style="display: grid; grid-auto-flow: column">
-					<cm-dropdown style="justify-self: flex-start"></cm-dropdown>
-					<cm-dropdown style="justify-self: center"></cm-dropdown>
-					<cm-dropdown style="justify-self: flex-end"></cm-dropdown>
+				<div
+					style="
+						display: grid;
+						grid-auto-flow: column;
+						justify-content: space-between;
+						align-items: baseline;
+					"
+				>
+					<cm-dropdown></cm-dropdown>
+					<cm-dropdown></cm-dropdown>
+					<cm-dropdown></cm-dropdown>
+					<cm-dropdown></cm-dropdown>
 
 					<script>
 						let dropdowns = document.querySelectorAll('cm-dropdown')
@@ -682,11 +688,17 @@
 						}
 
 						dropdowns[1].trigger = {
+							type: 'button',
+							label: 'Test',
+							appearance: 'secondary',
+						}
+
+						dropdowns[2].trigger = {
 							type: 'label',
 							label: 'Test',
 						}
 
-						dropdowns[2].trigger = {
+						dropdowns[3].trigger = {
 							type: 'icon',
 							icon: 'contextMenu',
 						}
