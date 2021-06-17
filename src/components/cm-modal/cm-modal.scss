@@ -1,6 +1,10 @@
 :host {
 	display: block;
-	position: absolute; // Prevent scrolling when the modal gets focussed
+
+	// Prevent scrolling when the modal gets focussed
+	position: fixed;
+
+	z-index: 1000;
 }
 
 .container {
@@ -8,7 +12,6 @@
 	justify-content: center;
 
 	position: fixed;
-	z-index: 999; // Dont increase, it breaks Angulars Material UI dropdowns within modals
 
 	top: 0px;
 	left: 0px;
