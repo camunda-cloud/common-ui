@@ -59,7 +59,7 @@ header {
 .tabs {
 	padding: 40px 65px;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
 
 	background-color: var(--cm-color-ui-light2);
 }
