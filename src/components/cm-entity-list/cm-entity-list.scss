@@ -1,11 +1,13 @@
 :host {
 	display: block;
+	overflow: hidden;
 }
 
 .container {
 	background: var(--cm-color-ui-light2);
 	z-index: 1;
 	position: relative;
+	overflow: hidden;
 }
 
 .header {
@@ -162,6 +164,7 @@
 	display: grid;
 	gap: 15px;
 	z-index: 1;
+	overflow-y: scroll;
 
 	.entity {
 		box-sizing: border-box;
