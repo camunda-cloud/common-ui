@@ -32,7 +32,7 @@ export class CmButton implements ComponentInterface {
 
 	@Watch('disabled')
 	disabledHandler() {
-		if (this.disabled) {
+		if (this.disabled && !this.initialRender) {
 			this.el.shadowRoot.querySelector('span').classList.add('disabled')
 		}
 	}
