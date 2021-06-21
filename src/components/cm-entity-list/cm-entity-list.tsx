@@ -62,6 +62,7 @@ export class CmEntityList {
 	@State() selectedEntities: Array<Entity> = []
 	@State() isSearchOpen: boolean = false
 	@State() filter: string = ''
+	@State() entitiesAreScrolled: boolean = false
 
 	@Element() element: HTMLElement
 
@@ -532,10 +533,15 @@ export class CmEntityList {
 			)
 		}
 
+		let headerClasses = {
+			header: true,
+			entitiesAreScrolled: this.entitiesAreScrolled,
+		}
+
 		return (
 			<Host>
 				<div class="container">
-					<div class="header">
+					<div class={headerClasses}>
 						<div class="headline">{this.headline}</div>
 						<div class="buttons">
 							{search}
@@ -608,7 +614,13 @@ export class CmEntityList {
 							''
 						)}
 					</div>
-					<div class="entities">
+					<div
+						class="entities"
+						onScroll={(event) => {
+							this.entitiesAreScrolled =
+								(event.target as HTMLElement).scrollTop !== 0
+						}}
+					>
 						<div
 							style={{
 								display:

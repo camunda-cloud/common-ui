@@ -7,7 +7,11 @@
 	background: var(--cm-color-ui-light2);
 	z-index: 1;
 	position: relative;
-	overflow: hidden;
+	max-height: 100%;
+	display: grid;
+	grid-auto-rows: max-content 1fr;
+	padding: 0px 65px;
+	margin-left: -65px;
 }
 
 .header {
@@ -17,6 +21,11 @@
 		'headline      buttons'
 		'columnHeaders columnHeaders';
 	background: var(--cm-color-ui-light2);
+	position: relative;
+
+	&.entitiesAreScrolled {
+		box-shadow: inset 0px -1px 0px var(--cm-color-ui-light5);
+	}
 
 	.headline {
 		grid-area: headline;
