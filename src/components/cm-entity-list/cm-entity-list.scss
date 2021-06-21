@@ -169,6 +169,7 @@
 	position: relative;
 	box-sizing: border-box;
 	display: grid;
+	grid-auto-rows: max-content;
 	gap: 15px;
 	z-index: 1;
 	overflow-y: auto;
