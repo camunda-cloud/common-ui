@@ -8,6 +8,7 @@
 	z-index: 1;
 	position: relative;
 	max-height: 100%;
+	height: 100%;
 	display: grid;
 	grid-auto-rows: max-content 1fr;
 }
@@ -258,8 +259,8 @@
 		left: 0;
 
 		display: grid;
-		padding-top: 40px;
 		justify-content: center;
+		align-content: center;
 
 		background-color: rgba(247, 248, 250, 0.7);
 	}
