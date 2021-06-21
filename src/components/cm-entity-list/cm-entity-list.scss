@@ -164,7 +164,7 @@
 	display: grid;
 	gap: 15px;
 	z-index: 1;
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	.entity {
 		box-sizing: border-box;
