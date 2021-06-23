@@ -1,0 +1,157 @@
+:host {
+	display: inline-block;
+}
+
+.container {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content max-content 1fr max-content;
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: -6px;
+		left: -6px;
+		bottom: -6px;
+		right: -6px;
+
+		border-radius: 26px;
+
+		background-color: var(--cm-color-blue-base);
+
+		transition: all 0.2s linear;
+		opacity: 0;
+	}
+
+	&:not(.disabled):focus {
+		outline: none;
+	}
+
+	&:not(.disabled):focus-visible {
+		.radiobutton {
+			border-color: var(--cm-color-blue-base);
+		}
+
+		&::before {
+			opacity: 0.1;
+		}
+	}
+
+	&:not(.disabled):hover {
+		.radiobutton {
+			border-color: var(--cm-color-blue-base);
+		}
+
+		&::before {
+			opacity: 0.1;
+		}
+	}
+}
+
+.radiobutton {
+	position: relative;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+
+	background-color: var(--cm-color-blue-base);
+	border: 2px solid var(--cm-color-ui-light3);
+	border-radius: 100%;
+
+	vertical-align: bottom;
+	transition: all 0.2s linear;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+
+		border-radius: 100%;
+
+		background-color: var(--cm-color-ui-light4);
+
+		transition: all 0.2s linear;
+		transform-origin: center;
+	}
+
+	&::after {
+		content: '';
+
+		position: absolute;
+		top: 50%;
+		left: 50%;
+
+		transform: translate(-50%, -50%);
+
+		width: 10px;
+		height: 3px;
+		background: #3b3b3b;
+
+		opacity: 0;
+		transition: all 0.2s linear;
+	}
+
+	&.selected {
+		border-color: var(--cm-color-blue-base);
+
+		&::before {
+			transform: scale(0.5);
+		}
+	}
+
+	&.disabled {
+		background: var(--cm-color-ui-light1);
+		border-color: var(--cm-color-ui-light5);
+
+		&.indeterminate::after {
+			opacity: 0.5;
+		}
+
+		&.selected:not(.indeterminate)::before {
+			opacity: 0.5;
+		}
+	}
+}
+
+.beforeLabel {
+	display: grid;
+	align-items: center;
+
+	&:not(.empty) {
+		padding-left: 8px;
+		padding-right: 0px;
+	}
+}
+
+label {
+	display: inline-block;
+
+	padding-left: 8px;
+	padding-right: 4px;
+
+	user-select: none;
+
+	font-family: var(--cm-font-text);
+	font-size: 14px;
+
+	min-height: 20px;
+	line-height: 20px;
+
+	&:empty {
+		display: none;
+	}
+}
+
+.afterLabel {
+	display: grid;
+	align-items: center;
+
+	&:not(.empty) {
+		padding-left: 4px;
+		padding-right: 8px;
+	}
+}
