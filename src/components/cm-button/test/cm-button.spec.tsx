@@ -8,8 +8,12 @@ describe('cm-button', () => {
 			html: `<cm-button></cm-button>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-button tabindex="0" class="Light initialRender main normal" role="button">
+			<cm-button>
 				<mock:shadow-root>
+					<div class="Light initialRender main normal" role="button" tabindex="0">
+						<cm-loader color="dark" size="small"></cm-loader>
+						<span></span>
+					</div>
 				</mock:shadow-root>
 			</cm-button>
 		`)

@@ -10,7 +10,7 @@ describe('cm-loader', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-loader>
 				<mock:shadow-root>
-					<div class="normal spinner"></div>
+					<div class="dark normal spinner"></div>
 				</mock:shadow-root>
 			</cm-loader>
 		`)

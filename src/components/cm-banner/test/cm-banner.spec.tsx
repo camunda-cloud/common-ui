@@ -12,7 +12,9 @@ describe('cm-banner', () => {
 			<cm-banner>
 				<mock:shadow-root>
 					<div class="container">
-						<slot></slot>
+						<div>
+							<slot></slot>
+						</div>
 					</div>
 				</mock:shadow-root>
 			</cm-banner>

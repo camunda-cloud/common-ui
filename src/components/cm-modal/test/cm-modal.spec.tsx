@@ -20,8 +20,7 @@ describe('cm-modal', () => {
 								<slot></slot>
 							</div>
 							<div class="buttons">
-								<slot name="cancel"></slot>
-								<slot name="confirm"></slot>
+								<cm-button appearance="primary" label=""></cm-button>
 							</div>
 						</div>
 					</div>

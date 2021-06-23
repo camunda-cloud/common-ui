@@ -9,8 +9,10 @@ describe('cm-datalist-item', () => {
 		})
 		expect(page.root).toEqualHtml(`
 			<cm-datalist-item>
-				<span class="label"></span>
-				<div class="content"></div>
+				<div class="container" style="grid-template-columns: 250px 1fr">
+					<span class="label"></span>
+					<div class="content"></div>
+				</div>
 			</cm-datalist-item>
 		`)
 	})

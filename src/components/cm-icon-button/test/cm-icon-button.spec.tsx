@@ -5,12 +5,14 @@ describe('cm-icon-button', () => {
 	it('renders', async () => {
 		const page = await newSpecPage({
 			components: [CmIconButton],
-			html: `<cm-icon-button icon="contextMenu" ></cm-icon-button>`,
+			html: `<cm-icon-button icon="contextMenu"></cm-icon-button>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-icon-button aria-label="contextMenu" icon="contextMenu" tabindex="0" role="button">
+			<cm-icon-button icon="contextMenu">
 				<mock:shadow-root>
-					<cm-icon icon="contextMenu"></cm-icon>
+					<div aria-label="contextMenu" role="button" tabindex="0">
+						<cm-icon icon="contextMenu" ignoreTheme=""></cm-icon>
+					</div>
 				</mock:shadow-root>
 			</cm-icon-button>
 		`)

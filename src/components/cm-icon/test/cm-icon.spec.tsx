@@ -10,7 +10,6 @@ describe('cm-icon', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-icon>
 				<mock:shadow-root>
-					<div class="Light undefined"></div>
 				</mock:shadow-root>
 			</cm-icon>
 		`)

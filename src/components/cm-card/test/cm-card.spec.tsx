@@ -12,7 +12,7 @@ describe('cm-card', () => {
 				<mock:shadow-root>
 					<div class="container">
 						<slot name="header"></slot>
-						<div>
+						<div class="content">
 							<slot></slot>
 						</div>
 						<slot name="footer"></slot>
