@@ -103,9 +103,10 @@ export class CmRadiobutton {
 					<div
 						class={{
 							beforeLabel: true,
-							empty: !this.element
-								.querySelector("[slot='beforeLabel']")
-								?.hasChildNodes(),
+							empty:
+								this.element.querySelectorAll(
+									"[slot='beforeLabel']",
+								).length > 0,
 						}}
 					>
 						<slot name="beforeLabel"></slot>
@@ -114,9 +115,10 @@ export class CmRadiobutton {
 					<div
 						class={{
 							afterLabel: true,
-							empty: !this.element
-								.querySelector("[slot='afterLabel']")
-								?.hasChildNodes(),
+							empty:
+								this.element.querySelectorAll(
+									"[slot='afterLabel']",
+								).length > 0,
 						}}
 					>
 						<slot name="afterLabel"></slot>
