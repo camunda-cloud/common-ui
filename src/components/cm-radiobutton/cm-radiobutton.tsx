@@ -106,7 +106,7 @@ export class CmRadiobutton {
 							empty:
 								this.element.querySelectorAll(
 									"[slot='beforeLabel']",
-								).length > 0,
+								).length === 0,
 						}}
 					>
 						<slot name="beforeLabel"></slot>
@@ -118,7 +118,7 @@ export class CmRadiobutton {
 							empty:
 								this.element.querySelectorAll(
 									"[slot='afterLabel']",
-								).length > 0,
+								).length === 0,
 						}}
 					>
 						<slot name="afterLabel"></slot>
