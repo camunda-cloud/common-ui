@@ -3,16 +3,26 @@
 }
 
 a {
+	display: inline-grid;
+	grid-auto-flow: column;
+	gap: 4px;
+	align-items: center;
+	padding-right: 2px;
+
 	font-family: var(--cm-font-text);
 	font-size: 14px;
 	font-weight: 400;
 
 	border-radius: 3px;
-	text-decoration: underline;
+	text-decoration: none;
 	color: var(--cm-color-link);
 
 	&:hover {
 		color: var(--cm-color-link-hover);
+
+		svg path {
+			fill: var(--cm-color-link-hover);
+		}
 	}
 
 	&:focus {
@@ -26,17 +36,37 @@ a {
 
 	&:active {
 		color: var(--cm-color-link-active);
+
+		svg path {
+			fill: var(--cm-color-link-active);
+		}
 	}
 
 	&.Dark {
 		color: var(--cm-color-link-dark);
 
+		svg path {
+			fill: var(--cm-color-link-dark);
+		}
+
 		&:hover {
 			color: var(--cm-color-link-hover-dark);
+
+			svg path {
+				fill: var(--cm-color-link-hover-dark);
+			}
 		}
 
 		&:active {
 			color: var(--cm-color-link-active-dark);
+
+			svg path {
+				fill: var(--cm-color-link-active-dark);
+			}
 		}
+	}
+
+	svg path {
+		fill: var(--cm-color-link);
 	}
 }
