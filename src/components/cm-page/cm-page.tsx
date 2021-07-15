@@ -11,7 +11,9 @@ import {
 	Host,
 } from '@stencil/core'
 
-export type State = {
+import { isSlotEmpty } from '../../globalHelpers'
+
+export type ComponentState = {
 	label: string
 	tab: HTMLCmPageTabElement
 	handle: HTMLCmPageTabHandleElement
@@ -67,7 +69,7 @@ export class CmPage {
 	/**
 	 * This is emitted when the active tab is changed.
 	 */
-	@Event() tabChanged: EventEmitter<State>
+	@Event() tabChanged: EventEmitter<ComponentState>
 
 	@Listen('tabModified')
 	tabModifiedEventHandler() {
@@ -90,7 +92,7 @@ export class CmPage {
 	 * Returns the currently active tab, handle, and title.
 	 */
 	@Method()
-	async getActiveState(): Promise<State> {
+	async getActiveState(): Promise<ComponentState> {
 		return {
 			label: this.activeLabel,
 			tab: this.labelToTabMap[this.activeLabel],
@@ -131,6 +133,11 @@ export class CmPage {
 		})
 	}
 
+	async componentWillLoad() {
+		// Ensure that slots are ready to be checked
+		return new Promise((resolve) => requestAnimationFrame(resolve))
+	}
+
 	componentDidLoad() {
 		const observer = new MutationObserver(this.onChildrenChange.bind(this))
 		const options = {
@@ -158,21 +165,16 @@ export class CmPage {
 	}
 
 	render() {
-		let headerSlotClasses = {
-			headerSlot: true,
-			empty: !this.root.querySelector("[slot='header']")?.hasChildNodes(),
-		}
-
 		let handlesClasses = { handles: true, empty: this.tabRefs.length < 2 }
 
 		let headerClasses = {
-			empty: headerSlotClasses.empty && handlesClasses.empty,
+			empty: isSlotEmpty(this.root, 'header') && handlesClasses.empty,
 		}
 
 		return (
 			<Host>
 				<header class={headerClasses}>
-					<div class={headerSlotClasses}>
+					<div class="headerSlot">
 						<slot name="header" />
 					</div>
 					<div class={handlesClasses}>
