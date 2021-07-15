@@ -21,23 +21,3 @@ export const onThemeChange = async (
 		)
 	}
 }
-
-export const isSlotEmpty = (element: HTMLElement, slotName?: string) => {
-	if (slotName) {
-		return (
-			(
-				element.shadowRoot.querySelector(
-					`slot[name="${slotName}"]`,
-				) as HTMLSlotElement
-			)?.assignedElements.length === 0
-		)
-	} else {
-		return (
-			(
-				element.shadowRoot.querySelector(
-					`slot:not([name])`,
-				) as HTMLSlotElement
-			)?.assignedElements.length === 0
-		)
-	}
-}

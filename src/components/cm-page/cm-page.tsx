@@ -9,9 +9,8 @@ import {
 	Watch,
 	Prop,
 	Host,
+	State,
 } from '@stencil/core'
-
-import { isSlotEmpty } from '../../globalHelpers'
 
 export type ComponentState = {
 	label: string
@@ -30,6 +29,7 @@ export type ComponentState = {
 })
 export class CmPage {
 	@Element() root: HTMLCmPageElement
+	@State() isHeaderEmpty: boolean = true
 
 	private tabRefs: HTMLCmPageTabElement[] = []
 	private labelToTabMap: {
@@ -133,9 +133,16 @@ export class CmPage {
 		})
 	}
 
-	async componentWillLoad() {
-		// Ensure that slots are ready to be checked
-		return new Promise((resolve) => requestAnimationFrame(resolve))
+	componentDidRender() {
+		requestAnimationFrame(() => {
+			let headerSlot = this.root.shadowRoot.querySelector(
+				'slot[name=header]',
+			) as HTMLSlotElement
+
+			if (headerSlot) {
+				this.isHeaderEmpty = headerSlot.assignedElements().length === 0
+			}
+		})
 	}
 
 	componentDidLoad() {
@@ -144,6 +151,14 @@ export class CmPage {
 			childList: true,
 		}
 		observer.observe(this.root, options)
+
+		let headerSlot = this.root.shadowRoot.querySelector(
+			'slot[name=header]',
+		) as HTMLSlotElement
+
+		headerSlot.addEventListener('slotchange', () => {
+			this.isHeaderEmpty = headerSlot.assignedElements().length === 0
+		})
 	}
 
 	async componentWillRender() {
@@ -168,7 +183,7 @@ export class CmPage {
 		let handlesClasses = { handles: true, empty: this.tabRefs.length < 2 }
 
 		let headerClasses = {
-			empty: isSlotEmpty(this.root, 'header') && handlesClasses.empty,
+			empty: this.isHeaderEmpty && handlesClasses.empty,
 		}
 
 		return (
