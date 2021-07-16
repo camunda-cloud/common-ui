@@ -182,6 +182,10 @@
 			font-weight: 500;
 			color: var(--cm-color-ui-light6);
 		}
+
+		cm-icon {
+			transform: translateY(1px);
+		}
 	}
 }
 
