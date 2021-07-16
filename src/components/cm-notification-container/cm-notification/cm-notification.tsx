@@ -8,7 +8,7 @@ import {
 	EventEmitter,
 } from '@stencil/core'
 
-import { JSXBase, Method, State } from '@stencil/core/internal'
+import { Method, State } from '@stencil/core/internal'
 import { onThemeChange, Theme } from '../../../globalHelpers'
 
 @Component({
@@ -22,8 +22,10 @@ export class CmNotification {
 	@Prop({ mutable: false }) description: string = ''
 	@Prop({ mutable: false }) navigationLabel: string = ''
 	@Prop({ mutable: false }) userDismissable: boolean = true
+	@Prop({ mutable: false }) createdAt: number
 
-	@Element() el: HTMLElement
+	@Element()
+	el: HTMLElement
 
 	/**
 	 * Emitted when the Notification is dismissed.
@@ -82,77 +84,50 @@ export class CmNotification {
 		let containerClasses = {
 			container: true,
 			[this.theme]: true,
+			isUserDismissable: this.userDismissable,
+			hasDescription: this.description.length !== 0,
 		}
 
-		let link: JSXBase.IntrinsicElements,
-			description: JSXBase.IntrinsicElements,
-			dismissButton: JSXBase.IntrinsicElements
-
-		if (this.description) {
-			if (this.navigationLabel) {
-				link = (
-					<span
-						class="navigationLink"
-						onClick={() => {
-							this.cmNotificationNavigation.emit({})
-							this.dismiss()
-						}}
-					>
-						{this.navigationLabel}
-					</span>
-				)
-			}
-
-			description = (
-				<div>
-					<div class="headline">{this.headline}</div>
-					<div class="description">
-						{this.description}
-						&nbsp;
-						{link}
-					</div>
-				</div>
-			)
-		} else {
-			if (this.navigationLabel) {
-				link = (
-					<span
-						class="navigationLink header"
-						onClick={() => {
-							this.cmNotificationNavigation.emit({})
-							this.dismiss()
-						}}
-					>
-						{this.navigationLabel}
-					</span>
-				)
-			}
-
-			description = (
-				<div class="headlineWithoutDescription">
-					{this.headline}
-					&nbsp;
-					{link}
-				</div>
-			)
-		}
-
-		if (this.userDismissable) {
-			dismissButton = (
-				<cm-icon-button
-					icon={'close'}
-					onCmPress={() => this.dismiss()}
-				/>
-			)
+		let iconClasses = {
+			icon: true,
+			[this.appearance]: true,
 		}
 
 		return (
 			<Host>
 				<div class="shadowContainer">
 					<div class={containerClasses} role="alert">
-						<div class={`icon ${this.appearance}`} />
-						<div class="contentContainer">{description}</div>
-						{dismissButton}
+						<div class={iconClasses} />
+						<div class="content">
+							<div class="headline">{this.headline}</div>
+							<div class="description">{this.description}</div>
+						</div>
+						{this.userDismissable ? (
+							<cm-icon-button
+								icon={'close'}
+								onCmPress={() => this.dismiss()}
+							/>
+						) : (
+							''
+						)}
+						<div class="date">
+							{Intl.DateTimeFormat('default', {
+								hour: 'numeric',
+								minute: 'numeric',
+							}).format(this.createdAt)}
+						</div>
+						{this.navigationLabel ? (
+							<cm-button
+								appearance="link"
+								label={this.navigationLabel}
+								onCmPress={() => {
+									this.cmNotificationNavigation.emit({})
+									this.dismiss()
+								}}
+							/>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 			</Host>

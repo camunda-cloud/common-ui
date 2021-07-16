@@ -10,6 +10,7 @@ export type NotificationItem = {
 		label: string
 		navigationHandler: (event: CustomEvent<{}>) => void
 	}
+	createdAt: number
 }
 
 @Component({
@@ -33,28 +34,35 @@ export class CmNotificationContainer {
 	 * Queues a Notification to be shown. The notification might be shown instantly, if there is space, or later, once space is available.
 	 */
 	@Method()
-	async enqueueNotification(notification: NotificationItem): Promise<{
+	async enqueueNotification(
+		notification: Omit<NotificationItem, 'createdAt'>,
+	): Promise<{
 		hasBeenShown(): boolean
 		remove(): void
 	}> {
+		let completeNotification: NotificationItem = {
+			...notification,
+			createdAt: Date.now(),
+		}
+
 		if (this.maxVisibleNotifications <= this.visibleNotifications.length) {
-			this.notificationQueue.push(notification)
+			this.notificationQueue.push(completeNotification)
 		} else {
-			this.renderNewNotification(notification)
+			this.renderNewNotification(completeNotification)
 		}
 
 		return {
 			hasBeenShown: () => {
-				return !this.notificationQueue.includes(notification)
+				return !this.notificationQueue.includes(completeNotification)
 			},
 			remove: () => {
-				if (this.notificationQueue.includes(notification)) {
+				if (this.notificationQueue.includes(completeNotification)) {
 					this.notificationQueue = this.notificationQueue.filter(
-						(item) => item !== notification,
+						(item) => item !== completeNotification,
 					)
 				} else {
 					let notificationElement =
-						this.notificationMap.get(notification)
+						this.notificationMap.get(completeNotification)
 
 					if (notificationElement) {
 						notificationElement.dismiss()
