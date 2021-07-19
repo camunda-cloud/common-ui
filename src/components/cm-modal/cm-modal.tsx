@@ -32,7 +32,10 @@ export class CmModal {
 	@Prop({ mutable: true }) headline: string = ''
 
 	@Prop({ mutable: true }) confirmLabel: string = ''
-	@Prop({ mutable: true }) confirmAppearance: 'primary' | 'danger' = 'primary'
+	@Prop({ mutable: true }) confirmAppearance:
+		| 'primary'
+		| 'danger'
+		| 'secondary' = 'primary'
 	@Prop({ mutable: true }) confirmDisabled: boolean = false
 
 	@Prop({ mutable: true }) cancelLabel: string = ''
