@@ -38,6 +38,7 @@ export class CmIconButton implements ComponentInterface {
 		| 'right'
 
 	@Prop({ mutable: true }) disabled: boolean = false
+	@Prop({ mutable: true }) ignoreTheme: boolean = false
 
 	/**
 	 * Emitted when the button is pressed or either Spacebar or Enter are being pressed when the button is focused.
@@ -92,7 +93,7 @@ export class CmIconButton implements ComponentInterface {
 					aria-disabled={this.disabled}
 					aria-label={this.icon}
 				>
-					<cm-icon icon={this.icon} ignoreTheme />
+					<cm-icon icon={this.icon} ignoreTheme={this.ignoreTheme} />
 				</div>
 			</Host>
 		)
