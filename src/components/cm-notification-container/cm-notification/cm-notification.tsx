@@ -24,6 +24,9 @@ export class CmNotification {
 	@Prop({ mutable: false }) userDismissable: boolean = true
 	@Prop({ mutable: false }) createdAt: number
 
+	@State() elapsedTime = 0
+	private timer: NodeJS.Timer
+
 	@Element()
 	el: HTMLElement
 
@@ -77,7 +80,15 @@ export class CmNotification {
 			this._isBeingHovered = false
 		})
 
+		this.timer = setInterval(() => {
+			this.elapsedTime += 1
+		}, 1000)
+
 		this.didLoad.emit() // Necessary for the notification container to access the correct clientHeight
+	}
+
+	disconnectedCallback() {
+		clearInterval(this.timer)
 	}
 
 	render() {
@@ -91,6 +102,19 @@ export class CmNotification {
 		let iconClasses = {
 			icon: true,
 			[this.appearance]: true,
+		}
+
+		let timeDifferential = -Math.trunc(
+			Math.abs(this.createdAt - Date.now()) / 1000,
+		)
+
+		let timeDifferentialUnit
+
+		if (timeDifferential > -60) {
+			timeDifferentialUnit = 'seconds'
+		} else {
+			timeDifferential = -Math.trunc(Math.abs(timeDifferential) / 60)
+			timeDifferentialUnit = 'minutes'
 		}
 
 		return (
@@ -111,10 +135,17 @@ export class CmNotification {
 							''
 						)}
 						<div class="date">
-							{Intl.DateTimeFormat('default', {
-								hour: 'numeric',
-								minute: 'numeric',
-							}).format(this.createdAt)}
+							{timeDifferential > -10 &&
+							timeDifferentialUnit == 'seconds'
+								? 'Just now'
+								: new Intl.RelativeTimeFormat('en', {
+										localeMatcher: 'best fit',
+										numeric: 'always',
+										style: 'long',
+								  }).format(
+										timeDifferential,
+										timeDifferentialUnit as any,
+								  )}
 						</div>
 						{this.navigationLabel ? (
 							<cm-button

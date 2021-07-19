@@ -15,7 +15,7 @@
 	grid-template-areas:
 		'icon content content content closeButton'
 		'.    link    link    date    date';
-	grid-template-columns: 24px 1fr 1fr 20px 20px;
+	grid-template-columns: 24px 1fr 1fr 70px 20px;
 	grid-template-rows: max-content max-content;
 
 	column-gap: 10px;
@@ -84,15 +84,12 @@
 		grid-area: content;
 		display: grid;
 		grid-auto-flow: row;
-		gap: 2px;
+		gap: 4px;
 		padding-top: 2px;
 
 		.headline {
 			font-size: 15px;
 			font-weight: 500;
-
-			overflow: hidden;
-			text-overflow: ellipsis;
 		}
 
 		.description {
@@ -116,8 +113,7 @@
 
 	.date {
 		grid-area: date;
-		font-size: 12px;
-		padding-left: 2px;
+		font-size: 13px;
 		justify-self: flex-end;
 	}
 

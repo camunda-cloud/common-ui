@@ -106,6 +106,7 @@ export class CmNotificationContainer {
 		newNotification.description = notification.description
 		newNotification.appearance = notification.appearance
 		newNotification.userDismissable = notification.userDismissable
+		newNotification.createdAt = notification.createdAt
 
 		if (notification.navigation != null) {
 			newNotification.navigationLabel = notification.navigation.label
