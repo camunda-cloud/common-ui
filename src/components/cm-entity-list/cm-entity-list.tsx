@@ -58,6 +58,8 @@ export class CmEntityList {
 
 	@Prop({ mutable: true }) defaultSorting?: SortingDescription
 
+	@Prop({ mutable: true }) addScrollPadding?: boolean = false
+
 	@State() userSelectedSorting?: SortingDescription
 	@State() selectedEntities: Array<Entity> = []
 	@State() isSearchOpen: boolean = false
@@ -284,6 +286,7 @@ export class CmEntityList {
 		entities = filteredEntities.map((entity, index) => {
 			let entityClasses = {
 				entity: true,
+				scrollPadding: this.addScrollPadding,
 				selected: this.selectedEntities.includes(entity),
 				hasPress: typeof entity.onPress === 'function',
 			}

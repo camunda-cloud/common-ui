@@ -175,6 +175,12 @@
 	z-index: 1;
 	overflow-y: auto;
 
+	&.scrollPadding:after {
+		content: '';
+		height: 20px;
+		display: inline-block;
+	}
+
 	.entity {
 		box-sizing: border-box;
 		display: grid;
