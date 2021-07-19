@@ -90,10 +90,12 @@
 		.headline {
 			font-size: 15px;
 			font-weight: 500;
+			overflow-wrap: anywhere;
 		}
 
 		.description {
 			font-size: 13px;
+			overflow-wrap: anywhere;
 		}
 	}
 
