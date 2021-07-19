@@ -286,7 +286,6 @@ export class CmEntityList {
 		entities = filteredEntities.map((entity, index) => {
 			let entityClasses = {
 				entity: true,
-				scrollPadding: this.addScrollPadding,
 				selected: this.selectedEntities.includes(entity),
 				hasPress: typeof entity.onPress === 'function',
 			}
@@ -541,6 +540,11 @@ export class CmEntityList {
 			entitiesAreScrolled: this.entitiesAreScrolled,
 		}
 
+		let entitiesClasses = {
+			entities: true,
+			scrollPadding: this.addScrollPadding,
+		}
+
 		return (
 			<Host>
 				<div class="container">
@@ -618,7 +622,7 @@ export class CmEntityList {
 						)}
 					</div>
 					<div
-						class="entities"
+						class={entitiesClasses}
 						onScroll={(event) => {
 							this.entitiesAreScrolled =
 								(event.target as HTMLElement).scrollTop !== 0
