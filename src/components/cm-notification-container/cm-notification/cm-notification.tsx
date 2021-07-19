@@ -22,6 +22,7 @@ export class CmNotification {
 	@Prop({ mutable: false }) description: string = ''
 	@Prop({ mutable: false }) navigationLabel: string = ''
 	@Prop({ mutable: false }) userDismissable: boolean = true
+	@Prop({ mutable: false }) showCreationTime: boolean = true
 	@Prop({ mutable: false }) createdAt: number
 
 	@State() elapsedTime = 0
@@ -97,6 +98,9 @@ export class CmNotification {
 			[this.theme]: true,
 			isUserDismissable: this.userDismissable,
 			hasDescription: this.description.length !== 0,
+			hasTimeOrNavigationLabel: Boolean(
+				this.showCreationTime || this.navigationLabel,
+			),
 		}
 
 		let iconClasses = {
@@ -134,19 +138,23 @@ export class CmNotification {
 						) : (
 							''
 						)}
-						<div class="date">
-							{timeDifferential > -10 &&
-							timeDifferentialUnit == 'seconds'
-								? 'Just now'
-								: new Intl.RelativeTimeFormat('en', {
-										localeMatcher: 'best fit',
-										numeric: 'always',
-										style: 'long',
-								  }).format(
-										timeDifferential,
-										timeDifferentialUnit as any,
-								  )}
-						</div>
+						{this.showCreationTime ? (
+							<div class="date">
+								{timeDifferential > -10 &&
+								timeDifferentialUnit == 'seconds'
+									? 'Just now'
+									: new Intl.RelativeTimeFormat('en', {
+											localeMatcher: 'best fit',
+											numeric: 'always',
+											style: 'long',
+									  }).format(
+											timeDifferential,
+											timeDifferentialUnit as any,
+									  )}
+							</div>
+						) : (
+							''
+						)}
 						{this.navigationLabel ? (
 							<cm-button
 								appearance="link"

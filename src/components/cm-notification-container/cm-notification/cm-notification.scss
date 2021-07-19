@@ -12,11 +12,17 @@
 	box-sizing: border-box;
 	position: relative;
 
-	grid-template-areas:
-		'icon content content content closeButton'
-		'.    link    link    date    date';
+	&.hasTimeOrNavigationLabel {
+		grid-template-areas:
+			'icon content         content         content closeButton'
+			'.    navigationLabel navigationLabel date    date';
+		grid-template-columns: 24px 1fr 1fr 70px 20px;
+		grid-template-rows: max-content max-content;
+	}
+
+	grid-template-areas: 'icon content content content closeButton';
 	grid-template-columns: 24px 1fr 1fr 70px 20px;
-	grid-template-rows: max-content max-content;
+	grid-template-rows: max-content;
 
 	column-gap: 10px;
 	row-gap: 10px;
@@ -126,7 +132,7 @@
 	}
 
 	cm-button {
-		grid-area: link;
+		grid-area: navigationLabel;
 		justify-self: flex-start;
 	}
 }

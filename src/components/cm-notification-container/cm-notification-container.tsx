@@ -10,6 +10,7 @@ export type NotificationItem = {
 		label: string
 		navigationHandler: (event: CustomEvent<{}>) => void
 	}
+	showCreationTime?: boolean
 	createdAt: number
 }
 
@@ -106,6 +107,7 @@ export class CmNotificationContainer {
 		newNotification.description = notification.description
 		newNotification.appearance = notification.appearance
 		newNotification.userDismissable = notification.userDismissable
+		newNotification.showCreationTime = notification.showCreationTime
 		newNotification.createdAt = notification.createdAt
 
 		if (notification.navigation != null) {
