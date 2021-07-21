@@ -11,31 +11,15 @@ import {
 	Method,
 } from '@stencil/core'
 
+import { CmIcon } from '../cm-icon/cm-icon'
+
 @Component({
 	tag: 'cm-icon-button',
 	styleUrl: 'cm-icon-button.scss',
 	shadow: true,
 })
 export class CmIconButton implements ComponentInterface {
-	@Prop({ mutable: true }) icon:
-		| 'contextMenu'
-		| 'close'
-		| 'closeLarge'
-		| 'search'
-		| 'help'
-		| 'information'
-		| 'sort'
-		| 'plus'
-		| 'minus'
-		| 'copy'
-		| 'show'
-		| 'hide'
-		| 'edit'
-		| 'delete'
-		| 'up'
-		| 'down'
-		| 'left'
-		| 'right'
+	@Prop({ mutable: true }) icon: CmIcon['icon']
 
 	@Prop({ mutable: true }) disabled: boolean = false
 	@Prop({ mutable: true }) ignoreTheme: boolean = false
