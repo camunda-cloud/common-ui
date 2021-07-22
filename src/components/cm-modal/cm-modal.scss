@@ -54,7 +54,6 @@
 .window {
 	display: grid;
 	box-sizing: border-box;
-	width: 636px;
 	max-height: calc(
 		100vh - 110px - 60px
 	); // Fix for a weird safari bug where max-height: 100% doesnt take any effect

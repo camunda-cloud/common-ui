@@ -13,6 +13,8 @@ import {
  * @slot - The default slot for the content of the Modal.
  */
 
+const minimumWidth = 250
+const maximumWidth = 750
 @Component({
 	tag: 'cm-modal',
 	styleUrl: 'cm-modal.scss',
@@ -28,6 +30,7 @@ export class CmModal {
 	@State() cancelDisabled: boolean = false
 
 	@Prop({ mutable: true }) position: 'top' | 'center' = 'center'
+	@Prop({ mutable: true }) width: number = 636
 
 	@Prop({ mutable: true }) headline: string = ''
 
@@ -119,10 +122,15 @@ export class CmModal {
 			[this.position]: true,
 		}
 
+		let boundedWidth = Math.max(
+			Math.min(this.width, maximumWidth),
+			minimumWidth,
+		)
+
 		return (
 			<Host tabindex="0">
 				<div class={classes}>
-					<div class="window">
+					<div class="window" style={{ width: `${boundedWidth}px` }}>
 						<div class="header">
 							<h1>{this.headline}</h1>
 							<cm-icon-button
