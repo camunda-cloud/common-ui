@@ -25,3 +25,13 @@ export const getVariableValueFromDocument = (name: string) => {
 		.getPropertyValue(name)
 		.trim()
 }
+
+export const getVariableValue = (name: string) => {
+	if ((window as any).commonUIContext) {
+		let context = (window as any).commonUIContext
+
+		return context.getVariableValue(name)
+	} else {
+		return getVariableValueFromDocument(name)
+	}
+}

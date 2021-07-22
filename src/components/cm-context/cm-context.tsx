@@ -9,13 +9,15 @@ import {
 	Watch,
 } from '@stencil/core'
 
-import { Theme } from '../../globalHelpers'
+import { getVariableValueFromDocument, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-context',
 	shadow: true,
 })
 export class CmContext {
+	variableCache: Map<string, string> = new Map()
+
 	@Prop({ mutable: true }) theme: Theme | 'Automatic' = 'Light'
 
 	/**
@@ -36,6 +38,18 @@ export class CmContext {
 		}
 
 		this.themeChanged.emit({ theme: this._getResolvedTheme() })
+	}
+
+	/**
+	 * Returns the Value of the requested variable, caching it in the process.
+	 */
+	@Method()
+	async getVariableValue(name: string) {
+		if (!this.variableCache.has(name)) {
+			this.variableCache.set(name, getVariableValueFromDocument(name))
+		}
+
+		return this.variableCache.get(name)
 	}
 
 	/**
