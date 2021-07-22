@@ -16,7 +16,7 @@ describe('cm-dropdown', () => {
 								<cm-icon color="dark" icon="down" ignoreTheme=""></cm-icon>
 							</div>
 						</div>
-						<div class="flyout" style="top: 10px; right: NaNpx;"></div>
+						<div class="flyout"></div>
 					</div>
 				</mock:shadow-root>
 			</cm-dropdown>

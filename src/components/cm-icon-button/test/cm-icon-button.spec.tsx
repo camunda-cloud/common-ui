@@ -11,7 +11,7 @@ describe('cm-icon-button', () => {
 			<cm-icon-button icon="contextMenu">
 				<mock:shadow-root>
 					<div aria-label="contextMenu" role="button" tabindex="0">
-						<cm-icon icon="contextMenu" ignoreTheme=""></cm-icon>
+						<cm-icon icon="contextMenu"></cm-icon>
 					</div>
 				</mock:shadow-root>
 			</cm-icon-button>

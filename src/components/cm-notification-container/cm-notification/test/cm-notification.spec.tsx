@@ -11,12 +11,16 @@ describe('cm-notification', () => {
 			<cm-notification>
 				<mock:shadow-root>
 					<div class="shadowContainer">
-						<div class="Light container" role="alert">
+						<div class="Light container hasTimeOrNavigationLabel isUserDismissable" role="alert">
 							<div class="icon info"></div>
-							<div class="contentContainer">
-								<div class="headlineWithoutDescription"></div>
+							<div class="content">
+								<div class="headline"></div>
+								<div class="description"></div>
 							</div>
 							<cm-icon-button icon="close"></cm-icon-button>
+							<div class="date">
+								Just now
+							</div>
 						</div>
 					</div>
 				</mock:shadow-root>
