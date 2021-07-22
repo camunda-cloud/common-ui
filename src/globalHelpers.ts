@@ -5,14 +5,12 @@ export const onThemeChange = async (
 	options: { runOnInit?: boolean } = {},
 ) => {
 	if ((window as any).commonUIContext) {
+		let context = (window as any).commonUIContext
+
 		if (options.runOnInit ?? true) {
-			callback((window as any).commonUIContext._getResolvedTheme())
+			callback(context._getResolvedTheme())
 		}
-	}
 
-	let context = document.querySelector('cm-context')
-
-	if (context) {
 		context.addEventListener(
 			'themeChanged',
 			(event: CustomEvent<{ theme: 'Dark' | 'Light' }>) => {
