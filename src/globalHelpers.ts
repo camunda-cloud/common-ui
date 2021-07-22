@@ -2,6 +2,10 @@ export type Theme = 'Light' | 'Dark'
 
 export type ColorMap = Record<string, { Light: string; Dark: string }>
 
+export type ValidatorResult =
+	| { isValid: true }
+	| { isValid: false; message: string }
+
 export const onThemeChange = async (
 	callback: (theme: Theme) => void,
 	options: { runOnInit?: boolean } = {},
