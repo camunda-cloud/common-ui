@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, State } from '@stencil/core'
-import { onThemeChange, Theme } from '../../globalHelpers'
+import { getVariableValue, onThemeChange, Theme } from '../../globalHelpers'
 
-const colorMap = {
+const colorVariableMap = {
 	bright: {
 		Light: '--cm-color-ui-light4',
 		Dark: '--cm-color-ui-dark4',
@@ -78,24 +78,18 @@ export class CmIcon {
 		})
 	}
 
-	getVariableValue(name: string) {
-		return getComputedStyle(document.documentElement)
-			.getPropertyValue(name)
-			.trim()
-	}
-
-	getResolvedColor() {
+	getResolvedColorName() {
 		let resolvedTheme = this.theme
 
 		if (this.ignoreTheme) {
 			resolvedTheme = 'Light'
 		}
 
-		return colorMap[this.color][resolvedTheme]
+		return colorVariableMap[this.color][resolvedTheme]
 	}
 
 	getIconSVG() {
-		let fill = this.getVariableValue(this.getResolvedColor())
+		let fill = getVariableValue(this.getResolvedColorName())
 
 		switch (this.icon) {
 			case 'check':
