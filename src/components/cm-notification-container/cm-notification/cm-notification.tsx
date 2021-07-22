@@ -23,7 +23,7 @@ export class CmNotification {
 	@Prop({ mutable: false }) navigationLabel: string = ''
 	@Prop({ mutable: false }) userDismissable: boolean = true
 	@Prop({ mutable: false }) showCreationTime: boolean = true
-	@Prop({ mutable: false }) createdAt: number
+	@Prop({ mutable: false }) createdAt: number = Date.now()
 
 	@State() elapsedTime = 0
 	private timer: NodeJS.Timer
