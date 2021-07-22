@@ -19,3 +19,9 @@ export const onThemeChange = async (
 		)
 	}
 }
+
+export const getVariableValueFromDocument = (name: string) => {
+	return getComputedStyle(document.documentElement)
+		.getPropertyValue(name)
+		.trim()
+}
