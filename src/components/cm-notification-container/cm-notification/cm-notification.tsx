@@ -132,6 +132,7 @@ export class CmNotification {
 						</div>
 						{this.userDismissable ? (
 							<cm-icon-button
+								color="medium"
 								icon={'close'}
 								onCmPress={() => this.dismiss()}
 							/>
