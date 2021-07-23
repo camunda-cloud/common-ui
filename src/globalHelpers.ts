@@ -27,9 +27,13 @@ export const getVariableValueFromDocument = (name: string) => {
 }
 
 export const getVariableValue = (name: string) => {
-	if ((window as any).commonUIContext) {
-		let context = (window as any).commonUIContext
+	let context = (window as any).commonUIContext
 
+	if (!context) {
+		context = document.querySelector('cm-context')
+	}
+
+	if (context) {
 		return context.getVariableValue(name)
 	} else {
 		return getVariableValueFromDocument(name)
