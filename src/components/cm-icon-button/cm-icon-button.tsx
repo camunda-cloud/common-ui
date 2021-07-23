@@ -20,6 +20,7 @@ import { CmIcon } from '../cm-icon/cm-icon'
 })
 export class CmIconButton implements ComponentInterface {
 	@Prop({ mutable: true }) icon: CmIcon['icon']
+	@Prop({ mutable: true }) color: CmIcon['color']
 
 	@Prop({ mutable: true }) disabled: boolean = false
 	@Prop({ mutable: true }) ignoreTheme: boolean = false
@@ -77,7 +78,11 @@ export class CmIconButton implements ComponentInterface {
 					aria-disabled={this.disabled}
 					aria-label={this.icon}
 				>
-					<cm-icon icon={this.icon} ignoreTheme={this.ignoreTheme} />
+					<cm-icon
+						icon={this.icon}
+						color={this.color}
+						ignoreTheme={this.ignoreTheme}
+					/>
 				</div>
 			</Host>
 		)
