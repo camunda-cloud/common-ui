@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core'
+import { Component, Host, h, Prop, State, Watch } from '@stencil/core'
 import { getVariableValue, onThemeChange, Theme } from '../../globalHelpers'
 
 const colorVariableMap = {
@@ -71,10 +71,23 @@ export class CmIcon {
 	@Prop({ mutable: true }) ignoreTheme: boolean = false
 
 	@State() theme: Theme = 'Light'
+	@State() resolvedColor = ''
+
+	@Watch('color') colorWatch() {
+		getVariableValue(this.getResolvedColorName()).then((resolvedColor) => {
+			this.resolvedColor = resolvedColor
+		})
+	}
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
 			this.theme = theme
+
+			getVariableValue(this.getResolvedColorName()).then(
+				(resolvedColor) => {
+					this.resolvedColor = resolvedColor
+				},
+			)
 		})
 	}
 
@@ -89,7 +102,7 @@ export class CmIcon {
 	}
 
 	getIconSVG() {
-		let fill = getVariableValue(this.getResolvedColorName())
+		const fill = this.resolvedColor
 
 		switch (this.icon) {
 			case 'check':
