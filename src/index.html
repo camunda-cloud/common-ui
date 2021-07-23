@@ -13,11 +13,31 @@
 		<script nomodule src="/build/common-ui.js"></script>
 
 		<style>
+			* {
+				box-sizing: border-box;
+			}
+
 			body {
 				margin: 0px;
 				display: grid;
-				grid-template-rows: 57px minmax(0, 1fr) 39px;
 				height: 100vh;
+				grid-template-areas:
+					'header'
+					'page'
+					'footer';
+				grid-template-rows: 57px minmax(0, 1fr) 39px;
+			}
+
+			cm-header {
+				grid-area: header;
+			}
+
+			cm-page {
+				grid-area: page;
+			}
+
+			cm-footer {
+				grid-area: footer;
 			}
 
 			.row {
@@ -31,6 +51,7 @@
 			}
 
 			.header {
+				grid-area: header;
 				display: grid;
 				grid-auto-flow: column;
 				gap: 50px;
@@ -53,7 +74,8 @@
 		</style>
 	</head>
 	<body>
-		<cm-context theme="Automatic"> </cm-context>
+		<cm-context theme="Automatic"></cm-context>
+
 		<cm-header>
 			<cm-logo slot="left"></cm-logo>
 
@@ -140,13 +162,21 @@
 					confirm-label="Confirm that can fail"
 					confirm-disabled
 				>
-					<cm-text
-						>Lorem ipsum dolor sit amet consectetur adipisicing
-						elit. Ullam architecto, sunt nisi distinctio quo iste
-						rerum fugit perspiciatis ipsum sit quas. Pariatur
-						distinctio, eum dignissimos harum commodi esse
-						architecto quos.</cm-text
-					>
+					<cm-form>
+						<cm-textfield
+							label="Input"
+							form-name="input"
+							value="Disabled Input Value"
+							disabled
+						></cm-textfield>
+
+						<cm-textfield
+							label="Input"
+							form-name="input"
+							required
+							show-required
+						></cm-textfield>
+					</cm-form>
 					<br /><br />
 					<cm-text
 						>Lorem ipsum dolor sit amet consectetur adipisicing
@@ -320,94 +350,187 @@
 				</div>
 			</cm-page-tab>
 			<cm-page-tab label="Form Elements">
-				<div class="row">
-					<cm-checkbox label="Normal Checkbox"></cm-checkbox>
-					<cm-checkbox
-						label="Indeterminate Checkbox"
-						indeterminate
-					></cm-checkbox>
-					<cm-checkbox label="Checked Checkbox" checked></cm-checkbox>
-				</div>
-				<div class="row">
-					<cm-checkbox
-						label="Disabled Normal Checkbox"
-						disabled
-					></cm-checkbox>
-					<cm-checkbox
-						label="Disabled Indeterminate Checkbox"
-						indeterminate
-						disabled
-					></cm-checkbox>
-					<cm-checkbox
-						label="Disabled Checked Checkbox"
-						checked
-						disabled
-					></cm-checkbox>
-				</div>
-				<div class="row">
-					<cm-toggle label="Normal Toggle"></cm-toggle>
-					<cm-toggle label="Disabled Toggle" disabled></cm-toggle>
-					<cm-toggle
-						label="Disabled Checked Toggle"
-						checked
-						disabled
-					></cm-toggle>
-				</div>
+				<style>
+					#form {
+						overflow-y: auto;
+						overflow-x: hidden;
+						height: 100%;
+						padding: 0px 20px;
+						max-width: 500px;
+					}
+				</style>
+				<cm-form id="form">
+					<cm-textfield id="textfield1"></cm-textfield>
 
-				<div class="row">
-					<cm-select id="demoSelect"></cm-select>
-					<script>
-						document.querySelector('#demoSelect').options = [
-							{ value: 'Test1', label: 'Option 1' },
-							{ value: 'Test2', label: 'Option 2' },
-						]
-					</script>
-				</div>
+					<cm-textfield id="textfield2"></cm-textfield>
+
+					<cm-form-group label="Fields">
+						<cm-textfield id="textfield3"></cm-textfield>
+						<cm-textfield id="textfield4"></cm-textfield>
+					</cm-form-group>
+
+					<cm-checkbox-group label="Checkboxes">
+						<cm-checkbox
+							label="Checkbox"
+							helper-text="Helper Text"
+						></cm-checkbox>
+
+						<cm-checkbox
+							form-name="requiredCheckbox"
+							label="Required Checkbox"
+							required
+						></cm-checkbox>
+					</cm-checkbox-group>
+
+					<cm-radiobutton-group
+						label="Radios"
+						value="2"
+						form-name="radio"
+					>
+						<cm-radiobutton
+							value="1"
+							label="Choice 1"
+							helper-text="Some helper Text for choice 1"
+						></cm-radiobutton>
+
+						<cm-radiobutton
+							value="2"
+							label="Choice 2"
+							helper-text="Some helper Text for choice 2"
+						></cm-radiobutton>
+					</cm-radiobutton-group>
+
+					<cm-button appearance="primary" label="Submit"></cm-button>
+				</cm-form>
+
+				<script>
+					let textfield1 = document.getElementById('textfield1')
+
+					textfield1.type = 'text'
+					textfield1.placeholder = 'Placeholder'
+					textfield1.label = 'Label'
+					textfield1.formName = 'field1'
+					textfield1.showRequired = true
+					textfield1.validation = {
+						type: 'custom',
+						validator: (value) => {
+							if (value === '') {
+								return {
+									isValid: true,
+								}
+							} else {
+								const result = /^[a-zA-Z0-9]*$/.test(value)
+
+								if (result) {
+									if (value.length >= 3) {
+										return {
+											isValid: true,
+										}
+									} else {
+										return {
+											isValid: false,
+											message:
+												'Please use at least 3 characters.',
+										}
+									}
+								} else {
+									return {
+										isValid: false,
+										message:
+											'Please only use alphanumeric characters.',
+									}
+								}
+							}
+						},
+					}
+					textfield1.validationStyle = 'delay'
+					textfield1.fieldPrefix = { type: 'text', value: 'https://' }
+					textfield1.fieldSuffix = { type: 'text', value: '.com' }
+
+					let textfield2 = document.getElementById('textfield2')
+
+					textfield2.type = 'password'
+					textfield2.placeholder = 'Placeholder'
+					textfield2.label = 'Label'
+					textfield2.formName = 'field2'
+					textfield2.fieldPrefix = { type: 'icon', icon: 'warning' }
+
+					let textfield3 = document.getElementById('textfield3')
+
+					textfield3.helperText = 'Helper Text...'
+					textfield3.placeholder = 'Placeholder'
+					textfield3.label = 'Label'
+					textfield3.formName = 'field3'
+					textfield3.showRequired = true
+					textfield3.maxLength = 50
+					textfield3.fieldSuffix = { type: 'maxlength' }
+
+					let textfield4 = document.getElementById('textfield4')
+
+					textfield4.type = 'email'
+					textfield4.required = true
+					textfield4.showRequired = true
+					textfield4.placeholder = 'a@b.com'
+					textfield4.label = 'Email Address'
+					textfield4.formName = 'field4'
+					textfield4.fieldSuffix = { type: 'copy' }
+
+					let form = document.getElementById('form')
+
+					form.addEventListener('cmSubmit', (event) => {
+						console.log(event.detail.data)
+					})
+
+					form.querySelector('cm-button').addEventListener(
+						'cmPress',
+						() => {
+							form.attemptSubmit()
+						},
+					)
+				</script>
 			</cm-page-tab>
 			<cm-page-tab label="Datalist">
-				<cm-datalist headline="Datalist">
-					<cm-datalist-item label="Datalist Item">
-						<cm-text>List Value</cm-text>
-					</cm-datalist-item>
-					<cm-datalist-item label="Workflow Instances">
-						<cm-link
-							href="https://camunda.de"
-							label="Link"
-						></cm-link>
-					</cm-datalist-item>
-				</cm-datalist>
+				<div class="row">
+					<cm-datalist headline="Datalist">
+						<cm-datalist-item label="Datalist Item">
+							<cm-text>List Value</cm-text>
+						</cm-datalist-item>
+						<cm-datalist-item label="Workflow Instances">
+							<cm-link
+								href="https://camunda.de"
+								label="Link"
+							></cm-link>
+						</cm-datalist-item>
+					</cm-datalist>
+				</div>
 
-				<br />
-				<br />
-				<br />
+				<div class="row">
+					<cm-datalist headline="Narrow Datalist" label-width="120px">
+						<cm-datalist-item label="Datalist Item">
+							<cm-text>List Value</cm-text>
+						</cm-datalist-item>
+						<cm-datalist-item label="Workflow Instances">
+							<cm-link
+								href="https://camunda.de"
+								label="Link"
+							></cm-link>
+						</cm-datalist-item>
+					</cm-datalist>
+				</div>
 
-				<cm-datalist headline="Narrow Datalist" label-width="120px">
-					<cm-datalist-item label="Datalist Item">
-						<cm-text>List Value</cm-text>
-					</cm-datalist-item>
-					<cm-datalist-item label="Workflow Instances">
-						<cm-link
-							href="https://camunda.de"
-							label="Link"
-						></cm-link>
-					</cm-datalist-item>
-				</cm-datalist>
-
-				<br />
-				<br />
-				<br />
-
-				<cm-datalist headline="Wide Datalist" label-width="400px">
-					<cm-datalist-item label="Datalist Item">
-						<cm-text>List Value</cm-text>
-					</cm-datalist-item>
-					<cm-datalist-item label="Workflow Instances">
-						<cm-link
-							href="https://camunda.de"
-							label="Link"
-						></cm-link>
-					</cm-datalist-item>
-				</cm-datalist>
+				<div class="row">
+					<cm-datalist headline="Wide Datalist" label-width="400px">
+						<cm-datalist-item label="Datalist Item">
+							<cm-text>List Value</cm-text>
+						</cm-datalist-item>
+						<cm-datalist-item label="Workflow Instances">
+							<cm-link
+								href="https://camunda.de"
+								label="Link"
+							></cm-link>
+						</cm-datalist-item>
+					</cm-datalist>
+				</div>
 			</cm-page-tab>
 			<cm-page-tab label="Loaders">
 				<div class="row">
@@ -582,14 +705,12 @@
 				</script>
 			</cm-page-tab>
 			<cm-page-tab label="Notifications">
-				<div class="row">
-					<cm-button
-						appearance="primary"
-						label="Add Notification"
-						id="notificationButton"
-						style="max-width: 250px; align-self: start"
-					></cm-button>
-				</div>
+				<cm-button
+					appearance="primary"
+					label="Add Notification"
+					id="notificationButton"
+					style="max-width: 250px; align-self: start"
+				></cm-button>
 
 				<cm-notification-container
 					style="position: absolute; bottom: 10px; left: 10px"
@@ -605,6 +726,12 @@
 						},
 						{
 							headline: 'Test Notification',
+							userDismissable: false,
+							showCreationTime: false,
+						},
+						{
+							headline: 'Test Notification',
+							description: 'Description of some sort',
 							userDismissable: false,
 							showCreationTime: false,
 						},
