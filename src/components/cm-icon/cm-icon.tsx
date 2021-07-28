@@ -1,7 +1,12 @@
 import { Component, Host, h, Prop, State, Watch } from '@stencil/core'
-import { getVariableValue, onThemeChange, Theme } from '../../globalHelpers'
+import {
+	ColorMap,
+	getVariableValue,
+	onThemeChange,
+	Theme,
+} from '../../globalHelpers'
 
-const colorVariableMap = {
+const colorVariableMap: ColorMap = {
 	bright: {
 		Light: '--cm-color-ui-light4',
 		Dark: '--cm-color-ui-dark4',
