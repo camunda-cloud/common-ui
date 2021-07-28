@@ -10,6 +10,7 @@ import {
 
 import { Method, State } from '@stencil/core/internal'
 import { onThemeChange, Theme } from '../../../globalHelpers'
+import { CmIcon } from '../../cm-icon/cm-icon'
 
 @Component({
 	tag: 'cm-notification',
@@ -27,6 +28,8 @@ export class CmNotification {
 
 	@State() elapsedTime = 0
 	private timer: NodeJS.Timer
+
+	@State() iconColor: CmIcon['color'] = 'medium'
 
 	@Element()
 	el: HTMLElement
@@ -69,6 +72,11 @@ export class CmNotification {
 	componentWillLoad() {
 		onThemeChange((theme) => {
 			this.theme = theme
+			if (theme === 'Dark') {
+				this.iconColor = 'bright'
+			} else {
+				this.iconColor = 'medium'
+			}
 		})
 	}
 
@@ -132,7 +140,8 @@ export class CmNotification {
 						</div>
 						{this.userDismissable ? (
 							<cm-icon-button
-								color="medium"
+								color={this.iconColor}
+								ignoreTheme
 								icon={'close'}
 								onCmPress={() => this.dismiss()}
 							/>
