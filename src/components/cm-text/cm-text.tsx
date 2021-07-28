@@ -1,4 +1,5 @@
-import { Component, Host, h } from '@stencil/core'
+import { Component, Host, h, Prop, State } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 /**
  * @slot - The default slot is meant for the text you want to display.
@@ -9,10 +10,30 @@ import { Component, Host, h } from '@stencil/core'
 	shadow: true,
 })
 export class CmText {
+	@Prop({ mutable: true }) color: 'bright' | 'subtle' = 'bright'
+	@Prop({ mutable: true }) appearance:
+		| 'normal'
+		| 'entityListItem'
+		| 'entityListName' = 'normal'
+
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
+
 	render() {
 		return (
 			<Host>
-				<span>
+				<span
+					class={{
+						[this.theme]: true,
+						[this.color]: true,
+						[this.appearance]: true,
+					}}
+				>
 					<slot></slot>
 				</span>
 			</Host>

@@ -2,8 +2,47 @@ span {
 	display: inline;
 
 	font-family: var(--cm-font-text);
-	font-size: 14px;
-	font-weight: 400;
 
-	color: var(--cm-color-ui-light6);
+	&.Light {
+		&.bright {
+			color: var(--cm-color-ui-dark4);
+		}
+
+		&.subtle {
+			color: var(--cm-color-ui-light6);
+		}
+
+		&.contrast {
+			color: var(--cm-color-white-base);
+		}
+	}
+
+	&.Dark {
+		&.bright {
+			color: var(--cm-color-ui-light4);
+		}
+
+		&.subtle {
+			color: var(--cm-color-ui-light3);
+		}
+
+		&.contrast {
+			color: var(--cm-color-black-base);
+		}
+	}
+
+	&.normal {
+		font-size: 14px;
+		font-weight: 400;
+	}
+
+	&.entityListItem {
+		font-size: 15px;
+		font-weight: 400;
+	}
+
+	&.entityListName {
+		font-size: 15px;
+		font-weight: 500;
+	}
 }
