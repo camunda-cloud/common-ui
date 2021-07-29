@@ -153,7 +153,7 @@ export class CmDropdown {
 					>
 						<div class="label" tabindex="0">
 							<div class="text">{this.trigger.label}</div>
-							<cm-icon icon="down" />
+							<cm-icon icon="down" ignoreTheme />
 						</div>
 					</div>
 				)
@@ -165,6 +165,7 @@ export class CmDropdown {
 							onCmPress={() => {
 								this.isOpen = !this.isOpen
 							}}
+							ignoreTheme
 						/>
 					</div>
 				)
