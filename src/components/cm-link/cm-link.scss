@@ -11,6 +11,8 @@ a {
 	text-decoration: none;
 	color: var(--cm-color-link);
 
+	transition: all linear 200ms;
+
 	&::after {
 		content: '';
 		padding-left: 17px;

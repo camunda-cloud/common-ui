@@ -23,7 +23,7 @@ div {
 	text-decoration: none;
 	text-align: center;
 
-	span {
+	&:not(.link) span {
 		opacity: 1;
 		transition: all 0.2s linear;
 		transition-delay: 0.2s;
