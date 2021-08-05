@@ -1,7 +1,11 @@
 import { Meta, Canvas, Description } from '@storybook/addon-docs'
-import { CmRadiobutton } from '@camunda-cloud/common-ui-react'
+import {
+	CmRadiobutton,
+	CmRadiobuttonGroup,
+} from '@camunda-cloud/common-ui-react'
 
 import Readme from './readme.md'
+import Readme2 from '../cm-radiobutton-group/readme.md'
 
 <Meta title="Components/Form Elements/Radiobutton" component={CmRadiobutton} />
 
@@ -13,17 +17,33 @@ These Radiobuttons are modeled after native radiobuttons in a variety of ways. T
 If you toggle it or navigate to it with the keyboard it will however show the focus visually.
 
 <Canvas>
-	<CmRadiobutton label="Select me!"></CmRadiobutton>
-	<CmRadiobutton label="I start selected!" selected></CmRadiobutton>
+	<CmRadiobuttonGroup defaultValue="2">
+		<CmRadiobutton label="Select me!" value="1"></CmRadiobutton>
+		<CmRadiobutton label="I start selected!" value="2"></CmRadiobutton>
+	</CmRadiobuttonGroup>
 </Canvas>
 
 They can be disabled of course:
 
 <Canvas>
-	<CmRadiobutton label="Can't select me!" disabled></CmRadiobutton>
-	<CmRadiobutton label="Can't deselect me!" selected disabled></CmRadiobutton>
+	<CmRadiobuttonGroup>
+		<CmRadiobutton
+			label="Can't select me!"
+			value="1"
+			disabled
+		></CmRadiobutton>
+		<CmRadiobutton
+			label="Can't select me either!"
+			value="2"
+			disabled
+		></CmRadiobutton>
+	</CmRadiobuttonGroup>
 </Canvas>
 
 ## Technical Documentation
 
 <Description>{Readme}</Description>
+
+# Technical Documentation for CmRadiobuttonGroup
+
+<Description>{Readme2}</Description>

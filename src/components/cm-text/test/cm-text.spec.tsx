@@ -10,7 +10,7 @@ describe('cm-text', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-text>
 				<mock:shadow-root>
-					<span class="">
+					<span class="Light bright normal">
 						<slot></slot>
 					</span>
 				</mock:shadow-root>

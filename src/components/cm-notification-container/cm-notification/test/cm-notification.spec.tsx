@@ -17,7 +17,7 @@ describe('cm-notification', () => {
 								<div class="headline"></div>
 								<div class="description"></div>
 							</div>
-							<cm-icon-button icon="close"></cm-icon-button>
+							<cm-icon-button color="medium" icon="close" ignoretheme=""></cm-icon-button>
 							<div class="date">
 								Just now
 							</div>

@@ -1,5 +1,8 @@
 import { Meta, Canvas, Description } from '@storybook/addon-docs'
-import { CmNotificationContainer } from '@camunda-cloud/common-ui-react'
+import {
+	CmNotificationContainer,
+	CmButton,
+} from '@camunda-cloud/common-ui-react'
 
 import Readme from './readme.md'
 
@@ -17,6 +20,33 @@ even enabling you to show a notification until you programatically dismiss it.
 
 It has no visual appearance of its own, only defining the location that
 Notifications are shown at. The current recommended position is the bottom left.
+
+<Canvas>
+	<div style={{ height: '200px', position: 'relative' }}>
+		<CmButton
+			label="Show Notification"
+			appearance="primary"
+			onCmPress={() => {
+				document
+					.querySelector('cm-notification-container')
+					.enqueueNotification({
+						headline: 'Test Notification',
+						description: 'Description of some sort',
+						appearance: 'success',
+						navigation: {
+							label: 'View',
+							navigationHandler: (event) => {
+								console.log('Navigation!')
+							},
+						},
+					})
+			}}
+		></CmButton>
+		<CmNotificationContainer
+			style={{ position: 'absolute', bottom: 10, left: 10 }}
+		></CmNotificationContainer>
+	</div>
+</Canvas>
 
 ## Technical Documentation
 
