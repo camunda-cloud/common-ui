@@ -3,6 +3,9 @@ const CopyPlugin = require('copy-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 
 module.exports = {
+	core: {
+		builder: 'webpack5',
+	},
 	stories: ['../src/**/*.stories.mdx'],
 	addons: ['@storybook/addon-docs'],
 	webpackFinal: (config) => {
