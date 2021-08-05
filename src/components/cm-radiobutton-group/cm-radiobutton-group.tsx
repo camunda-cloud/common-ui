@@ -6,7 +6,6 @@ import { Component, Host, h, Prop, Listen, Element } from '@stencil/core'
 	shadow: true,
 })
 export class CmRadiobuttonGroup {
-	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 	@Prop({ reflect: false, mutable: false }) defaultValue: string = ''
 
 	@Element() element: HTMLElement
