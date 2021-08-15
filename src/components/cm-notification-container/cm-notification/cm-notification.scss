@@ -12,12 +12,15 @@
 	box-sizing: border-box;
 	position: relative;
 
+	padding: 16px;
+
 	&.hasTimeOrNavigationLabel {
 		grid-template-areas:
 			'icon content         content         content closeButton'
 			'.    navigationLabel navigationLabel date    date';
 		grid-template-columns: 24px 1fr 1fr 70px 20px;
 		grid-template-rows: max-content max-content;
+		padding: 16px 16px 12px;
 	}
 
 	grid-template-areas: 'icon content content content closeButton';
@@ -33,7 +36,6 @@
 	font-family: var(--cm-font-text);
 	color: rgba(var(--cm-color-ui-dark4-rgb), 0.9);
 
-	padding: 16px 16px 12px;
 	width: 330px;
 	border-radius: 5px;
 	box-shadow: 0 0.1px 0.3px rgba(var(--cm-color-black-base-rgb), 0.042),
