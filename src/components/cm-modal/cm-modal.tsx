@@ -21,8 +21,15 @@ const maximumWidth = 750
 	shadow: true,
 })
 export class CmModal {
-	promise?: Promise<'confirm' | 'cancel'>
-	promiseResolver?: (value: 'confirm' | 'cancel') => void
+	promise?: Promise<
+		| { result: 'confirm'; formData?: Record<string, string> }
+		| { result: 'cancel' }
+	>
+	promiseResolver?: (
+		value:
+			| { result: 'confirm'; formData?: Record<string, string> }
+			| { result: 'cancel' },
+	) => void
 	preConfirmationHandler?: () => Promise<void>
 
 	@State() isOpen: boolean = false
@@ -45,7 +52,7 @@ export class CmModal {
 	@Prop({ mutable: true }) cancelAppearance: 'secondary' | 'danger' =
 		'secondary'
 
-	@Element() el: HTMLElement
+	@Element() element: HTMLElement
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
@@ -54,19 +61,41 @@ export class CmModal {
 		}
 	}
 
+	submitFromConfirm = false
+
 	/**
 	 * Opens the modal. Takes an optional handler for asynchronous confirm actions, which only trigger confirm if the returned Promise resolves successfully. While the Promise is unresolved, the Modal stays open and the ConfirmButton is in a loading state.
 	 */
 	@Method()
-	async open(preConfirmationHandler?: () => Promise<void>) {
-		this.preConfirmationHandler = preConfirmationHandler
-		this.promise = new Promise<'confirm' | 'cancel'>((resolve) => {
+	async open(
+		options: {
+			preConfirmationHandler?: () => Promise<void>
+			preventFormReset?: boolean
+		} = {},
+	) {
+		this.submitFromConfirm = false
+		this.preConfirmationHandler = options.preConfirmationHandler
+		this.promise = new Promise<
+			| { result: 'confirm'; formData?: Record<string, string> }
+			| { result: 'cancel' }
+		>((resolve) => {
 			this.promiseResolver = resolve
 		})
 
+		if (!options.preventFormReset) {
+			const form = this.element.querySelector('cm-form')
+			form?.reset()
+			form?.addEventListener('cmSubmit', () => {
+				if (!this.submitFromConfirm) {
+					this.confirm()
+				}
+			})
+			form?.forceFocus()
+		}
+
 		this.isOpen = true
 
-		this.el.focus()
+		this.element.focus()
 
 		return this.promise
 	}
@@ -77,13 +106,29 @@ export class CmModal {
 	@Method()
 	async confirm() {
 		if (this.isOpen) {
+			let form = this.element.querySelector('cm-form')
+			let formResult
+
+			if (form) {
+				this.submitFromConfirm = true
+				formResult = await form.attemptSubmit()
+				this.submitFromConfirm = false
+
+				if (!formResult.isValid) {
+					return this.promise
+				}
+			}
+
 			if (this.preConfirmationHandler) {
 				this.confirmLoading = true
 				this.cancelDisabled = true
 				this.preConfirmationHandler().then(
 					() => {
 						this.isOpen = false
-						this.promiseResolver('confirm')
+						this.promiseResolver({
+							result: 'confirm',
+							formData: formResult?.data,
+						})
 
 						this.confirmLoading = false
 						this.cancelDisabled = false
@@ -95,7 +140,10 @@ export class CmModal {
 				)
 			} else {
 				this.isOpen = false
-				this.promiseResolver('confirm')
+				this.promiseResolver({
+					result: 'confirm',
+					formData: formResult?.data,
+				})
 			}
 		}
 
@@ -109,7 +157,7 @@ export class CmModal {
 	async cancel() {
 		if (this.isOpen) {
 			this.isOpen = false
-			this.promiseResolver('cancel')
+			this.promiseResolver({ result: 'cancel' })
 		}
 
 		return this.promise
