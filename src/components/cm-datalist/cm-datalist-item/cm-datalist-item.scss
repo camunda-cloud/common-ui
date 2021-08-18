@@ -11,11 +11,9 @@ cm-datalist-item:not(:last-child) {
 	& .label {
 		padding-left: 20px;
 
-		opacity: 0.9;
-
 		font-family: var(--cm-font-text);
 		font-size: 14px;
-		font-weight: 600;
+		font-weight: 500;
 
 		color: var(--cm-color-ui-dark4);
 
@@ -27,8 +25,8 @@ cm-datalist-item:not(:last-child) {
 	& .content {
 		padding-right: 40px;
 
-		overflow: hidden;
 		text-overflow: ellipsis;
+		overflow: hidden;
 		white-space: nowrap;
 	}
 }
