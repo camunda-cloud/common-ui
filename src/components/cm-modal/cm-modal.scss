@@ -100,8 +100,24 @@
 	& .content {
 		grid-area: content;
 		box-sizing: border-box;
-		padding: 20px;
+
 		overflow: auto;
+
+		&.paddings-all {
+			padding: 20px;
+		}
+
+		&.paddings-vertical {
+			padding: 20px 0px;
+		}
+
+		&.paddings-horizontal {
+			padding: 0px 20px;
+		}
+
+		&.paddings-none {
+			padding: 0px;
+		}
 	}
 
 	& .buttons {

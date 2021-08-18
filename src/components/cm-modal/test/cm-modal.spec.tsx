@@ -16,7 +16,7 @@ describe('cm-modal', () => {
 								<h1></h1>
 								<cm-icon-button icon="closeLarge"></cm-icon-button>
 							</div>
-							<div class="content">
+							<div class="content paddings-all">
 								<slot></slot>
 							</div>
 							<div class="buttons">

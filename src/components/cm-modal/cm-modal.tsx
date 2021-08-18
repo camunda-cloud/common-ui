@@ -39,6 +39,12 @@ export class CmModal {
 	@Prop({ mutable: true }) position: 'top' | 'center' = 'center'
 	@Prop({ mutable: true }) width: number = 636
 
+	@Prop({ mutable: true }) paddings:
+		| 'all'
+		| 'vertical'
+		| 'horizontal'
+		| 'none' = 'all'
+
 	@Prop({ mutable: true }) headline: string = ''
 
 	@Prop({ mutable: true }) confirmLabel: string = ''
@@ -187,7 +193,12 @@ export class CmModal {
 								onCmPress={() => this.cancel()}
 							/>
 						</div>
-						<div class="content">
+						<div
+							class={{
+								content: true,
+								[`paddings-${this.paddings}`]: true,
+							}}
+						>
 							<slot></slot>
 						</div>
 						<div class="buttons">
