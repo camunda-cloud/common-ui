@@ -13,6 +13,7 @@ export class CmText {
 	@Prop({ mutable: true }) color: 'bright' | 'subtle' = 'bright'
 	@Prop({ mutable: true }) appearance:
 		| 'normal'
+		| 'emphasis'
 		| 'entityListItem'
 		| 'entityListName' = 'normal'
 
