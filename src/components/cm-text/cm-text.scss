@@ -41,6 +41,11 @@ span {
 		font-weight: 500;
 	}
 
+	&.helperText {
+		font-size: 12px;
+		font-style: italic;
+	}
+
 	&.entityListItem {
 		font-size: 15px;
 		font-weight: 400;

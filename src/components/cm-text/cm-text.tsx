@@ -14,6 +14,7 @@ export class CmText {
 	@Prop({ mutable: true }) appearance:
 		| 'normal'
 		| 'emphasis'
+		| 'helperText'
 		| 'entityListItem'
 		| 'entityListName' = 'normal'
 
