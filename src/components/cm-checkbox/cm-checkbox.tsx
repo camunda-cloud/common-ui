@@ -17,6 +17,7 @@ import {
 })
 export class CmCheckbox {
 	@Prop({ reflect: true, mutable: true }) label: string = ''
+	@Prop({ reflect: true, mutable: true }) helperText: string = ''
 	@Prop({ reflect: true, mutable: true }) checked: boolean = false
 	@Prop({ reflect: true, mutable: true }) indeterminate: boolean = false
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
@@ -128,7 +129,10 @@ export class CmCheckbox {
 
 		return (
 			<Host>
-				<div class="container" tabindex={tabIndex}>
+				<div
+					class={{ container: true, disabled: this.disabled }}
+					tabindex={tabIndex}
+				>
 					<div
 						class={checkboxClasses}
 						ref={(element) =>
@@ -138,6 +142,7 @@ export class CmCheckbox {
 						aria-disabled={this.disabled}
 					></div>
 					<label>{this.label}</label>
+					<cm-text appearance="helperText">{this.helperText}</cm-text>
 				</div>
 			</Host>
 		)
