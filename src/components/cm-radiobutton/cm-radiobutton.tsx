@@ -18,6 +18,7 @@ import {
 export class CmRadiobutton {
 	@Prop({ reflect: true, mutable: true }) value: string = ''
 	@Prop({ reflect: true, mutable: true }) label: string = ''
+	@Prop({ reflect: true, mutable: true }) helperText: string = ''
 	@Prop({ mutable: true }) selected: boolean = false
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
@@ -123,6 +124,7 @@ export class CmRadiobutton {
 					>
 						<slot name="afterLabel"></slot>
 					</div>
+					<cm-text appearance="helperText">{this.helperText}</cm-text>
 				</div>
 			</Host>
 		)

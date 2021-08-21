@@ -1,14 +1,14 @@
 import { newSpecPage } from '@stencil/core/testing'
 import { CmRadiobutton } from '../cm-radiobutton'
 
-describe('cm-checkbox', () => {
+describe('cm-radiobutton', () => {
 	it('renders', async () => {
 		const page = await newSpecPage({
 			components: [CmRadiobutton],
 			html: `<cm-radiobutton></cm-radiobutton>`,
 		})
 		expect(page.root).toEqualHtml(`
-			<cm-radiobutton label="" value="">
+			<cm-radiobutton helper-text="" label="" value="">
 				<mock:shadow-root>
 					<div class="container" tabindex="0">
 						<div class="radiobutton" role="radio"></div>
@@ -19,6 +19,7 @@ describe('cm-checkbox', () => {
 						<div class="afterLabel empty">
 							<slot name="afterLabel"></slot>
 						</div>
+						<cm-text appearance="helperText"></cm-text>
 					</div>
 				</mock:shadow-root>
 			</cm-radiobutton>
