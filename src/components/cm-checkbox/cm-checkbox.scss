@@ -6,11 +6,28 @@
 	display: grid;
 	grid-auto-flow: column;
 	grid-auto-columns: max-content 1fr;
-	grid-auto-rows: max-content max-content;
+	grid-auto-rows: max-content max-content max-content;
 	grid-template-areas:
-		'checkbox label'
-		'.        helperText';
+		'checkbox     label'
+		'.            helperText'
+		'errorMessage errorMessage';
 	gap: 0px 8px;
+
+	&.hasError {
+		&:focus-visible {
+			.checkbox {
+				border-color: var(--cm-color-red-base);
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-outer-danger);
+			}
+		}
+
+		&:not(.disabled),
+		&:not(.disabled):hover {
+			.checkbox {
+				border-color: var(--cm-color-red-base);
+			}
+		}
+	}
 
 	&:focus {
 		outline: none;
@@ -26,6 +43,14 @@
 	&:not(.disabled):hover {
 		.checkbox {
 			border-color: var(--cm-color-blue-base);
+		}
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+
+		label {
+			cursor: not-allowed;
 		}
 	}
 }
@@ -103,8 +128,9 @@
 			opacity: 0.5;
 		}
 
-		&.checked:not(.indeterminate)::before {
-			opacity: 0.5;
+		&.checked:not(.indeterminate) {
+			background: var(--cm-color-button-light1);
+			border-color: var(--cm-color-button-light1);
 		}
 
 		&:not(.checked, .indeterminate) {
@@ -135,4 +161,25 @@ label {
 cm-text {
 	grid-area: helperText;
 	user-select: none;
+}
+
+.errorMessage {
+	grid-area: errorMessage;
+
+	display: grid;
+
+	grid-auto-flow: column;
+	grid-auto-columns: max-content 1fr;
+
+	gap: 6px;
+
+	font-family: var(--cm-font-text);
+	font-size: 13px;
+	color: var(--cm-color-red-base);
+
+	padding-left: 2px;
+
+	&:not(:empty) {
+		padding-top: 8px;
+	}
 }
