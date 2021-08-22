@@ -12,9 +12,11 @@ describe('cm-radiobutton-group', () => {
 		})
 
 		expect(page.root).toEqualHtml(`
-			<cm-radiobutton-group>
+			<cm-radiobutton-group form-name="" label="" value="">
 				<mock:shadow-root>
-					<slot></slot>
+					<div class="container">
+						<slot></slot>
+					</div>
 				</mock:shadow-root>
 			</cm-radiobutton-group>
 		`)

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Listen, Element } from '@stencil/core'
+import { Component, Host, h, Prop, Listen, Element, Watch } from '@stencil/core'
 
 @Component({
 	tag: 'cm-radiobutton-group',
@@ -6,46 +6,59 @@ import { Component, Host, h, Prop, Listen, Element } from '@stencil/core'
 	shadow: true,
 })
 export class CmRadiobuttonGroup {
-	@Prop({ reflect: false, mutable: false }) defaultValue: string = ''
+	@Prop({ reflect: true, mutable: true }) label: string = ''
+	@Prop({ reflect: true, mutable: true }) value: string = ''
+	@Prop({ reflect: true, mutable: true }) formName: string = ''
 
 	@Element() element: HTMLElement
 
-	tabs: Array<HTMLCmRadiobuttonElement> = []
+	radiobuttons: Array<HTMLCmRadiobuttonElement> = []
+
+	@Watch('value') setValue(newValue: string) {
+		this.selectRadiobutton(newValue)
+	}
 
 	@Listen('cmSelected')
 	radioButtonSelectedHandler(event) {
-		for (let tab of this.tabs) {
-			if (tab !== event.target) {
-				tab.selected = false
+		for (let radiobutton of this.radiobuttons) {
+			if (radiobutton !== event.target) {
+				radiobutton.selected = false
+			} else {
+				this.value = radiobutton.value
+			}
+		}
+	}
+
+	selectRadiobutton(value: string) {
+		this.radiobuttons = Array.from(
+			this.element.querySelectorAll('cm-radiobutton'),
+		)
+
+		for (let radiobutton of this.radiobuttons) {
+			if (radiobutton.value === value) {
+				radiobutton.select()
+				break
 			}
 		}
 	}
 
 	componentDidLoad() {
-		this.tabs = Array.from(this.element.querySelectorAll('cm-radiobutton'))
-
-		for (let tab of this.tabs) {
-			if (tab.value === this.defaultValue) {
-				tab.select()
-				break
-			}
-		}
-
-		const observer = new MutationObserver(() => {
-			this.tabs = Array.from(
-				this.element.querySelectorAll('cm-radiobutton'),
-			)
-		})
-
-		observer.observe(this.element, {
-			childList: true,
-		})
+		this.selectRadiobutton(this.value)
 	}
 
 	render() {
 		return (
 			<Host>
-				<slot></slot>
+				{this.label ? (
+					<cm-text id="label" appearance="emphasis">
+						{this.label}
+					</cm-text>
+				) : (
+					''
+				)}
+				<div class="container">
+					<slot></slot>
+				</div>
 			</Host>
 		)
 	}

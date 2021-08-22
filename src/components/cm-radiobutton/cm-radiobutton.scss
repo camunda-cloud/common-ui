@@ -28,6 +28,14 @@
 			border-color: var(--cm-color-blue-base);
 		}
 	}
+
+	&.disabled {
+		cursor: not-allowed;
+
+		label {
+			cursor: not-allowed;
+		}
+	}
 }
 
 .radiobutton {
