@@ -43,8 +43,8 @@
 
 	position: relative;
 	display: inline-block;
-	height: 16px;
-	width: 16px;
+	height: 14px;
+	width: 14px;
 
 	background-color: var(--cm-color-blue-base);
 	border: 1px solid var(--cm-color-ui-light3);
@@ -69,23 +69,6 @@
 		transform-origin: center;
 	}
 
-	&::after {
-		content: '';
-
-		position: absolute;
-		top: 50%;
-		left: 50%;
-
-		transform: translate(-50%, -50%);
-
-		width: 10px;
-		height: 3px;
-		background: #3b3b3b;
-
-		opacity: 0;
-		transition: all 0.2s linear;
-	}
-
 	&.selected {
 		border-color: var(--cm-color-blue-base);
 
@@ -97,10 +80,6 @@
 	&.disabled {
 		background: var(--cm-color-ui-light1);
 		border-color: var(--cm-color-ui-light5);
-
-		&.indeterminate::after {
-			opacity: 0.5;
-		}
 
 		&.selected:not(.indeterminate)::before {
 			opacity: 0.5;
@@ -133,8 +112,8 @@ label {
 	font-family: var(--cm-font-text);
 	font-size: 14px;
 
-	min-height: 20px;
-	line-height: 20px;
+	min-height: 16px;
+	line-height: 16px;
 
 	&:empty {
 		display: none;
