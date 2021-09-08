@@ -46,6 +46,12 @@ export class CmDropdown {
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
 		  }
+		| {
+				type: 'defaultAction'
+				label: string
+				appearance: 'main' | 'primary' | 'secondary'
+				defaultHandler: () => void
+		  }
 		| { type: 'label'; label: string } = {
 		type: 'button',
 		label: '',
@@ -167,6 +173,71 @@ export class CmDropdown {
 							}}
 							ignoreTheme
 						/>
+					</div>
+				)
+			} else if (this.trigger.type === 'defaultAction') {
+				let buttonClasses = {
+					defaultAction: true,
+					[this.trigger.appearance]: true,
+				}
+
+				let iconColor
+
+				if (this.trigger.appearance === 'primary') {
+					iconColor = 'bright'
+				} else {
+					iconColor = 'dark'
+				}
+
+				const defaultAction = this.trigger.defaultHandler
+
+				trigger = (
+					<div class="trigger">
+						<div class={buttonClasses}>
+							<div
+								tabindex="0"
+								class={{
+									button: true,
+									[this.trigger.appearance]: true,
+								}}
+								onClick={() => {
+									this.isOpen = false
+									defaultAction()
+								}}
+							>
+								{this.trigger.label}
+							</div>
+							<div
+								class={{
+									separator: true,
+									[this.trigger.appearance]: true,
+								}}
+							></div>
+							<div
+								tabindex="0"
+								class={{
+									iconButton: true,
+									[this.trigger.appearance]: true,
+								}}
+								onClick={() => {
+									this.isOpen = !this.isOpen
+								}}
+								onKeyDown={(event) => {
+									if (
+										event.key === ' ' ||
+										event.key === 'Enter'
+									) {
+										this.isOpen = !this.isOpen
+									}
+								}}
+							>
+								<cm-icon
+									icon="down"
+									color={iconColor}
+									ignoreTheme
+								></cm-icon>
+							</div>
+						</div>
 					</div>
 				)
 			} else {

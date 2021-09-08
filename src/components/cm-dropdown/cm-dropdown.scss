@@ -17,7 +17,222 @@
 	display: grid;
 	align-content: center;
 
-	.button {
+	> .defaultAction {
+		display: inline-grid;
+		user-select: none;
+
+		height: 33px;
+
+		border-radius: 3px;
+
+		font-family: var(--cm-font-text);
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 33px;
+		text-decoration: none;
+		text-align: center;
+
+		grid-auto-flow: column;
+		grid-auto-columns: max-content 1px max-content;
+
+		align-items: center;
+
+		/********
+		 * Main *
+		 ********/
+
+		&.main {
+			background-color: var(--cm-color-ui-light5);
+			border: solid 1px var(--cm-color-ui-light3);
+			color: var(--cm-color-ui-dark4);
+		}
+
+		/***********
+		 * Primary *
+		 ***********/
+
+		&.primary {
+			background-color: var(--cm-color-blue-base);
+			border: solid 1px var(--cm-color-button-blue3);
+			color: var(--cm-color-ui-light4);
+		}
+
+		/*************
+		 * Secondary *
+		 *************/
+
+		&.secondary {
+			background-color: var(--cm-color-button-light4);
+			border: solid 1px var(--cm-color-ui-light3);
+			color: var(--cm-color-ui-dark4);
+		}
+
+		.separator {
+			height: 25px;
+			width: 1px;
+
+			&.main {
+				background-color: var(--cm-color-ui-dark4);
+			}
+
+			&.primary {
+				background-color: var(--cm-color-ui-light4);
+			}
+
+			&.secondary {
+				background-color: var(--cm-color-ui-dark4);
+			}
+		}
+
+		.button {
+			transition: all 0.2s linear;
+			border-radius: 3px;
+
+			cursor: pointer;
+			padding: 0 20px 0 20px;
+			position: relative;
+
+			/********
+			 * Main *
+			********/
+
+			&.main:hover {
+				background-color: var(--cm-color-button-light1);
+			}
+
+			&.main:focus {
+				outline: none;
+			}
+
+			&.main:focus-visible {
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
+					0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+			}
+
+			&.main:active {
+				background-color: var(--cm-color-ui-light3);
+			}
+
+			/***********
+			 * Primary *
+			***********/
+
+			&.primary:hover {
+				background-color: var(--cm-color-button-blue3);
+			}
+
+			&.primary:focus {
+				outline: none;
+			}
+
+			&.primary:focus-visible {
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral),
+					0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+			}
+
+			&.primary:active {
+				background-color: var(--cm-color-button-blue4);
+			}
+
+			/*************
+			 * Secondary *
+			*************/
+
+			&.secondary:hover {
+				background-color: var(--cm-color-button-light5);
+			}
+
+			&.secondary:focus {
+				outline: none;
+			}
+
+			&.secondary:focus-visible {
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
+					0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+			}
+
+			&.secondary:active {
+				background-color: var(--cm-color-button-light6);
+			}
+		}
+
+		.iconButton {
+			transition: all 0.2s linear;
+			border-radius: 3px;
+
+			cursor: pointer;
+			display: grid;
+			height: 100%;
+			width: 30px;
+			justify-content: center;
+			align-items: center;
+
+			/********
+			 * Main *
+			********/
+
+			&.main:hover {
+				background-color: var(--cm-color-button-light1);
+			}
+
+			&.main:focus {
+				outline: none;
+			}
+
+			&.main:focus-visible {
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
+					0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+			}
+
+			&.main:active {
+				background-color: var(--cm-color-ui-light3);
+			}
+
+			/***********
+			 * Primary *
+			***********/
+
+			&.primary:hover {
+				background-color: var(--cm-color-button-blue3);
+			}
+
+			&.primary:focus {
+				outline: none;
+			}
+
+			&.primary:focus-visible {
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral),
+					0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+			}
+
+			&.primary:active {
+				background-color: var(--cm-color-button-blue4);
+			}
+
+			/*************
+			 * Secondary *
+			*************/
+
+			&.secondary:hover {
+				background-color: var(--cm-color-button-light5);
+			}
+
+			&.secondary:focus {
+				outline: none;
+			}
+
+			&.secondary:focus-visible {
+				box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2),
+					0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+			}
+
+			&.secondary:active {
+				background-color: var(--cm-color-button-light6);
+			}
+		}
+	}
+
+	> .button {
 		display: inline-grid;
 		user-select: none;
 
@@ -132,7 +347,7 @@
 		}
 	}
 
-	.label {
+	> .label {
 		display: grid;
 		grid-auto-flow: column;
 		align-items: center;
