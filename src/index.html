@@ -683,6 +683,7 @@
 					<cm-dropdown></cm-dropdown>
 					<cm-dropdown></cm-dropdown>
 					<cm-dropdown></cm-dropdown>
+					<cm-dropdown></cm-dropdown>
 
 					<script>
 						let dropdowns = document.querySelectorAll('cm-dropdown')
@@ -707,6 +708,13 @@
 						dropdowns[3].trigger = {
 							type: 'icon',
 							icon: 'contextMenu',
+						}
+
+						dropdowns[4].trigger = {
+							type: 'defaultAction',
+							label: 'Execute',
+							appearance: 'primary',
+							defaultHandler: () => { console.log('execute..') }
 						}
 
 						dropdowns.forEach((dropdown) => {
