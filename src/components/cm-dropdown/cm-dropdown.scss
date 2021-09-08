@@ -73,13 +73,6 @@
 			border: solid 1px var(--cm-color-button-light3);
 		}
 
-		&.main.disabled {
-			background-color: var(--cm-color-button-light4);
-			border: solid 1px var(--cm-color-ui-light3);
-			color: rgba(var(--cm-color-ui-dark4-rgb), 0.5);
-			box-shadow: unset;
-		}
-
 		/***********
 		 * Primary *
 		 ***********/
@@ -109,13 +102,6 @@
 			border: solid 1px var(--cm-color-button-blue5);
 		}
 
-		&.primary.disabled {
-			background-color: var(--cm-color-button-blue2);
-			border: solid 1px var(--cm-color-button-blue1);
-			color: rgba(var(--cm-color-ui-light4-rgb), 0.5);
-			box-shadow: unset;
-		}
-
 		/*************
 		 * Secondary *
 		 *************/
@@ -143,13 +129,6 @@
 		&.secondary:active {
 			background-color: var(--cm-color-button-light6);
 			border: solid 1px var(--cm-color-ui-light3);
-		}
-
-		&.secondary.disabled {
-			background-color: var(--cm-color-button-light4);
-			border: solid 1px var(--cm-color-ui-light3);
-			color: rgba(var(--cm-color-ui-dark4-rgb), 0.5);
-			box-shadow: unset;
 		}
 	}
 
