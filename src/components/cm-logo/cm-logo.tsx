@@ -1,4 +1,5 @@
-import { Component, Host, h } from '@stencil/core'
+import { Component, Host, h, State } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-logo',
@@ -6,10 +7,18 @@ import { Component, Host, h } from '@stencil/core'
 	shadow: true,
 })
 export class CmLogo {
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
+
 	render() {
 		return (
 			<Host>
-				<div class="logo"></div>
+				<div class={{ logo: true, [this.theme]: true }}></div>
 			</Host>
 		)
 	}

@@ -10,7 +10,7 @@ describe('cm-logo', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-logo>
 				<mock:shadow-root>
-					<div class="logo"></div>
+					<div class="Light logo"></div>
 				</mock:shadow-root>
 			</cm-logo>
 		`)
