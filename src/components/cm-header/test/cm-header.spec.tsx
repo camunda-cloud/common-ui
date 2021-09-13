@@ -10,7 +10,7 @@ describe('cm-header', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-header>
 				<mock:shadow-root>
-					<div class="header">
+					<div class="Light header">
 						<div class="left">
 							<slot name="left"></slot>
 						</div>
