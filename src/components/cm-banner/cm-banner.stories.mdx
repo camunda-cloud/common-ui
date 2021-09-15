@@ -7,7 +7,7 @@ import Readme from './readme.md'
 
 # Banner
 
-Banners are a simple way of alerting the user to a non-volatile condition. Currently only a single appearance is supported: `warning`.
+Banners are a simple way of alerting the user to a non-volatile condition. Currently two appearances are supported: `warning` and `error`.
 
 <Canvas>
 	<CmBanner appearance="warning">
@@ -16,6 +16,14 @@ Banners are a simple way of alerting the user to a non-volatile condition. Curre
 			<CmButton appearance="link" label="here"></CmButton>.
 		</CmText>
 	</CmBanner>
+
+    <CmBanner appearance="error">
+    	<CmText>
+    		This is an error, fix it{' '}
+    		<CmButton appearance="link" label="here"></CmButton>.
+    	</CmText>
+    </CmBanner>
+
 </Canvas>
 
 ## Technical Documentation

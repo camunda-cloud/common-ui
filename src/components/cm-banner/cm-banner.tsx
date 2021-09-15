@@ -14,7 +14,7 @@ export class CmBanner {
 	render() {
 		return (
 			<Host>
-				<div class="container">
+				<div class={{ container: true, [this.appearance]: true }}>
 					<div>
 						<slot></slot>
 					</div>
