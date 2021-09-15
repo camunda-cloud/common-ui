@@ -299,6 +299,15 @@
 						>.</cm-text
 					></cm-banner
 				>
+
+				<cm-banner appearance="error"
+					><cm-text
+						>This is an Error, fix this
+						<cm-button appearance="link" label="here"></cm-button
+						>.</cm-text
+					></cm-banner
+				>
+
 				<div class="row">
 					<cm-text
 						>This is a Text test with an embedded
@@ -714,7 +723,9 @@
 							type: 'defaultAction',
 							label: 'Execute',
 							appearance: 'primary',
-							defaultHandler: () => { console.log('execute..') }
+							defaultHandler: () => {
+								console.log('execute..')
+							},
 						}
 
 						dropdowns.forEach((dropdown) => {
