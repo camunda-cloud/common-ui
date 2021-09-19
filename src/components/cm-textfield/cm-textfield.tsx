@@ -136,7 +136,24 @@ export class CmTextfield {
 				}
 			}
 		} else {
-			result = await this.validation.validator(this.value)
+			if (this.required) {
+				let validationInput = document.createElement('input')
+				validationInput.type = this.getNormalisedInputType()
+				validationInput.value = this.value
+				validationInput.required = this.required
+				validationInput.maxLength = this.maxLength
+
+				if (validationInput.checkValidity()) {
+					result = await this.validation.validator(this.value)
+				} else {
+					result = {
+						isValid: false,
+						message: validationInput.validationMessage,
+					}
+				}
+			} else {
+				result = await this.validation.validator(this.value)
+			}
 		}
 
 		return result
