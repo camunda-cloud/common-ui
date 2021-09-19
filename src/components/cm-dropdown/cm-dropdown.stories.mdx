@@ -11,7 +11,6 @@ Note: A cm-context is required to handle the color for all cm-icons, and cm-drop
 requiring a cm-context on the page to render correctly.
 
 <Canvas>
-	<CmContext />
 	<div
 		style={{
 			display: 'flex',
@@ -19,6 +18,7 @@ requiring a cm-context on the page to render correctly.
 			justifyContent: 'space-evenly',
 		}}
 	>
+		<CmContext />
 		<CmDropdown
 			trigger={{
 				type: 'button',
