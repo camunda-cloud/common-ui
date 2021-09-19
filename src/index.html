@@ -411,6 +411,7 @@
 					textfield1.label = 'Label'
 					textfield1.formName = 'field1'
 					textfield1.showRequired = true
+					textfield1.required = true
 					textfield1.validation = {
 						type: 'custom',
 						validator: (value) => {
@@ -429,6 +430,7 @@
 									} else {
 										return {
 											isValid: false,
+											type: 'incomplete',
 											message:
 												'Please use at least 3 characters.',
 										}
@@ -436,6 +438,7 @@
 								} else {
 									return {
 										isValid: false,
+										type: 'invalid',
 										message:
 											'Please only use alphanumeric characters.',
 									}
