@@ -112,7 +112,7 @@ export class CmTextfield {
 	}
 
 	@Method() async checkValidity(): Promise<ValidatorResult> {
-		let result
+		let result: ValidatorResult
 
 		if (this.validation.type === 'default') {
 			if (this.value === '' && !this.required) {
@@ -131,6 +131,7 @@ export class CmTextfield {
 				} else {
 					result = {
 						isValid: false,
+						type: 'invalid',
 						message: validationInput.validationMessage,
 					}
 				}
@@ -148,6 +149,7 @@ export class CmTextfield {
 				} else {
 					result = {
 						isValid: false,
+						type: 'invalid',
 						message: validationInput.validationMessage,
 					}
 				}
@@ -237,11 +239,19 @@ export class CmTextfield {
 					clearTimeout(this.delayedValidationTimer)
 				}
 
-				this.forceHidingOfValidationState = true
+				let validity = await this.checkValidity()
 
-				this.delayedValidationTimer = setTimeout(() => {
+				if (validity.isValid === true) {
 					this.renderValidity()
-				}, this.delayValidationDistance)
+				} else if (validity.type === 'incomplete') {
+					this.forceHidingOfValidationState = true
+
+					this.delayedValidationTimer = setTimeout(() => {
+						this.renderValidity()
+					}, this.delayValidationDistance)
+				} else {
+					this.renderValidity()
+				}
 			} else {
 				this.renderValidity()
 			}
@@ -320,7 +330,7 @@ export class CmTextfield {
 
 									setTimeout(() => {
 										this.showCopyTooltip = false
-									}, 5000)
+									}, 3000)
 								},
 								() => {
 									console.error(

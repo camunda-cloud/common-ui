@@ -173,6 +173,7 @@ export class CmCheckbox {
 
 				this.validationResult = {
 					isValid: false,
+					type: 'invalid',
 					message: validationInput.validationMessage,
 				}
 			}

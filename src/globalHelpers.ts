@@ -4,7 +4,7 @@ export type ColorMap = Record<string, { Light: string; Dark: string }>
 
 export type ValidatorResult =
 	| { isValid: true }
-	| { isValid: false; message: string }
+	| { isValid: false; type: 'incomplete' | 'invalid'; message: string }
 
 export const onThemeChange = async (
 	callback: (theme: Theme) => void,
