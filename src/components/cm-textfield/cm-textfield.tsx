@@ -350,7 +350,6 @@ export class CmTextfield {
 					return (
 						<div class="suffix password">
 							<cm-icon
-								tab-index="-1"
 								icon="hide"
 								onMouseDown={(event) => {
 									event.preventDefault()
@@ -408,7 +407,13 @@ export class CmTextfield {
 
 	render() {
 		return (
-			<Host>
+			<Host
+				onBlur={() => {
+					if (this.validationStyle === 'delay') {
+						this.renderValidity()
+					}
+				}}
+			>
 				<label
 					class={{
 						container: true,
