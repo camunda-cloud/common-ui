@@ -127,6 +127,7 @@
 		cm-checkbox {
 			transition: all 0.2s linear;
 			opacity: 0;
+			align-self: center;
 
 			&.visible {
 				opacity: 1;
