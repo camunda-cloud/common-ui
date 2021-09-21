@@ -111,51 +111,41 @@ export class CmTextfield {
 		).focus()
 	}
 
+	checkDefaultValidity() {
+		let result: ValidatorResult
+
+		if (this.value === '' && !this.required) {
+			result = { isValid: true }
+		} else {
+			let validationInput = document.createElement('input')
+			validationInput.type = this.getNormalisedInputType()
+			validationInput.value = this.value
+			validationInput.required = this.required
+			validationInput.maxLength = this.maxLength
+
+			if (validationInput.checkValidity()) {
+				result = {
+					isValid: true,
+				}
+			} else {
+				result = {
+					isValid: false,
+					type: 'invalid',
+					message: validationInput.validationMessage,
+				}
+			}
+		}
+
+		return result
+	}
+
 	@Method() async checkValidity(): Promise<ValidatorResult> {
 		let result: ValidatorResult
 
-		if (this.validation.type === 'default') {
-			if (this.value === '' && !this.required) {
-				result = { isValid: true }
-			} else {
-				let validationInput = document.createElement('input')
-				validationInput.type = this.getNormalisedInputType()
-				validationInput.value = this.value
-				validationInput.required = this.required
-				validationInput.maxLength = this.maxLength
+		result = this.checkDefaultValidity()
 
-				if (validationInput.checkValidity()) {
-					result = {
-						isValid: true,
-					}
-				} else {
-					result = {
-						isValid: false,
-						type: 'invalid',
-						message: validationInput.validationMessage,
-					}
-				}
-			}
-		} else {
-			if (this.required) {
-				let validationInput = document.createElement('input')
-				validationInput.type = this.getNormalisedInputType()
-				validationInput.value = this.value
-				validationInput.required = this.required
-				validationInput.maxLength = this.maxLength
-
-				if (validationInput.checkValidity()) {
-					result = await this.validation.validator(this.value)
-				} else {
-					result = {
-						isValid: false,
-						type: 'invalid',
-						message: validationInput.validationMessage,
-					}
-				}
-			} else {
-				result = await this.validation.validator(this.value)
-			}
+		if (this.validation.type !== 'default' && result.isValid) {
+			result = await this.validation.validator(this.value)
 		}
 
 		return result
