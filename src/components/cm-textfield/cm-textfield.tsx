@@ -182,15 +182,21 @@ export class CmTextfield {
 			<div class="labelContainer">
 				<div class="label">{this.label}</div>
 				{this.labelAlignment === 'vertical' ? (
-					<cm-text appearance="helperText">{this.helperText}</cm-text>
+					<cm-text appearance="helperText" color="subtle">
+						{this.helperText}
+					</cm-text>
 				) : (
 					''
 				)}
 
 				{this.labelAlignment === 'vertical' && this.showRequired ? (
-					<div class="requiredStatus">
+					<cm-text
+						appearance="helperText"
+						color="subtle"
+						class="requiredStatus"
+					>
 						{this.required ? 'Required' : 'Optional'}
-					</div>
+					</cm-text>
 				) : (
 					''
 				)}

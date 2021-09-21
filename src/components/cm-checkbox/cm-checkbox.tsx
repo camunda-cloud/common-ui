@@ -251,7 +251,9 @@ export class CmCheckbox {
 						aria-disabled={this.disabled}
 					></div>
 					<label>{this.label}</label>
-					<cm-text appearance="helperText">{this.helperText}</cm-text>
+					<cm-text appearance="helperText" color="subtle">
+						{this.helperText}
+					</cm-text>
 					{this.renderErrorMessage()}
 				</div>
 			</Host>

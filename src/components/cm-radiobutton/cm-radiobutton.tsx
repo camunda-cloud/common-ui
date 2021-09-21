@@ -124,7 +124,9 @@ export class CmRadiobutton {
 					>
 						<slot name="afterLabel"></slot>
 					</div>
-					<cm-text appearance="helperText">{this.helperText}</cm-text>
+					<cm-text appearance="helperText" color="subtle">
+						{this.helperText}
+					</cm-text>
 				</div>
 			</Host>
 		)

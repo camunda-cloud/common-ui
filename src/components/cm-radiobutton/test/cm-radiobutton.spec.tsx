@@ -19,7 +19,7 @@ describe('cm-radiobutton', () => {
 						<div class="afterLabel empty">
 							<slot name="afterLabel"></slot>
 						</div>
-						<cm-text appearance="helperText"></cm-text>
+						<cm-text appearance="helperText" color="subtle"></cm-text>
 					</div>
 				</mock:shadow-root>
 			</cm-radiobutton>

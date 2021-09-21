@@ -125,6 +125,7 @@
 
 		font-size: 13px;
 		font-weight: 500;
+		color: var(--cm-color-ui-light6);
 	}
 
 	cm-text {
@@ -138,9 +139,6 @@
 
 	.requiredStatus {
 		grid-area: requiredStatus;
-
-		font-size: 12px;
-		font-style: italic;
 		justify-self: flex-end;
 	}
 
