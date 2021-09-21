@@ -5,10 +5,16 @@
 
 div {
 	display: grid;
+
+	box-sizing: border-box;
+
 	transition: all 0.2s linear;
-	height: 33px;
+	height: 35px;
 	min-width: 80px;
 	position: relative;
+
+	justify-content: center;
+	align-items: center;
 
 	cursor: pointer;
 
@@ -19,7 +25,6 @@ div {
 	font-family: var(--cm-font-text);
 	font-size: 14px;
 	font-weight: 700;
-	line-height: 35px;
 	text-decoration: none;
 	text-align: center;
 
