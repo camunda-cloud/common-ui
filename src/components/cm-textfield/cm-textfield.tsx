@@ -128,9 +128,23 @@ export class CmTextfield {
 					isValid: true,
 				}
 			} else {
+				let type: 'invalid' | 'incomplete' = 'invalid'
+
+				if (this.type === 'email') {
+					if (
+						this.value.lastIndexOf('.') === this.value.length - 1 ||
+						!this.value.includes('@') ||
+						(this.value.split('@').length === 2 &&
+							this.value.lastIndexOf('@') ===
+								this.value.length - 1)
+					) {
+						type = 'incomplete'
+					}
+				}
+
 				result = {
 					isValid: false,
-					type: 'invalid',
+					type,
 					message: validationInput.validationMessage,
 				}
 			}
