@@ -159,7 +159,11 @@ export class CmTextfield {
 		result = this.checkDefaultValidity()
 
 		if (this.validation.type !== 'default' && result.isValid) {
-			result = await this.validation.validator(this.value)
+			if (this.value === '' && !this.required) {
+				result = { isValid: true }
+			} else {
+				result = await this.validation.validator(this.value)
+			}
 		}
 
 		return result
