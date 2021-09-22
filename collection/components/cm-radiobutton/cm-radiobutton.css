@@ -1,0 +1,108 @@
+:host {
+  display: inline-block;
+}
+
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: max-content max-content 1fr max-content;
+  grid-template-rows: max-content max-content;
+  grid-template-areas: "radiobutton beforeLabel label      afterLabel" ".           helperText  helperText helperText";
+  position: relative;
+}
+.container:not(.disabled):focus {
+  outline: none;
+}
+.container:not(.disabled):focus-visible .radiobutton {
+  border-color: var(--cm-color-blue-base);
+  box-shadow: 0 0 0 1px var(--cm-color-focus-outer-neutral);
+}
+.container:not(.disabled):hover .radiobutton {
+  border-color: var(--cm-color-blue-base);
+}
+.container.disabled {
+  cursor: not-allowed;
+}
+.container.disabled label {
+  cursor: not-allowed;
+}
+
+.radiobutton {
+  grid-area: radiobutton;
+  position: relative;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  background-color: var(--cm-color-blue-base);
+  border: 1px solid var(--cm-color-ui-light3);
+  border-radius: 100%;
+  vertical-align: bottom;
+  transition: all 0.2s linear;
+}
+.radiobutton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 100%;
+  background-color: var(--cm-color-ui-light4);
+  transition: all 0.2s linear;
+  transform-origin: center;
+}
+.radiobutton.selected {
+  border-color: var(--cm-color-blue-base);
+}
+.radiobutton.selected::before {
+  transform: scale(0.5);
+}
+.radiobutton.disabled {
+  background: var(--cm-color-ui-light1);
+  border-color: var(--cm-color-ui-light5);
+}
+.radiobutton.disabled.selected:not(.indeterminate)::before {
+  opacity: 0.5;
+}
+
+.beforeLabel {
+  grid-area: beforeLabel;
+  display: grid;
+  align-items: center;
+}
+.beforeLabel:not(.empty) {
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+label {
+  grid-area: label;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 4px;
+  user-select: none;
+  color: var(--cm-color-ui-dark4);
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  min-height: 16px;
+  line-height: 16px;
+}
+label:empty {
+  display: none;
+}
+
+.afterLabel {
+  grid-area: afterLabel;
+  display: grid;
+  align-items: center;
+}
+.afterLabel:not(.empty) {
+  padding-left: 4px;
+  padding-right: 10px;
+}
+
+cm-text {
+  grid-area: helperText;
+  user-select: none;
+  padding-left: 10px;
+}

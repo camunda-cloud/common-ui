@@ -1,0 +1,42 @@
+span {
+  display: inline;
+  font-family: var(--cm-font-text);
+}
+span.Light.bright {
+  color: var(--cm-color-ui-dark4);
+}
+span.Light.subtle {
+  color: var(--cm-color-ui-light6);
+}
+span.Light.contrast {
+  color: var(--cm-color-white-base);
+}
+span.Dark.bright {
+  color: var(--cm-color-ui-light4);
+}
+span.Dark.subtle {
+  color: var(--cm-color-ui-light3);
+}
+span.Dark.contrast {
+  color: var(--cm-color-black-base);
+}
+span.normal {
+  font-size: 14px;
+  font-weight: 400;
+}
+span.emphasis {
+  font-size: 14px;
+  font-weight: 500;
+}
+span.helperText {
+  font-size: 12px;
+  font-style: italic;
+}
+span.entityListItem {
+  font-size: 15px;
+  font-weight: 400;
+}
+span.entityListName {
+  font-size: 15px;
+  font-weight: 500;
+}

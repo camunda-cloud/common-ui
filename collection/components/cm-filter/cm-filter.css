@@ -1,0 +1,50 @@
+:host {
+  display: inline-block;
+}
+
+.container {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: grid;
+  user-select: none;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  padding: 0px 10px;
+  border: solid 1px var(--cm-color-ui-light3);
+  border-radius: 11px;
+  background-color: var(--cm-color-ui-light5);
+  font-family: var(--cm-font-text);
+  font-size: 13px;
+  color: rgba(69, 70, 78, 0.9);
+  transition: all linear 200ms;
+  white-space: nowrap;
+}
+.pill:not(.disabled, .active):hover {
+  border: solid 1px var(--cm-color-button-light2);
+  background-color: var(--cm-color-button-light1);
+  cursor: pointer;
+}
+.pill:focus {
+  outline: none;
+}
+.pill:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.pill.active {
+  color: var(--cm-color-ui-light4);
+  border: solid 1px var(--cm-color-focus-inner-neutral2);
+  background-color: var(--cm-color-blue-base);
+}
+.pill.active:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.pill.disabled {
+  color: rgba(69, 70, 78, 0.5);
+  border: solid 1px var(--cm-color-ui-light3);
+  background-color: var(--cm-color-button-light4);
+}

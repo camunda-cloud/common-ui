@@ -1,0 +1,43 @@
+:host {
+  display: inline;
+}
+
+a {
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--cm-color-link);
+  transition: all linear 200ms;
+}
+a::after {
+  content: "";
+  padding-left: 15px;
+  margin-right: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12px' height='12px' viewBox='0 0 12 12' version='1.1' xmlns='http://www.w3.org/2000/svg' %3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' %3E%3Cpath d='M6,0 L6,1.4 L1.4,1.4 L1.4,10.6 L10.6,10.6 L10.6,6.485 L12,6.485 L12,12 L0,12 L0,0 L6,0 Z M12,0 L12,5.204 L10.203,3.205 L6.707,6.702 L5.293,5.288 L8.863,1.716 L7.32,0 L12,0 Z' fill='%23346ac5' fill-rule='nonzero' %3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+  background-position: right;
+  background-repeat: no-repeat;
+  transform: translateY(1px);
+}
+a:hover {
+  color: var(--cm-color-link-hover);
+}
+a:focus {
+  outline: none;
+}
+a:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+a:active {
+  color: var(--cm-color-link-active);
+}
+a.Dark {
+  color: var(--cm-color-link-dark);
+}
+a.Dark:hover {
+  color: var(--cm-color-link-hover-dark);
+}
+a.Dark:active {
+  color: var(--cm-color-link-active-dark);
+}

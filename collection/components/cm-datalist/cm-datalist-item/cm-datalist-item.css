@@ -1,0 +1,26 @@
+cm-datalist-item:not(:last-child) {
+  border-bottom: 1px solid var(--cm-color-ui-light5);
+}
+
+.container {
+  display: grid;
+  gap: 20px;
+  height: 40px;
+  line-height: 40px;
+}
+.container .label {
+  padding-left: 20px;
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cm-color-ui-dark4);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.container .content {
+  padding-right: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

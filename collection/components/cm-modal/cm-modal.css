@@ -1,0 +1,99 @@
+:host {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+}
+
+.container {
+  display: grid;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 110px 0px 60px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+.container.open {
+  opacity: 1;
+  pointer-events: unset;
+}
+.container.open .window {
+  transform: scale(1);
+}
+.container.center {
+  align-items: center;
+  padding-bottom: 140px;
+}
+.container.center .window {
+  max-height: calc( 				100vh - 110px - 140px 			);
+}
+.container.top {
+  align-items: flex-start;
+}
+
+.window {
+  display: grid;
+  box-sizing: border-box;
+  max-height: calc( 		100vh - 110px - 60px 	);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  overflow: hidden;
+  border: solid 1px var(--cm-color-ui-light5);
+  background-color: var(--cm-color-ui-light4);
+  grid-template: "header" 57px "content" minmax(0, 1fr) "buttons" 65px;
+  transform: scale(0.9);
+  transition: all 0.2s linear;
+}
+.window .header {
+  display: grid;
+  grid-area: header;
+  box-sizing: border-box;
+  padding: 0px 20px;
+  border-bottom: solid 1px var(--cm-color-ui-light5);
+  background-color: var(--cm-color-ui-light2);
+  align-items: center;
+  grid-auto-flow: column;
+}
+.window .header h1 {
+  justify-self: start;
+  font-family: var(--cm-font-text);
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--cm-color-ui-light6);
+}
+.window .header cm-icon-button {
+  justify-self: end;
+}
+.window .content {
+  grid-area: content;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.window .content.paddings-all {
+  padding: 20px;
+}
+.window .content.paddings-vertical {
+  padding: 20px 0px;
+}
+.window .content.paddings-horizontal {
+  padding: 0px 20px;
+}
+.window .content.paddings-none {
+  padding: 0px;
+}
+.window .buttons {
+  display: grid;
+  grid-area: buttons;
+  box-sizing: border-box;
+  border-top: solid 1px var(--cm-color-ui-light5);
+  padding: 0px 20px;
+  gap: 15px;
+  justify-content: end;
+  align-items: center;
+  grid-auto-flow: column;
+}

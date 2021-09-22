@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background: var(--cm-color-ui-light4);
+}
+
+header {
+  background: var(--cm-color-ui-light1);
+  padding: 0px 65px;
+  border-bottom: 1px solid var(--cm-color-ui-light5);
+}
+header.empty {
+  border-bottom: 0px;
+  height: 0px;
+  display: none;
+}
+header .handles {
+  display: flex;
+  width: 100%;
+  position: relative;
+  top: 1px;
+  left: -8px;
+  height: 30px;
+  flex-direction: row;
+}
+header .handles.empty {
+  height: 0px;
+}
+header .handles cm-page-tab-handle:not(:last-child) {
+  margin-right: 20px;
+}
+header .handles cm-page-tab-handle:nth-child(1):last-child {
+  display: none;
+}
+header .headerSlot {
+  height: 105px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 10px;
+  align-content: center;
+}
+
+.tabs {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--cm-color-ui-light2);
+}

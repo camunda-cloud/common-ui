@@ -1,0 +1,14 @@
+:host {
+  display: grid;
+}
+
+#label {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.container {
+  display: grid;
+  gap: 24px;
+  padding-bottom: 8px;
+}

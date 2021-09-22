@@ -1,0 +1,345 @@
+:host {
+  display: inline-grid;
+  position: relative;
+  z-index: 998;
+}
+
+.container {
+  display: inline-grid;
+  position: relative;
+}
+.container:focus {
+  outline: none;
+}
+
+.trigger {
+  display: grid;
+  align-content: center;
+}
+.trigger > .defaultAction {
+  display: inline-grid;
+  user-select: none;
+  height: 33px;
+  border-radius: 3px;
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 33px;
+  text-decoration: none;
+  text-align: center;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content 1px max-content;
+  align-items: center;
+  /********
+   * Main *
+   ********/
+  /***********
+   * Primary *
+   ***********/
+  /*************
+   * Secondary *
+   *************/
+}
+.trigger > .defaultAction.main {
+  background-color: var(--cm-color-ui-light5);
+  border: solid 1px var(--cm-color-ui-light3);
+  color: var(--cm-color-ui-dark4);
+}
+.trigger > .defaultAction.primary {
+  background-color: var(--cm-color-blue-base);
+  border: solid 1px var(--cm-color-button-blue3);
+  color: var(--cm-color-ui-light4);
+}
+.trigger > .defaultAction.secondary {
+  background-color: var(--cm-color-button-light4);
+  border: solid 1px var(--cm-color-ui-light3);
+  color: var(--cm-color-ui-dark4);
+}
+.trigger > .defaultAction .separator {
+  height: 25px;
+  width: 1px;
+}
+.trigger > .defaultAction .separator.main {
+  background-color: var(--cm-color-ui-dark4);
+}
+.trigger > .defaultAction .separator.primary {
+  background-color: var(--cm-color-ui-light4);
+}
+.trigger > .defaultAction .separator.secondary {
+  background-color: var(--cm-color-ui-dark4);
+}
+.trigger > .defaultAction .button {
+  transition: all 0.2s linear;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0 20px 0 20px;
+  position: relative;
+  /********
+   * Main *
+  ********/
+  /***********
+   * Primary *
+  ***********/
+  /*************
+   * Secondary *
+  *************/
+}
+.trigger > .defaultAction .button.main:hover {
+  background-color: var(--cm-color-button-light1);
+}
+.trigger > .defaultAction .button.main:focus {
+  outline: none;
+}
+.trigger > .defaultAction .button.main:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .defaultAction .button.main:active {
+  background-color: var(--cm-color-ui-light3);
+}
+.trigger > .defaultAction .button.primary:hover {
+  background-color: var(--cm-color-button-blue3);
+}
+.trigger > .defaultAction .button.primary:focus {
+  outline: none;
+}
+.trigger > .defaultAction .button.primary:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .defaultAction .button.primary:active {
+  background-color: var(--cm-color-button-blue4);
+}
+.trigger > .defaultAction .button.secondary:hover {
+  background-color: var(--cm-color-button-light5);
+}
+.trigger > .defaultAction .button.secondary:focus {
+  outline: none;
+}
+.trigger > .defaultAction .button.secondary:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .defaultAction .button.secondary:active {
+  background-color: var(--cm-color-button-light6);
+}
+.trigger > .defaultAction .iconButton {
+  transition: all 0.2s linear;
+  border-radius: 3px;
+  cursor: pointer;
+  display: grid;
+  height: 100%;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  /********
+   * Main *
+  ********/
+  /***********
+   * Primary *
+  ***********/
+  /*************
+   * Secondary *
+  *************/
+}
+.trigger > .defaultAction .iconButton.main:hover {
+  background-color: var(--cm-color-button-light1);
+}
+.trigger > .defaultAction .iconButton.main:focus {
+  outline: none;
+}
+.trigger > .defaultAction .iconButton.main:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .defaultAction .iconButton.main:active {
+  background-color: var(--cm-color-ui-light3);
+}
+.trigger > .defaultAction .iconButton.primary:hover {
+  background-color: var(--cm-color-button-blue3);
+}
+.trigger > .defaultAction .iconButton.primary:focus {
+  outline: none;
+}
+.trigger > .defaultAction .iconButton.primary:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .defaultAction .iconButton.primary:active {
+  background-color: var(--cm-color-button-blue4);
+}
+.trigger > .defaultAction .iconButton.secondary:hover {
+  background-color: var(--cm-color-button-light5);
+}
+.trigger > .defaultAction .iconButton.secondary:focus {
+  outline: none;
+}
+.trigger > .defaultAction .iconButton.secondary:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .defaultAction .iconButton.secondary:active {
+  background-color: var(--cm-color-button-light6);
+}
+.trigger > .button {
+  display: inline-grid;
+  user-select: none;
+  transition: all 0.2s linear;
+  height: 33px;
+  cursor: pointer;
+  padding: 0 20px 0 20px;
+  border-radius: 3px;
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 33px;
+  text-decoration: none;
+  text-align: center;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content max-content;
+  gap: 5px;
+  align-items: center;
+  /********
+   * Main *
+   ********/
+  /***********
+   * Primary *
+   ***********/
+  /*************
+   * Secondary *
+   *************/
+}
+.trigger > .button.main {
+  background-color: var(--cm-color-ui-light5);
+  border: solid 1px var(--cm-color-ui-light3);
+  color: var(--cm-color-ui-dark4);
+}
+.trigger > .button.main:hover {
+  background-color: var(--cm-color-button-light1);
+  border: solid 1px var(--cm-color-button-light2);
+}
+.trigger > .button.main:focus {
+  outline: none;
+}
+.trigger > .button.main:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .button.main:active {
+  background-color: var(--cm-color-ui-light3);
+  border: solid 1px var(--cm-color-button-light3);
+}
+.trigger > .button.primary {
+  background-color: var(--cm-color-blue-base);
+  border: solid 1px var(--cm-color-button-blue3);
+  color: var(--cm-color-ui-light4);
+}
+.trigger > .button.primary:hover {
+  background-color: var(--cm-color-button-blue3);
+  border: solid 1px var(--cm-color-button-blue4);
+}
+.trigger > .button.primary:focus {
+  outline: none;
+}
+.trigger > .button.primary:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .button.primary:active {
+  background-color: var(--cm-color-button-blue4);
+  border: solid 1px var(--cm-color-button-blue5);
+}
+.trigger > .button.secondary {
+  background-color: var(--cm-color-button-light4);
+  border: solid 1px var(--cm-color-ui-light3);
+  color: var(--cm-color-ui-dark4);
+}
+.trigger > .button.secondary:hover {
+  background-color: var(--cm-color-button-light5);
+  border: solid 1px var(--cm-color-ui-light3);
+}
+.trigger > .button.secondary:focus {
+  outline: none;
+}
+.trigger > .button.secondary:focus-visible {
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+.trigger > .button.secondary:active {
+  background-color: var(--cm-color-button-light6);
+  border: solid 1px var(--cm-color-ui-light3);
+}
+.trigger > .label {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  padding-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s linear;
+}
+.trigger > .label:focus {
+  outline: none;
+}
+.trigger > .label:hover, .trigger > .label:focus-visible {
+  background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+}
+.trigger > .label .text {
+  font-family: var(--cm-font-text);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cm-color-ui-light6);
+}
+.trigger > .label cm-icon {
+  transform: translateY(1px);
+}
+
+.flyout {
+  display: grid;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms linear;
+  z-index: 100;
+  position: fixed;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+  background: #fcfcfc;
+  min-width: max-content;
+  gap: 5px;
+}
+.flyout.open {
+  opacity: 1;
+  pointer-events: initial;
+}
+.flyout .optionGroup:not(:first-child) {
+  padding-top: 5px;
+  border-top: solid 1px var(--cm-color-ui-light5);
+}
+.flyout .optionGroup .title {
+  font-family: var(--cm-font-text);
+  font-size: 11px;
+  color: var(--cm-color-ui-light6);
+}
+.flyout .optionGroup > .title:not(:empty) {
+  padding: 5px 15px 0px;
+}
+.flyout .optionGroup .option {
+  user-select: none;
+  border-radius: 3px;
+  padding: 8px 15px;
+  font-family: var(--cm-font-text);
+  font-size: 14px;
+  color: var(--cm-color-ui-dark4);
+  transition: all 150ms linear;
+}
+.flyout .optionGroup .option:not(.disabled) {
+  cursor: pointer;
+}
+.flyout .optionGroup .option:hover {
+  background: #f0f0f0;
+}
+.flyout .optionGroup .option.isDangerous {
+  color: #e30100;
+}
+.flyout .optionGroup .option.isDisabled {
+  opacity: 0.5;
+}
+.flyout .optionGroup .option > .title {
+  padding-bottom: 2px;
+}

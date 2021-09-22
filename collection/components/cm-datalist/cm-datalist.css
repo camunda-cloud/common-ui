@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+h1 {
+  font-family: var(--cm-font-text);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--cm-color-ui-light6);
+  margin: 0;
+  margin-bottom: 40px;
+}
+h1:empty {
+  display: none;
+}
+
+.items {
+  display: grid;
+  position: relative;
+  left: -20px;
+  width: calc(100% + 40px);
+}

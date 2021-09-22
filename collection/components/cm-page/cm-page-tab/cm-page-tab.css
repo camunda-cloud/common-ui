@@ -1,0 +1,10 @@
+:host {
+  display: none;
+  padding: 40px 65px 0px;
+}
+
+:host([active]) {
+  display: grid;
+  height: 100%;
+  overflow: hidden;
+}

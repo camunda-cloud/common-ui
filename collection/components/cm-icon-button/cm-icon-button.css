@@ -1,0 +1,49 @@
+:host {
+  display: inline-grid;
+  user-select: none;
+}
+
+div {
+  display: grid;
+  position: relative;
+  transition: all 0.2s linear;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+div cm-icon {
+  align-self: center;
+  justify-self: center;
+}
+div.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
+}
+div::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 32px;
+  width: 32px;
+  border-radius: 100%;
+  background-color: rgba(var(--cm-color-ui-light5-rgb), 0);
+  transition: all 0.2s linear;
+  z-index: -1;
+}
+div:focus {
+  outline: none;
+}
+div:hover::before {
+  background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+}
+div:focus-visible::before {
+  background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+  box-shadow: 0px 0px 0px 1px var(--cm-color-focus-inner-neutral2), 0px 0px 0px 4px var(--cm-color-focus-outer-neutral);
+}
+div:active::before {
+  background-color: rgba(var(--cm-color-ui-light5-rgb), 1);
+}

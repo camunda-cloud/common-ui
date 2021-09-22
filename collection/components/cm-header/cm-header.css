@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+.header {
+  display: flex;
+  box-sizing: border-box;
+  height: 57px;
+  padding: 15px 20px;
+  align-content: center;
+}
+.header.Light {
+  background-color: var(--cm-color-ui-light1);
+  border-bottom: 1px solid var(--cm-color-ui-light5);
+}
+.header.Dark {
+  background-color: var(--cm-color-ui-dark1);
+  border-bottom: 1px solid var(--cm-color-ui-dark4);
+}
+
+.left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+}

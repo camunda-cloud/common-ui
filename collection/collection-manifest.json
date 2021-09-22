@@ -1,0 +1,43 @@
+{
+  "entries": [
+    "./components/cm-icon/cm-icon.js",
+    "./components/cm-icon-button/cm-icon-button.js",
+    "./components/cm-dropdown/cm-dropdown.js",
+    "./components/cm-entity-list/cm-entity-list.js",
+    "./components/cm-notification-container/cm-notification-container.js",
+    "./components/cm-page/cm-page.js",
+    "./components/cm-textfield/cm-textfield.js",
+    "./components/cm-banner/cm-banner.js",
+    "./components/cm-button/cm-button.js",
+    "./components/cm-card/cm-card.js",
+    "./components/cm-checkbox/cm-checkbox.js",
+    "./components/cm-checkbox-group/cm-checkbox-group.js",
+    "./components/cm-context/cm-context.js",
+    "./components/cm-datalist/cm-datalist.js",
+    "./components/cm-datalist/cm-datalist-item/cm-datalist-item.js",
+    "./components/cm-filter/cm-filter.js",
+    "./components/cm-footer/cm-footer.js",
+    "./components/cm-form/cm-form.js",
+    "./components/cm-form-group/cm-form-group.js",
+    "./components/cm-header/cm-header.js",
+    "./components/cm-link/cm-link.js",
+    "./components/cm-loader/cm-loader.js",
+    "./components/cm-logo/cm-logo.js",
+    "./components/cm-modal/cm-modal.js",
+    "./components/cm-notification-container/cm-notification/cm-notification.js",
+    "./components/cm-page/cm-page-tab/cm-page-tab.js",
+    "./components/cm-page/cm-page-tab-handle/cm-page-tab-handle.js",
+    "./components/cm-radiobutton/cm-radiobutton.js",
+    "./components/cm-radiobutton-group/cm-radiobutton-group.js",
+    "./components/cm-select/cm-select.js",
+    "./components/cm-text/cm-text.js",
+    "./components/cm-toggle/cm-toggle.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.8.0",
+    "typescriptVersion": "4.2.3"
+  },
+  "collections": [],
+  "bundles": []
+}

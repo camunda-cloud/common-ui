@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: grid;
+  grid-auto-rows: minmax(24px, max-content) 1fr max-content;
+  box-sizing: border-box;
+  position: relative;
+  padding: 30px;
+  padding-right: 40px;
+  border-radius: 3px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px var(--cm-color-ui-light5);
+  background-color: var(--cm-color-ui-light4);
+}
+.container .content {
+  padding-top: 20px;
+}
+.container .content.hasFooterContent {
+  padding-bottom: 20px;
+}
+.container slot[name=header], .container slot[name=footer] {
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: start;
+  align-content: center;
+}
+
+#dismissButton {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}

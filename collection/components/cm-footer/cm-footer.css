@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.footer {
+  height: 38px;
+  padding: 0px 20px;
+  line-height: 38px;
+  border-top: 1px solid var(--cm-color-ui-light5);
+  background-color: var(--cm-color-ui-light1);
+  font-family: var(--cm-font-text);
+  font-size: 12px;
+  font-weight: normal;
+  text-align: right;
+  color: rgba(var(--cm-color-ui-light6-rgb), 0.9);
+}
