@@ -36,6 +36,22 @@ export class CmButton implements ComponentInterface {
 			this.el.shadowRoot.querySelector('span').classList.add('disabled')
 		}
 	}
+
+	@Watch('appearance')
+	appearanceHandler() {
+		const shadowRoot = this.el.shadowRoot
+		const div = shadowRoot.querySelector('div')
+		const span = shadowRoot.querySelector('span')
+
+		div.classList.add('appearanceChange')
+		span.classList.add('appearanceChange')
+
+		requestAnimationFrame(() => {
+			div.classList.remove('appearanceChange')
+			span.classList.remove('appearanceChange')
+		})
+	}
+
 	/**
 	 * The loading state displays a spinner and effectively disables the button to user input. Does not affect buttons with the `link` appearance.
 	 */

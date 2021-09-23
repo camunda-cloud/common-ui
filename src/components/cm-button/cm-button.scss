@@ -36,6 +36,10 @@ div {
 		&.disabled {
 			transition-delay: 0s;
 		}
+
+		&.appearanceChange {
+			transition: none;
+		}
 	}
 
 	cm-loader {
@@ -51,7 +55,8 @@ div {
 		pointer-events: none;
 	}
 
-	&.initialRender {
+	&.initialRender,
+	&.appearanceChange {
 		transition: none;
 	}
 
