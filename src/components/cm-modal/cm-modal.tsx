@@ -30,7 +30,9 @@ export class CmModal {
 			| { result: 'confirm'; formData?: Record<string, string> }
 			| { result: 'cancel' },
 	) => void
-	preConfirmationHandler?: () => Promise<void>
+	preConfirmationHandler?: (data: {
+		formData?: Record<string, string>
+	}) => Promise<void>
 
 	@State() isOpen: boolean = false
 	@State() confirmLoading: boolean = false
@@ -128,7 +130,9 @@ export class CmModal {
 			if (this.preConfirmationHandler) {
 				this.confirmLoading = true
 				this.cancelDisabled = true
-				this.preConfirmationHandler().then(
+				this.preConfirmationHandler({
+					formData: formResult?.data,
+				}).then(
 					() => {
 						this.isOpen = false
 						this.promiseResolver({
