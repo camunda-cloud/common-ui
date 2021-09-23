@@ -165,7 +165,6 @@
 					<cm-form>
 						<cm-textfield
 							label="Input"
-							form-name="input"
 							value="Disabled Input Value"
 							disabled
 						></cm-textfield>
@@ -303,16 +302,23 @@
 							}, 2000)
 
 							modal
-								.open(() => {
-									return new Promise((resolve, reject) => {
-										setTimeout(() => {
-											if (Math.random() < 0.8) {
-												resolve()
-											} else {
-												reject()
-											}
-										}, 2000)
-									})
+								.open({
+									preConfirmationHandler: (data) => {
+										return new Promise(
+											(resolve, reject) => {
+												setTimeout(() => {
+													if (
+														data.formData.input ===
+														'reject'
+													) {
+														reject()
+													} else {
+														resolve()
+													}
+												}, 2000)
+											},
+										)
+									},
 								})
 								.then((result) => {
 									console.log(result)
