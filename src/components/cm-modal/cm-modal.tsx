@@ -77,7 +77,9 @@ export class CmModal {
 	@Method()
 	async open(
 		options: {
-			preConfirmationHandler?: () => Promise<void>
+			preConfirmationHandler?: (data: {
+				formData?: Record<string, string>
+			}) => Promise<void>
 			preventFormReset?: boolean
 		} = {},
 	) {
