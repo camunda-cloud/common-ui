@@ -217,8 +217,7 @@
 		}
 
 		&.selected {
-			box-shadow: 0px 0px 0px 2px var(--cm-color-blue-base),
-				0 1px 4px 0 rgba(0, 0, 0, 0.1);
+			box-shadow: 0px 2px 0px 0px var(--cm-color-blue-base);
 			background-color: var(--cm-color-focus-inner-neutral);
 
 			cm-checkbox {
