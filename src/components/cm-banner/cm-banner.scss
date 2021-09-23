@@ -7,9 +7,9 @@
 	display: flex;
 	align-items: center;
 
-	height: 56px;
+	min-height: 56px;
+	padding: 25px;
 	padding-left: 60px;
-	padding-right: 25px;
 
 	border-radius: 3px;
 	box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
