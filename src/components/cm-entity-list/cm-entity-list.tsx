@@ -37,11 +37,14 @@ export type Entity = {
 	shadow: true,
 })
 export class CmEntityList {
-	@Prop({ mutable: true }) enableCreateButton: boolean = true
 	@Prop({ mutable: true }) loading: boolean = false
 
 	@Prop({ mutable: true }) headline: string = ''
 	@Prop({ mutable: true }) createButtonLabel: string = ''
+
+	@Prop({ mutable: true }) enableCreateButton: boolean = true
+	@Prop({ mutable: true }) hideCreateButton: boolean = false
+	@Prop({ mutable: true }) hideSearch: boolean = false
 
 	@Prop({ mutable: true }) createHandler: () => void = () => {}
 
@@ -500,39 +503,41 @@ export class CmEntityList {
 			)
 		}
 
-		if (this.isSearchOpen) {
-			search = (
-				<div class="search open">
-					<input
-						type="text"
-						id="searchInput"
-						placeholder="Search"
-						onInput={(event: InputEvent) => {
-							this.filter = (
-								event.target as HTMLInputElement
-							)?.value
-						}}
-					/>
-					<cm-icon-button
-						icon="closeLarge"
-						onCmPress={() => {
-							this.filter = ''
-							this.isSearchOpen = false
-						}}
-					/>
-				</div>
-			)
-		} else {
-			search = (
-				<div class="search">
-					<cm-icon-button
-						icon="search"
-						onCmPress={() => {
-							this.isSearchOpen = true
-						}}
-					/>
-				</div>
-			)
+		if (!this.hideSearch) {
+			if (this.isSearchOpen) {
+				search = (
+					<div class="search open">
+						<input
+							type="text"
+							id="searchInput"
+							placeholder="Search"
+							onInput={(event: InputEvent) => {
+								this.filter = (
+									event.target as HTMLInputElement
+								)?.value
+							}}
+						/>
+						<cm-icon-button
+							icon="closeLarge"
+							onCmPress={() => {
+								this.filter = ''
+								this.isSearchOpen = false
+							}}
+						/>
+					</div>
+				)
+			} else {
+				search = (
+					<div class="search">
+						<cm-icon-button
+							icon="search"
+							onCmPress={() => {
+								this.isSearchOpen = true
+							}}
+						/>
+					</div>
+				)
+			}
 		}
 
 		let headerClasses = {
@@ -553,18 +558,22 @@ export class CmEntityList {
 						<div class="buttons">
 							{search}
 							{groupDropdown}
-							<cm-button
-								disabled={
-									!this.enableCreateButton || this.loading
-								}
-								appearance={
-									this.selectedEntities.length
-										? 'secondary'
-										: 'primary'
-								}
-								label={this.createButtonLabel}
-								onCmPress={this.createHandler}
-							></cm-button>
+							{!this.hideCreateButton ? (
+								<cm-button
+									disabled={
+										!this.enableCreateButton || this.loading
+									}
+									appearance={
+										this.selectedEntities.length
+											? 'secondary'
+											: 'primary'
+									}
+									label={this.createButtonLabel}
+									onCmPress={this.createHandler}
+								></cm-button>
+							) : (
+								''
+							)}
 						</div>
 						{this.entities.length ? (
 							<div
