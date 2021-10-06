@@ -356,6 +356,11 @@
 				</div>
 			</cm-page-tab>
 			<cm-page-tab label="Form Elements">
+				<style>
+					#form {
+						max-width: 500px;
+					}
+				</style>
 				<cm-form id="form">
 					<cm-textfield id="textfield1"></cm-textfield>
 
@@ -410,7 +415,7 @@
 					textfield1.label = 'Label'
 					textfield1.formName = 'field1'
 					textfield1.showRequired = true
-					textfield1.required = true
+					textfield1.required = false
 					textfield1.validation = {
 						type: 'custom',
 						validator: (value) => {
@@ -469,6 +474,7 @@
 					select.label = 'Label'
 					select.helperText = 'Helper Text...'
 					select.formName = 'select'
+					select.placeholder = 'Placeholder'
 					select.required = true
 					select.showRequired = true
 
