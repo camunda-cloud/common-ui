@@ -356,19 +356,12 @@
 				</div>
 			</cm-page-tab>
 			<cm-page-tab label="Form Elements">
-				<style>
-					#form {
-						overflow-y: auto;
-						overflow-x: hidden;
-						height: 100%;
-						padding: 0px 20px;
-						max-width: 500px;
-					}
-				</style>
 				<cm-form id="form">
 					<cm-textfield id="textfield1"></cm-textfield>
 
 					<cm-textfield id="textfield2"></cm-textfield>
+
+					<cm-select id="select"></cm-select>
 
 					<cm-form-group label="Fields">
 						<cm-textfield id="textfield3"></cm-textfield>
@@ -464,6 +457,21 @@
 					textfield2.formName = 'field2'
 					textfield2.fieldPrefix = { type: 'icon', icon: 'warning' }
 
+					let select = document.getElementById('select')
+
+					select.options = [
+						{ label: 'First Option that is short', value: '1' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '2',
+						},
+					]
+					select.label = 'Label'
+					select.helperText = 'Helper Text...'
+					select.formName = 'select'
+					select.required = true
+					select.showRequired = true
+
 					let textfield3 = document.getElementById('textfield3')
 
 					textfield3.helperText = 'Helper Text...'
@@ -547,7 +555,7 @@
 					<cm-loader size="small"></cm-loader>
 				</div>
 			</cm-page-tab>
-			<cm-page-tab label="Entity List">
+			<cm-page-tab label="Entity List" disableScroll>
 				<cm-entity-list
 					headline="A Test Entity List"
 					create-button-label="Create Entry"
