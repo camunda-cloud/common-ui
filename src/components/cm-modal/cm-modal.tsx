@@ -8,6 +8,7 @@ import {
 	Element,
 	Listen,
 } from '@stencil/core'
+import { CmSelect } from '../cm-select/cm-select'
 
 /**
  * @slot - The default slot for the content of the Modal.
@@ -22,16 +23,31 @@ const maximumWidth = 750
 })
 export class CmModal {
 	promise?: Promise<
-		| { result: 'confirm'; formData?: Record<string, string> }
+		| {
+				result: 'confirm'
+				formData?: Record<
+					string,
+					string | CmSelect['selectedOptions'] | boolean
+				>
+		  }
 		| { result: 'cancel' }
 	>
 	promiseResolver?: (
 		value:
-			| { result: 'confirm'; formData?: Record<string, string> }
+			| {
+					result: 'confirm'
+					formData?: Record<
+						string,
+						string | CmSelect['selectedOptions'] | boolean
+					>
+			  }
 			| { result: 'cancel' },
 	) => void
 	preConfirmationHandler?: (data: {
-		formData?: Record<string, string>
+		formData?: Record<
+			string,
+			string | CmSelect['selectedOptions'] | boolean
+		>
 	}) => Promise<void>
 
 	@State() isOpen: boolean = false
@@ -78,15 +94,33 @@ export class CmModal {
 	async open(
 		options: {
 			preConfirmationHandler?: (data: {
-				formData?: Record<string, string>
+				formData?: Record<
+					string,
+					string | CmSelect['selectedOptions'] | boolean
+				>
 			}) => Promise<void>
 			preventFormReset?: boolean
 		} = {},
-	) {
+	): Promise<
+		| {
+				result: 'confirm'
+				formData?: Record<
+					string,
+					string | boolean | CmSelect['selectedOptions']
+				>
+		  }
+		| { result: 'cancel' }
+	> {
 		this.submitFromConfirm = false
 		this.preConfirmationHandler = options.preConfirmationHandler
 		this.promise = new Promise<
-			| { result: 'confirm'; formData?: Record<string, string> }
+			| {
+					result: 'confirm'
+					formData?: Record<
+						string,
+						string | CmSelect['selectedOptions'] | boolean
+					>
+			  }
 			| { result: 'cancel' }
 		>((resolve) => {
 			this.promiseResolver = resolve
@@ -114,7 +148,16 @@ export class CmModal {
 	 * Triggers the 'confirm' action on the modal, if it is open.
 	 */
 	@Method()
-	async confirm() {
+	async confirm(): Promise<
+		| {
+				result: 'confirm'
+				formData?: Record<
+					string,
+					string | boolean | CmSelect['selectedOptions']
+				>
+		  }
+		| { result: 'cancel' }
+	> {
 		if (this.isOpen) {
 			let form = this.element.querySelector('cm-form')
 			let formResult
@@ -166,7 +209,16 @@ export class CmModal {
 	 * Triggers the 'cancel' action on the modal, if it is open.
 	 */
 	@Method()
-	async cancel() {
+	async cancel(): Promise<
+		| {
+				result: 'confirm'
+				formData?: Record<
+					string,
+					string | boolean | CmSelect['selectedOptions']
+				>
+		  }
+		| { result: 'cancel' }
+	> {
 		if (this.isOpen) {
 			this.isOpen = false
 			this.promiseResolver({ result: 'cancel' })
