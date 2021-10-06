@@ -1,10 +1,17 @@
 :host {
 	display: none;
-	padding: 40px 65px 0px;
 }
 
 :host([active]) {
 	display: grid;
 	height: 100%;
+	overflow: auto;
+	padding: 40px 65px;
+}
+
+:host([active][disableScroll]) {
+	display: grid;
+	height: 100%;
 	overflow: hidden;
+	padding: 40px 65px 0px;
 }

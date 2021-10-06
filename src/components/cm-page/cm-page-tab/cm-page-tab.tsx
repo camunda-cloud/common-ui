@@ -37,6 +37,8 @@ export class CmPageTab {
 		}
 	}
 
+	@Prop({ mutable: true, reflect: true }) disableScroll: boolean = false
+
 	componentWillRender() {
 		this.activeWatchHandler(this.active)
 	}
