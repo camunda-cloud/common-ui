@@ -301,7 +301,10 @@ export class CmDropdown {
 			const documentClientWidth = document.documentElement.clientWidth
 			const documentClientHeight = document.documentElement.clientHeight
 
-			let top = elementBoundingClientRect.bottom + 10 + flyoutOffset
+			let flyoutDownPositionTop =
+				elementBoundingClientRect.bottom + 10 + flyoutOffset
+			let flyoutUpPositionTop =
+				elementBoundingClientRect.top - flyoutHeight - flyoutOffset - 10
 
 			let right =
 				documentClientWidth -
@@ -314,15 +317,14 @@ export class CmDropdown {
 				flyoutStyles.right = `${right}px`
 			}
 
-			if (documentClientHeight - top - flyoutHeight < 0) {
-				flyoutStyles.top = `${
-					elementBoundingClientRect.top -
-					flyoutHeight -
-					flyoutOffset -
-					10
-				}px`
+			if (
+				documentClientHeight - flyoutDownPositionTop - flyoutHeight <
+					0 &&
+				flyoutUpPositionTop > 0
+			) {
+				flyoutStyles.top = `${flyoutUpPositionTop}px`
 			} else {
-				flyoutStyles.top = `${top}px`
+				flyoutStyles.top = `${flyoutDownPositionTop}px`
 			}
 		}
 
