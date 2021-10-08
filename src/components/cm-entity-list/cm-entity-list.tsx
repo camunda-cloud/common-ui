@@ -275,18 +275,13 @@ export class CmEntityList {
 
 		if (this.loading) {
 			loader = (
-				<div
-					class="loader"
-					style={{
-						zIndex: (filteredEntities.length + 1).toString(),
-					}}
-				>
+				<div class="loader">
 					<cm-loader size="normal" />
 				</div>
 			)
 		}
 
-		entities = filteredEntities.map((entity, index) => {
+		entities = filteredEntities.map((entity) => {
 			let entityClasses = {
 				entity: true,
 				selected: this.selectedEntities.includes(entity),
@@ -299,7 +294,6 @@ export class CmEntityList {
 					style={{
 						gridTemplateColumns: gridTemplateColumns,
 						cursor: entity.onPress ? 'pointer' : 'default',
-						zIndex: (filteredEntities.length - index).toString(),
 					}}
 					onClick={entity.onPress}
 				>
