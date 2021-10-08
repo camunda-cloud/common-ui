@@ -435,7 +435,9 @@ export class CmEntityList {
 								}}
 							>
 								{content}
-								{item.type === 'text' && item.showCopyButton ? (
+								{item.type === 'text' &&
+								item.showCopyButton &&
+								item.content !== '' ? (
 									<cm-icon-button
 										icon="copy"
 										onClick={(event) => {
