@@ -623,8 +623,6 @@ export class CmEntityList {
 										</div>
 									)
 								})}
-
-								{this.loading ? <div class="loader"></div> : ''}
 							</div>
 						) : (
 							''
@@ -649,9 +647,9 @@ export class CmEntityList {
 						</div>
 
 						{entities}
-
-						{loader}
 					</div>
+
+					{loader}
 				</div>
 			</Host>
 		)

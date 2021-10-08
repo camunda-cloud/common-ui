@@ -32,6 +32,8 @@
 		font-size: 24px;
 		font-weight: 500;
 
+		z-index: 2;
+
 		color: var(--cm-color-ui-light6);
 	}
 
@@ -107,22 +109,6 @@
 		gap: 15px;
 		min-height: 35px;
 		position: relative;
-
-		.loader {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-
-			z-index: 1;
-
-			display: grid;
-			padding-top: 40px;
-			justify-content: center;
-
-			background-color: rgba(247, 248, 250, 0.7);
-		}
 
 		cm-checkbox {
 			transition: all 0.2s linear;
@@ -256,18 +242,20 @@
 			}
 		}
 	}
+}
 
-	.loader {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+.loader {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 
-		display: grid;
-		justify-content: center;
-		align-content: center;
+	z-index: 1;
 
-		background-color: rgba(247, 248, 250, 0.7);
-	}
+	display: grid;
+	justify-content: center;
+	align-content: center;
+
+	background-color: rgba(247, 248, 250, 0.7);
 }
