@@ -27,6 +27,7 @@ export class CmTextfield {
 	@Prop({ mutable: true, reflect: true }) type: InputType = 'text'
 
 	@Prop({ mutable: true, reflect: false }) value: string = ''
+	@Prop({ mutable: true, reflect: false }) valueAsNumber: number = NaN
 
 	@Prop({ mutable: true, reflect: true }) label: string = ''
 	@Prop({ mutable: true, reflect: true }) helperText: string = ''
@@ -261,6 +262,12 @@ export class CmTextfield {
 			this.value = (
 				event.target as HTMLTextAreaElement | HTMLInputElement
 			).value
+
+			if (this.type !== 'multiline') {
+				this.valueAsNumber = (
+					event.target as HTMLInputElement
+				).valueAsNumber
+			}
 
 			if (this.validationStyle === 'form') {
 				if (this.validationResult && !this.validationResult.isValid) {
