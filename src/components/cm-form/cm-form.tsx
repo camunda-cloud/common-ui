@@ -9,9 +9,13 @@ import {
 	h,
 } from '@stencil/core'
 import { CmCheckbox } from '../cm-checkbox/cm-checkbox'
-import { CmRadiobuttonGroup } from '../cm-radiobutton-group/cm-radiobutton-group'
 import { CmSelect } from '../cm-select/cm-select'
 import { CmTextfield } from '../cm-textfield/cm-textfield'
+
+export type FormData = Record<
+	string,
+	number | string | CmSelect['selectedOptions'] | boolean
+>
 
 @Component({
 	tag: 'cm-form',
@@ -22,7 +26,7 @@ export class CmForm {
 	@Element() element: HTMLFormElement
 
 	@Event() cmSubmit: EventEmitter<{
-		data: Record<string, string | CmSelect['selectedOptions'] | boolean>
+		data: FormData
 	}>
 
 	@Listen('keyup') keyupHandler(event: KeyboardEvent) {
@@ -38,12 +42,7 @@ export class CmForm {
 		let isFormValid = true
 		let formData = {}
 
-		const children: Array<
-			| HTMLCmTextfieldElement
-			| HTMLCmCheckboxElement
-			| HTMLCmRadiobuttonGroupElement
-			| HTMLCmSelectElement
-		> = Array.from(
+		const children = Array.from(
 			this.element.querySelectorAll(
 				'cm-textfield, cm-checkbox, cm-radiobutton-group, cm-select',
 			),
@@ -51,9 +50,9 @@ export class CmForm {
 
 		for (let child of children) {
 			if (
-				child.nodeName === 'CM-TEXTFIELD' ||
-				child.nodeName === 'CM-CHECKBOX' ||
-				child.nodeName === 'CM-SELECT'
+				CmForm.isTextfield(child) ||
+				CmForm.isCheckbox(child) ||
+				CmForm.isSelect(child)
 			) {
 				const filteredChild: CmTextfield | CmCheckbox | CmSelect =
 					child as any
@@ -69,26 +68,22 @@ export class CmForm {
 					}
 				} else {
 					if (filteredChild.formName !== '') {
-						if (child.nodeName === 'CM-TEXTFIELD') {
-							formData[child.formName] = (
-								child as any as CmTextfield
-							).value
-						} else if (child.nodeName === 'CM-CHECKBOX') {
-							formData[child.formName] = (
-								child as any as CmCheckbox
-							).checked
-						} else if (child.nodeName === 'CM-SELECT') {
-							formData[child.formName] = (
-								child as any as CmSelect
-							).selectedOptions
+						if (CmForm.isTextfield(child)) {
+							if (child.type === 'number') {
+								formData[child.formName] = child.valueAsNumber
+							} else {
+								formData[child.formName] = child.value
+							}
+						} else if (CmForm.isCheckbox(child)) {
+							formData[child.formName] = child.checked
+						} else if (CmForm.isSelect(child)) {
+							formData[child.formName] = child.selectedOptions
 						}
 					}
 				}
-			} else if (child.nodeName === 'CM-RADIOBUTTON-GROUP') {
+			} else if (CmForm.isRadioButtonGroup(child)) {
 				if (child.formName !== '') {
-					formData[child.formName] = (
-						child as any as CmRadiobuttonGroup
-					).value
+					formData[child.formName] = child.value
 				}
 			}
 		}
@@ -96,7 +91,7 @@ export class CmForm {
 		let result:
 			| {
 					isValid: true
-					data: Record<string, string | CmSelect['selectedOptions']>
+					data: FormData
 			  }
 			| { isValid: false }
 
@@ -142,5 +137,25 @@ export class CmForm {
 				<slot></slot>
 			</Host>
 		)
+	}
+
+	static isTextfield(
+		element: HTMLElement,
+	): element is HTMLCmTextfieldElement {
+		return element.nodeName === 'CM-TEXTFIELD'
+	}
+
+	static isCheckbox(element: HTMLElement): element is HTMLCmCheckboxElement {
+		return element.nodeName === 'CM-CHECKBOX'
+	}
+
+	static isSelect(element: HTMLElement): element is HTMLCmSelectElement {
+		return element.nodeName === 'CM-SELECT'
+	}
+
+	static isRadioButtonGroup(
+		element: HTMLElement,
+	): element is HTMLCmRadiobuttonGroupElement {
+		return element.nodeName === 'CM-RADIOBUTTON-GROUP'
 	}
 }

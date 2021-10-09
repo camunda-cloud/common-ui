@@ -8,6 +8,7 @@ import {
 	Element,
 	Listen,
 } from '@stencil/core'
+import { FormData } from '../cm-form/cm-form'
 import { CmSelect } from '../cm-select/cm-select'
 
 /**
@@ -25,10 +26,7 @@ export class CmModal {
 	promise?: Promise<
 		| {
 				result: 'confirm'
-				formData?: Record<
-					string,
-					string | CmSelect['selectedOptions'] | boolean
-				>
+				formData?: FormData
 		  }
 		| { result: 'cancel' }
 	>
@@ -36,19 +34,11 @@ export class CmModal {
 		value:
 			| {
 					result: 'confirm'
-					formData?: Record<
-						string,
-						string | CmSelect['selectedOptions'] | boolean
-					>
+					formData?: FormData
 			  }
 			| { result: 'cancel' },
 	) => void
-	preConfirmationHandler?: (data: {
-		formData?: Record<
-			string,
-			string | CmSelect['selectedOptions'] | boolean
-		>
-	}) => Promise<void>
+	preConfirmationHandler?: (data: { formData?: FormData }) => Promise<void>
 
 	@State() isOpen: boolean = false
 	@State() confirmLoading: boolean = false
@@ -94,20 +84,14 @@ export class CmModal {
 	async open(
 		options: {
 			preConfirmationHandler?: (data: {
-				formData?: Record<
-					string,
-					string | CmSelect['selectedOptions'] | boolean
-				>
+				formData?: FormData
 			}) => Promise<void>
 			preventFormReset?: boolean
 		} = {},
 	): Promise<
 		| {
 				result: 'confirm'
-				formData?: Record<
-					string,
-					string | boolean | CmSelect['selectedOptions']
-				>
+				formData?: FormData
 		  }
 		| { result: 'cancel' }
 	> {
@@ -116,10 +100,7 @@ export class CmModal {
 		this.promise = new Promise<
 			| {
 					result: 'confirm'
-					formData?: Record<
-						string,
-						string | CmSelect['selectedOptions'] | boolean
-					>
+					formData?: FormData
 			  }
 			| { result: 'cancel' }
 		>((resolve) => {
@@ -153,7 +134,7 @@ export class CmModal {
 				result: 'confirm'
 				formData?: Record<
 					string,
-					string | boolean | CmSelect['selectedOptions']
+					number | string | boolean | CmSelect['selectedOptions']
 				>
 		  }
 		| { result: 'cancel' }
@@ -214,7 +195,7 @@ export class CmModal {
 				result: 'confirm'
 				formData?: Record<
 					string,
-					string | boolean | CmSelect['selectedOptions']
+					number | string | boolean | CmSelect['selectedOptions']
 				>
 		  }
 		| { result: 'cancel' }
