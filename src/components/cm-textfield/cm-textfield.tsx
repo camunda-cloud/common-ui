@@ -432,6 +432,7 @@ export class CmTextfield {
 
 								input.stepDown()
 								this.value = input.value
+								this.valueAsNumber = input.valueAsNumber
 
 								this.renderValidity()
 							}}
@@ -446,6 +447,7 @@ export class CmTextfield {
 
 								input.stepUp()
 								this.value = input.value
+								this.valueAsNumber = input.valueAsNumber
 
 								this.renderValidity()
 							}}
