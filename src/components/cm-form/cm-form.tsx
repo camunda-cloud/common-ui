@@ -26,7 +26,10 @@ export class CmForm {
 	}>
 
 	@Listen('keyup') keyupHandler(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
+		if (
+			(event.target as any)?.type !== 'multiline' &&
+			event.key === 'Enter'
+		) {
 			this.attemptSubmit()
 		}
 	}
