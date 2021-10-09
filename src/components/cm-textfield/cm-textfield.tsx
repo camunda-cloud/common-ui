@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, Method, State, Element } from '@stencil/core'
 import { onThemeChange, Theme, ValidatorResult } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
-export type InputType = 'text' | 'multiline' | 'email' | 'password'
+export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number'
 
 export type FieldPrefix =
 	| { type: 'text'; value: string }
@@ -41,6 +41,10 @@ export class CmTextfield {
 	@Prop({ mutable: true, reflect: false, attribute: 'maxlength' }) maxLength:
 		| number
 		| undefined = undefined
+	@Prop({ mutable: true, reflect: false }) min: number | undefined = undefined
+	@Prop({ mutable: true, reflect: false }) max: number | undefined = undefined
+	@Prop({ mutable: true, reflect: false }) step: number | undefined =
+		undefined
 
 	@Prop({ mutable: true, reflect: false }) fieldPrefix: FieldPrefix = {
 		type: 'default',
@@ -119,9 +123,22 @@ export class CmTextfield {
 		} else {
 			let validationInput = document.createElement('input')
 			validationInput.type = this.getNormalisedInputType()
-			validationInput.value = this.value
 			validationInput.required = this.required
 			validationInput.maxLength = this.maxLength
+
+			if (this.min !== undefined) {
+				validationInput.min = this.min.toString()
+			}
+
+			if (this.max !== undefined) {
+				validationInput.max = this.max.toString()
+			}
+
+			if (this.step !== undefined) {
+				validationInput.step = this.step.toString()
+			}
+
+			validationInput.value = this.value
 
 			if (validationInput.checkValidity()) {
 				result = {
@@ -229,7 +246,8 @@ export class CmTextfield {
 			if (
 				this.type === 'text' ||
 				this.type === 'password' ||
-				this.type === 'email'
+				this.type === 'email' ||
+				this.type === 'number'
 			) {
 				return <div class="prefix empty"></div>
 			}
@@ -276,9 +294,9 @@ export class CmTextfield {
 				<textarea
 					tabIndex={0}
 					disabled={this.disabled}
-					value={this.value}
 					placeholder={this.placeholder}
 					maxlength={this.maxLength}
+					value={this.value}
 					onInput={inputHandler}
 				/>
 			)
@@ -294,9 +312,12 @@ export class CmTextfield {
 					tabIndex={0}
 					disabled={this.disabled}
 					type={type}
-					value={this.value}
 					placeholder={this.placeholder}
 					maxlength={this.maxLength}
+					min={this.min}
+					max={this.max}
+					step={this.step}
+					value={this.value}
 					onInput={inputHandler}
 				/>
 			)
@@ -391,6 +412,39 @@ export class CmTextfield {
 						</div>
 					)
 				}
+			} else if (this.type === 'number') {
+				return (
+					<div class="suffix number">
+						<div
+							class="button minus"
+							onClick={() => {
+								let input =
+									this.element.shadowRoot.querySelector(
+										'input',
+									)
+
+								input.stepDown()
+								this.value = input.value
+
+								this.renderValidity()
+							}}
+						></div>
+						<div
+							class="button plus"
+							onClick={() => {
+								let input =
+									this.element.shadowRoot.querySelector(
+										'input',
+									)
+
+								input.stepUp()
+								this.value = input.value
+
+								this.renderValidity()
+							}}
+						></div>
+					</div>
+				)
 			}
 		}
 	}
