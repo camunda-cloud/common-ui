@@ -371,6 +371,7 @@
 					<cm-form-group label="Fields">
 						<cm-textfield id="textfield3"></cm-textfield>
 						<cm-textfield id="textfield4"></cm-textfield>
+						<cm-textfield id="textfield5"></cm-textfield>
 					</cm-form-group>
 
 					<cm-checkbox-group label="Checkboxes">
@@ -497,6 +498,15 @@
 					textfield4.label = 'Email Address'
 					textfield4.formName = 'field4'
 					textfield4.fieldSuffix = { type: 'copy' }
+
+					let textfield5 = document.getElementById('textfield5')
+
+					textfield5.type = 'number'
+					textfield5.label = 'Number'
+					textfield5.formName = 'field5'
+					textfield5.min = 0
+					textfield5.max = 25
+					textfield5.validationStyle = 'delay'
 
 					let form = document.getElementById('form')
 
