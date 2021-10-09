@@ -50,7 +50,7 @@ export class CmSelect {
 		| {
 				type: 'custom'
 				validator: (
-					selectedOptions: Array<Option>,
+					selectedOptions: CmSelect['selectedOptions'],
 				) => Promise<ValidatorResult>
 		  } = {
 		type: 'default',
@@ -63,7 +63,7 @@ export class CmSelect {
 		| 'horizontal'
 		| 'vertical' = 'vertical'
 
-	@Prop({ mutable: true, reflect: false }) selectedOptions: Array<Option> = []
+	@Prop({ mutable: true, reflect: false }) selectedOptions: Array<string> = []
 
 	@State() isOpen: boolean = false
 	@State() isDirty: boolean = false
@@ -187,14 +187,16 @@ export class CmSelect {
 	}
 
 	renderValueLabel() {
-		let value = ''
+		let label = ''
 
 		if (this.selectedOptions.length === 1) {
-			value = this.selectedOptions[0].label
+			label = this.options.find((option) => {
+				return option.value === this.selectedOptions[0]
+			}).label
 		}
 
-		if (value) {
-			return <div class="valueLabel">{value}</div>
+		if (label) {
+			return <div class="valueLabel">{label}</div>
 		} else if (this.placeholder) {
 			return <div class="valueLabel placeholder">{this.placeholder}</div>
 		} else {
@@ -227,15 +229,23 @@ export class CmSelect {
 							<div
 								class="option"
 								onClick={async () => {
-									if (this.selectedOptions.includes(option)) {
+									if (
+										this.selectedOptions.includes(
+											option.value,
+										)
+									) {
 										if (this.allowMultiple) {
 											// TODO: Remove specific option
 										}
 									} else {
 										if (this.allowMultiple) {
-											this.selectedOptions.push(option)
+											this.selectedOptions.push(
+												option.value,
+											)
 										} else {
-											this.selectedOptions = [option]
+											this.selectedOptions = [
+												option.value,
+											]
 										}
 									}
 
