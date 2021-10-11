@@ -8,9 +8,7 @@ import {
 	Host,
 	h,
 } from '@stencil/core'
-import { CmCheckbox } from '../cm-checkbox/cm-checkbox'
 import { CmSelect } from '../cm-select/cm-select'
-import { CmTextfield } from '../cm-textfield/cm-textfield'
 
 export type FormData = Record<
 	string,
@@ -54,20 +52,18 @@ export class CmForm {
 				CmForm.isCheckbox(child) ||
 				CmForm.isSelect(child)
 			) {
-				const filteredChild: CmTextfield | CmCheckbox | CmSelect =
-					child as any
-				let validationResult = await filteredChild.checkValidity()
+				let validationResult = await child.checkValidity()
 
 				if (!validationResult.isValid) {
 					if (isFormValid) {
-						filteredChild.renderValidity()
-						filteredChild.forceFocus()
+						child.renderValidity()
+						child.forceFocus()
 						isFormValid = false
 					} else {
-						filteredChild.hideValidity()
+						child.hideValidity()
 					}
 				} else {
-					if (filteredChild.formName !== '') {
+					if (child.formName !== '') {
 						if (CmForm.isTextfield(child)) {
 							if (child.type === 'number') {
 								formData[child.formName] = child.valueAsNumber
