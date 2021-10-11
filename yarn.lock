@@ -1612,10 +1612,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/react-output-target/-/react-output-target-0.1.0.tgz#cdb586051bbd54e4a3d9af5da66b55b66244b558"
   integrity sha512-NWeN2S43dwWDIousfojzGXIMkJJhfcdS1JxpwgE7IOqy4tZ+nqlDLPhM6tXvZ3eq4rJm8bkF+3/WbPJNR9xR7Q==
 
-"@stencil/sass@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-1.5.0.tgz#2ef465867e07257f1520d71e12a1345cf22ce8e0"
-  integrity sha512-bgqVpVLOUl5XQanI9dUl3APPeSj08GKUO/oll/yOglbbmVRaUGemYAI7/CvUoaNq9G0WPFfPi/mEVReC554ejQ==
+"@stencil/sass@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-1.5.1.tgz#07ebcc0911c73504401a56794f12ef9e80f92633"
+  integrity sha512-uz2El/3nX13Q1rY1eCo+hJm9yYN3UAPKKAx5M9q5N2XzaGQ96pFmC0JdRakdXCC3Sn4JffZRaGyaENSy3eqwmA==
 
 "@storybook/addon-docs@6.4.0-beta.7":
   version "6.4.0-beta.7"

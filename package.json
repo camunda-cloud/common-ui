@@ -35,7 +35,7 @@
     "@camunda-cloud/common-ui-react": "0.0.18-beta4",
     "@stencil/core": "2.8.1",
     "@stencil/react-output-target": "0.1.0",
-    "@stencil/sass": "1.5.0",
+    "@stencil/sass": "1.5.1",
     "@storybook/addon-docs": "6.4.0-beta.7",
     "@storybook/builder-webpack5": "6.4.0-beta.7",
     "@storybook/manager-webpack5": "6.4.0-beta.7",
