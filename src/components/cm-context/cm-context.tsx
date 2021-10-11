@@ -7,6 +7,7 @@ import {
 	EventEmitter,
 	Method,
 	Watch,
+	Element,
 } from '@stencil/core'
 
 import { getVariableValueFromDocument, Theme } from '../../globalHelpers'
@@ -16,6 +17,8 @@ import { getVariableValueFromDocument, Theme } from '../../globalHelpers'
 	shadow: true,
 })
 export class CmContext {
+	@Element() element: HTMLCmContextElement
+
 	variableCache: Map<string, string> = new Map()
 
 	@Prop({ mutable: true }) theme: Theme | 'Automatic' = 'Light'
