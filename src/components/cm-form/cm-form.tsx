@@ -77,7 +77,12 @@ export class CmForm {
 						} else if (CmForm.isCheckbox(child)) {
 							formData[child.formName] = child.checked
 						} else if (CmForm.isSelect(child)) {
-							formData[child.formName] = child.selectedOptions
+							if (child.allowMultiple) {
+								formData[child.formName] = child.selectedOptions
+							} else {
+								formData[child.formName] =
+									child.selectedOptions[0]
+							}
 						}
 					}
 				}
