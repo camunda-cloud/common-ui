@@ -152,7 +152,11 @@ export class CmSelect {
 			<div class="labelContainer">
 				<div class="label">{this.label}</div>
 				{this.labelAlignment === 'vertical' ? (
-					<cm-text appearance="helperText" color="subtle">
+					<cm-text
+						class="helperText"
+						appearance="helperText"
+						color="subtle"
+					>
 						{this.helperText}
 					</cm-text>
 				) : (

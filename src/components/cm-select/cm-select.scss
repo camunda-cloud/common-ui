@@ -20,10 +20,6 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: max-content minmax(32px, max-content);
 
-		.labelContainer {
-			padding-bottom: 4px;
-		}
-
 		&.hasError {
 			grid-template-areas:
 				'labelContainer'
@@ -32,13 +28,26 @@
 			grid-template-columns: 1fr;
 			grid-template-rows: max-content minmax(32px, max-content) max-content;
 		}
+
+		.labelContainer {
+			grid-area: labelContainer;
+			display: grid;
+
+			padding-left: 1px;
+			padding-right: 3px;
+			padding-bottom: 4px;
+
+			grid-template-areas:
+				'label      requiredStatus'
+				'helperText helperText';
+		}
 	}
 
 	&.horizontal {
 		grid-template-areas: 'labelContainer valueLabelContainer';
 		grid-template-columns: max-content 1fr;
 		grid-template-rows: minmax(32px, max-content);
-		gap: 5px 10px;
+		gap: 0px 10px;
 
 		&.hasError {
 			grid-template-areas:
@@ -46,6 +55,14 @@
 				'.              error';
 			grid-template-columns: max-content 1fr;
 			grid-template-rows: minmax(32px, max-content) max-content;
+			gap: 5px 10px;
+		}
+
+		.labelContainer {
+			grid-area: labelContainer;
+			display: grid;
+
+			grid-template-areas: 'label requiredStatus';
 		}
 	}
 
@@ -98,18 +115,6 @@
 		}
 	}
 
-	.labelContainer {
-		grid-area: labelContainer;
-		display: grid;
-
-		padding-left: 1px;
-		padding-right: 3px;
-
-		grid-template-areas:
-			'label      requiredStatus'
-			'helperText helperText';
-	}
-
 	.label {
 		grid-area: label;
 		display: grid;
@@ -121,13 +126,9 @@
 		color: var(--cm-color-ui-light6);
 	}
 
-	cm-text {
+	.helperText {
 		grid-area: helperText;
 		user-select: none;
-
-		&:not(:empty) {
-			padding-top: 2px;
-		}
 	}
 
 	.requiredStatus {

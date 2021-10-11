@@ -13,7 +13,7 @@ describe('cm-textfield', () => {
 					<label class="Light container vertical">
 						<div class="labelContainer">
 							<div class="label"></div>
-							<cm-text appearance="helperText" color="subtle"></cm-text>
+							<cm-text appearance="helperText" class="helperText" color="subtle"></cm-text>
 						</div>
 						<div class="inputContainer">
 							<div class="empty prefix"></div>
