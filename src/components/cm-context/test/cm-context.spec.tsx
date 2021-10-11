@@ -21,7 +21,7 @@ describe('cm-context', () => {
 		})
 
 		expect(page.root).toEqualHtml(`
-			<cm-context style="display: none;">
+			<cm-context>
 				<mock:shadow-root>
 					<slot></slot>
 				</mock:shadow-root>

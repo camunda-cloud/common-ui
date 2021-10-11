@@ -14,6 +14,7 @@ import { getVariableValueFromDocument, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-context',
+	styleUrl: 'cm-context.scss',
 	shadow: true,
 })
 export class CmContext {
@@ -97,7 +98,7 @@ export class CmContext {
 
 	render() {
 		return (
-			<Host style={{ display: 'none' }}>
+			<Host>
 				<slot></slot>
 			</Host>
 		)
