@@ -1,17 +1,8 @@
-:host {
-	display: block;
-
-	// Prevent scrolling when the modal gets focussed
-	position: fixed;
-
-	z-index: 1000;
-}
-
 .container {
 	display: grid;
 	justify-content: center;
 
-	position: fixed;
+	position: absolute;
 
 	top: 0px;
 	left: 0px;

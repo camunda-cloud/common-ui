@@ -8,6 +8,7 @@ import {
 	Element,
 	Listen,
 } from '@stencil/core'
+import { getContext } from '../../globalHelpers'
 import { FormData } from '../cm-form/cm-form'
 import { CmSelect } from '../cm-select/cm-select'
 
@@ -43,6 +44,14 @@ export class CmModal {
 	@State() isOpen: boolean = false
 	@State() confirmLoading: boolean = false
 	@State() cancelDisabled: boolean = false
+
+	componentDidLoad() {
+		let context = getContext()
+
+		if (context) {
+			context.element.insertAdjacentElement('beforeend', this.element)
+		}
+	}
 
 	@Prop({ mutable: true }) position: 'top' | 'center' = 'center'
 	@Prop({ mutable: true }) width: number = 636
