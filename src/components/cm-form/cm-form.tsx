@@ -127,8 +127,16 @@ export class CmForm {
 	@Method() async forceFocus() {
 		;(
 			this.element.querySelector(
-				'cm-textfield:not([disabled]), cm-checkbox:not([disabled])',
-			) as HTMLCmTextfieldElement | HTMLCmCheckboxElement | undefined
+				[
+					'cm-textfield:not([disabled])',
+					'cm-checkbox:not([disabled])',
+					'cm-select:not([disabled])',
+				].join(','),
+			) as
+				| HTMLCmTextfieldElement
+				| HTMLCmCheckboxElement
+				| HTMLCmSelectElement
+				| undefined
 		)?.forceFocus()
 	}
 
