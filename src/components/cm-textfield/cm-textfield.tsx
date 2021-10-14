@@ -9,7 +9,12 @@ import {
 	Event,
 	EventEmitter,
 } from '@stencil/core'
-import { onThemeChange, Theme, ValidatorResult } from '../../globalHelpers'
+import {
+	debounce,
+	onThemeChange,
+	Theme,
+	ValidatorResult,
+} from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
 export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number'
@@ -76,7 +81,8 @@ export class CmTextfield {
 	@Prop({ mutable: true, reflect: false }) validationStyle:
 		| 'form'
 		| 'live'
-		| 'delay' = 'form'
+		| 'delay'
+		| 'async' = 'form'
 	@Prop({ mutable: true, reflect: true }) formName: string = ''
 
 	@Prop({ mutable: true, reflect: true }) labelAlignment:
@@ -92,9 +98,11 @@ export class CmTextfield {
 	@State() theme: Theme = 'Light'
 
 	@State() showCopyTooltip: boolean = false
+	@State() indicateOngoingValidation: boolean = false
 
 	delayedValidationTimer: ReturnType<typeof setTimeout>
 	delayValidationDistance = 1000
+	ongoingValidation: Promise<ValidatorResult>
 
 	@Event() cmInput: EventEmitter<{ value: string; valueAsNumber: number }>
 	@Event() cmReset: EventEmitter<void>
@@ -191,11 +199,12 @@ export class CmTextfield {
 
 		result = this.checkDefaultValidity()
 
-		if (this.validation.type !== 'default' && result.isValid) {
+		if (this.validation.type === 'custom' && result.isValid) {
 			if (this.value === '' && !this.required) {
 				result = { isValid: true }
 			} else {
-				result = await this.validation.validator(this.value)
+				this.ongoingValidation = this.validation.validator(this.value)
+				result = await this.ongoingValidation
 			}
 		}
 
@@ -203,7 +212,13 @@ export class CmTextfield {
 	}
 
 	@Method() async renderValidity() {
+		if (this.validationStyle === 'async') {
+			this.indicateOngoingValidation = true
+		}
+
 		this.validationResult = await this.checkValidity()
+		this.indicateOngoingValidation = false
+
 		this.forceRenderingOfValidationState = true
 		this.forceHidingOfValidationState = false
 	}
@@ -217,6 +232,10 @@ export class CmTextfield {
 		this.forceHidingOfValidationState = false
 		this.forceRenderingOfValidationState = false
 	}
+
+	debouncedValidation = debounce(() => {
+		this.renderValidity()
+	}, this.delayValidationDistance)
 
 	renderLabelContainer() {
 		return (
@@ -310,6 +329,15 @@ export class CmTextfield {
 				} else {
 					this.renderValidity()
 				}
+			} else if (this.validationStyle === 'async') {
+				this.forceHidingOfValidationState = true
+				let defaultValidity = await this.checkDefaultValidity()
+
+				if (defaultValidity.isValid === true) {
+					this.debouncedValidation()
+				} else {
+					this.renderValidity()
+				}
 			} else {
 				this.renderValidity()
 			}
@@ -352,6 +380,33 @@ export class CmTextfield {
 					onInput={inputHandler}
 				/>
 			)
+		}
+	}
+
+	renderAsyncStatusIndicator() {
+		if (this.validationStyle === 'async') {
+			if (this.indicateOngoingValidation) {
+				return (
+					<div class="asyncStatusIndicator">
+						<cm-loader size="small" />
+					</div>
+				)
+			} else {
+				if (
+					this.validationResult?.isValid &&
+					!this.forceHidingOfValidationState
+				) {
+					return (
+						<div class="asyncStatusIndicator">
+							<cm-icon icon="check" color="success" />
+						</div>
+					)
+				} else {
+					return <div class="asyncStatusIndicator"></div>
+				}
+			}
+		} else {
+			return <div class="asyncStatusIndicator"></div>
 		}
 	}
 
@@ -480,10 +535,6 @@ export class CmTextfield {
 				)
 			}
 		}
-	}
-
-	renderAsyncStatusIndicator() {
-		return <div class="asyncStatusIndicator"></div>
 	}
 
 	renderErrorMessage() {
