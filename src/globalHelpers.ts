@@ -58,3 +58,19 @@ export const getVariableValue = async (name: string) => {
 		return getVariableValueFromDocument(name)
 	}
 }
+
+export const debounce = (callback, wait) => {
+	let timeout
+
+	return function () {
+		let args = arguments
+
+		let later = function () {
+			timeout = null
+			callback(args)
+		}
+
+		clearTimeout(timeout)
+		timeout = setTimeout(later, wait)
+	}
+}
