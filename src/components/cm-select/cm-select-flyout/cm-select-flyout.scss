@@ -1,0 +1,113 @@
+.valueLabelContainer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 1;
+
+	font-family: var(--cm-font-text);
+
+	box-sizing: border-box;
+
+	display: none;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&.isOpen {
+		display: grid;
+		grid-template-areas:
+			'prefix valueLabel suffix'
+			'flyout flyout     flyout';
+		grid-template-columns: max-content 1fr max-content;
+		grid-template-rows: max-content max-content;
+		align-items: center;
+
+		min-height: 30px;
+
+		border-radius: 3px;
+		border: solid 1px var(--cm-color-ui-light3);
+		background-color: var(--cm-color-ui-light4);
+
+		box-shadow: 0 0 0 2px var(--cm-color-focus-outer-neutral);
+		border: solid 1px var(--cm-color-blue-base);
+	}
+
+	.prefix {
+		grid-area: prefix;
+		display: grid;
+		grid-auto-flow: column;
+		height: 30px;
+		align-items: center;
+
+		border-bottom-left-radius: 3px;
+		border-top-left-radius: 3px;
+
+		&.empty {
+			width: 10px;
+		}
+
+		&.icon {
+			width: 30px;
+			justify-items: center;
+		}
+	}
+
+	.valueLabel {
+		grid-area: valueLabel;
+		font-size: 14px;
+		color: var(--cm-color-ui-dark4);
+
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+
+		&.placeholder {
+			font-style: italic;
+			color: var(--cm-color-ui-light6);
+		}
+	}
+
+	.suffix {
+		grid-area: suffix;
+		display: grid;
+		grid-auto-flow: column;
+		height: 30px;
+		align-items: center;
+
+		border-bottom-right-radius: 3px;
+		border-top-right-radius: 3px;
+
+		&.icon {
+			width: 30px;
+			justify-items: center;
+		}
+	}
+
+	.flyout {
+		grid-area: flyout;
+		display: grid;
+
+		.option {
+			display: grid;
+			align-items: center;
+			min-height: 30px;
+			padding: 6px 10px;
+			font-size: 14px;
+			color: var(--cm-color-ui-dark4);
+
+			&:first-child {
+				border-top: 1px solid var(--cm-color-ui-light5);
+			}
+
+			&:hover,
+			&.hover {
+				background: var(--cm-color-focus-inner-neutral);
+			}
+		}
+	}
+}

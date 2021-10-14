@@ -21,7 +21,6 @@ describe('cm-select', () => {
 							<div class="icon suffix">
 								<cm-icon icon="down"></cm-icon>
 							</div>
-							<div class="flyout"></div>
 						</div>
 						<div class="errorMessage"></div>
 					</label>

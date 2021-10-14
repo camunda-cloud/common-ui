@@ -72,7 +72,7 @@
 		}
 	}
 
-	&:not(.disabled):focus-within {
+	&:not(.disabled):not(.isOpen):focus-within {
 		.valueLabelContainer {
 			box-shadow: 0 0 0 2px var(--cm-color-focus-outer-neutral);
 			border: solid 1px var(--cm-color-blue-base);
@@ -157,20 +157,6 @@
 			outline: none;
 		}
 
-		&.isOpen {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			z-index: 1;
-
-			grid-template-areas:
-				'prefix valueLabel suffix'
-				'flyout flyout     flyout';
-			grid-template-columns: max-content 1fr max-content;
-			grid-template-rows: max-content max-content;
-		}
-
 		.prefix {
 			grid-area: prefix;
 			display: grid;
@@ -206,36 +192,6 @@
 			}
 		}
 
-		input {
-			border: none;
-			background: transparent;
-
-			font-family: var(--cm-font-text);
-			font-size: 14px;
-			color: var(--cm-color-ui-dark4);
-
-			&:focus {
-				outline: none;
-			}
-
-			&::placeholder {
-				font-size: 14px;
-				font-style: italic;
-				color: var(--cm-color-ui-light6);
-			}
-		}
-
-		input {
-			height: 30px;
-			min-width: 0px;
-			padding: 0px;
-
-			&[type='password']::-ms-reveal,
-			&[type='password']::-ms-clear {
-				display: none;
-			}
-		}
-
 		.suffix {
 			grid-area: suffix;
 			display: grid;
@@ -249,29 +205,6 @@
 			&.icon {
 				width: 30px;
 				justify-items: center;
-			}
-		}
-
-		.flyout {
-			grid-area: flyout;
-			display: grid;
-
-			.option {
-				display: grid;
-				align-items: center;
-				min-height: 30px;
-				padding: 6px 10px;
-				font-size: 14px;
-				color: var(--cm-color-ui-dark4);
-
-				&:first-child {
-					border-top: 1px solid var(--cm-color-ui-light5);
-				}
-
-				&:hover,
-				&.hover {
-					background: var(--cm-color-focus-inner-neutral);
-				}
 			}
 		}
 	}

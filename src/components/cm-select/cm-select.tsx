@@ -1,14 +1,10 @@
+import { Component, Host, h, Prop, Element, Method, State } from '@stencil/core'
 import {
-	Component,
-	Host,
-	h,
-	Prop,
-	Element,
-	Method,
-	State,
-	Listen,
-} from '@stencil/core'
-import { onThemeChange, Theme, ValidatorResult } from '../../globalHelpers'
+	getContext,
+	onThemeChange,
+	Theme,
+	ValidatorResult,
+} from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
 export type Option = {
@@ -72,15 +68,19 @@ export class CmSelect {
 	@State() forceHidingOfValidationState: boolean = false
 
 	@State() theme: Theme = 'Light'
+	@State() flyout: HTMLCmSelectFlyoutElement
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
 			this.theme = theme
 		})
+
+		this.flyout = document.createElement('cm-select-flyout')
+		this.flyout.select = this
 	}
 
-	@Listen('blur') onBlur() {
-		this.isOpen = false
+	componentDidLoad() {
+		getContext()?.element.appendChild(this.flyout as any)
 	}
 
 	@Method() async reset() {
@@ -224,62 +224,6 @@ export class CmSelect {
 		}
 	}
 
-	renderFlyout() {
-		if (this.isOpen) {
-			return (
-				<div class="flyout">
-					{this.options.map((option) => {
-						return (
-							<div
-								class="option"
-								onClick={async () => {
-									if (
-										this.selectedOptions.includes(
-											option.value,
-										)
-									) {
-										if (this.allowMultiple) {
-											// TODO: Remove specific option
-										}
-									} else {
-										if (this.allowMultiple) {
-											this.selectedOptions.push(
-												option.value,
-											)
-										} else {
-											this.selectedOptions = [
-												option.value,
-											]
-										}
-									}
-
-									this.resetValidationForces()
-									this.isDirty = true
-
-									if (this.validationStyle === 'form') {
-										if (
-											this.validationResult &&
-											!this.validationResult.isValid
-										) {
-											this.validationResult =
-												await this.checkValidity()
-										}
-									} else {
-										this.renderValidity()
-									}
-								}}
-							>
-								{option.label}
-							</div>
-						)
-					})}
-				</div>
-			)
-		} else {
-			return <div class="flyout"></div>
-		}
-	}
-
 	renderErrorMessage() {
 		if (
 			(this.isDirty || this.forceRenderingOfValidationState) &&
@@ -301,6 +245,9 @@ export class CmSelect {
 	}
 
 	render() {
+		this.flyout.isOpen = this.isOpen
+		this.flyout.options = this.options
+
 		return (
 			<Host>
 				<label
@@ -317,7 +264,11 @@ export class CmSelect {
 					}}
 					onClick={() => {
 						if (!this.disabled) {
-							this.isOpen = !this.isOpen
+							;(
+								this.element.shadowRoot.querySelector(
+									'.valueLabelContainer',
+								) as HTMLDivElement
+							).focus()
 						}
 					}}
 				>
@@ -328,11 +279,15 @@ export class CmSelect {
 							valueLabelContainer: true,
 							isOpen: this.isOpen,
 						}}
+						onClick={() => {
+							if (!this.disabled) {
+								this.isOpen = !this.isOpen
+							}
+						}}
 					>
 						{this.renderPrefix()}
 						{this.renderValueLabel()}
 						{this.renderSuffix()}
-						{this.renderFlyout()}
 					</div>
 
 					{this.renderErrorMessage()}
