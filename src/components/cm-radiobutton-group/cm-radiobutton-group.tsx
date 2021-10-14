@@ -1,4 +1,14 @@
-import { Component, Host, h, Prop, Listen, Element, Watch } from '@stencil/core'
+import {
+	Component,
+	Host,
+	h,
+	Prop,
+	Listen,
+	Element,
+	Watch,
+	EventEmitter,
+	Event,
+} from '@stencil/core'
 
 @Component({
 	tag: 'cm-radiobutton-group',
@@ -11,6 +21,8 @@ export class CmRadiobuttonGroup {
 	@Prop({ reflect: true, mutable: true }) formName: string = ''
 
 	@Element() element: HTMLElement
+
+	@Event() cmInput: EventEmitter<{ value: string }>
 
 	radiobuttons: Array<HTMLCmRadiobuttonElement> = []
 
@@ -27,6 +39,8 @@ export class CmRadiobuttonGroup {
 				this.value = radiobutton.value
 			}
 		}
+
+		this.cmInput.emit({ value: this.value })
 	}
 
 	selectRadiobutton(value: string) {

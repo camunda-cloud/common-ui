@@ -1,4 +1,14 @@
-import { Component, Host, h, Prop, Element, Method, State } from '@stencil/core'
+import {
+	Component,
+	Host,
+	h,
+	Prop,
+	Element,
+	Method,
+	State,
+	Event,
+	EventEmitter,
+} from '@stencil/core'
 import {
 	getContext,
 	onThemeChange,
@@ -70,6 +80,8 @@ export class CmSelect {
 	@State() theme: Theme = 'Light'
 	@State() flyout: HTMLCmSelectFlyoutElement
 
+	@Event() cmInput: EventEmitter<{ selectedOptions: Array<string> }>
+
 	componentWillLoad() {
 		onThemeChange((theme) => {
 			this.theme = theme
@@ -77,6 +89,9 @@ export class CmSelect {
 
 		this.flyout = document.createElement('cm-select-flyout')
 		this.flyout.select = this
+		this.flyout.addEventListener('cmInput', () => {
+			this.cmInput.emit({ selectedOptions: this.selectedOptions })
+		})
 	}
 
 	componentDidLoad() {

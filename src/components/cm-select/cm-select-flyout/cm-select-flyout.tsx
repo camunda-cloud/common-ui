@@ -7,6 +7,8 @@ import {
 	Element,
 	Listen,
 	Fragment,
+	Event,
+	EventEmitter,
 } from '@stencil/core'
 import { HTMLStencilElement } from '@stencil/core/internal'
 import { Theme } from '../../../globalHelpers'
@@ -26,6 +28,8 @@ export class CmSelectFlyout {
 	@Prop({ mutable: false, reflect: false }) isOpen: boolean
 
 	@State() theme: Theme = 'Light'
+
+	@Event() cmInput: EventEmitter<{ value: Array<string> }>
 
 	@Listen('blur') blurHandler() {
 		this.select.isOpen = false
@@ -64,6 +68,7 @@ export class CmSelectFlyout {
 												),
 												1,
 											)
+											this.cmInput.emit()
 										}
 									} else {
 										if (this.select.allowMultiple) {
@@ -76,6 +81,8 @@ export class CmSelectFlyout {
 											]
 											this.select.forceFocus()
 										}
+
+										this.cmInput.emit()
 									}
 
 									this.select.resetValidationForces()

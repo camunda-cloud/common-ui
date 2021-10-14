@@ -1,4 +1,14 @@
-import { Component, Host, h, Prop, Method, State, Element } from '@stencil/core'
+import {
+	Component,
+	Host,
+	h,
+	Prop,
+	Method,
+	State,
+	Element,
+	Event,
+	EventEmitter,
+} from '@stencil/core'
 import { onThemeChange, Theme, ValidatorResult } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
@@ -86,6 +96,9 @@ export class CmTextfield {
 	delayedValidationTimer: ReturnType<typeof setTimeout>
 	delayValidationDistance = 1000
 
+	@Event() cmInput: EventEmitter<{ value: string; valueAsNumber: number }>
+	@Event() cmReset: EventEmitter<void>
+
 	componentWillLoad() {
 		onThemeChange((theme) => {
 			this.theme = theme
@@ -103,8 +116,10 @@ export class CmTextfield {
 	@Method() async reset() {
 		if (!this.disabled) {
 			this.value = ''
+			this.valueAsNumber = NaN
 			this.isDirty = false
 			this.validationResult = undefined
+			this.cmReset.emit()
 		}
 	}
 
@@ -298,6 +313,11 @@ export class CmTextfield {
 			} else {
 				this.renderValidity()
 			}
+
+			this.cmInput.emit({
+				value: this.value,
+				valueAsNumber: this.valueAsNumber,
+			})
 		}
 
 		if (this.type === 'multiline') {
