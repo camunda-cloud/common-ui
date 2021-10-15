@@ -36,6 +36,10 @@
 			padding-right: 3px;
 			padding-bottom: 4px;
 
+			&.isEmpty {
+				padding: 0;
+			}
+
 			grid-template-areas:
 				'label      requiredStatus'
 				'helperText helperText';

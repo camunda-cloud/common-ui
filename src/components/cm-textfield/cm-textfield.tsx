@@ -239,7 +239,15 @@ export class CmTextfield {
 
 	renderLabelContainer() {
 		return (
-			<div class="labelContainer">
+			<div
+				class={{
+					labelContainer: true,
+					isEmpty:
+						this.label.length === 0 &&
+						this.helperText.length === 0 &&
+						this.showRequired === false,
+				}}
+			>
 				<div class="label">{this.label}</div>
 				{this.labelAlignment === 'vertical' ? (
 					<cm-text
