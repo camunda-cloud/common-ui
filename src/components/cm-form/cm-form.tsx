@@ -122,6 +122,12 @@ export class CmForm {
 		for (let checkbox of checkboxes) {
 			checkbox.reset()
 		}
+
+		const selects = Array.from(this.element.querySelectorAll('cm-select'))
+
+		for (let select of selects) {
+			select.reset()
+		}
 	}
 
 	@Method() async forceFocus() {
