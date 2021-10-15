@@ -81,6 +81,7 @@ export class CmSelect {
 	@State() flyout: HTMLCmSelectFlyoutElement
 
 	@Event() cmInput: EventEmitter<{ selectedOptions: Array<string> }>
+	@Event() cmReset: EventEmitter<void>
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
@@ -103,6 +104,7 @@ export class CmSelect {
 			this.selectedOptions = []
 			this.isDirty = false
 			this.validationResult = undefined
+			this.cmReset.emit()
 		}
 	}
 
