@@ -71,7 +71,11 @@ export class CmRadiobuttonGroup {
 					''
 				)}
 				<div class="container">
-					<slot></slot>
+					<slot
+						onSlotchange={() => {
+							this.selectRadiobutton(this.value)
+						}}
+					></slot>
 				</div>
 			</Host>
 		)
