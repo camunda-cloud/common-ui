@@ -138,6 +138,8 @@ export class CmTextfield {
 				| HTMLInputElement
 				| HTMLTextAreaElement
 		).focus()
+
+		this.element.scrollIntoView()
 	}
 
 	checkDefaultValidity() {

@@ -114,6 +114,8 @@ export class CmSelect {
 				'.valueLabelContainer',
 			) as HTMLDivElement
 		).focus()
+
+		this.element.scrollIntoView()
 	}
 
 	checkDefaultValidity() {
