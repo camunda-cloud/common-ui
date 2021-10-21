@@ -75,6 +75,7 @@ export class CmTextfield {
 		| {
 				type: 'custom'
 				validator: (value: string) => Promise<ValidatorResult>
+				ignoreDefaultValidation?: boolean
 		  } = {
 		type: 'default',
 	}
@@ -198,11 +199,11 @@ export class CmTextfield {
 		let result: ValidatorResult
 
 		result = this.checkDefaultValidity()
-
-		if (this.validation.type === 'custom' && result.isValid) {
-			if (this.value === '' && !this.required) {
-				result = { isValid: true }
-			} else {
+		if (this.validation.type === 'custom') {
+			if (
+				this.validation.ignoreDefaultValidation !== false ||
+				result.isValid
+			) {
 				this.ongoingValidation = this.validation.validator(this.value)
 				result = await this.ongoingValidation
 			}
@@ -339,9 +340,14 @@ export class CmTextfield {
 				}
 			} else if (this.validationStyle === 'async') {
 				this.forceHidingOfValidationState = true
+
 				let defaultValidity = await this.checkDefaultValidity()
 
-				if (defaultValidity.isValid === true) {
+				if (
+					(this.validation.type === 'custom' &&
+						this.validation.ignoreDefaultValidation !== false) ||
+					defaultValidity.isValid === true
+				) {
 					this.debouncedValidation()
 				} else {
 					this.renderValidity()
