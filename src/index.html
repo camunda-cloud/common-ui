@@ -419,39 +419,34 @@
 					textfield1.required = false
 					textfield1.validation = {
 						type: 'custom',
+						ignoreDefaultValidation: true,
 						validator: (value) => {
-							if (value === '') {
-								return {
-									isValid: true,
-								}
-							} else {
-								const result = /^[a-zA-Z0-9]*$/.test(value)
+							const result = /^[a-zA-Z0-9]*$/.test(value)
 
-								if (result) {
-									if (value.length >= 3) {
-										return {
-											isValid: true,
-										}
-									} else {
-										return {
-											isValid: false,
-											type: 'incomplete',
-											message:
-												'Please use at least 3 characters.',
-										}
+							if (result) {
+								if (value.length >= 3) {
+									return {
+										isValid: true,
 									}
 								} else {
 									return {
 										isValid: false,
-										type: 'invalid',
+										type: 'incomplete',
 										message:
-											'Please only use alphanumeric characters.',
+											'Please use at least 3 characters.',
 									}
+								}
+							} else {
+								return {
+									isValid: false,
+									type: 'invalid',
+									message:
+										'Please only use alphanumeric characters.',
 								}
 							}
 						},
 					}
-					textfield1.validationStyle = 'delay'
+					textfield1.validationStyle = 'async'
 					textfield1.fieldPrefix = { type: 'text', value: 'https://' }
 					textfield1.fieldSuffix = { type: 'text', value: '.com' }
 
