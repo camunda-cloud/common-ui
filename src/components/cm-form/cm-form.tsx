@@ -64,6 +64,48 @@ export class CmForm {
 		return isFormValid
 	}
 
+	@Method() async getFormData() {
+		let formData = {}
+
+		const children = Array.from(
+			this.element.querySelectorAll(
+				'cm-textfield, cm-checkbox, cm-radiobutton-group, cm-select',
+			),
+		) as any
+
+		for (let child of children) {
+			if (
+				CmForm.isTextfield(child) ||
+				CmForm.isCheckbox(child) ||
+				CmForm.isSelect(child)
+			) {
+				if (child.formName !== '') {
+					if (CmForm.isTextfield(child)) {
+						if (child.type === 'number') {
+							formData[child.formName] = child.valueAsNumber
+						} else {
+							formData[child.formName] = child.value
+						}
+					} else if (CmForm.isCheckbox(child)) {
+						formData[child.formName] = child.checked
+					} else if (CmForm.isSelect(child)) {
+						if (child.allowMultiple) {
+							formData[child.formName] = child.selectedOptions
+						} else {
+							formData[child.formName] = child.selectedOptions[0]
+						}
+					}
+				}
+			} else if (CmForm.isRadioButtonGroup(child)) {
+				if (child.formName !== '') {
+					formData[child.formName] = child.value
+				}
+			}
+		}
+
+		return formData
+	}
+
 	@Method() async attemptSubmit() {
 		let isFormValid = true
 		let formData = {}
