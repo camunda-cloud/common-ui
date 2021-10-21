@@ -72,7 +72,7 @@
 		}
 	}
 
-	&:not(.disabled):not(.isOpen):focus-within {
+	&:not(.disabled):not(.isOpen):not(.hasError):focus-within {
 		.valueLabelContainer {
 			box-shadow: 0 0 0 2px var(--cm-color-focus-outer-neutral);
 			border: solid 1px var(--cm-color-blue-base);
