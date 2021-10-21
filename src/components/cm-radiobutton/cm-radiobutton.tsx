@@ -33,6 +33,8 @@ export class CmRadiobutton {
 	}>
 
 	radiobutton: HTMLDivElement
+	isFirstRender = true
+	noAnimation = true
 
 	@Listen('keydown')
 	handleKeyDown(event: KeyboardEvent) {
@@ -51,6 +53,14 @@ export class CmRadiobutton {
 		}
 	}
 
+	componentDidRender() {
+		this.isFirstRender = false
+
+		setTimeout(() => {
+			this.noAnimation = false
+		}, 100)
+	}
+
 	/**
 	 * Sets the selected state to true. Respects the disabled state, unless forced.
 	 */
@@ -59,10 +69,15 @@ export class CmRadiobutton {
 		options: {
 			forceSelection?: boolean
 			triggeredBy?: 'User' | 'API'
+			preventAnimation?: boolean
 		} = {},
 	) {
 		if (!this.disabled || options.forceSelection) {
 			if (this.selected === false) {
+				if (options.preventAnimation) {
+					this.noAnimation = true
+				}
+
 				this.selected = true
 				this.cmSelected.emit({
 					value: this.value,
@@ -82,6 +97,7 @@ export class CmRadiobutton {
 			radiobutton: true,
 			selected: this.selected,
 			disabled: this.disabled,
+			noAnimation: this.isFirstRender || this.noAnimation,
 		}
 
 		let tabIndex = 0

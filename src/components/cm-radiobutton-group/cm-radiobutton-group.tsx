@@ -9,6 +9,7 @@ import {
 	EventEmitter,
 	Event,
 } from '@stencil/core'
+import { CmRadiobutton } from '../cm-radiobutton/cm-radiobutton'
 
 @Component({
 	tag: 'cm-radiobutton-group',
@@ -43,21 +44,24 @@ export class CmRadiobuttonGroup {
 		this.cmInput.emit({ value: this.value })
 	}
 
-	selectRadiobutton(value: string) {
+	selectRadiobutton(
+		value: string,
+		options?: Parameters<CmRadiobutton['select']>[0],
+	) {
 		this.radiobuttons = Array.from(
 			this.element.querySelectorAll('cm-radiobutton'),
 		)
 
 		for (let radiobutton of this.radiobuttons) {
 			if (radiobutton.value === value) {
-				radiobutton.select()
+				radiobutton.select(options)
 				break
 			}
 		}
 	}
 
 	componentDidLoad() {
-		this.selectRadiobutton(this.value)
+		this.selectRadiobutton(this.value, { preventAnimation: true })
 	}
 
 	render() {
@@ -73,7 +77,9 @@ export class CmRadiobuttonGroup {
 				<div class="container">
 					<slot
 						onSlotchange={() => {
-							this.selectRadiobutton(this.value)
+							this.selectRadiobutton(this.value, {
+								preventAnimation: true,
+							})
 						}}
 					></slot>
 				</div>

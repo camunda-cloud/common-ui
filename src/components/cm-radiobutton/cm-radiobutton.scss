@@ -53,6 +53,14 @@
 	vertical-align: bottom;
 	transition: all 0.2s linear;
 
+	&.noAnimation {
+		transition: none;
+
+		&::before {
+			transition: none;
+		}
+	}
+
 	&::before {
 		content: '';
 		position: absolute;
