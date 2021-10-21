@@ -75,7 +75,7 @@ export class CmTextfield {
 		| {
 				type: 'custom'
 				validator: (value: string) => Promise<ValidatorResult>
-				ignoreDefaultValidation?: boolean
+				ignoreDefaultValidation?: true
 		  } = {
 		type: 'default',
 	}
@@ -200,10 +200,7 @@ export class CmTextfield {
 
 		result = this.checkDefaultValidity()
 		if (this.validation.type === 'custom') {
-			if (
-				this.validation.ignoreDefaultValidation !== false ||
-				result.isValid
-			) {
+			if (this.validation.ignoreDefaultValidation || result.isValid) {
 				this.ongoingValidation = this.validation.validator(this.value)
 				result = await this.ongoingValidation
 			}
@@ -345,7 +342,7 @@ export class CmTextfield {
 
 				if (
 					(this.validation.type === 'custom' &&
-						this.validation.ignoreDefaultValidation !== false) ||
+						this.validation.ignoreDefaultValidation) ||
 					defaultValidity.isValid === true
 				) {
 					this.debouncedValidation()
