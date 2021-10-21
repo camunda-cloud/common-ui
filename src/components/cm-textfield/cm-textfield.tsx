@@ -139,7 +139,11 @@ export class CmTextfield {
 				| HTMLTextAreaElement
 		).focus()
 
-		this.element.scrollIntoView()
+		this.element.scrollIntoView({
+			block: 'nearest',
+			inline: 'nearest',
+			behavior: 'smooth',
+		})
 	}
 
 	checkDefaultValidity() {

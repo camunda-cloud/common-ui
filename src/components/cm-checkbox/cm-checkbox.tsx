@@ -157,7 +157,11 @@ export class CmCheckbox {
 			) as HTMLDivElement
 		).focus()
 
-		this.element.scrollIntoView()
+		this.element.scrollIntoView({
+			block: 'nearest',
+			inline: 'nearest',
+			behavior: 'smooth',
+		})
 	}
 
 	@Method() async checkValidity(): Promise<ValidatorResult> {
