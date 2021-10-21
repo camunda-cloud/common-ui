@@ -21,12 +21,12 @@ export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number'
 
 export type FieldPrefix =
 	| { type: 'text'; value: string }
-	| { type: 'icon'; icon: CmIcon['icon'] }
+	| { type: 'icon'; icon: CmIcon['icon']; press?: () => void }
 	| { type: 'default' }
 
 export type FieldSuffix =
 	| { type: 'text'; value: string }
-	| { type: 'icon'; icon: CmIcon['icon'] }
+	| { type: 'icon'; icon: CmIcon['icon']; press?: () => void }
 	| { type: 'maxlength' }
 	| { type: 'copy' }
 	| { type: 'default' }
@@ -288,9 +288,23 @@ export class CmTextfield {
 		if (this.fieldPrefix.type === 'text') {
 			return <div class="prefix text">{this.fieldPrefix.value}</div>
 		} else if (this.fieldPrefix.type === 'icon') {
+			const prefix = this.fieldPrefix
+
 			return (
 				<div class="prefix icon">
-					<cm-icon icon={this.fieldPrefix.icon} />
+					<cm-icon
+						icon={this.fieldPrefix.icon}
+						style={{ cursor: prefix.press ? 'pointer' : 'default' }}
+						onMouseDown={(event) => {
+							event.preventDefault()
+						}}
+						onClick={(event) => {
+							event.preventDefault()
+							if (prefix.press) {
+								prefix.press()
+							}
+						}}
+					/>
 				</div>
 			)
 		} else if (this.fieldPrefix.type === 'default') {
@@ -435,9 +449,23 @@ export class CmTextfield {
 		if (this.fieldSuffix.type === 'text') {
 			return <div class="suffix text">{this.fieldSuffix.value}</div>
 		} else if (this.fieldSuffix.type === 'icon') {
+			const suffix = this.fieldSuffix
+
 			return (
 				<div class="suffix icon">
-					<cm-icon icon={this.fieldSuffix.icon} />
+					<cm-icon
+						icon={this.fieldSuffix.icon}
+						style={{ cursor: suffix.press ? 'pointer' : 'default' }}
+						onMouseDown={(event) => {
+							event.preventDefault()
+						}}
+						onClick={(event) => {
+							event.preventDefault()
+							if (suffix.press) {
+								suffix.press()
+							}
+						}}
+					/>
 				</div>
 			)
 		} else if (this.fieldSuffix.type === 'maxlength') {
