@@ -63,4 +63,20 @@ span {
 			opacity: 1;
 		}
 	}
+
+	&.Dark {
+		color: var(--cm-color-ui-light5);
+
+		&:hover {
+			border-bottom-color: var(--cm-color-ui-light5);
+		}
+
+		&::after {
+			color: var(--cm-color-ui-light4);
+		}
+
+		&.active {
+			border-bottom-color: var(--cm-color-ui-light4);
+		}
+	}
 }

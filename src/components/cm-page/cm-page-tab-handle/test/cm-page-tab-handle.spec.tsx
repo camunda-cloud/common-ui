@@ -10,7 +10,7 @@ describe('cm-page-tab-handle', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-page-tab-handle>
 				<mock:shadow-root>
-					<span role="tab" tabindex="0"></span>
+					<span class="Light" role="tab" tabindex="0"></span>
 				</mock:shadow-root>
 			</cm-page-tab-handle>
 		`)

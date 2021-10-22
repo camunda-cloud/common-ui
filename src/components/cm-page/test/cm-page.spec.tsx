@@ -13,13 +13,13 @@ describe('cm-page', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-page>
 				<mock:shadow-root>
-					<header class="empty">
+					<header class="empty Light">
 						<div class="headerSlot">
 							<slot name="header"></slot>
 						</div>
 						<div class="empty handles"></div>
 					</header>
-					<div class="tabs">
+					<div class="Light tabs">
 						<slot></slot>
 					</div>
 				</mock:shadow-root>

@@ -8,7 +8,9 @@ import {
 	Listen,
 	Host,
 	h,
+	State,
 } from '@stencil/core'
+import { onThemeChange, Theme } from '../../../globalHelpers'
 
 @Component({
 	tag: 'cm-page-tab-handle',
@@ -16,6 +18,8 @@ import {
 	shadow: true,
 })
 export class CmPageTabHandle {
+	@State() theme: Theme = 'Light'
+
 	@Element() root: HTMLCmPageTabHandleElement
 	span: HTMLSpanElement
 
@@ -60,12 +64,18 @@ export class CmPageTabHandle {
 		}
 	}
 
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
+
 	componentWillRender() {
 		this.activeWatchHandler(this.active)
 	}
 
 	render() {
-		let classes = { active: this.active }
+		let classes = { active: this.active, [this.theme]: true }
 
 		return (
 			<Host>
