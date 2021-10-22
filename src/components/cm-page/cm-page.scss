@@ -6,10 +6,17 @@
 }
 
 header {
-	background: var(--cm-color-ui-light1);
 	padding: 0px 65px;
 
-	border-bottom: 1px solid var(--cm-color-ui-light5);
+	&.Light {
+		background: var(--cm-color-ui-light1);
+		border-bottom: 1px solid var(--cm-color-ui-light5);
+	}
+
+	&.Dark {
+		background: var(--cm-color-ui-dark1);
+		border-bottom: 1px solid var(--cm-color-ui-dark5);
+	}
 
 	&.empty {
 		border-bottom: 0px;
@@ -56,5 +63,11 @@ header {
 	height: 100%;
 	overflow: hidden;
 
-	background-color: var(--cm-color-ui-light2);
+	&.Light {
+		background-color: var(--cm-color-ui-light2);
+	}
+
+	&.Dark {
+		background-color: #37383e;
+	}
 }

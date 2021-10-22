@@ -19,7 +19,7 @@ describe('cm-page', () => {
 						</div>
 						<div class="empty handles"></div>
 					</header>
-					<div class="tabs">
+					<div class="Light tabs">
 						<slot></slot>
 					</div>
 				</mock:shadow-root>

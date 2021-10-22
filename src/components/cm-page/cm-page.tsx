@@ -11,6 +11,7 @@ import {
 	Host,
 	State,
 } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 export type ComponentState = {
 	label: string
@@ -30,6 +31,7 @@ export type ComponentState = {
 export class CmPage {
 	@Element() root: HTMLCmPageElement
 	@State() isHeaderEmpty: boolean = true
+	@State() theme: Theme = 'Light'
 
 	private tabRefs: HTMLCmPageTabElement[] = []
 	private labelToTabMap: {
@@ -133,6 +135,12 @@ export class CmPage {
 		})
 	}
 
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
+
 	componentDidRender() {
 		requestAnimationFrame(() => {
 			let headerSlot = this.root.shadowRoot.querySelector(
@@ -184,6 +192,7 @@ export class CmPage {
 
 		let headerClasses = {
 			empty: this.isHeaderEmpty && handlesClasses.empty,
+			[this.theme]: true,
 		}
 
 		return (
@@ -208,7 +217,12 @@ export class CmPage {
 						})}
 					</div>
 				</header>
-				<div class="tabs">
+				<div
+					class={{
+						tabs: true,
+						[this.theme]: true,
+					}}
+				>
 					<slot />
 				</div>
 			</Host>
