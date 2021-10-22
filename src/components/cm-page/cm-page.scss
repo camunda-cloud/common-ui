@@ -68,6 +68,6 @@ header {
 	}
 
 	&.Dark {
-		background-color: #37383e;
+		background-color: var(--cm-color-item-even-dark);
 	}
 }
