@@ -207,6 +207,14 @@ export class CmTextfield {
 		result = this.checkDefaultValidity()
 		if (this.validation.type === 'custom') {
 			if (this.validation.ignoreDefaultValidation || result.isValid) {
+				if (
+					this.value === '' &&
+					!this.required &&
+					!this.validation.ignoreDefaultValidation
+				) {
+					return { isValid: true }
+				}
+
 				this.ongoingValidation = this.validation.validator(this.value)
 				result = await this.ongoingValidation
 			}
