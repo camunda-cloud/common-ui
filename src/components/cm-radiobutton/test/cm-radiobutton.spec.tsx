@@ -11,7 +11,7 @@ describe('cm-radiobutton', () => {
 			<cm-radiobutton helper-text="" label="" value="">
 				<mock:shadow-root>
 					<div class="container" tabindex="0">
-						<div class="radiobutton" role="radio"></div>
+						<div class="noAnimation radiobutton" role="radio"></div>
 						<div class="beforeLabel empty">
 							<slot name="beforeLabel"></slot>
 						</div>
