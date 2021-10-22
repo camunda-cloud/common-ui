@@ -11,7 +11,7 @@ describe('cm-textfield', () => {
 			<cm-textfield form-name="" helper-text="" label="" label-alignment="vertical" placeholder="" type="text">
 				<mock:shadow-root>
 					<label class="Light container vertical">
-						<div class="labelContainer">
+						<div class="isEmpty labelContainer">
 							<div class="label"></div>
 							<cm-text appearance="helperText" class="helperText" color="subtle"></cm-text>
 						</div>
