@@ -376,6 +376,7 @@
 
 					<cm-checkbox-group label="Checkboxes">
 						<cm-checkbox
+							id="checkbox1"
 							label="Checkbox"
 							helper-text="Helper Text"
 						></cm-checkbox>
@@ -409,6 +410,9 @@
 				</cm-form>
 
 				<script>
+					let checkbox1 = document.getElementById('checkbox1')
+					checkbox1.icon = { icon: 'state:ok', color: 'success' }
+
 					let textfield1 = document.getElementById('textfield1')
 
 					textfield1.type = 'text'
@@ -465,6 +469,56 @@
 						{
 							label: 'Second Option that is somewhat longer',
 							value: '2',
+						},
+						{ label: 'First Option that is short', value: '3' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '4',
+						},
+						{ label: 'First Option that is short', value: '5' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '6',
+						},
+						{ label: 'First Option that is short', value: '7' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '8',
+						},
+						{ label: 'First Option that is short', value: '9' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '10',
+						},
+						{ label: 'First Option that is short', value: '11' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '12',
+						},
+						{ label: 'First Option that is short', value: '13' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '14',
+						},
+						{ label: 'First Option that is short', value: '15' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '16',
+						},
+						{ label: 'First Option that is short', value: '17' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '18',
+						},
+						{ label: 'First Option that is short', value: '19' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '20',
+						},
+						{ label: 'First Option that is short', value: '21' },
+						{
+							label: 'Second Option that is somewhat longer',
+							value: '22',
 						},
 					]
 					select.label = 'Label'
@@ -1228,6 +1282,59 @@
 						<cm-icon icon="warning" color="success"></cm-icon>
 						<cm-icon icon="warning" color="warning"></cm-icon>
 						<cm-icon icon="warning" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="state:ok" color="bright"></cm-icon>
+						<cm-icon icon="state:ok" color="medium"></cm-icon>
+						<cm-icon icon="state:ok" color="dark"></cm-icon>
+						<cm-icon icon="state:ok" color="success"></cm-icon>
+						<cm-icon icon="state:ok" color="warning"></cm-icon>
+						<cm-icon icon="state:ok" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon
+							icon="state:completed"
+							color="bright"
+						></cm-icon>
+						<cm-icon
+							icon="state:completed"
+							color="medium"
+						></cm-icon>
+						<cm-icon icon="state:completed" color="dark"></cm-icon>
+						<cm-icon
+							icon="state:completed"
+							color="success"
+						></cm-icon>
+						<cm-icon
+							icon="state:completed"
+							color="warning"
+						></cm-icon>
+						<cm-icon
+							icon="state:completed"
+							color="danger"
+						></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="state:incident" color="bright"></cm-icon>
+						<cm-icon icon="state:incident" color="medium"></cm-icon>
+						<cm-icon icon="state:incident" color="dark"></cm-icon>
+						<cm-icon
+							icon="state:incident"
+							color="success"
+						></cm-icon>
+						<cm-icon
+							icon="state:incident"
+							color="warning"
+						></cm-icon>
+						<cm-icon icon="state:incident" color="danger"></cm-icon>
+					</div>
+					<div class="row">
+						<cm-icon icon="window" color="bright"></cm-icon>
+						<cm-icon icon="window" color="medium"></cm-icon>
+						<cm-icon icon="window" color="dark"></cm-icon>
+						<cm-icon icon="window" color="success"></cm-icon>
+						<cm-icon icon="window" color="warning"></cm-icon>
+						<cm-icon icon="window" color="danger"></cm-icon>
 					</div>
 				</div>
 			</cm-page-tab>
