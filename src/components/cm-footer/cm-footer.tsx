@@ -1,4 +1,12 @@
-import { Component, ComponentInterface, Host, h, Prop } from '@stencil/core'
+import {
+	Component,
+	ComponentInterface,
+	Host,
+	h,
+	Prop,
+	State,
+} from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-footer',
@@ -6,12 +14,21 @@ import { Component, ComponentInterface, Host, h, Prop } from '@stencil/core'
 	shadow: true,
 })
 export class CmFooter implements ComponentInterface {
+	@State() theme: Theme = 'Light'
 	@Prop({ mutable: true }) text: string = ''
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
 
 	render() {
 		return (
 			<Host>
-				<div class="footer">{this.text}</div>
+				<div class={{ footer: true, [this.theme]: true }}>
+					{this.text}
+				</div>
 			</Host>
 		)
 	}

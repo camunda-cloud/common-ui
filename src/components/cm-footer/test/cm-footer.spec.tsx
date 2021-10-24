@@ -10,7 +10,7 @@ describe('cm-footer', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-footer>
 				<mock:shadow-root>
-					<div class="footer"></div>
+					<div class="footer Light"></div>
 				</mock:shadow-root>
 			</cm-footer>
 		`)
