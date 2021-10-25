@@ -155,12 +155,14 @@ export class CmCheckbox {
 			this.element.shadowRoot.querySelector(
 				'.container',
 			) as HTMLDivElement
-		).focus()
+		).focus({ preventScroll: true })
 
-		this.element.scrollIntoView({
-			block: 'nearest',
-			inline: 'nearest',
-			behavior: 'smooth',
+		requestAnimationFrame(() => {
+			this.element.scrollIntoView({
+				block: 'nearest',
+				inline: 'nearest',
+				behavior: 'smooth',
+			})
 		})
 	}
 

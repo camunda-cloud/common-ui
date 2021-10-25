@@ -83,9 +83,7 @@ export class CmSelectFlyout {
 											this.select.selectedOptions = [
 												option.value,
 											]
-											this.select.forceFocus({
-												scrollIntoView: false,
-											})
+											this.select.forceFocus()
 										}
 
 										this.cmInput.emit()

@@ -137,12 +137,14 @@ export class CmTextfield {
 			this.element.shadowRoot.querySelector('input, textarea') as
 				| HTMLInputElement
 				| HTMLTextAreaElement
-		).focus()
+		).focus({ preventScroll: true })
 
-		this.element.scrollIntoView({
-			block: 'nearest',
-			inline: 'nearest',
-			behavior: 'smooth',
+		requestAnimationFrame(() => {
+			this.element.scrollIntoView({
+				block: 'nearest',
+				inline: 'nearest',
+				behavior: 'smooth',
+			})
 		})
 	}
 

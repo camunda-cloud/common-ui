@@ -108,20 +108,20 @@ export class CmSelect {
 		}
 	}
 
-	@Method() async forceFocus(options: { scrollIntoView?: false } = {}) {
+	@Method() async forceFocus() {
 		;(
 			this.element.shadowRoot.querySelector(
 				'.valueLabelContainer',
 			) as HTMLDivElement
-		).focus()
+		).focus({ preventScroll: true })
 
-		if (options.scrollIntoView ?? true) {
+		requestAnimationFrame(() => {
 			this.element.scrollIntoView({
 				block: 'nearest',
 				inline: 'nearest',
 				behavior: 'smooth',
 			})
-		}
+		})
 	}
 
 	checkDefaultValidity() {
