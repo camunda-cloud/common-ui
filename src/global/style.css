@@ -43,6 +43,14 @@
 	--cm-color-button-light5: #e7e9ee;
 	--cm-color-button-light6: #d3d6e0;
 
+	--cm-color-button-dark1: #6b6f74;
+	--cm-color-button-dark2: #7f8289;
+	--cm-color-button-dark3: #34353a;
+	--cm-color-button-dark4: #3c3d43;
+	--cm-color-button-dark5: #646670;
+	--cm-color-button-dark6: #2c2d31;
+	--cm-color-button-dark7: #73777e;
+
 	--cm-color-button-blue1: #a2c5ff;
 	--cm-color-button-blue2: #80b0ff;
 	--cm-color-button-blue3: #3c85ff;
@@ -61,6 +69,10 @@
 	--cm-color-link-dark: hsl(213, 100%, 93%);
 	--cm-color-link-hover-dark: hsl(213, 100%, 89%);
 	--cm-color-link-active-dark: hsl(214, 100%, 96%);
+
+	--cm-color-label-dark: #464c51;
+	--cm-color-label-light: #edeff3;
+	--cm-color-item-even-dark: #37383e;
 
 	/* #endregion */
 
