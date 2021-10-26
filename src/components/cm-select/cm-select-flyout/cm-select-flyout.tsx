@@ -6,11 +6,9 @@ import {
 	State,
 	Element,
 	Listen,
-	Fragment,
 	Event,
 	EventEmitter,
 } from '@stencil/core'
-import { HTMLStencilElement } from '@stencil/core/internal'
 import { Theme } from '../../../globalHelpers'
 import { CmSelect, Option } from '../cm-select'
 
@@ -20,7 +18,7 @@ import { CmSelect, Option } from '../cm-select'
 	shadow: true,
 })
 export class CmSelectFlyout {
-	@Element() element!: HTMLStencilElement
+	@Element() element!: HTMLCmSelectFlyoutElement
 
 	@Prop({ mutable: false, reflect: false }) select: CmSelect
 
@@ -85,7 +83,9 @@ export class CmSelectFlyout {
 											this.select.selectedOptions = [
 												option.value,
 											]
-											this.select.forceFocus()
+											this.select.forceFocus({
+												scrollIntoView: false,
+											})
 										}
 
 										this.cmInput.emit()
@@ -123,26 +123,86 @@ export class CmSelectFlyout {
 	}
 
 	componentDidRender() {
-		if (this.select) {
-			const valueLabelContainer =
-				this.select.element.shadowRoot.querySelector(
-					'.valueLabelContainer',
-				)
-			const boundingRectangle =
-				valueLabelContainer.getBoundingClientRect()
+		const valueLabelContainer = this.element.shadowRoot.querySelector(
+			'.valueLabelContainer',
+		)
 
-			this.element.style.position = `absolute`
-			this.element.style.left = `${boundingRectangle.left}px`
-			this.element.style.top = `${boundingRectangle.top}px`
-			this.element.style.width = `${boundingRectangle.width}px`
-		}
+		const flyout = valueLabelContainer.querySelector('.flyout')
+
+		const selectValueLabelContainer =
+			this.select.element.shadowRoot.querySelector('.valueLabelContainer')
+
+		const selectValueContainerBoundingRectangle =
+			selectValueLabelContainer.getBoundingClientRect()
+
+		this.element.style.position = `absolute`
+		this.element.style.left = `${selectValueContainerBoundingRectangle.left}px`
+		this.element.style.width = `${selectValueContainerBoundingRectangle.width}px`
 
 		if (this.isOpen) {
+			const maxHeightDown =
+				document.body.clientHeight -
+				selectValueContainerBoundingRectangle.top -
+				20
+
+			const maxHeightUp =
+				selectValueContainerBoundingRectangle.top +
+				(selectValueLabelContainer.clientHeight + 2) -
+				20
+
+			this.element.style.height = `100%`
+
+			valueLabelContainer.classList.add('isOpen')
+			valueLabelContainer.classList.add('hidden')
+
+			if (maxHeightDown >= maxHeightUp) {
+				setupFlyoutDown(this.element, maxHeightDown)
+			} else {
+				setupFlyoutUp(this.element, maxHeightUp)
+			}
+
+			// The flyout height is only available after we have set the flyout up in either direction
+			if (
+				flyout.clientHeight <= Math.min(maxHeightUp, maxHeightDown) ||
+				Math.abs(maxHeightUp - maxHeightDown) < 100
+			) {
+				setupFlyoutDown(this.element, maxHeightDown)
+			}
+
 			;(
 				this.element.shadowRoot.querySelector(
 					'.valueLabelContainer',
 				) as HTMLDivElement
 			).focus()
+
+			this.element.shadowRoot
+				.querySelector('.isSelected')
+				?.scrollIntoView({ inline: 'center', block: 'center' })
+
+			requestAnimationFrame(() => {
+				valueLabelContainer.classList.remove('hidden')
+			})
+		} else {
+			valueLabelContainer.classList.remove('isOpen')
+			this.element.style.height = `0`
+		}
+
+		function setupFlyoutUp(element: HTMLElement, maxHeightUp: number) {
+			element.style.top = ``
+			element.style.bottom = `${
+				document.body.clientHeight - maxHeightUp - 20
+			}px`
+			element.style.maxHeight = `${maxHeightUp}px`
+			valueLabelContainer.classList.remove('down')
+			valueLabelContainer.classList.add('up')
+		}
+
+		function setupFlyoutDown(element: HTMLElement, maxHeightDown: number) {
+			element.style.top = `${selectValueContainerBoundingRectangle.top}px`
+			element.style.bottom = ``
+			element.style.maxHeight = `${maxHeightDown}px`
+			valueLabelContainer.classList.add('down')
+			valueLabelContainer.classList.remove('up')
 		}
 	}
 
@@ -151,25 +211,26 @@ export class CmSelectFlyout {
 
 		if (this.select) {
 			valueLabel = (
-				<Fragment>
+				<div class="labelContainer">
 					{this.select.renderPrefix()}
 					{this.select.renderValueLabel()}
 					{this.select.renderSuffix()}
-				</Fragment>
+				</div>
 			)
 		}
 
 		return (
 			<Host>
-				<div
-					tabindex="0"
-					class={{
-						valueLabelContainer: true,
-						isOpen: this.isOpen,
-					}}
-				>
-					{valueLabel}
-					{this.renderFlyout()}
+				<div class="container">
+					<div
+						tabindex="0"
+						class={{
+							valueLabelContainer: true,
+						}}
+					>
+						{valueLabel}
+						{this.renderFlyout()}
+					</div>
 				</div>
 			</Host>
 		)
