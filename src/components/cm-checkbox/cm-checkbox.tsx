@@ -12,7 +12,7 @@ import {
 	Element,
 } from '@stencil/core'
 
-import { ValidatorResult } from '../../globalHelpers'
+import { onThemeChange, Theme, ValidatorResult } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
 @Component({
@@ -41,6 +41,13 @@ export class CmCheckbox {
 	@State() validationResult: ValidatorResult
 	@State() forceRenderingOfValidationState: boolean = false
 	@State() forceHidingOfValidationState: boolean = false
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
 
 	/**
 	 * Enables `cmInput` Events being emitted when the checked attribute changes.
@@ -256,6 +263,7 @@ export class CmCheckbox {
 							!this.validationResult.isValid &&
 							!this.forceHidingOfValidationState,
 						hasIcon: this.icon !== undefined,
+						[this.theme]: true,
 					}}
 					tabindex={tabIndex}
 				>

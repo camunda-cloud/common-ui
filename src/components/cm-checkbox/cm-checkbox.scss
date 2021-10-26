@@ -65,6 +65,86 @@
 	}
 }
 
+.Light {
+	.checkbox {
+		border-color: var(--cm-color-ui-light3);
+		background-color: var(--cm-color-ui-light4);
+
+		&.indeterminate {
+			background-color: var(--cm-color-blue-base);
+			border-color: var(--cm-color-blue-base);
+		}
+
+		&.checked {
+			background-color: var(--cm-color-blue-base);
+			border-color: var(--cm-color-blue-base);
+		}
+
+		&.disabled {
+			background-color: var(--cm-color-ui-light4);
+			border: 1px solid var(--cm-color-ui-light3);
+
+			&.checked:not(.indeterminate) {
+				background: var(--cm-color-focus-inner-neutral);
+				border-color: var(--cm-color-focus-inner-neutral);
+			}
+
+			&:not(.checked, .indeterminate) {
+				background: var(--cm-color-button-light4);
+				border-color: var(--cm-color-ui-light5);
+			}
+		}
+
+		&.selected {
+			border-color: var(--cm-color-blue-base);
+		}
+	}
+
+	label {
+		color: var(--cm-color-ui-dark4);
+	}
+}
+
+.Dark {
+	.checkbox {
+		background-color: var(--cm-color-ui-dark2);
+		border-color: var(--cm-color-ui-dark6);
+
+		&.indeterminate {
+			background-color: var(--cm-color-blue-base);
+			border-color: var(--cm-color-blue-base);
+		}
+
+		&.checked {
+			background-color: var(--cm-color-blue-base);
+			border-color: var(--cm-color-blue-base);
+		}
+
+		&.disabled {
+			background-color: #4a4c50;
+			border-color: var(--cm-color-button-dark5);
+
+			&.checked:not(.indeterminate) {
+				background: var(--cm-color-focus-outer-neutral);
+				border-color: var(--cm-color-focus-outer-neutral);
+			}
+
+			&:not(.checked, .indeterminate) {
+				background-color: #4a4c50;
+				border-color: var(--cm-color-button-dark5);
+			}
+		}
+
+		&.selected {
+			border-color: var(--cm-color-blue-base);
+		}
+	}
+
+	label {
+		color: #ffffff;
+	}
+}
+
 .checkbox {
 	grid-area: checkbox;
 
@@ -73,9 +153,8 @@
 	height: 14px;
 	width: 14px;
 
-	background-color: var(--cm-color-ui-light4);
-	border: 1px solid var(--cm-color-ui-light3);
 	border-radius: 3px;
+	border: 1px solid;
 
 	vertical-align: bottom;
 	transition: all 0.2s linear;
@@ -114,18 +193,12 @@
 	}
 
 	&.indeterminate {
-		background-color: var(--cm-color-blue-base);
-		border-color: var(--cm-color-blue-base);
-
 		&::after {
 			opacity: 1;
 		}
 	}
 
 	&.checked {
-		background-color: var(--cm-color-blue-base);
-		border-color: var(--cm-color-blue-base);
-
 		&:not(.indeterminate) {
 			&::before {
 				opacity: 1;
@@ -136,16 +209,6 @@
 	&.disabled {
 		&.indeterminate::after {
 			opacity: 0.5;
-		}
-
-		&.checked:not(.indeterminate) {
-			background: var(--cm-color-button-light1);
-			border-color: var(--cm-color-button-light1);
-		}
-
-		&:not(.checked, .indeterminate) {
-			background: var(--cm-color-button-light4);
-			border-color: var(--cm-color-ui-light5);
 		}
 	}
 }

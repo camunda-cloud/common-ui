@@ -10,7 +10,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox form-name="" helper-text="" label="">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox" role="checkbox"></div>
 						<label></label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
@@ -29,7 +29,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox form-name="" helper-text="" label="Checkbox">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
@@ -48,7 +48,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox form-name="" helper-text="Helper Text" label="Checkbox">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle">
@@ -69,7 +69,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox checked="" form-name="" helper-text="" label="">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox checked" role="checkbox"></div>
 						<label></label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
@@ -88,7 +88,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox form-name="" helper-text="" indeterminate="" label="Checkbox">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox indeterminate" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
@@ -107,7 +107,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox disabled="" form-name="" helper-text="" label="">
 				<mock:shadow-root>
-					<div class="container disabled" tabindex="-1">
+					<div class="container disabled Light" tabindex="-1">
 						<div aria-disabled="" class="checkbox disabled" role="checkbox"></div>
 						<label></label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
@@ -126,7 +126,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox form-name="" helper-text="" required="" label="Checkbox">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
@@ -145,7 +145,7 @@ describe('cm-checkbox', () => {
 		expect(page.root).toEqualHtml(`
 			<cm-checkbox form-name="testCheckbox" helper-text="" label="Checkbox">
 				<mock:shadow-root>
-					<div class="container" tabindex="0">
+					<div class="container Light" tabindex="0">
 						<div class="checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
