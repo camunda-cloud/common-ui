@@ -64,6 +64,10 @@ export class CmIcon {
 		| 'stop'
 		| 'up'
 		| 'warning'
+		| 'window'
+		| 'state:completed'
+		| 'state:incident'
+		| 'state:ok'
 
 	@Prop({ mutable: true }) color:
 		| 'bright'
@@ -77,37 +81,55 @@ export class CmIcon {
 
 	@State() theme: Theme = 'Light'
 	@State() resolvedColor = ''
+	@State() resolvedContrastColor = ''
 
 	@Watch('color') colorWatch() {
-		getVariableValue(this.getResolvedColorName()).then((resolvedColor) => {
-			this.resolvedColor = resolvedColor
-		})
+		getVariableValue(this.getResolvedColorName(this.color)).then(
+			(resolvedColor) => {
+				this.resolvedColor = resolvedColor
+			},
+		)
 	}
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
 			this.theme = theme
 
-			getVariableValue(this.getResolvedColorName()).then(
+			getVariableValue(this.getResolvedColorName(this.color)).then(
 				(resolvedColor) => {
 					this.resolvedColor = resolvedColor
 				},
 			)
+
+			if (this.color === 'bright') {
+				getVariableValue(this.getResolvedColorName('dark')).then(
+					(resolvedColor) => {
+						this.resolvedContrastColor = resolvedColor
+					},
+				)
+			} else {
+				getVariableValue(this.getResolvedColorName('bright')).then(
+					(resolvedColor) => {
+						this.resolvedContrastColor = resolvedColor
+					},
+				)
+			}
 		})
 	}
 
-	getResolvedColorName() {
+	getResolvedColorName(color: this['color'], forceIgnoreTheme = false) {
 		let resolvedTheme = this.theme
 
-		if (this.ignoreTheme) {
+		if (this.ignoreTheme || forceIgnoreTheme) {
 			resolvedTheme = 'Light'
 		}
 
-		return colorVariableMap[this.color][resolvedTheme]
+		return colorVariableMap[color][resolvedTheme]
 	}
 
 	getIconSVG() {
 		const fill = this.resolvedColor
+		const contrastFill = this.resolvedContrastColor
 
 		switch (this.icon) {
 			case 'check':
@@ -417,6 +439,63 @@ export class CmIcon {
 						<path
 							fill={fill}
 							d="M8.49613894 2.1473213c.15503128.0885893.2835149.21707292.3721042.3721042l6.27682036 10.9844356c.2740099.4795174.1074132 1.0903721-.3721042 1.364382-.1510977.0863416-.322112.1317569-.496139.1317569H1.72317968c-.55228475 0-1-.4477153-1-1 0-.1740269.04541532-.3450412.13175686-.4961389L7.13175686 2.5194255c.27400997-.47951745.88486463-.64611418 1.36438208-.3721042zM9 11H7v2h2v-2zm.5-5.5h-3l.7610545 4.5h1.49397234L9.5 5.5z"
+						/>
+					</svg>
+				)
+			case 'state:completed':
+				return (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+					>
+						<path
+							fill-rule="evenodd"
+							fill={fill}
+							d="M11.551 4.48A5 5 0 1 0 13 8h2a7 7 0 1 1-.839-3.325l-.015.015.003.005-1.34 1.341-.148.15-5.125 5.128L4 7.778l1.414-1.414 2.122 2.121L11.55 4.48Z"
+						/>
+					</svg>
+				)
+			case 'state:ok':
+				return (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+					>
+						<path
+							fill-rule="evenodd"
+							fill={fill}
+							d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14Zm0-2A5 5 0 1 0 8 3a5 5 0 0 0 0 10Zm0-1a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"
+						/>
+					</svg>
+				)
+			case 'state:incident':
+				return (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+					>
+						<g fill="none" fill-rule="evenodd">
+							<circle cx="8" cy="8" r="7" fill={fill} />
+							<path
+								fill={contrastFill}
+								d="M7 10h2v2H7v-2Zm.261-1L6.5 4h3l-.745 5H7.261Z"
+							/>
+						</g>
+					</svg>
+				)
+			case 'window':
+				return (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+					>
+						<path
+							fill={fill}
+							d="M1 2h11v9H1V2Zm2 2v5h7V4H3Zm10 8V4h2v10H3v-2h10Z"
 						/>
 					</svg>
 				)
