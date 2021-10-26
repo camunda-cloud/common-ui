@@ -52,9 +52,15 @@ export class CmSelectFlyout {
 			return (
 				<div class="flyout">
 					{this.options.map((option) => {
+						const optionIsSelected =
+							this.select.selectedOptions.includes(option.value)
+
 						return (
 							<div
-								class="option"
+								class={{
+									option: true,
+									isSelected: optionIsSelected,
+								}}
 								onClick={async () => {
 									if (
 										this.select.selectedOptions.includes(
