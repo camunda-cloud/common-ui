@@ -13,6 +13,7 @@ import {
 } from '@stencil/core'
 
 import { ValidatorResult } from '../../globalHelpers'
+import { CmIcon } from '../cm-icon/cm-icon'
 
 @Component({
 	tag: 'cm-checkbox',
@@ -29,6 +30,13 @@ export class CmCheckbox {
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 	@Prop({ reflect: true, mutable: true }) required: boolean = false
 	@Prop({ reflect: true, mutable: true }) formName: string = ''
+	@Prop({ mutable: true }) icon:
+		| {
+				icon: CmIcon['icon']
+				color?: CmIcon['color']
+				ignoreTheme?: CmIcon['ignoreTheme']
+		  }
+		| undefined = undefined
 
 	@State() validationResult: ValidatorResult
 	@State() forceRenderingOfValidationState: boolean = false
@@ -247,6 +255,7 @@ export class CmCheckbox {
 							this.validationResult &&
 							!this.validationResult.isValid &&
 							!this.forceHidingOfValidationState,
+						hasIcon: this.icon !== undefined,
 					}}
 					tabindex={tabIndex}
 				>
@@ -258,6 +267,15 @@ export class CmCheckbox {
 						role="checkbox"
 						aria-disabled={this.disabled}
 					></div>
+					{this.icon ? (
+						<cm-icon
+							icon={this.icon.icon}
+							color={this.icon.color}
+							ignoreTheme={this.icon.ignoreTheme}
+						></cm-icon>
+					) : (
+						''
+					)}
 					<label>{this.label}</label>
 					<cm-text appearance="helperText" color="subtle">
 						{this.helperText}

@@ -12,7 +12,16 @@
 		'checkbox     label'
 		'.            helperText'
 		'errorMessage errorMessage';
-	gap: 0px 8px;
+	gap: 0px 10px;
+
+	&.hasIcon {
+		grid-auto-columns: max-content max-content 1fr;
+		grid-template-areas:
+			'checkbox     icon         label'
+			'.            icon         helperText'
+			'errorMessage errorMessage errorMessage';
+		gap: 0px 4px;
+	}
 
 	&.hasError {
 		&:focus-visible {
@@ -139,6 +148,11 @@
 			border-color: var(--cm-color-ui-light5);
 		}
 	}
+}
+
+cm-icon {
+	grid-area: icon;
+	margin-left: 6px;
 }
 
 label {
