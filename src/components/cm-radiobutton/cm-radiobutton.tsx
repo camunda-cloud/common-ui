@@ -8,7 +8,9 @@ import {
 	EventEmitter,
 	Method,
 	Element,
+	State,
 } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-radiobutton',
@@ -23,6 +25,14 @@ export class CmRadiobutton {
 	@Prop({ reflect: true, mutable: true }) disabled: boolean = false
 
 	@Element() element: HTMLElement
+
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
 
 	/**
 	 * Emitted whenever the selected state changes.
@@ -91,6 +101,7 @@ export class CmRadiobutton {
 		let containerClasses = {
 			container: true,
 			disabled: this.disabled,
+			[this.theme]: true,
 		}
 
 		let radiobuttonClasses = {

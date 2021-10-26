@@ -38,6 +38,58 @@
 	}
 }
 
+.Light {
+	.radiobutton {
+		background-color: var(--cm-color-blue-base);
+		border-color: var(--cm-color-ui-light3);
+
+		&::before {
+			background-color: var(--cm-color-ui-light4);
+		}
+
+		&.disabled {
+			&::before {
+				background-color: var(--cm-color-ui-light1);
+			}
+			border-color: var(--cm-color-ui-light5);
+		}
+
+		&.selected {
+			border-color: var(--cm-color-blue-base);
+		}
+	}
+
+	label {
+		color: var(--cm-color-ui-dark4);
+	}
+}
+
+.Dark {
+	.radiobutton {
+		border-color: var(--cm-color-ui-dark6);
+		background-color: var(--cm-color-blue-base);
+
+		&::before {
+			background-color: var(--cm-color-ui-dark2);
+		}
+
+		&.disabled {
+			&::before {
+				background-color: #4a4c50;
+			}
+			border-color: var(--cm-color-button-dark5);
+		}
+
+		&.selected {
+			border-color: var(--cm-color-blue-base);
+		}
+	}
+
+	label {
+		color: #ffffff;
+	}
+}
+
 .radiobutton {
 	grid-area: radiobutton;
 
@@ -46,8 +98,7 @@
 	height: 14px;
 	width: 14px;
 
-	background-color: var(--cm-color-blue-base);
-	border: 1px solid var(--cm-color-ui-light3);
+	border: 1px solid;
 	border-radius: 100%;
 
 	vertical-align: bottom;
@@ -71,24 +122,17 @@
 
 		border-radius: 100%;
 
-		background-color: var(--cm-color-ui-light4);
-
 		transition: all 0.2s linear;
 		transform-origin: center;
 	}
 
 	&.selected {
-		border-color: var(--cm-color-blue-base);
-
 		&::before {
 			transform: scale(0.5);
 		}
 	}
 
 	&.disabled {
-		background: var(--cm-color-ui-light1);
-		border-color: var(--cm-color-ui-light5);
-
 		&.selected:not(.indeterminate)::before {
 			opacity: 0.5;
 		}
@@ -117,7 +161,6 @@ label {
 
 	user-select: none;
 
-	color: var(--cm-color-ui-dark4);
 	font-family: var(--cm-font-text);
 	font-size: 14px;
 
