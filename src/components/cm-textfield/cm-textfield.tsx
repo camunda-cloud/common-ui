@@ -21,12 +21,22 @@ export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number'
 
 export type FieldPrefix =
 	| { type: 'text'; value: string }
-	| { type: 'icon'; icon: CmIcon['icon']; press?: () => void }
+	| {
+			type: 'icon'
+			icon: CmIcon['icon']
+			press?: () => void
+			tooltip?: string
+	  }
 	| { type: 'default' }
 
 export type FieldSuffix =
 	| { type: 'text'; value: string }
-	| { type: 'icon'; icon: CmIcon['icon']; press?: () => void }
+	| {
+			type: 'icon'
+			icon: CmIcon['icon']
+			press?: () => void
+			tooltip?: string
+	  }
 	| { type: 'maxlength' }
 	| { type: 'copy' }
 	| { type: 'default' }
@@ -303,6 +313,7 @@ export class CmTextfield {
 			return (
 				<div class="prefix icon">
 					<cm-icon
+						title={this.fieldPrefix.tooltip}
 						icon={this.fieldPrefix.icon}
 						style={{ cursor: prefix.press ? 'pointer' : 'default' }}
 						onMouseDown={(event) => {
@@ -464,6 +475,7 @@ export class CmTextfield {
 			return (
 				<div class="suffix icon">
 					<cm-icon
+						title={this.fieldSuffix.tooltip}
 						icon={this.fieldSuffix.icon}
 						style={{ cursor: suffix.press ? 'pointer' : 'default' }}
 						onMouseDown={(event) => {
