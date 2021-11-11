@@ -104,8 +104,8 @@
 							},
 						)
 
-						themeFilter.activeFilterIndex = 2
-						document.querySelector('cm-context').theme = 'Light'
+						themeFilter.activeFilterIndex = 0
+						document.querySelector('cm-context').theme = 'Automatic'
 					})
 				</script>
 			</div>
@@ -460,65 +460,114 @@
 					textfield2.placeholder = 'Placeholder'
 					textfield2.label = 'Label'
 					textfield2.formName = 'field2'
-					textfield2.fieldPrefix = { type: 'icon', icon: 'warning' }
+					textfield2.fieldPrefix = {
+						type: 'icon',
+						icon: 'warning',
+						tooltip: 'Custom Warning',
+					}
 
 					let select = document.getElementById('select')
 
 					select.options = [
-						{ label: 'First Option that is short', value: '1' },
 						{
-							label: 'Second Option that is somewhat longer',
-							value: '2',
+							label: 'bla',
+							options: [
+								{
+									label: 'First Option that is short',
+									value: '1',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '2',
+								},
+								{
+									label: 'First Option that is short',
+									value: '3',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '4',
+								},
+								{
+									label: 'First Option that is short',
+									value: '5',
+									description:
+										'Test Description that has some length',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '6',
+								},
+								{
+									label: 'First Option that is short',
+									value: '7',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '8',
+								},
+								{
+									label: 'First Option that is short',
+									value: '9',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '10',
+								},
+								{
+									label: 'First Option that is short',
+									value: '11',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '12',
+								},
+								{
+									label: 'First Option that is short',
+									value: '13',
+								},
+							],
 						},
-						{ label: 'First Option that is short', value: '3' },
 						{
-							label: 'Second Option that is somewhat longer',
-							value: '4',
-						},
-						{ label: 'First Option that is short', value: '5' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '6',
-						},
-						{ label: 'First Option that is short', value: '7' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '8',
-						},
-						{ label: 'First Option that is short', value: '9' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '10',
-						},
-						{ label: 'First Option that is short', value: '11' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '12',
-						},
-						{ label: 'First Option that is short', value: '13' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '14',
-						},
-						{ label: 'First Option that is short', value: '15' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '16',
-						},
-						{ label: 'First Option that is short', value: '17' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '18',
-						},
-						{ label: 'First Option that is short', value: '19' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '20',
-						},
-						{ label: 'First Option that is short', value: '21' },
-						{
-							label: 'Second Option that is somewhat longer',
-							value: '22',
+							label: 'Group 2',
+							options: [
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '14',
+								},
+								{
+									label: 'First Option that is short',
+									value: '15',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '16',
+								},
+								{
+									label: 'First Option that is short',
+									value: '17',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '18',
+								},
+								{
+									label: 'First Option that is short',
+									value: '19',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '20',
+								},
+								{
+									label: 'First Option that is short',
+									value: '21',
+								},
+								{
+									label: 'Second Option that is somewhat longer',
+									value: '22',
+								},
+							],
 						},
 					]
 					select.label = 'Label'
@@ -796,7 +845,6 @@
 
 				<cm-notification-container
 					style="position: absolute; bottom: 10px; left: 10px"
-					theme="light"
 				></cm-notification-container>
 
 				<script>
