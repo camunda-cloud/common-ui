@@ -59,11 +59,6 @@
 		border: solid 1px var(--cm-color-blue-base);
 	}
 
-	&.hasScrollbar {
-		.flyout {
-		}
-	}
-
 	&.down {
 		.labelContainer {
 			border-bottom: 1px solid var(--cm-color-ui-light5);
@@ -161,8 +156,6 @@
 			justify-content: flex-start;
 			min-height: 36px;
 			padding: 10px 5px;
-			font-size: 14px;
-			color: var(--cm-color-ui-dark4);
 			cursor: pointer;
 			border-radius: 3px;
 
@@ -175,19 +168,44 @@
 
 			&.isSelected {
 				padding-left: 14px;
-				font-weight: 500;
 				cursor: default;
 
-				&::after {
-					content: '';
-					position: absolute;
-					left: 5px;
-					top: 12px;
-					bottom: 12px;
-					width: 3px;
-					border-radius: 3px;
-					background-color: var(--cm-color-blue-base);
+				.label {
+					font-weight: 500;
+
+					&::after {
+						content: '';
+						position: absolute;
+						left: -8px;
+						top: 1px;
+						bottom: 1px;
+						width: 3px;
+						border-radius: 3px;
+						background-color: var(--cm-color-blue-base);
+					}
 				}
+			}
+
+			&.hasDescription {
+				gap: 5px;
+				grid-auto-flow: row;
+
+				.label {
+					font-size: 14px;
+					font-weight: 500;
+					color: var(--cm-color-ui-dark4);
+				}
+
+				.description {
+					font-size: 13px;
+					color: var(--cm-color-ui-light6);
+				}
+			}
+
+			.label {
+				position: relative;
+				font-size: 14px;
+				color: var(--cm-color-ui-dark4);
 			}
 		}
 	}
