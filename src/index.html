@@ -104,8 +104,8 @@
 							},
 						)
 
-						themeFilter.activeFilterIndex = 2
-						document.querySelector('cm-context').theme = 'Light'
+						themeFilter.activeFilterIndex = 0
+						document.querySelector('cm-context').theme = 'Automatic'
 					})
 				</script>
 			</div>
@@ -460,7 +460,11 @@
 					textfield2.placeholder = 'Placeholder'
 					textfield2.label = 'Label'
 					textfield2.formName = 'field2'
-					textfield2.fieldPrefix = { type: 'icon', icon: 'warning' }
+					textfield2.fieldPrefix = {
+						type: 'icon',
+						icon: 'warning',
+						tooltip: 'Custom Warning',
+					}
 
 					let select = document.getElementById('select')
 
@@ -475,7 +479,12 @@
 							label: 'Second Option that is somewhat longer',
 							value: '4',
 						},
-						{ label: 'First Option that is short', value: '5' },
+						{
+							label: 'First Option that is short',
+							value: '5',
+							description:
+								'Test Description that has some length',
+						},
 						{
 							label: 'Second Option that is somewhat longer',
 							value: '6',
@@ -796,7 +805,6 @@
 
 				<cm-notification-container
 					style="position: absolute; bottom: 10px; left: 10px"
-					theme="light"
 				></cm-notification-container>
 
 				<script>
