@@ -58,6 +58,8 @@ export class CmSelectFlyout {
 								class={{
 									option: true,
 									isSelected: optionIsSelected,
+									hasDescription:
+										option.description?.length > 0,
 								}}
 								onClick={async () => {
 									if (
@@ -109,7 +111,14 @@ export class CmSelectFlyout {
 									}
 								}}
 							>
-								{option.label}
+								<div class="label">{option.label}</div>
+								{option.description ? (
+									<div class="description">
+										{option.description}
+									</div>
+								) : (
+									''
+								)}
 							</div>
 						)
 					})}
