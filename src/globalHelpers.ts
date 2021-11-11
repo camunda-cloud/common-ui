@@ -14,11 +14,19 @@ export const onThemeChange = async (
 ) => {
 	const context = getContext()
 
-	if (context) {
-		if (options.runOnInit ?? true) {
+	if (options.runOnInit ?? true) {
+		if (context) {
 			callback(context._getResolvedTheme())
+		} else {
+			callback(
+				(await document
+					.querySelector('cm-context')
+					?.getResolvedTheme()) ?? 'Light',
+			)
 		}
+	}
 
+	if (context) {
 		context.element.addEventListener(
 			'themeChanged',
 			(event: CustomEvent<{ theme: 'Dark' | 'Light' }>) => {
