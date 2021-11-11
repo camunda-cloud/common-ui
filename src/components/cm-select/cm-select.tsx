@@ -19,6 +19,7 @@ import { CmIcon } from '../cm-icon/cm-icon'
 
 export type Option = {
 	label: string
+	description?: string
 	value: string
 }
 
