@@ -10,7 +10,7 @@ import {
 	EventEmitter,
 } from '@stencil/core'
 import { Theme } from '../../../globalHelpers'
-import { CmSelect, Option } from '../cm-select'
+import { CmSelect, OptionGroup } from '../cm-select'
 
 @Component({
 	tag: 'cm-select-flyout',
@@ -22,7 +22,7 @@ export class CmSelectFlyout {
 
 	@Prop({ mutable: false, reflect: false }) select: CmSelect
 
-	@Prop({ mutable: true, reflect: false }) options: Array<Option> = []
+	@Prop({ mutable: true, reflect: false }) options: Array<OptionGroup> = []
 	@Prop({ mutable: false, reflect: false }) isOpen: boolean
 
 	@State() theme: Theme = 'Light'
@@ -49,76 +49,103 @@ export class CmSelectFlyout {
 		if (this.isOpen) {
 			return (
 				<div class="flyout">
-					{this.options.map((option) => {
-						const optionIsSelected =
-							this.select.selectedOptions.includes(option.value)
-
+					{this.options.map((optionGroup) => {
 						return (
-							<div
-								class={{
-									option: true,
-									isSelected: optionIsSelected,
-									hasDescription:
-										option.description?.length > 0,
-								}}
-								onClick={async () => {
-									if (
-										this.select.selectedOptions.includes(
-											option.value,
-										)
-									) {
-										if (this.select.allowMultiple) {
-											this.select.selectedOptions.splice(
-												this.select.selectedOptions.indexOf(
-													option.value,
-												),
-												1,
-											)
-											this.cmInput.emit()
-										}
-									} else {
-										if (this.select.allowMultiple) {
-											this.select.selectedOptions.push(
-												option.value,
-											)
-										} else {
-											this.select.selectedOptions = [
-												option.value,
-											]
-											this.select.forceFocus()
-										}
-
-										this.cmInput.emit()
-									}
-
-									this.select.resetValidationForces()
-									this.select.isDirty = true
-									this.select.isOpen = false
-
-									if (
-										this.select.validationStyle === 'form'
-									) {
-										if (
-											this.select.validationResult &&
-											!this.select.validationResult
-												.isValid
-										) {
-											this.select.validationResult =
-												await this.select.checkValidity()
-										}
-									} else {
-										this.select.renderValidity()
-									}
-								}}
-							>
-								<div class="label">{option.label}</div>
-								{option.description ? (
-									<div class="description">
-										{option.description}
+							<div class="optionGroup">
+								{optionGroup.label ? (
+									<div class="optionGroupLabel">
+										{optionGroup.label}
 									</div>
 								) : (
 									''
 								)}
+								{optionGroup.options.map((option) => {
+									const optionIsSelected =
+										this.select.selectedOptions.includes(
+											option.value,
+										)
+
+									return (
+										<div
+											class={{
+												option: true,
+												isSelected: optionIsSelected,
+												hasDescription:
+													option.description?.length >
+													0,
+											}}
+											onClick={async () => {
+												if (
+													this.select.selectedOptions.includes(
+														option.value,
+													)
+												) {
+													if (
+														this.select
+															.allowMultiple
+													) {
+														this.select.selectedOptions.splice(
+															this.select.selectedOptions.indexOf(
+																option.value,
+															),
+															1,
+														)
+														this.cmInput.emit()
+													}
+												} else {
+													if (
+														this.select
+															.allowMultiple
+													) {
+														this.select.selectedOptions.push(
+															option.value,
+														)
+													} else {
+														this.select.selectedOptions =
+															[option.value]
+														this.select.forceFocus()
+													}
+
+													this.cmInput.emit()
+												}
+
+												this.select.resetValidationForces()
+												this.select.isDirty = true
+												this.select.isOpen = false
+
+												if (
+													this.select
+														.validationStyle ===
+													'form'
+												) {
+													if (
+														this.select
+															.validationResult &&
+														!this.select
+															.validationResult
+															.isValid
+													) {
+														this.select.validationResult =
+															await this.select.checkValidity()
+													}
+												} else {
+													this.select.renderValidity()
+												}
+											}}
+										>
+											<div class="label">
+												{option.label}
+											</div>
+											{option.description ? (
+												<div class="description">
+													{option.description}
+												</div>
+											) : (
+												''
+											)}
+										</div>
+									)
+								})}
 							</div>
 						)
 					})}

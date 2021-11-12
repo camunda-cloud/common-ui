@@ -17,6 +17,11 @@ import {
 } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
+export type OptionGroup = {
+	label?: string
+	options: Array<Option>
+}
+
 export type Option = {
 	label: string
 	description?: string
@@ -31,7 +36,7 @@ export type Option = {
 export class CmSelect {
 	@Element() element: HTMLCmTextfieldElement
 
-	@Prop({ mutable: true, reflect: false }) options: Array<Option> = []
+	@Prop({ mutable: true, reflect: false }) options: Array<OptionGroup> = []
 	@Prop({ mutable: true, reflect: false }) allowMultiple: boolean = false
 
 	@Prop({ mutable: true, reflect: true }) label: string = ''
@@ -220,9 +225,13 @@ export class CmSelect {
 		let label = ''
 
 		if (this.selectedOptions.length === 1) {
-			label = this.options.find((option) => {
-				return option.value === this.selectedOptions[0]
-			}).label
+			label = this.options
+				.reduce((prev, curr) => {
+					return prev.concat(curr.options)
+				}, [])
+				.find((option) => {
+					return option.value === this.selectedOptions[0]
+				}).label
 		}
 
 		if (label) {

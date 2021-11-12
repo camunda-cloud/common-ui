@@ -147,65 +147,80 @@
 		position: relative;
 		padding: 5px;
 
-		.option {
-			position: relative;
-			display: grid;
-			grid-auto-flow: column;
-			align-items: center;
-			justify-items: flex-start;
-			justify-content: flex-start;
-			min-height: 36px;
-			padding: 10px 5px;
-			cursor: pointer;
-			border-radius: 3px;
-
-			transition: all linear 150ms;
-
-			&:hover,
-			&.hover {
-				background: var(--cm-color-focus-inner-neutral);
+		.optionGroup {
+			&:not(:first-child) {
+				.optionGroupLabel {
+					padding-top: 10px;
+				}
 			}
 
-			&.isSelected {
-				padding-left: 14px;
-				cursor: default;
+			.optionGroupLabel {
+				font-size: 12px;
+				font-weight: 600;
+				color: var(--cm-color-ui-dark4);
+				padding: 5px 5px;
+			}
 
-				.label {
-					font-weight: 500;
+			.option {
+				position: relative;
+				display: grid;
+				grid-auto-flow: column;
+				align-items: center;
+				justify-items: flex-start;
+				justify-content: flex-start;
+				min-height: 36px;
+				padding: 10px 5px;
+				cursor: pointer;
+				border-radius: 3px;
 
-					&::after {
-						content: '';
-						position: absolute;
-						left: -8px;
-						top: 1px;
-						bottom: 1px;
-						width: 3px;
-						border-radius: 3px;
-						background-color: var(--cm-color-blue-base);
+				transition: all linear 150ms;
+
+				&:hover,
+				&.hover {
+					background: var(--cm-color-focus-inner-neutral);
+				}
+
+				&.isSelected {
+					padding-left: 14px;
+					cursor: default;
+
+					.label {
+						font-weight: 500;
+
+						&::after {
+							content: '';
+							position: absolute;
+							left: -8px;
+							top: 1px;
+							bottom: 1px;
+							width: 3px;
+							border-radius: 3px;
+							background-color: var(--cm-color-blue-base);
+						}
 					}
 				}
-			}
 
-			&.hasDescription {
-				gap: 5px;
-				grid-auto-flow: row;
+				&.hasDescription {
+					gap: 5px;
+					grid-auto-flow: row;
+
+					.label {
+						font-size: 14px;
+						font-weight: 500;
+						color: var(--cm-color-ui-dark4);
+					}
+
+					.description {
+						font-size: 13px;
+						color: var(--cm-color-ui-light6);
+					}
+				}
 
 				.label {
+					position: relative;
 					font-size: 14px;
-					font-weight: 500;
 					color: var(--cm-color-ui-dark4);
 				}
-
-				.description {
-					font-size: 13px;
-					color: var(--cm-color-ui-light6);
-				}
-			}
-
-			.label {
-				position: relative;
-				font-size: 14px;
-				color: var(--cm-color-ui-dark4);
 			}
 		}
 	}
