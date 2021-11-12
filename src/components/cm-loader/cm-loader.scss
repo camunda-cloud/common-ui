@@ -2,6 +2,7 @@
 	0% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(360deg);
 	}
@@ -34,12 +35,12 @@
 		animation: spinner 0.7s linear infinite;
 	}
 
-	&.dark {
+	&.Light {
 		border-color: var(--cm-color-ui-light6);
 		border-bottom-color: transparent;
 	}
 
-	&.light {
+	&.Dark {
 		border-color: var(--cm-color-ui-light4);
 		border-bottom-color: transparent;
 	}

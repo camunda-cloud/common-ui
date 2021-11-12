@@ -1,4 +1,5 @@
-import { Component, Host, h, Prop } from '@stencil/core'
+import { Component, Host, h, Prop, State } from '@stencil/core'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-loader',
@@ -7,13 +8,19 @@ import { Component, Host, h, Prop } from '@stencil/core'
 })
 export class CmLoader {
 	@Prop({ mutable: true }) size: 'small' | 'normal' = 'normal'
-	@Prop({ mutable: true }) color: 'dark' | 'light' = 'dark'
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
 
 	render() {
 		let classes = {
 			spinner: true,
 			[this.size]: true,
-			[this.color]: true,
+			[this.theme]: true,
 		}
 
 		return (
