@@ -100,6 +100,8 @@ export class CmTextfield {
 		| 'horizontal'
 		| 'vertical' = 'vertical'
 
+	@Prop({ mutable: true, reflect: false }) rows: number = 2
+
 	@State() isDirty: boolean = false
 	@State() validationResult: ValidatorResult
 	@State() showPassword: boolean = false
@@ -404,6 +406,7 @@ export class CmTextfield {
 			return (
 				<textarea
 					tabIndex={0}
+					rows={this.rows}
 					disabled={this.disabled}
 					placeholder={this.placeholder}
 					maxlength={this.maxLength}
