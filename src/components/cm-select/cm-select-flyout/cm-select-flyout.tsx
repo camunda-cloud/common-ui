@@ -23,9 +23,11 @@ export class CmSelectFlyout {
 	@Prop({ mutable: false, reflect: false }) select: CmSelect
 
 	@Prop({ mutable: true, reflect: false }) options: Array<OptionGroup> = []
+	@Prop({ mutable: true, reflect: false }) selectedOptions: Array<string> = []
 	@Prop({ mutable: false, reflect: false }) isOpen: boolean
 
 	@State() theme: Theme = 'Light'
+	flyoutIsSetup: boolean = false
 
 	@Event() cmInput: EventEmitter<{ value: Array<string> }>
 
@@ -65,86 +67,127 @@ export class CmSelectFlyout {
 											option.value,
 										)
 
-									return (
-										<div
-											class={{
-												option: true,
-												isSelected: optionIsSelected,
-												hasDescription:
-													option.description?.length >
-													0,
-											}}
-											onClick={async () => {
-												if (
-													this.select.selectedOptions.includes(
+									if (
+										optionIsSelected &&
+										this.select.allowMultiple &&
+										!this.select.preventVerticalExpansion
+									) {
+										return ''
+									}
+
+									const toggleSelection = async () => {
+										if (
+											this.select.selectedOptions.includes(
+												option.value,
+											)
+										) {
+											if (this.select.allowMultiple) {
+												let targetIndex =
+													this.select.selectedOptions.indexOf(
 														option.value,
 													)
-												) {
-													if (
-														this.select
-															.allowMultiple
-													) {
-														this.select.selectedOptions.splice(
-															this.select.selectedOptions.indexOf(
-																option.value,
-															),
-															1,
-														)
-														this.cmInput.emit()
-													}
-												} else {
-													if (
-														this.select
-															.allowMultiple
-													) {
-														this.select.selectedOptions.push(
-															option.value,
-														)
-													} else {
-														this.select.selectedOptions =
-															[option.value]
-														this.select.forceFocus()
-													}
+												this.select.selectedOptions = [
+													...this.select.selectedOptions.slice(
+														0,
+														targetIndex,
+													),
+													...this.select.selectedOptions.slice(
+														targetIndex + 1,
+													),
+												]
 
-													this.cmInput.emit()
-												}
+												this.cmInput.emit()
+												this.select.isOpen = true
+											}
+										} else {
+											if (this.select.allowMultiple) {
+												this.select.selectedOptions = [
+													...this.select
+														.selectedOptions,
+													option.value,
+												]
+												this.select.isOpen = true
+											} else {
+												this.select.selectedOptions = [
+													option.value,
+												]
+												this.select.forceFocus()
+											}
 
-												this.select.resetValidationForces()
-												this.select.isDirty = true
-												this.select.isOpen = false
+											this.cmInput.emit()
+										}
 
-												if (
-													this.select
-														.validationStyle ===
-													'form'
-												) {
-													if (
-														this.select
-															.validationResult &&
-														!this.select
-															.validationResult
-															.isValid
-													) {
-														this.select.validationResult =
-															await this.select.checkValidity()
-													}
-												} else {
-													this.select.renderValidity()
-												}
-											}}
-										>
-											<div class="label">
-												{option.label}
+										this.select.resetValidationForces()
+										this.select.isDirty = true
+
+										if (
+											this.select.validationStyle ===
+											'form'
+										) {
+											if (
+												this.select.validationResult &&
+												!this.select.validationResult
+													.isValid
+											) {
+												this.select.validationResult =
+													await this.select.checkValidity()
+											}
+										} else {
+											this.select.renderValidity()
+										}
+									}
+
+									if (this.select.preventVerticalExpansion) {
+										return (
+											<div
+												class={{
+													option: true,
+													checkbox: true,
+													hasDescription:
+														option.description
+															?.length > 0,
+												}}
+												onClick={toggleSelection}
+											>
+												<cm-checkbox
+													checked={optionIsSelected}
+													label={option.label}
+												/>
+												{option.description ? (
+													<div class="description">
+														{option.description}
+													</div>
+												) : (
+													''
+												)}
 											</div>
-											{option.description ? (
-												<div class="description">
-													{option.description}
+										)
+									} else {
+										return (
+											<div
+												class={{
+													option: true,
+													isSelected:
+														optionIsSelected,
+													hasDescription:
+														option.description
+															?.length > 0,
+												}}
+												onClick={toggleSelection}
+											>
+												<div class="label">
+													{option.label}
 												</div>
-											) : (
-												''
-											)}
-										</div>
-									)
+												{option.description ? (
+													<div class="description">
+														{option.description}
+													</div>
+												) : (
+													''
+												)}
+											</div>
+										)
+									}
 								})}
 							</div>
 						)
@@ -157,6 +200,30 @@ export class CmSelectFlyout {
 	}
 
 	componentDidRender() {
+		let setupFlyoutUp = (element: HTMLElement, maxHeightUp: number) => {
+			element.style.top = ``
+			element.style.bottom = `${
+				document.body.clientHeight - maxHeightUp - 20
+			}px`
+			element.style.maxHeight = `${maxHeightUp}px`
+			valueLabelContainer.classList.remove('down')
+			valueLabelContainer.classList.add('up')
+			this.flyoutIsSetup = true
+		}
+
+		let setupFlyoutDown = (element: HTMLElement, maxHeightDown: number) => {
+			element.style.top = `${selectValueContainerBoundingRectangle.top}px`
+			element.style.bottom = ``
+			element.style.maxHeight = `${maxHeightDown}px`
+			valueLabelContainer.classList.add('down')
+			valueLabelContainer.classList.remove('up')
+			this.flyoutIsSetup = true
+		}
+
+		if (this.flyoutIsSetup && this.isOpen) {
+			return
+		}
+
 		const valueLabelContainer = this.element.shadowRoot.querySelector(
 			'.valueLabelContainer',
 		)
@@ -217,26 +284,9 @@ export class CmSelectFlyout {
 				valueLabelContainer.classList.remove('hidden')
 			})
 		} else {
+			this.flyoutIsSetup = false
 			valueLabelContainer.classList.remove('isOpen')
 			this.element.style.height = `0`
-		}
-
-		function setupFlyoutUp(element: HTMLElement, maxHeightUp: number) {
-			element.style.top = ``
-			element.style.bottom = `${
-				document.body.clientHeight - maxHeightUp - 20
-			}px`
-			element.style.maxHeight = `${maxHeightUp}px`
-			valueLabelContainer.classList.remove('down')
-			valueLabelContainer.classList.add('up')
-		}
-
-		function setupFlyoutDown(element: HTMLElement, maxHeightDown: number) {
-			element.style.top = `${selectValueContainerBoundingRectangle.top}px`
-			element.style.bottom = ``
-			element.style.maxHeight = `${maxHeightDown}px`
-			valueLabelContainer.classList.add('down')
-			valueLabelContainer.classList.remove('up')
 		}
 	}
 
@@ -245,7 +295,12 @@ export class CmSelectFlyout {
 
 		if (this.select) {
 			valueLabel = (
-				<div class="labelContainer">
+				<div
+					class="labelContainer"
+					onClick={() => {
+						this.select.isOpen = false
+					}}
+				>
 					{this.select.renderPrefix()}
 					{this.select.renderValueLabel()}
 					{this.select.renderSuffix()}

@@ -94,6 +94,7 @@
 			grid-auto-flow: column;
 			height: 30px;
 			align-items: center;
+			align-self: flex-start;
 
 			border-bottom-left-radius: 3px;
 			border-top-left-radius: 3px;
@@ -113,13 +114,56 @@
 			font-size: 14px;
 			color: var(--cm-color-ui-dark4);
 
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-
 			&.placeholder {
 				font-style: italic;
 				color: var(--cm-color-ui-light6);
+			}
+
+			&.text {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+
+			&.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 5px;
+				min-height: 30px;
+				padding: 4px 0px;
+			}
+
+			.tag {
+				user-select: none;
+				display: grid;
+				grid-auto-flow: column;
+				gap: 5px;
+
+				align-items: center;
+
+				width: max-content;
+				height: 22px;
+
+				padding: 0px 2px 0px 8px;
+				border-radius: 11px;
+				border: solid 1px var(--cm-color-button-blue1);
+				background-color: var(--cm-color-link-active-dark);
+
+				font-size: 14px;
+				color: var(--cm-color-ui-dark4);
+
+				.delete {
+					cursor: pointer;
+					display: grid;
+					justify-content: center;
+					align-items: center;
+
+					width: 16px;
+					height: 16px;
+					border-radius: 100%;
+
+					background-color: var(--cm-color-button-blue1);
+				}
 			}
 		}
 
@@ -129,6 +173,7 @@
 			grid-auto-flow: column;
 			height: 30px;
 			align-items: center;
+			align-self: flex-start;
 
 			border-bottom-right-radius: 3px;
 			border-top-right-radius: 3px;
@@ -136,6 +181,29 @@
 			&.icon {
 				width: 30px;
 				justify-items: center;
+			}
+
+			&.clear {
+				gap: 6px;
+
+				.clear {
+					cursor: pointer;
+					display: grid;
+					justify-content: center;
+					align-items: center;
+
+					width: 16px;
+					height: 16px;
+					border-radius: 100%;
+
+					background-color: var(--cm-color-ui-light3);
+				}
+
+				.icon {
+					display: grid;
+					width: 30px;
+					justify-items: center;
+				}
 			}
 		}
 	}
@@ -181,22 +249,19 @@
 				}
 
 				&.isSelected {
-					padding-left: 14px;
 					cursor: default;
 
 					.label {
 						font-weight: 500;
+						padding-left: 9px;
 
 						&::after {
-							content: '';
-							position: absolute;
-							left: -8px;
-							top: 1px;
-							bottom: 1px;
-							width: 3px;
-							border-radius: 3px;
-							background-color: var(--cm-color-blue-base);
+							opacity: 1;
 						}
+					}
+
+					.description {
+						padding-left: 9px;
 					}
 				}
 
@@ -213,6 +278,13 @@
 					.description {
 						font-size: 13px;
 						color: var(--cm-color-ui-light6);
+						transition: all linear 150ms;
+					}
+
+					&.checkbox {
+						.description {
+							padding-left: 26px;
+						}
 					}
 				}
 
@@ -220,6 +292,20 @@
 					position: relative;
 					font-size: 14px;
 					color: var(--cm-color-ui-dark4);
+					transition: all linear 150ms;
+
+					&::after {
+						opacity: 0;
+						content: '';
+						position: absolute;
+						left: 1px;
+						top: 1px;
+						bottom: 1px;
+						width: 3px;
+						border-radius: 3px;
+						background-color: var(--cm-color-blue-base);
+						transition: all linear 150ms;
+					}
 				}
 			}
 		}
