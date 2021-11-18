@@ -42,7 +42,7 @@
     "@storybook/react": "6.4.0-beta.32",
     "@storybook/storybook-deployer": "2.8.10",
     "@types/jest": "26.0.24",
-    "@types/prettier": "2.4.1",
+    "@types/prettier": "2.4.2",
     "@types/puppeteer": "5.4.4",
     "babel-loader": "8.2.3",
     "copy-webpack-plugin": "9.1.0",
@@ -54,9 +54,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-is": "16.13.1",
-    "typescript": "4.4.4",
-    "webpack": "5.64.0",
-    "workbox-build": "6.3.0",
+    "typescript": "4.5.2",
+    "webpack": "5.64.1",
+    "workbox-build": "6.4.1",
     "write-file-webpack-plugin": "4.5.1"
   },
   "repository": {
