@@ -41,6 +41,7 @@ const colorVariableMap: ColorMap = {
 export class CmIcon {
 	@Prop({ mutable: true }) icon:
 		| 'check'
+		| 'closeSmall'
 		| 'close'
 		| 'closeLarge'
 		| 'contextMenu'
@@ -142,6 +143,19 @@ export class CmIcon {
 						<path
 							fill={fill}
 							d="M5.74339606 13.3137085L1 8.57031244l1.89735842-1.89735842 2.84603764 2.84603763 7.35924554-7.35924552L15 4.05710456z"
+						/>
+					</svg>
+				)
+			case 'closeSmall':
+				return (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="8"
+						height="8"
+					>
+						<path
+							fill={fill}
+							d="m7 0 1 1-3 3 3 3-1 1-3-3-3 3-1-1 3-3.001L0 1l1-1 3 3 3-3Z"
 						/>
 					</svg>
 				)
