@@ -38,6 +38,8 @@ export class CmSelect {
 
 	@Prop({ mutable: true, reflect: false }) options: Array<OptionGroup> = []
 	@Prop({ mutable: true, reflect: false }) allowMultiple: boolean = false
+	@Prop({ mutable: true, reflect: false }) preventVerticalExpansion: boolean =
+		false
 
 	@Prop({ mutable: true, reflect: true }) label: string = ''
 	@Prop({ mutable: true, reflect: true }) helperText: string = ''
@@ -224,38 +226,146 @@ export class CmSelect {
 	renderValueLabel() {
 		let label = ''
 
-		if (this.selectedOptions.length === 1) {
-			label = this.options
-				.reduce((prev, curr) => {
-					return prev.concat(curr.options)
-				}, [])
-				.find((option) => {
+		const reducedOptions = this.options.reduce((prev, curr) => {
+			return prev.concat(curr.options)
+		}, [])
+
+		let resolvedSelectedOptions = this.selectedOptions.map(
+			(selectedOption) => {
+				return reducedOptions.find((option) => {
+					return option.value === selectedOption
+				})
+			},
+		)
+
+		if (this.allowMultiple) {
+			if (this.selectedOptions.length) {
+				return (
+					<div
+						class={{
+							valueLabel: true,
+							tags: true,
+						}}
+					>
+						{this.preventVerticalExpansion &&
+						resolvedSelectedOptions.length > 1 ? (
+							<div class="tag">
+								{resolvedSelectedOptions.length} selected
+								<div
+									class="delete"
+									onClick={(event) => {
+										event.stopPropagation()
+										this.selectedOptions = []
+									}}
+								>
+									<cm-icon
+										icon="closeSmall"
+										color="bright"
+										ignoreTheme
+									></cm-icon>
+								</div>
+							</div>
+						) : (
+							resolvedSelectedOptions.map((option) => {
+								return (
+									<div class="tag">
+										{option.label}
+										<div
+											class="delete"
+											onClick={(event) => {
+												event.stopPropagation()
+												const elementIndex =
+													this.selectedOptions.indexOf(
+														option.value,
+													)
+
+												this.selectedOptions = [
+													...this.selectedOptions.slice(
+														0,
+														elementIndex,
+													),
+													...this.selectedOptions.slice(
+														elementIndex + 1,
+													),
+												]
+											}}
+										>
+											<cm-icon
+												icon="closeSmall"
+												color="bright"
+												ignoreTheme
+											></cm-icon>
+										</div>
+									</div>
+								)
+							})
+						)}
+					</div>
+				)
+			} else if (this.placeholder) {
+				return (
+					<div class="valueLabel placeholder text">
+						{this.placeholder}
+					</div>
+				)
+			} else {
+				return <div class="valueLabel"></div>
+			}
+		} else {
+			if (this.selectedOptions.length === 1) {
+				label = reducedOptions.find((option) => {
 					return option.value === this.selectedOptions[0]
 				}).label
-		}
+			}
 
-		if (label) {
-			return <div class="valueLabel">{label}</div>
-		} else if (this.placeholder) {
-			return <div class="valueLabel placeholder">{this.placeholder}</div>
-		} else {
-			return <div class="valueLabel"></div>
+			if (label) {
+				return <div class="valueLabel text">{label}</div>
+			} else if (this.placeholder) {
+				return (
+					<div class="valueLabel placeholder text">
+						{this.placeholder}
+					</div>
+				)
+			} else {
+				return <div class="valueLabel"></div>
+			}
 		}
 	}
 
 	renderSuffix() {
+		let icon
+
 		if (this.isOpen) {
+			icon = <cm-icon icon="up"></cm-icon>
+		} else {
+			icon = <cm-icon icon="down"></cm-icon>
+		}
+
+		if (
+			this.allowMultiple &&
+			this.selectedOptions.length > 1 &&
+			!this.preventVerticalExpansion
+		) {
 			return (
-				<div class="suffix icon">
-					<cm-icon icon="up" />
+				<div class="suffix clear">
+					<div
+						class="clear"
+						onClick={(event) => {
+							event.stopPropagation()
+							this.selectedOptions = []
+						}}
+					>
+						<cm-icon
+							icon="closeSmall"
+							color="bright"
+							ignoreTheme
+						></cm-icon>
+					</div>
+					<div class="icon">{icon}</div>
 				</div>
 			)
 		} else {
-			return (
-				<div class="suffix icon">
-					<cm-icon icon="down" />
-				</div>
-			)
+			return <div class="suffix icon">{icon}</div>
 		}
 	}
 
@@ -282,6 +392,7 @@ export class CmSelect {
 	render() {
 		this.flyout.isOpen = this.isOpen
 		this.flyout.options = this.options
+		this.flyout.selectedOptions = this.selectedOptions
 
 		return (
 			<Host>
