@@ -67,7 +67,7 @@ export const getVariableValue = async (name: string) => {
 	}
 }
 
-export const debounce = (callback, wait) => {
+export const debounce = (callback: Function, wait: number) => {
 	let timeout
 
 	return function () {
