@@ -82,3 +82,36 @@ export const debounce = (callback: Function, wait: number) => {
 		timeout = setTimeout(later, wait)
 	}
 }
+
+// Original Source: https://github.com/bevacqua/fuzzysearch/blob/master/index.js
+// This is a simple fuzzy search, without Levenshtein Distance,
+// a tradeoff taken for the substantially smaller source size.
+export const fuzzysearch = (
+	searchTerm: string = '',
+	searchTarget: string = '',
+) => {
+	let searchTargetLength = searchTarget.length
+	let searchTermLength = searchTerm.length
+
+	if (searchTermLength > searchTargetLength) {
+		return false
+	}
+
+	if (searchTermLength === searchTargetLength) {
+		return searchTerm === searchTarget
+	}
+
+	outer: for (let i = 0, j = 0; i < searchTermLength; i++) {
+		let searchTermCharacter = searchTerm.charCodeAt(i)
+
+		while (j < searchTargetLength) {
+			if (searchTarget.charCodeAt(j++) === searchTermCharacter) {
+				continue outer
+			}
+		}
+
+		return false
+	}
+
+	return true
+}
