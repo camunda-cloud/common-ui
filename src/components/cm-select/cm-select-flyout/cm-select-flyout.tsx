@@ -9,7 +9,7 @@ import {
 	Event,
 	EventEmitter,
 } from '@stencil/core'
-import { Theme } from '../../../globalHelpers'
+import { fuzzysearch, Theme } from '../../../globalHelpers'
 import { CmSelect, OptionGroup } from '../cm-select'
 
 @Component({
@@ -26,6 +26,7 @@ export class CmSelectFlyout {
 	@Prop({ mutable: true, reflect: false }) selectedOptions: Array<string> = []
 	@Prop({ mutable: false, reflect: false }) isOpen: boolean
 
+	@State() search: string = ''
 	@State() theme: Theme = 'Light'
 	flyoutIsSetup: boolean = false
 
@@ -62,6 +63,22 @@ export class CmSelectFlyout {
 									''
 								)}
 								{optionGroup.options.map((option) => {
+									if (
+										this.search.length > 0 &&
+										!(
+											fuzzysearch(
+												this.search,
+												option.label,
+											) ||
+											fuzzysearch(
+												this.search,
+												option.description,
+											)
+										)
+									) {
+										return ''
+									}
+
 									const optionIsSelected =
 										this.select.selectedOptions.includes(
 											option.value,
@@ -303,6 +320,13 @@ export class CmSelectFlyout {
 				>
 					{this.select.renderPrefix()}
 					{this.select.renderValueLabel()}
+					<input
+						type="text"
+						onInput={(event: InputEvent) => {
+							this.search =
+								(event.target as HTMLInputElement).value ?? ''
+						}}
+					/>
 					{this.select.renderSuffix()}
 				</div>
 			)
