@@ -64,11 +64,13 @@
 	--cm-color-button-red5: #c20000;
 
 	--cm-color-link: hsl(218, 58%, 49%);
+	--cm-color-link-hover-light: #4b7ccf;
 	--cm-color-link-hover: hsl(218, 58%, 55%);
 	--cm-color-link-active: hsl(218, 58%, 39%);
 	--cm-color-link-dark: hsl(213, 100%, 93%);
 	--cm-color-link-hover-dark: hsl(213, 100%, 89%);
 	--cm-color-link-active-dark: hsl(214, 100%, 96%);
+	--cm-color-link-active-light: #29549c;
 
 	--cm-color-label-dark: #4a4c51;
 	--cm-color-label-light: #edeff3;
