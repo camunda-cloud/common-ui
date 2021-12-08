@@ -5,6 +5,169 @@
 }
 
 .valueLabelContainer {
+	&.Light {
+		&.isOpen {
+			background-color: var(--cm-color-ui-light4);
+			box-shadow: 0 0 0 2px var(--cm-color-focus-outer-neutral);
+			border: solid 1px var(--cm-color-blue-base);
+		}
+
+		&.down {
+			.labelContainer {
+				border-bottom: 1px solid var(--cm-color-ui-light5);
+			}
+		}
+
+		&.up {
+			.labelContainer {
+				border-top: 1px solid var(--cm-color-ui-light5);
+			}
+		}
+
+		.labelContainer {
+			background: white;
+
+			.valueLabel {
+				color: var(--cm-color-ui-dark4);
+				&.placeholder {
+					color: var(--cm-color-ui-light6);
+				}
+				.tag {
+					border: solid 1px var(--cm-color-button-blue1);
+					background-color: var(--cm-color-link-active-dark);
+					color: var(--cm-color-ui-dark4);
+
+					.delete {
+						background-color: var(--cm-color-button-blue1);
+						&:hover {
+							background-color: var(--cm-color-blue-base);
+						}
+					}
+				}
+			}
+
+			.suffix {
+				&.clear {
+					.clear {
+						background-color: var(--cm-color-ui-light3);
+					}
+				}
+			}
+		}
+
+		.flyout {
+			.optionGroup {
+				.optionGroupLabel {
+					color: var(--cm-color-ui-dark4);
+				}
+
+				.option {
+					&:hover,
+					&.hover {
+						background: var(--cm-color-focus-inner-neutral);
+					}
+
+					&.hasDescription {
+						.description {
+							color: var(--cm-color-ui-light6);
+						}
+
+						.label {
+							color: var(--cm-color-ui-dark4);
+						}
+					}
+
+					.label {
+						color: var(--cm-color-ui-dark4);
+						&::after {
+							background-color: var(--cm-color-blue-base);
+						}
+					}
+				}
+			}
+		}
+	}
+	&.Dark {
+		&.isOpen {
+			background-color: var(--cm-color-ui-dark2);
+			box-shadow: 0 0 0 2px var(--cm-color-focus-outer-neutral);
+			border: solid 1px var(--cm-color-blue-base);
+		}
+
+		&.down {
+			.labelContainer {
+				border-bottom: 1px solid var(--cm-color-button-dark2);
+			}
+		}
+
+		&.up {
+			.labelContainer {
+				border-top: 1px solid var(--cm-color-button-dark2);
+			}
+		}
+
+		.labelContainer {
+			background-color: var(--cm-color-ui-dark2);
+
+			.valueLabel {
+				color: var(--cm-color-white-base);
+				&.placeholder {
+					color: var(--cm-color-white-base);
+				}
+				.tag {
+					border: solid 1px var(--cm-color-link-hover-light);
+					background-color: var(--cm-color-link-active-light);
+					color: var(--cm-color-white-base);
+
+					.delete {
+						background-color: var(--cm-color-link-hover-light);
+						&:hover {
+							background-color: var(--cm-color-button-blue3);
+						}
+					}
+				}
+			}
+
+			.suffix {
+				&.clear {
+					.clear {
+						background-color: var(--cm-color-ui-light3);
+					}
+				}
+			}
+		}
+
+		.flyout {
+			.optionGroup {
+				.optionGroupLabel {
+					color: var(--cm-color-white-base);
+				}
+
+				.option {
+					&:hover,
+					&.hover {
+						background: var(--cm-color-link-hover-light);
+					}
+
+					&.hasDescription {
+						.description {
+							color: var(--cm-color-ui-light4);
+						}
+						.label {
+							color: var(--cm-color-white-base);
+						}
+					}
+
+					.label {
+						color: var(--cm-color-white-base);
+						&::after {
+							background-color: var(--cm-color-blue-base);
+						}
+					}
+				}
+			}
+		}
+	}
 	font-family: var(--cm-font-text);
 
 	box-sizing: border-box;
@@ -51,17 +214,10 @@
 		max-height: 100%;
 
 		overflow-y: auto;
-
-		border: solid 1px var(--cm-color-ui-light3);
-		background-color: var(--cm-color-ui-light4);
-
-		box-shadow: 0 0 0 2px var(--cm-color-focus-outer-neutral);
-		border: solid 1px var(--cm-color-blue-base);
 	}
 
 	&.down {
 		.labelContainer {
-			border-bottom: 1px solid var(--cm-color-ui-light5);
 			position: sticky;
 			top: 0;
 		}
@@ -69,7 +225,6 @@
 
 	&.up {
 		.labelContainer {
-			border-top: 1px solid var(--cm-color-ui-light5);
 			position: sticky;
 			bottom: 0;
 		}
@@ -84,7 +239,6 @@
 		align-items: center;
 
 		min-height: 30px;
-		background: white;
 		position: relative;
 		z-index: 1;
 
@@ -112,11 +266,9 @@
 		.valueLabel {
 			grid-area: valueLabel;
 			font-size: 14px;
-			color: var(--cm-color-ui-dark4);
 
 			&.placeholder {
 				font-style: italic;
-				color: var(--cm-color-ui-light6);
 			}
 
 			&.text {
@@ -146,11 +298,8 @@
 
 				padding: 0px 2px 0px 8px;
 				border-radius: 11px;
-				border: solid 1px var(--cm-color-button-blue1);
-				background-color: var(--cm-color-link-active-dark);
 
 				font-size: 14px;
-				color: var(--cm-color-ui-dark4);
 
 				.delete {
 					cursor: pointer;
@@ -161,8 +310,6 @@
 					width: 16px;
 					height: 16px;
 					border-radius: 100%;
-
-					background-color: var(--cm-color-button-blue1);
 				}
 			}
 		}
@@ -195,8 +342,6 @@
 					width: 16px;
 					height: 16px;
 					border-radius: 100%;
-
-					background-color: var(--cm-color-ui-light3);
 				}
 
 				.icon {
@@ -225,7 +370,6 @@
 			.optionGroupLabel {
 				font-size: 12px;
 				font-weight: 600;
-				color: var(--cm-color-ui-dark4);
 				padding: 5px 5px;
 			}
 
@@ -242,11 +386,6 @@
 				border-radius: 3px;
 
 				transition: all linear 150ms;
-
-				&:hover,
-				&.hover {
-					background: var(--cm-color-focus-inner-neutral);
-				}
 
 				&.isSelected {
 					cursor: default;
@@ -272,12 +411,10 @@
 					.label {
 						font-size: 14px;
 						font-weight: 500;
-						color: var(--cm-color-ui-dark4);
 					}
 
 					.description {
 						font-size: 13px;
-						color: var(--cm-color-ui-light6);
 						transition: all linear 150ms;
 					}
 
@@ -291,7 +428,6 @@
 				.label {
 					position: relative;
 					font-size: 14px;
-					color: var(--cm-color-ui-dark4);
 					transition: all linear 150ms;
 
 					&::after {
@@ -303,7 +439,6 @@
 						bottom: 1px;
 						width: 3px;
 						border-radius: 3px;
-						background-color: var(--cm-color-blue-base);
 						transition: all linear 150ms;
 					}
 				}

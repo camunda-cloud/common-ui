@@ -9,7 +9,7 @@ import {
 	Event,
 	EventEmitter,
 } from '@stencil/core'
-import { Theme } from '../../../globalHelpers'
+import { Theme, onThemeChange } from '../../../globalHelpers'
 import { CmSelect, OptionGroup } from '../cm-select'
 
 @Component({
@@ -44,6 +44,12 @@ export class CmSelectFlyout {
 			if (this.select) {
 				this.select.isOpen = false
 			}
+		})
+	}
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
 		})
 	}
 
@@ -315,6 +321,7 @@ export class CmSelectFlyout {
 						tabindex="0"
 						class={{
 							valueLabelContainer: true,
+							[this.theme]: true,
 						}}
 					>
 						{valueLabel}
