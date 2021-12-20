@@ -116,16 +116,18 @@ export class CmModal {
 			this.promiseResolver = resolve
 		})
 
+		const form = this.element.querySelector('cm-form')
+		form?.addEventListener('cmSubmit', () => {
+			if (!this.submitFromConfirm) {
+				this.confirm()
+			}
+		})
+			
 		if (!options.preventFormReset) {
-			const form = this.element.querySelector('cm-form')
 			form?.reset()
-			form?.addEventListener('cmSubmit', () => {
-				if (!this.submitFromConfirm) {
-					this.confirm()
-				}
-			})
-			form?.forceFocus()
 		}
+
+		form?.forceFocus()
 
 		this.isOpen = true
 
