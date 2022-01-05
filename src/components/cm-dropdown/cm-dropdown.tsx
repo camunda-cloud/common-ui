@@ -9,6 +9,7 @@ import {
 	Method,
 } from '@stencil/core'
 import { CmIconButton } from '../cm-icon-button/cm-icon-button'
+import { onThemeChange, Theme } from '../../globalHelpers'
 
 export type DropdownOption =
 	| {
@@ -62,6 +63,13 @@ export class CmDropdown {
 
 	@State() shouldStayOpen = false
 	@State() isOpen: boolean = false
+	@State() theme: Theme = 'Light'
+
+	componentWillLoad() {
+		onThemeChange((theme) => {
+			this.theme = theme
+		})
+	}
 
 	triggerOption(option: DropdownOption) {
 		if (option.isDisabled) {
@@ -159,7 +167,7 @@ export class CmDropdown {
 					>
 						<div class="label" tabindex="0">
 							<div class="text">{this.trigger.label}</div>
-							<cm-icon icon="down" ignoreTheme />
+							<cm-icon icon="down" />
 						</div>
 					</div>
 				)
@@ -345,7 +353,12 @@ export class CmDropdown {
 
 		return (
 			<Host>
-				<div class="container">
+				<div
+					class={{
+						container: true,
+						[this.theme]: true,
+					}}
+				>
 					{trigger}
 					{flyout}
 				</div>

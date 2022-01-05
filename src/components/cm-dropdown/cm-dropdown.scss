@@ -13,6 +13,86 @@
 	}
 }
 
+.Light {
+	.trigger {
+		> .label {
+			.text {
+				color: var(--cm-color-ui-light6);
+			}
+			&:hover,
+			&:focus-visible {
+				background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
+			}
+		}
+	}
+
+	.flyout {
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+		background: #fcfcfc;
+
+		.optionGroup {
+			&:not(:first-child) {
+				border-top: solid 1px var(--cm-color-ui-light5);
+			}
+
+			.title {
+				color: var(--cm-color-ui-light6);
+			}
+
+			.option {
+				color: var(--cm-color-ui-dark4);
+
+				&:hover {
+					background: #f0f0f0;
+				}
+
+				&.isDangerous {
+					color: #e30100;
+				}
+			}
+		}
+	}
+}
+
+.Dark {
+	.trigger {
+		> .label {
+			.text {
+				color: var(--cm-color-white-base);
+			}
+			&:hover,
+			&:focus-visible {
+				background-color: var(--cm-color-ui-dark4);
+			}
+		}
+	}
+
+	.flyout {
+		box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.5);
+		background: var(--cm-color-button-dark6);
+
+		.optionGroup {
+			&:not(:first-child) {
+				border-top: solid 1px var(--cm-color-ui-light5);
+			}
+
+			.title {
+				color: var(--cm-color-white-base);
+			}
+			.option {
+				color: var(--cm-color-white-base);
+				&:hover {
+					background: var(--cm-color-item-even-dark);
+				}
+
+				&.isDangerous {
+					color: #e30100;
+				}
+			}
+		}
+	}
+}
+
 .trigger {
 	display: grid;
 	align-content: center;
@@ -365,16 +445,10 @@
 			outline: none;
 		}
 
-		&:hover,
-		&:focus-visible {
-			background-color: rgba(var(--cm-color-ui-light5-rgb), 0.5);
-		}
-
 		.text {
 			font-family: var(--cm-font-text);
 			font-size: 15px;
 			font-weight: 500;
-			color: var(--cm-color-ui-light6);
 		}
 
 		cm-icon {
@@ -398,8 +472,6 @@
 
 	border-radius: 5px;
 	overflow: hidden;
-	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
-	background: #fcfcfc;
 
 	min-width: max-content;
 
@@ -413,13 +485,11 @@
 	.optionGroup {
 		&:not(:first-child) {
 			padding-top: 5px;
-			border-top: solid 1px var(--cm-color-ui-light5);
 		}
 
 		.title {
 			font-family: var(--cm-font-text);
 			font-size: 11px;
-			color: var(--cm-color-ui-light6);
 		}
 
 		& > .title:not(:empty) {
@@ -432,20 +502,11 @@
 			padding: 8px 15px;
 			font-family: var(--cm-font-text);
 			font-size: 14px;
-			color: var(--cm-color-ui-dark4);
 
 			transition: all 150ms linear;
 
 			&:not(.disabled) {
 				cursor: pointer;
-			}
-
-			&:hover {
-				background: #f0f0f0;
-			}
-
-			&.isDangerous {
-				color: #e30100;
 			}
 
 			&.isDisabled {
