@@ -11,7 +11,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox form-name="" helper-text="" label="">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox" role="checkbox"></div>
+						<div class="appearanceChange checkbox" role="checkbox"></div>
 						<label></label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
@@ -30,7 +30,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox form-name="" helper-text="" label="Checkbox">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox" role="checkbox"></div>
+						<div class="appearanceChange checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
@@ -49,7 +49,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox form-name="" helper-text="Helper Text" label="Checkbox">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox" role="checkbox"></div>
+						<div class="appearanceChange checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle">
 							Helper Text
@@ -70,7 +70,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox checked="" form-name="" helper-text="" label="">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox checked" role="checkbox"></div>
+						<div class="appearanceChange checkbox checked" role="checkbox"></div>
 						<label></label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
@@ -89,7 +89,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox form-name="" helper-text="" indeterminate="" label="Checkbox">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox indeterminate" role="checkbox"></div>
+						<div class="appearanceChange checkbox indeterminate" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
@@ -108,7 +108,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox disabled="" form-name="" helper-text="" label="">
 				<mock:shadow-root>
 					<div class="container disabled Light" tabindex="-1">
-						<div aria-disabled="" class="checkbox disabled" role="checkbox"></div>
+						<div aria-disabled="" class="appearanceChange checkbox disabled" role="checkbox"></div>
 						<label></label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
@@ -127,7 +127,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox form-name="" helper-text="" required="" label="Checkbox">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox" role="checkbox"></div>
+						<div class="appearanceChange checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
@@ -146,7 +146,7 @@ describe('cm-checkbox', () => {
 			<cm-checkbox form-name="testCheckbox" helper-text="" label="Checkbox">
 				<mock:shadow-root>
 					<div class="container Light" tabindex="0">
-						<div class="checkbox" role="checkbox"></div>
+						<div class="appearanceChange checkbox" role="checkbox"></div>
 						<label>Checkbox</label>
 						<cm-text appearance="helperText" color="subtle"></cm-text>
 						<div class="errorMessage"></div>
