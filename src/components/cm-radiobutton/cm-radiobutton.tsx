@@ -30,6 +30,18 @@ export class CmRadiobutton {
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
+			const shadowRoot = this.element.shadowRoot
+
+			const div = shadowRoot.querySelector('.radiobutton')
+
+			if (div !== null) {
+				div.classList.add('appearanceChange')
+
+				requestAnimationFrame(() => {
+					div.classList.remove('appearanceChange')
+				})
+			}
+
 			this.theme = theme
 		})
 	}
