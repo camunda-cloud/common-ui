@@ -15,7 +15,7 @@ describe('cm-textfield', () => {
 							<div class="label"></div>
 							<cm-text appearance="helperText" class="helperText" color="subtle"></cm-text>
 						</div>
-						<div class="inputContainer">
+						<div class="appearanceChange inputContainer">
 							<div class="empty prefix"></div>
 							<input placeholder="" tabindex="0" type="text" value="" />
 							<div class="asyncStatusIndicator"></div>

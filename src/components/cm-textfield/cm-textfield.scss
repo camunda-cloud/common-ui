@@ -359,6 +359,14 @@
 
 		transition: border linear 200ms, box-shadow linear 200ms;
 
+		&.appearanceChange {
+			transition: none;
+
+			& .suffix.number .button {
+				transition: none;
+			}
+		}
+
 		.prefix {
 			grid-area: prefix;
 			display: grid;
