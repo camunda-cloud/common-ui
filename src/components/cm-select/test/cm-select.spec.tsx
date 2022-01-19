@@ -15,7 +15,7 @@ describe('cm-select', () => {
 							<div class="label"></div>
 							<cm-text appearance="helperText" class="helperText" color="subtle"></cm-text>
 						</div>
-						<div class="valueLabelContainer" tabindex="0">
+						<div class="appearanceChange valueLabelContainer" tabindex="0">
 							<div class="empty prefix"></div>
 							<div class="valueLabel"></div>
 							<div class="icon suffix">
