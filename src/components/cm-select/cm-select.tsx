@@ -93,6 +93,18 @@ export class CmSelect {
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
+			const shadowRoot = this.element.shadowRoot
+
+			const div = shadowRoot.querySelector('.valueLabelContainer')
+
+			if (div !== null) {
+				div.classList.add('appearanceChange')
+
+				requestAnimationFrame(() => {
+					div.classList.remove('appearanceChange')
+				})
+			}
+
 			this.theme = theme
 		})
 
