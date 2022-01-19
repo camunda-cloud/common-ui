@@ -260,6 +260,10 @@
 
 		transition: border linear 200ms, box-shadow linear 200ms;
 
+		&.appearanceChange {
+			transition: none;
+		}
+
 		&:focus {
 			outline: none;
 		}
