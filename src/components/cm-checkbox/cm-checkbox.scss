@@ -159,6 +159,10 @@
 	vertical-align: bottom;
 	transition: all 0.2s linear;
 
+	&.appearanceChange {
+		transition: none;
+	}
+
 	&::before {
 		content: '';
 		position: absolute;

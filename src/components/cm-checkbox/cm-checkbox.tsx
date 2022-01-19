@@ -45,6 +45,18 @@ export class CmCheckbox {
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
+			const shadowRoot = this.element.shadowRoot
+
+			const checkbox = shadowRoot.querySelectorAll('[role="checkbox"]')[0]
+
+			if (checkbox !== undefined) {
+				checkbox.classList.add('appearanceChange')
+
+				requestAnimationFrame(() => {
+					checkbox.classList.remove('appearanceChange')
+				})
+			}
+
 			this.theme = theme
 		})
 	}
