@@ -104,7 +104,8 @@
 	vertical-align: bottom;
 	transition: all 0.2s linear;
 
-	&.noAnimation {
+	&.noAnimation,
+	&.appearanceChange {
 		transition: none;
 
 		&::before {
