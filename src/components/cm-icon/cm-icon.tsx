@@ -11,9 +11,17 @@ const colorVariableMap: ColorMap = {
 		Light: '--cm-color-ui-light4',
 		Dark: '--cm-color-ui-dark4',
 	},
+	medLight: {
+		Light: '--cm-color-button-light2',
+		Dark: '--cm-color-button-light2',
+	},
 	medium: {
 		Light: '--cm-color-ui-light6',
 		Dark: '--cm-color-ui-light3',
+	},
+	medDark: {
+		Light: '--cm-color-ui-dark4',
+		Dark: '--cm-color-white-base',
 	},
 	dark: {
 		Light: '--cm-color-ui-dark4',
@@ -72,7 +80,9 @@ export class CmIcon {
 
 	@Prop({ mutable: true }) color:
 		| 'bright'
+		| 'medLight'
 		| 'medium'
+		| 'medDark'
 		| 'dark'
 		| 'success'
 		| 'warning'
