@@ -70,10 +70,23 @@ export class CmModal {
 		| 'danger'
 		| 'secondary' = 'primary'
 	@Prop({ mutable: true }) confirmDisabled: boolean = false
+	@Prop({ mutable: true }) confirmButtonDataAttributes: Array<{
+		name: string
+		value: string
+	}> = []
 
 	@Prop({ mutable: true }) cancelLabel: string = ''
 	@Prop({ mutable: true }) cancelAppearance: 'secondary' | 'danger' =
 		'secondary'
+	@Prop({ mutable: true }) cancelButtonDataAttributes: Array<{
+		name: string
+		value: string
+	}> = []
+
+	@Prop({ mutable: true }) closeButtonDataAttributes: Array<{
+		name: string
+		value: string
+	}> = []
 
 	@Element() element: HTMLElement
 
@@ -122,7 +135,7 @@ export class CmModal {
 				this.confirm()
 			}
 		})
-			
+
 		if (!options.preventFormReset) {
 			form?.reset()
 		}
@@ -241,6 +254,12 @@ export class CmModal {
 								disabled={this.cancelDisabled}
 								icon="closeLarge"
 								onCmPress={() => this.cancel()}
+								{...(
+									this.closeButtonDataAttributes ?? []
+								).reduce((prev, next) => {
+									prev[`data-${next.name}`] = next.value
+									return prev
+								}, {} as { [key: string]: string })}
 							/>
 						</div>
 						<div
@@ -258,6 +277,12 @@ export class CmModal {
 									appearance={this.cancelAppearance}
 									label={this.cancelLabel}
 									onCmPress={() => this.cancel()}
+									{...(
+										this.cancelButtonDataAttributes ?? []
+									).reduce((prev, next) => {
+										prev[`data-${next.name}`] = next.value
+										return prev
+									}, {} as { [key: string]: string })}
 								></cm-button>
 							) : (
 								''
@@ -268,6 +293,12 @@ export class CmModal {
 								loading={this.confirmLoading}
 								disabled={this.confirmDisabled}
 								onCmPress={() => this.confirm()}
+								{...(
+									this.confirmButtonDataAttributes ?? []
+								).reduce((prev, next) => {
+									prev[`data-${next.name}`] = next.value
+									return prev
+								}, {} as { [key: string]: string })}
 							></cm-button>
 						</div>
 					</div>

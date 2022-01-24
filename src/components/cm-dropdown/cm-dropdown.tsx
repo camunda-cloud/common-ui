@@ -17,6 +17,7 @@ export type DropdownOption =
 			title?: string
 			isDangerous?: boolean
 			isDisabled?: false
+			dataAttributes?: Array<{ name: string; value: string }>
 			handler: (event: { preventDismissal: () => void }) => void
 	  }
 	| {
@@ -24,6 +25,7 @@ export type DropdownOption =
 			title?: string
 			isDangerous?: boolean
 			isDisabled: true
+			dataAttributes?: Array<{ name: string; value: string }>
 			handler?: (event: { preventDismissal: () => void }) => void
 	  }
 
@@ -41,19 +43,29 @@ export class CmDropdown {
 	@Element() el: HTMLElement
 
 	@Prop({ mutable: true }) trigger:
-		| { type: 'icon'; icon: CmIconButton['icon'] }
+		| {
+				type: 'icon'
+				icon: CmIconButton['icon']
+				dataAttributes?: Array<{ name: string; value: string }>
+		  }
 		| {
 				type: 'button'
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
+				dataAttributes?: Array<{ name: string; value: string }>
 		  }
 		| {
 				type: 'defaultAction'
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
+				dataAttributes?: Array<{ name: string; value: string }>
 				defaultHandler: () => void
 		  }
-		| { type: 'label'; label: string } = {
+		| {
+				type: 'label'
+				label: string
+				dataAttributes?: Array<{ name: string; value: string }>
+		  } = {
 		type: 'button',
 		label: '',
 		appearance: 'main',
@@ -137,6 +149,10 @@ export class CmDropdown {
 				onClick={() => {
 					this.triggerOption(option)
 				}}
+				{...(option.dataAttributes ?? []).reduce((prev, next) => {
+					prev[`data-${next.name}`] = next.value
+					return prev
+				}, {} as { [key: string]: string })}
 			>
 				<div class="title">{option.title}</div>
 				{option.label}
@@ -164,6 +180,13 @@ export class CmDropdown {
 								this.isOpen = !this.isOpen
 							}
 						}}
+						{...(this.trigger.dataAttributes ?? []).reduce(
+							(prev, next) => {
+								prev[`data-${next.name}`] = next.value
+								return prev
+							},
+							{} as { [key: string]: string },
+						)}
 					>
 						<div class="label" tabindex="0">
 							<div class="text">{this.trigger.label}</div>
@@ -173,7 +196,16 @@ export class CmDropdown {
 				)
 			} else if (this.trigger.type === 'icon') {
 				trigger = (
-					<div class="trigger">
+					<div
+						class="trigger"
+						{...(this.trigger.dataAttributes ?? []).reduce(
+							(prev, next) => {
+								prev[`data-${next.name}`] = next.value
+								return prev
+							},
+							{} as { [key: string]: string },
+						)}
+					>
 						<cm-icon-button
 							icon={this.trigger.icon}
 							onCmPress={() => {
@@ -200,7 +232,16 @@ export class CmDropdown {
 				const defaultAction = this.trigger.defaultHandler
 
 				trigger = (
-					<div class="trigger">
+					<div
+						class="trigger"
+						{...(this.trigger.dataAttributes ?? []).reduce(
+							(prev, next) => {
+								prev[`data-${next.name}`] = next.value
+								return prev
+							},
+							{} as { [key: string]: string },
+						)}
+					>
 						<div class={buttonClasses}>
 							<div
 								tabindex="0"
@@ -263,7 +304,16 @@ export class CmDropdown {
 				}
 
 				trigger = (
-					<div class="trigger">
+					<div
+						class="trigger"
+						{...(this.trigger.dataAttributes ?? []).reduce(
+							(prev, next) => {
+								prev[`data-${next.name}`] = next.value
+								return prev
+							},
+							{} as { [key: string]: string },
+						)}
+					>
 						<div
 							tabindex="0"
 							class={buttonClasses}

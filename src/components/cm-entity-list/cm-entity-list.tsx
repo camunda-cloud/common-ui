@@ -22,10 +22,12 @@ export type Entity = {
 				type: 'button'
 				label: string
 				onPress: () => void
+				dataAttributes?: Array<{ name: string; value: string }>
 		  }
 		| {
 				type: 'contextMenu'
 				options: CmDropdown['options']
+				dataAttributes?: Array<{ name: string; value: string }>
 		  }
 	>
 	meta?: unknown
@@ -47,6 +49,10 @@ export class CmEntityList {
 	@Prop({ mutable: true }) hideSearch: boolean = false
 
 	@Prop({ mutable: true }) createHandler: () => void = () => {}
+	@Prop({ mutable: true }) createButtonDataAttributes: Array<{
+		name: string
+		value: string
+	}> = []
 
 	@Prop({ mutable: true }) columns: Array<{
 		name: string
@@ -406,6 +412,14 @@ export class CmEntityList {
 										event.stopPropagation()
 									}}
 									onCmPress={item.onPress}
+									{...(item.dataAttributes ?? []).reduce(
+										(prev, next) => {
+											prev[`data-${next.name}`] =
+												next.value
+											return prev
+										},
+										{} as { [key: string]: string },
+									)}
 								/>
 							)
 						}
@@ -422,6 +436,14 @@ export class CmEntityList {
 										icon: 'contextMenu',
 									}}
 									options={item.options}
+									{...(item.dataAttributes ?? []).reduce(
+										(prev, next) => {
+											prev[`data-${next.name}`] =
+												next.value
+											return prev
+										},
+										{} as { [key: string]: string },
+									)}
 								/>
 							)
 						}
@@ -566,6 +588,12 @@ export class CmEntityList {
 									}
 									label={this.createButtonLabel}
 									onCmPress={this.createHandler}
+									{...(
+										this.createButtonDataAttributes ?? []
+									).reduce((prev, next) => {
+										prev[`data-${next.name}`] = next.value
+										return prev
+									}, {} as { [key: string]: string })}
 								></cm-button>
 							) : (
 								''
