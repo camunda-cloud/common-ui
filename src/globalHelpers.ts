@@ -82,3 +82,10 @@ export const debounce = (callback: Function, wait: number) => {
 		timeout = setTimeout(later, wait)
 	}
 }
+
+// Workaround for: https://bugs.chromium.org/p/chromium/issues/detail?id=675795
+export const ensureRequestAnimationFrame = (callback: FrameRequestCallback) => {
+	requestAnimationFrame(() => {
+		requestAnimationFrame(callback)
+	})
+}

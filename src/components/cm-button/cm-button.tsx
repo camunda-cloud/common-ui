@@ -12,7 +12,11 @@ import {
 	Method,
 	Watch,
 } from '@stencil/core'
-import { onThemeChange, Theme } from '../../globalHelpers'
+import {
+	onThemeChange,
+	Theme,
+	ensureRequestAnimationFrame,
+} from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-button',
@@ -46,7 +50,7 @@ export class CmButton implements ComponentInterface {
 		div.classList.add('appearanceChange')
 		span.classList.add('appearanceChange')
 
-		requestAnimationFrame(() => {
+		ensureRequestAnimationFrame(() => {
 			div.classList.remove('appearanceChange')
 			span.classList.remove('appearanceChange')
 		})

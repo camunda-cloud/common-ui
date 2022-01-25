@@ -12,7 +12,12 @@ import {
 	Element,
 } from '@stencil/core'
 
-import { onThemeChange, Theme, ValidatorResult } from '../../globalHelpers'
+import {
+	onThemeChange,
+	Theme,
+	ValidatorResult,
+	ensureRequestAnimationFrame,
+} from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
 @Component({
@@ -52,7 +57,7 @@ export class CmCheckbox {
 			if (checkbox !== undefined) {
 				checkbox.classList.add('appearanceChange')
 
-				requestAnimationFrame(() => {
+				ensureRequestAnimationFrame(() => {
 					checkbox.classList.remove('appearanceChange')
 				})
 			}

@@ -14,6 +14,7 @@ import {
 	onThemeChange,
 	Theme,
 	ValidatorResult,
+	ensureRequestAnimationFrame,
 } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
@@ -129,7 +130,7 @@ export class CmTextfield {
 			if (div !== null) {
 				div.classList.add('appearanceChange')
 
-				requestAnimationFrame(() => {
+				ensureRequestAnimationFrame(() => {
 					div.classList.remove('appearanceChange')
 				})
 			}
