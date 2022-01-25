@@ -9,7 +9,11 @@ import {
 	Method,
 } from '@stencil/core'
 import { CmIconButton } from '../cm-icon-button/cm-icon-button'
-import { onThemeChange, Theme } from '../../globalHelpers'
+import {
+	onThemeChange,
+	Theme,
+	transformDataAttributes,
+} from '../../globalHelpers'
 
 export type DropdownOption =
 	| {
@@ -17,7 +21,7 @@ export type DropdownOption =
 			title?: string
 			isDangerous?: boolean
 			isDisabled?: false
-			dataAttributes?: Array<{ name: string; value: string }>
+			dataAttributes?: Record<string, string>
 			handler: (event: { preventDismissal: () => void }) => void
 	  }
 	| {
@@ -25,7 +29,7 @@ export type DropdownOption =
 			title?: string
 			isDangerous?: boolean
 			isDisabled: true
-			dataAttributes?: Array<{ name: string; value: string }>
+			dataAttributes?: Record<string, string>
 			handler?: (event: { preventDismissal: () => void }) => void
 	  }
 
@@ -46,25 +50,25 @@ export class CmDropdown {
 		| {
 				type: 'icon'
 				icon: CmIconButton['icon']
-				dataAttributes?: Array<{ name: string; value: string }>
+				dataAttributes?: Record<string, string>
 		  }
 		| {
 				type: 'button'
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
-				dataAttributes?: Array<{ name: string; value: string }>
+				dataAttributes?: Record<string, string>
 		  }
 		| {
 				type: 'defaultAction'
 				label: string
 				appearance: 'main' | 'primary' | 'secondary'
-				dataAttributes?: Array<{ name: string; value: string }>
+				dataAttributes?: Record<string, string>
 				defaultHandler: () => void
 		  }
 		| {
 				type: 'label'
 				label: string
-				dataAttributes?: Array<{ name: string; value: string }>
+				dataAttributes?: Record<string, string>
 		  } = {
 		type: 'button',
 		label: '',
@@ -149,10 +153,7 @@ export class CmDropdown {
 				onClick={() => {
 					this.triggerOption(option)
 				}}
-				{...(option.dataAttributes ?? []).reduce((prev, next) => {
-					prev[`data-${next.name}`] = next.value
-					return prev
-				}, {} as { [key: string]: string })}
+				{...transformDataAttributes(option.dataAttributes)}
 			>
 				<div class="title">{option.title}</div>
 				{option.label}
@@ -180,12 +181,8 @@ export class CmDropdown {
 								this.isOpen = !this.isOpen
 							}
 						}}
-						{...(this.trigger.dataAttributes ?? []).reduce(
-							(prev, next) => {
-								prev[`data-${next.name}`] = next.value
-								return prev
-							},
-							{} as { [key: string]: string },
+						{...transformDataAttributes(
+							this.trigger.dataAttributes,
 						)}
 					>
 						<div class="label" tabindex="0">
@@ -198,12 +195,8 @@ export class CmDropdown {
 				trigger = (
 					<div
 						class="trigger"
-						{...(this.trigger.dataAttributes ?? []).reduce(
-							(prev, next) => {
-								prev[`data-${next.name}`] = next.value
-								return prev
-							},
-							{} as { [key: string]: string },
+						{...transformDataAttributes(
+							this.trigger.dataAttributes,
 						)}
 					>
 						<cm-icon-button
@@ -234,12 +227,8 @@ export class CmDropdown {
 				trigger = (
 					<div
 						class="trigger"
-						{...(this.trigger.dataAttributes ?? []).reduce(
-							(prev, next) => {
-								prev[`data-${next.name}`] = next.value
-								return prev
-							},
-							{} as { [key: string]: string },
+						{...transformDataAttributes(
+							this.trigger.dataAttributes,
 						)}
 					>
 						<div class={buttonClasses}>
@@ -306,12 +295,8 @@ export class CmDropdown {
 				trigger = (
 					<div
 						class="trigger"
-						{...(this.trigger.dataAttributes ?? []).reduce(
-							(prev, next) => {
-								prev[`data-${next.name}`] = next.value
-								return prev
-							},
-							{} as { [key: string]: string },
+						{...transformDataAttributes(
+							this.trigger.dataAttributes,
 						)}
 					>
 						<div

@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, State, Element, Method } from '@stencil/core'
+import { transformDataAttributes } from '../../globalHelpers'
 import { CmDropdown, DropdownOptionGroup } from '../cm-dropdown/cm-dropdown'
 
 export type SortingDescription = {
@@ -22,15 +23,16 @@ export type Entity = {
 				type: 'button'
 				label: string
 				onPress: () => void
-				dataAttributes?: Array<{ name: string; value: string }>
+				dataAttributes?: Record<string, string>
 		  }
 		| {
 				type: 'contextMenu'
 				options: CmDropdown['options']
-				dataAttributes?: Array<{ name: string; value: string }>
+				dataAttributes?: Record<string, string>
 		  }
 	>
 	meta?: unknown
+	dataAttributes?: Record<string, string>
 }
 
 @Component({
@@ -49,10 +51,9 @@ export class CmEntityList {
 	@Prop({ mutable: true }) hideSearch: boolean = false
 
 	@Prop({ mutable: true }) createHandler: () => void = () => {}
-	@Prop({ mutable: true }) createButtonDataAttributes: Array<{
-		name: string
-		value: string
-	}> = []
+	@Prop({ mutable: true }) createButtonDataAttributes: {
+		[key: string]: string
+	} = {}
 
 	@Prop({ mutable: true }) columns: Array<{
 		name: string
@@ -302,6 +303,7 @@ export class CmEntityList {
 						cursor: entity.onPress ? 'pointer' : 'default',
 					}}
 					onClick={entity.onPress}
+					{...transformDataAttributes(entity.dataAttributes)}
 				>
 					{this.groupOptions.length ? (
 						<div class="cell">
@@ -412,13 +414,8 @@ export class CmEntityList {
 										event.stopPropagation()
 									}}
 									onCmPress={item.onPress}
-									{...(item.dataAttributes ?? []).reduce(
-										(prev, next) => {
-											prev[`data-${next.name}`] =
-												next.value
-											return prev
-										},
-										{} as { [key: string]: string },
+									{...transformDataAttributes(
+										item.dataAttributes,
 									)}
 								/>
 							)
@@ -436,13 +433,8 @@ export class CmEntityList {
 										icon: 'contextMenu',
 									}}
 									options={item.options}
-									{...(item.dataAttributes ?? []).reduce(
-										(prev, next) => {
-											prev[`data-${next.name}`] =
-												next.value
-											return prev
-										},
-										{} as { [key: string]: string },
+									{...transformDataAttributes(
+										item.dataAttributes,
 									)}
 								/>
 							)
@@ -588,12 +580,9 @@ export class CmEntityList {
 									}
 									label={this.createButtonLabel}
 									onCmPress={this.createHandler}
-									{...(
-										this.createButtonDataAttributes ?? []
-									).reduce((prev, next) => {
-										prev[`data-${next.name}`] = next.value
-										return prev
-									}, {} as { [key: string]: string })}
+									{...transformDataAttributes(
+										this.createButtonDataAttributes,
+									)}
 								></cm-button>
 							) : (
 								''

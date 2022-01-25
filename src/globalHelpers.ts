@@ -89,3 +89,11 @@ export const ensureRequestAnimationFrame = (callback: FrameRequestCallback) => {
 		requestAnimationFrame(callback)
 	})
 }
+
+export const transformDataAttributes = (
+	source: Record<string, string> = {},
+): Record<string, string> => {
+	return Object.fromEntries(
+		Object.entries(source).map(([key, value]) => [`data-${key}`, value]),
+	)
+}

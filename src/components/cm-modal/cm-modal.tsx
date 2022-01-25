@@ -8,7 +8,7 @@ import {
 	Element,
 	Listen,
 } from '@stencil/core'
-import { getContext } from '../../globalHelpers'
+import { getContext, transformDataAttributes } from '../../globalHelpers'
 import { FormData } from '../cm-form/cm-form'
 import { CmSelect } from '../cm-select/cm-select'
 
@@ -70,23 +70,21 @@ export class CmModal {
 		| 'danger'
 		| 'secondary' = 'primary'
 	@Prop({ mutable: true }) confirmDisabled: boolean = false
-	@Prop({ mutable: true }) confirmButtonDataAttributes: Array<{
-		name: string
-		value: string
-	}> = []
+	@Prop({ mutable: true }) confirmButtonDataAttributes: Record<
+		string,
+		string
+	> = {}
 
 	@Prop({ mutable: true }) cancelLabel: string = ''
 	@Prop({ mutable: true }) cancelAppearance: 'secondary' | 'danger' =
 		'secondary'
-	@Prop({ mutable: true }) cancelButtonDataAttributes: Array<{
-		name: string
-		value: string
-	}> = []
+	@Prop({ mutable: true }) cancelButtonDataAttributes: Record<
+		string,
+		string
+	> = {}
 
-	@Prop({ mutable: true }) closeButtonDataAttributes: Array<{
-		name: string
-		value: string
-	}> = []
+	@Prop({ mutable: true }) closeButtonDataAttributes: Record<string, string> =
+		{}
 
 	@Element() element: HTMLElement
 
@@ -254,12 +252,9 @@ export class CmModal {
 								disabled={this.cancelDisabled}
 								icon="closeLarge"
 								onCmPress={() => this.cancel()}
-								{...(
-									this.closeButtonDataAttributes ?? []
-								).reduce((prev, next) => {
-									prev[`data-${next.name}`] = next.value
-									return prev
-								}, {} as { [key: string]: string })}
+								{...transformDataAttributes(
+									this.closeButtonDataAttributes,
+								)}
 							/>
 						</div>
 						<div
@@ -277,12 +272,9 @@ export class CmModal {
 									appearance={this.cancelAppearance}
 									label={this.cancelLabel}
 									onCmPress={() => this.cancel()}
-									{...(
-										this.cancelButtonDataAttributes ?? []
-									).reduce((prev, next) => {
-										prev[`data-${next.name}`] = next.value
-										return prev
-									}, {} as { [key: string]: string })}
+									{...transformDataAttributes(
+										this.cancelButtonDataAttributes,
+									)}
 								></cm-button>
 							) : (
 								''
@@ -293,12 +285,9 @@ export class CmModal {
 								loading={this.confirmLoading}
 								disabled={this.confirmDisabled}
 								onCmPress={() => this.confirm()}
-								{...(
-									this.confirmButtonDataAttributes ?? []
-								).reduce((prev, next) => {
-									prev[`data-${next.name}`] = next.value
-									return prev
-								}, {} as { [key: string]: string })}
+								{...transformDataAttributes(
+									this.confirmButtonDataAttributes,
+								)}
 							></cm-button>
 						</div>
 					</div>
