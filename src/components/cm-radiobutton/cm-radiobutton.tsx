@@ -10,7 +10,11 @@ import {
 	Element,
 	State,
 } from '@stencil/core'
-import { onThemeChange, Theme } from '../../globalHelpers'
+import {
+	onThemeChange,
+	Theme,
+	ensureRequestAnimationFrame,
+} from '../../globalHelpers'
 
 @Component({
 	tag: 'cm-radiobutton',
@@ -37,7 +41,7 @@ export class CmRadiobutton {
 			if (div !== null) {
 				div.classList.add('appearanceChange')
 
-				requestAnimationFrame(() => {
+				ensureRequestAnimationFrame(() => {
 					div.classList.remove('appearanceChange')
 				})
 			}
