@@ -85,6 +85,7 @@ export class CmModal {
 
 	@Prop({ mutable: true }) closeButtonDataAttributes: Record<string, string> =
 		{}
+	@Prop({ mutable: true }) overrideMaximumWidth: boolean = false
 
 	@Element() element: HTMLElement
 
@@ -241,6 +242,10 @@ export class CmModal {
 			Math.min(this.width, maximumWidth),
 			minimumWidth,
 		)
+
+		if (this.overrideMaximumWidth) {
+			boundedWidth = Math.max(this.width, minimumWidth)
+		}
 
 		return (
 			<Host tabindex="0">
