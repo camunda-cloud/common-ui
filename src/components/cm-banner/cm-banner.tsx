@@ -9,7 +9,8 @@ import { Component, Host, h, Prop } from '@stencil/core'
 	shadow: true,
 })
 export class CmBanner {
-	@Prop({ mutable: true }) appearance: 'warning' | 'error' = 'warning'
+	@Prop({ mutable: true }) appearance: 'info' | 'warning' | 'error' =
+		'warning'
 
 	render() {
 		return (
