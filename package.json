@@ -62,5 +62,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/camunda-cloud/common-ui.git"
-  }
+  },
+  "dependencies": {}
 }
