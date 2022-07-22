@@ -103,6 +103,8 @@ export class CmTextfield {
 
 	@Prop({ mutable: true, reflect: false }) rows: number = 2
 
+	@Prop({ mutable: true, reflect: false }) readonly: boolean = false
+
 	@State() isDirty: boolean = false
 	@State() validationResult: ValidatorResult
 	@State() showPassword: boolean = false
@@ -425,6 +427,7 @@ export class CmTextfield {
 					maxlength={this.maxLength}
 					value={this.value}
 					onInput={inputHandler}
+					readonly={this.readonly}
 				/>
 			)
 		} else {
@@ -446,6 +449,7 @@ export class CmTextfield {
 					step={this.step}
 					value={this.value}
 					onInput={inputHandler}
+					readonly={this.readonly}
 				/>
 			)
 		}
