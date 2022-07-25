@@ -1,0 +1,26 @@
+import { CmTextfield } from '@camunda-cloud/common-ui-react'
+import { Meta, Canvas, Description } from '@storybook/addon-docs'
+
+import Readme from './readme.md'
+
+<Meta title="Components/Form Elements/Textfield" component={CmTextfield} />
+
+# Textfield
+
+Renders a configurable textfield.
+
+A single line textfield with placeholder, label and an icon as suffix:
+<Canvas>
+		<CmTextfield type="text" placeholder="Placeholder" label="Label" fieldSuffix={{type: "icon", icon: "window"}}/>
+</Canvas>
+
+
+A disabled multiline input with a preset value:
+
+<Canvas>
+		<CmTextfield type="multiline" rows={3} disabled value="Disabled Multiline Textfield"/>
+</Canvas>
+
+## Technical Documentation
+
+<Description>{Readme}</Description>
