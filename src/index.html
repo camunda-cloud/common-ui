@@ -382,6 +382,8 @@
 						<cm-textfield id="textfield5"></cm-textfield>
 					</cm-form-group>
 
+					<cm-textfield id="textfield6" value="Readonly Value"></cm-textfield>
+
 					<cm-checkbox-group label="Checkboxes">
 						<cm-checkbox
 							id="checkbox1"
@@ -614,6 +616,12 @@
 					textfield5.max = 25
 					textfield5.validationStyle = 'delay'
 
+					let textfield6 = document.getElementById('textfield6')
+
+					textfield6.type = 'button'
+					textfield6.label = 'Button Input'
+					textfield6.addEventListener('click', () => alert('input clicked'))
+					
 					let form = document.getElementById('form')
 
 					form.addEventListener('cmSubmit', (event) => {
