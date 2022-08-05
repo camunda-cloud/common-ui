@@ -18,7 +18,13 @@ import {
 } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
-export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number' | 'button'
+export type InputType =
+	| 'text'
+	| 'multiline'
+	| 'email'
+	| 'password'
+	| 'number'
+	| 'button'
 
 export type FieldPrefix =
 	| { type: 'text'; value: string }
@@ -122,6 +128,7 @@ export class CmTextfield {
 
 	@Event() cmInput: EventEmitter<{ value: string; valueAsNumber: number }>
 	@Event() cmReset: EventEmitter<void>
+	@Event() cmClick: EventEmitter<MouseEvent>
 
 	componentWillLoad() {
 		onThemeChange((theme) => {
@@ -282,7 +289,7 @@ export class CmTextfield {
 		if (this.type === 'button') {
 			event.preventDefault()
 			event.stopPropagation()
-		} 
+		}
 	}
 
 	renderLabelContainer() {
@@ -295,8 +302,9 @@ export class CmTextfield {
 						this.helperText.length === 0 &&
 						this.showRequired === false,
 				}}
+				onClick={this.handleLabelClick}
 			>
-				<div class="label" onClick={this.handleLabelClick}>{this.label}</div>
+				<div class="label">{this.label}</div>
 				{this.labelAlignment === 'vertical' ? (
 					<cm-text
 						class="helperText"
@@ -441,17 +449,17 @@ export class CmTextfield {
 		} else {
 			let type = this.type
 
-			if ((type === 'password' && this.showPassword) || type === 'button') {
+			if (
+				(type === 'password' && this.showPassword) ||
+				type === 'button'
+			) {
 				type = 'text'
 			}
 
-			const role = this.type === "button" ? "button" : undefined;
 			const readonly = this.readonly || this.type === 'button'
 
 			return (
 				<input
-		
-					role={role}
 					tabIndex={0}
 					disabled={this.disabled}
 					type={type}
@@ -462,7 +470,7 @@ export class CmTextfield {
 					step={this.step}
 					value={this.value}
 					onInput={inputHandler}
-					readonly={readonly}	
+					readonly={readonly}
 				/>
 			)
 		}
@@ -564,7 +572,11 @@ export class CmTextfield {
 				</div>
 			)
 		} else if (this.fieldSuffix.type === 'default') {
-			if (this.type === 'text' || this.type === 'email' || this.type === 'button') {
+			if (
+				this.type === 'text' ||
+				this.type === 'email' ||
+				this.type === 'button'
+			) {
 				return <div class="suffix empty"></div>
 			} else if (this.type === 'password') {
 				if (this.showPassword) {
@@ -679,7 +691,19 @@ export class CmTextfield {
 					}}
 				>
 					{this.renderLabelContainer()}
-					<div class="inputContainer">
+
+					<div
+						class="inputContainer"
+						role={this.type === 'button' ? 'button' : undefined}
+						onClick={
+							this.type === 'button'
+								? (event: MouseEvent) => {
+										event.preventDefault()
+										this.cmClick.emit(event)
+								  }
+								: undefined
+						}
+					>
 						{this.renderPrefix()}
 						{this.renderInputElement()}
 						{this.renderAsyncStatusIndicator()}

@@ -359,6 +359,14 @@
 
 		transition: border linear 200ms, box-shadow linear 200ms;
 
+		&[role='button'] {
+			cursor: pointer;
+
+			input {
+				cursor: pointer;
+			}
+		}
+
 		&.appearanceChange {
 			transition: none;
 
@@ -432,10 +440,6 @@
 
 			&[type='number'] {
 				-moz-appearance: textfield;
-			}
-
-			&[role='button'] {
-				cursor: pointer;
 			}
 		}
 
