@@ -18,7 +18,7 @@ import {
 } from '../../globalHelpers'
 import { CmIcon } from '../cm-icon/cm-icon'
 
-export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number'
+export type InputType = 'text' | 'multiline' | 'email' | 'password' | 'number' | 'button'
 
 export type FieldPrefix =
 	| { type: 'text'; value: string }
@@ -278,6 +278,13 @@ export class CmTextfield {
 		this.renderValidity()
 	}, this.delayValidationDistance)
 
+	handleLabelClick = (event: MouseEvent) => {
+		if (this.type === 'button') {
+			event.preventDefault()
+			event.stopPropagation()
+		} 
+	}
+
 	renderLabelContainer() {
 		return (
 			<div
@@ -289,7 +296,7 @@ export class CmTextfield {
 						this.showRequired === false,
 				}}
 			>
-				<div class="label">{this.label}</div>
+				<div class="label" onClick={this.handleLabelClick}>{this.label}</div>
 				{this.labelAlignment === 'vertical' ? (
 					<cm-text
 						class="helperText"
@@ -350,7 +357,8 @@ export class CmTextfield {
 				this.type === 'text' ||
 				this.type === 'password' ||
 				this.type === 'email' ||
-				this.type === 'number'
+				this.type === 'number' ||
+				this.type === 'button'
 			) {
 				return <div class="prefix empty"></div>
 			}
@@ -433,12 +441,17 @@ export class CmTextfield {
 		} else {
 			let type = this.type
 
-			if (type === 'password' && this.showPassword) {
+			if ((type === 'password' && this.showPassword) || type === 'button') {
 				type = 'text'
 			}
 
+			const role = this.type === "button" ? "button" : undefined;
+			const readonly = this.readonly || this.type === 'button'
+
 			return (
 				<input
+		
+					role={role}
 					tabIndex={0}
 					disabled={this.disabled}
 					type={type}
@@ -449,7 +462,7 @@ export class CmTextfield {
 					step={this.step}
 					value={this.value}
 					onInput={inputHandler}
-					readonly={this.readonly}
+					readonly={readonly}	
 				/>
 			)
 		}
@@ -551,7 +564,7 @@ export class CmTextfield {
 				</div>
 			)
 		} else if (this.fieldSuffix.type === 'default') {
-			if (this.type === 'text' || this.type === 'email') {
+			if (this.type === 'text' || this.type === 'email' || this.type === 'button') {
 				return <div class="suffix empty"></div>
 			} else if (this.type === 'password') {
 				if (this.showPassword) {
