@@ -382,7 +382,10 @@
 						<cm-textfield id="textfield5"></cm-textfield>
 					</cm-form-group>
 
-					<cm-textfield id="textfield6" value="Readonly Value"></cm-textfield>
+					<cm-textfield
+						id="textfield6"
+						value="Readonly Value"
+					></cm-textfield>
 
 					<cm-checkbox-group label="Checkboxes">
 						<cm-checkbox
@@ -620,8 +623,15 @@
 
 					textfield6.type = 'button'
 					textfield6.label = 'Button Input'
-					textfield6.addEventListener('click', () => alert('input clicked'))
-					
+					textfield6.fieldSuffix = {
+						type: 'icon',
+						icon: 'calendar',
+						press: () => {},
+					}
+					textfield6.addEventListener('cmClick', (event) => {
+						alert('input clicked')
+					})
+
 					let form = document.getElementById('form')
 
 					form.addEventListener('cmSubmit', (event) => {
