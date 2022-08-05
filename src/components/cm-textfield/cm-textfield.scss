@@ -433,6 +433,10 @@
 			&[type='number'] {
 				-moz-appearance: textfield;
 			}
+
+			&[role='button'] {
+				cursor: pointer;
+			}
 		}
 
 		textarea {
