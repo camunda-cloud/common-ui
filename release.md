@@ -1,7 +1,8 @@
 ## How to release common-ui
 
 * pull master locally
-* update and fix dependencies
+* merge any dependabot PRs and fix problems if necessary
+* ⚠️ don't bump the `common-ui` version in package.json, this will be done automatically later during the publish step
 * run `yarn && yarn build`  to make sure the build is successful
 * update browserslist  when necessary
 * run `git status` to check that working space is clean
@@ -19,6 +20,8 @@ this writes an access token to ~/.npmrc:
 
 `//registry.npmjs.org/:_authToken=<TOKEN>`
 
+* make sure a potential redirect to github packages is commented out in your ~/.npmrc file:
+   - `#@camunda-cloud:registry=https://npm.pkg.github.com/`
 * run `yarn publish`
 * enter new version
 * run `git push`
@@ -26,8 +29,8 @@ this writes an access token to ~/.npmrc:
 #### common-ui-react:
 
 * pull master locally
-* manually bump dependenies and peerDependencies to common-ui in package.json
-* ⚠️ don't commit, leaves changes staged
+* manually bump dependencies and peerDependencies to common-ui in package.json
+* ⚠️ don't commit, leave changes staged
 * run `yarn publish`
 * enter new version
 * run `git push`
@@ -38,7 +41,6 @@ this writes an access token to ~/.npmrc:
 
 ```
 @camunda-cloud:registry=https://npm.pkg.github.com/
-//npm.pkg.github.com/:_authToken=<TOKEN>
 ```
 
 to get the Github Token:
@@ -46,9 +48,6 @@ Github: Settings -> Developer Settings -> Personal access tokens -> Generate new
 
 * run `yarn publish`
 * don't bump version again, keep current version
-
-repeat for common-ui-react 
-
-
+* repeat for common-ui-react 
 * comment out redirect in ~/.npmrc:
 `#@camunda-cloud:registry=https://npm.pkg.github.com/`
