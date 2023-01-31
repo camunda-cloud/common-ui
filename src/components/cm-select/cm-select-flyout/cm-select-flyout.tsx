@@ -181,7 +181,10 @@ export class CmSelectFlyout {
 												}}
 												onClick={toggleSelection}
 											>
-												<div class="label">
+												<div
+													class="label"
+													title={option.label}
+												>
 													{option.label}
 												</div>
 												{option.description ? (

@@ -78,6 +78,10 @@
 					}
 
 					.label {
+						max-width: 100%;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
 						color: var(--cm-color-ui-dark4);
 						&::after {
 							background-color: var(--cm-color-blue-base);
@@ -159,6 +163,10 @@
 					}
 
 					.label {
+						max-width: 100%;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
 						color: var(--cm-color-white-base);
 						&::after {
 							background-color: var(--cm-color-blue-base);
