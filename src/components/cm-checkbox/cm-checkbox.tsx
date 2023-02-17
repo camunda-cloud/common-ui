@@ -294,6 +294,7 @@ export class CmCheckbox {
 					></div>
 					{this.icon ? (
 						<cm-icon
+							class="icon"
 							icon={this.icon.icon}
 							color={this.icon.color}
 							ignoreTheme={this.icon.ignoreTheme}
