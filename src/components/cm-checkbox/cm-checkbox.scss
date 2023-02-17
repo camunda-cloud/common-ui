@@ -217,7 +217,7 @@
 	}
 }
 
-cm-icon {
+.icon {
 	grid-area: icon;
 	margin-left: 6px;
 }
@@ -259,8 +259,6 @@ cm-text {
 	font-family: var(--cm-font-text);
 	font-size: 13px;
 	color: var(--cm-color-red-base);
-
-	padding-left: 2px;
 
 	&:not(:empty) {
 		padding-top: 8px;
