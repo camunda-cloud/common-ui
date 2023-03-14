@@ -55,7 +55,7 @@
     "react-dom": "16.13.1",
     "react-is": "16.13.1",
     "typescript": "4.5.5",
-    "webpack": "5.68.0",
+    "webpack": "5.76.0",
     "workbox-build": "6.4.2",
     "write-file-webpack-plugin": "4.5.1"
   },
